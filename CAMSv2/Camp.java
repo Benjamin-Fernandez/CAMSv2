@@ -25,4 +25,8 @@ public class Camp {
     public void addEnquiry(Enquiries enquiry){
         EnquiryList.add(enquiry);
     }
+
+    public ArrayList<Enquiries> getEnquiries(){
+        return EnquiryList;
+    }
 }

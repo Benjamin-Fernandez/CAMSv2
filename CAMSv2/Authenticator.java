@@ -1,3 +1,6 @@
+package CAMSv2;
+
+
 public class Authenticator {
     //
     boolean check(String UserID , String Password , String role)

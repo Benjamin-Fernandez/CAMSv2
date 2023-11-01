@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 
 public class CampManager {
+    //attribtues
     private static ArrayList<Camp> campList;
-    public void createCamp(String name){
 
+    //method
+    public void createCamp(String name){
         //print and scan logic is here
     // call constructor from camp, parameters are all the 8 inputs
         Camp SpecificCamp = new Camp(8 parameters);
         campList.add(SpecificCamp);
-
-
     }
+
     public Camp getCamp(String campName){
         //for each camp in campList
         //if campName == campList[i].info.name, return campList[i]
@@ -57,5 +58,9 @@ public class CampManager {
     public void StaffCampListGenerator(String staffname){
         //for each camp in campList
         //if staffName == campList[i].info.staffname, print(campList[i].info.campname
+    }
+
+    public ArrayList<Camp> getCampList(){
+        return campList;
     }
 }

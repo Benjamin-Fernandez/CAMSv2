@@ -29,7 +29,7 @@ public class Staff extends User {
 
     }
 
-    public void changeVisibility)(){
+    public void changeVisibility(){
         //ask for which camp
         //scan and String campName = scan
         // CampManager util = new CampManager();
@@ -47,6 +47,17 @@ public class Staff extends User {
 
     }
 
+    public void viewEnquiries(){
+        //ask which ccamp name they want to view
+        //scann a string
+        EnquiryManager enqManager = new EnquiryManager();
+        enqManager.viewEnquiry(campName, this.name);
+    }
+
+    public void replyEnquiries(){
+        
+
+    }
 
 
 

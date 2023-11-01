@@ -16,7 +16,7 @@ public class CampInformation {
         //this.8 inputs
     }
 
-    public editCampInfo(int choice){
+    public void editCampInfo(int choice){
         //switch case 1- date etc
         //ask what they want chng
         //scanf(newChange)

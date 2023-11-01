@@ -1,14 +1,20 @@
 package CAMSv2;
 
-import java.util.*
+import java.util.*;
 
 public class Enquiries {
     //enquiry will hold a list of question and replies
-    private ArrayList<String> question;
-    private ArrayList<String> reply;
+    private ArrayList<Question> Questions;
+    //private ArrayList<String> reply;
 
-    public Enquiries(String question){
-        this.question.add(question);
+    public Enquiries(Question question){
+        this.Questions.add(question);
+        //this.reply = new ArrayList<String>();
     }
 
+    public ArrayList<Question> getQuestion(){
+        return Questions;
+    }
+
+    
 }
