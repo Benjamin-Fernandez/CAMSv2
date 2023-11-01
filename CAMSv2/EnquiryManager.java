@@ -35,7 +35,7 @@ public class EnquiryManager {
 
                     for(int k=0;k<camp.getEnquiries().get(j).getQuestion().size();k++){
 
-                    System.out.println("Question " + j+1 + "Enquiry " + k+1 + ". " + camp.getEnquiries().get(j).getQuestion().get(k));
+                    System.out.println("Enquiry " + j+1 + "Question " + k+1 + ". " + camp.getEnquiries().get(j).getQuestion().get(k));
                     //enq 1 qns 2 will = 12
 
                     }//inner for
