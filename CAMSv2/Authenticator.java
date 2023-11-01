@@ -1,9 +1,11 @@
 package CAMSv2;
 
 
-public class Authenticator {
+public class Authenticator{
     //
-    boolean check(String UserID , String Password , String role)
+    boolean check(String UserID , String Password , String role){
+        return false;
+    }
         //we preassign staff/student(role) to database
     //depending on what the role is , we check the respective database for the credentials ,
     // if credentials are not inside , he is not a student

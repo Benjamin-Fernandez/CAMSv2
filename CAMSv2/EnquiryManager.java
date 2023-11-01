@@ -1,5 +1,5 @@
 package CAMSv2;
-import java.util.Scanner();
+import java.util.Scanner;
 import CAMSv2.CampManager;
 
 public class EnquiryManager {
@@ -11,9 +11,10 @@ public class EnquiryManager {
         //append student's enquiry to their own lsit of enquiry
         //find the correct camp
         //append this enquiry to that particular camp
-        Enquiries newEnquiry = new Enquiries(enquiry);
+        Question newQuestion = new Question(enquiry);
+        Enquiries newEnquiry = new Enquiries(newQuestion);
         CampManager campManager = new CampManager();
-        Camp camp = getCamp(campName);
+        Camp camp = campManager.getCamp(campName);
         camp.addEnquiry(newEnquiry);
     }
 
@@ -42,17 +43,22 @@ public class EnquiryManager {
     
     public void replyEnquiry(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
-        int enq;
+        int enqIndex;
         //call view enquiry 
         this.viewEnquiry(campName,staffName);
         System.out.println("Which enquiry would you like to reply to?");
         //value taken is +1 of actual index
-        enq = sc.nextInt();
-        enq--; //now is correct index
+        enqIndex = sc.nextInt();
+        enqIndex--; //now is correct index
 
         //this is reply portion
+        //replying to a specific enquiry from a specific camp
+        
 
 
+
+
+        sc.close();
     }
 
     //student functions
