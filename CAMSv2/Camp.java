@@ -1,6 +1,4 @@
 package CAMSv2;
-
-import java.sql.Array;
 import java.util.ArrayList;
 public class Camp {
 
@@ -10,26 +8,20 @@ public class Camp {
     private ArrayList<Enquiries> EnquiryList;
     private ArrayList<Suggestion> SuggestionsList;
 
-    // public Camp(){
-    //     this.info = null;
-    //     this.StudentList = new ArrayList<Student>  ;
-    //     this.EnquiryList = null;
-    //     this.SuggestionsList = null;
-    //     this.visibility = false;
-
-
-    // }
+    // Constructors
+    public Camp(){ 
+        //empty constructor}
+   
 
     public Camp(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
 
-
         this.visibility = false;
         this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots , Camp_Committee_slots,  Description, Staff_in_charge);
-        this.StudentList = new ArrayList<Students>();
+        this.StudentList = new ArrayList<Student>();
 
     }
 
-
+    // Methods
 
     public void setVisibility(boolean choice){
         this.visibility = choice;

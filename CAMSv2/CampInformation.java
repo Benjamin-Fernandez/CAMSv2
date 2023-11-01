@@ -1,5 +1,4 @@
 package CAMSv2;
-
 import java.util.ArrayList;
 
 public class CampInformation {
@@ -19,14 +18,13 @@ public class CampInformation {
 
         this.CampName = CampName;
         this.Dates = Dates;
-        this Registration_closing_date = Registration_closing_date;
+        this.Registration_closing_date = Registration_closing_date;
         this.User_group = User_group;
         this.Location = Location;
         this.Total_Slots = Total_Slots;
         this.Camp_Committee_slots = Camp_Committee_slots;
         this.Description = Description;
         this.Staff_in_charge = Staff_in_charge;
-
 
     }
 

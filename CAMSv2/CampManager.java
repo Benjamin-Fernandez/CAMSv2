@@ -27,7 +27,7 @@ public class CampManager {
                 return camp;
             }//if
         }//for
-        //if campName == campList[i].info.name, return campList[i]
+       
         return null;//if it doesnt find a camp
     }
 
