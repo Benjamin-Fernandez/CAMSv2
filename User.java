@@ -1,3 +1,5 @@
+package CAMSv2;
+
 public class User {
     String UserID;
     String Password;

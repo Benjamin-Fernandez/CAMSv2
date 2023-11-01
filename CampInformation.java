@@ -1,3 +1,4 @@
+package CAMSv2;
 public class CampInformation {
 
     private String CampName;

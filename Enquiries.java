@@ -1,3 +1,5 @@
+package CAMSv2;
+
 import java.util.*
 
 public class Enquiries {

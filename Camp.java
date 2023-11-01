@@ -1,3 +1,5 @@
+package CAMSv2;
+
 import java.sql.Array;
 import java.util.ArrayList;
 public class Camp {

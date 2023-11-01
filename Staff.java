@@ -1,3 +1,5 @@
+package CAMSv2;
+
 public class Staff extends User {
     public Staff(name,emailID, faculty,password,role){
         //super(name,emailID, faculty,password,role)
