@@ -10,7 +10,7 @@ public class Staff extends User {
     public void createCamp(){
 
     CampManager util = new CampManager();
-    util.createCamp(this.Name);
+    util.createCamp(this.nameame);
 
     }
 
@@ -69,11 +69,19 @@ public class Staff extends User {
     public void viewSuggestion(){
          //ask which ccamp name they want to view
         SuggestionManager suggManager = new SuggestionManager();
-        suggManager.viewSuggestion(campName);
+        suggManager.viewSuggestion(campName, this.name);
     }
 
     public void approveAdvice(){
+        //ask which ccamp name they want to approve;
+        SuggestionManager suggManager = new SuggestionManager();
+        suggManager.approveAdvice(campName, this.name)
 
+    }
+
+    public void generateReport(){
+        CampManager campManager = new CampManager();
+        campManager.generateReport(this.name);
     }
 
 

@@ -19,13 +19,13 @@ public class SuggestionManager {
     }
 
     //staff fucntion
-    public void viewSuggestion(String campName){
+    public void viewSuggestion(String campName, String staffName){
         //pritngin and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
         for(int i=0;i<campManager.getCampList().size();i++){
-
+            if(campManager.getStaffinCharge(campName,staffName)){
                 Camp camp = campManager.getCamp(campName);
                 System.out.println(campName + "suggestion");
 
@@ -39,6 +39,7 @@ public class SuggestionManager {
 
                     }//inner for
                 }
+            }
 
            
 
@@ -79,9 +80,7 @@ public class SuggestionManager {
 
         if(approved){
             campManager.editCamp(campName, staffName);
-
-            //editCamp
-
+            //edit camp
         }
 
         sc.close();

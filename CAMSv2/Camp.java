@@ -18,6 +18,8 @@ public class Camp {
 
     }
 
+
+
     public void setVisibility(boolean choice){
         this.visibility = choice;
     }
@@ -36,5 +38,17 @@ public class Camp {
 
     public ArrayList<Suggestion> getSuggestions(){
         return SuggestionsList;
+    }
+
+    public ArrayList<Student> getStudentList(){
+            return StudentList;
+    }
+
+    public String getCampName(){
+       this.info.getCampName();
+    }
+
+    public String getStaffName(){
+        this.info.getStaffName();
     }
 }

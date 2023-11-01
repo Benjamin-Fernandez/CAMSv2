@@ -14,4 +14,8 @@ public class User {
     //
     public void changePassword(String newpassword){}
 
+    public String getName(){
+        return this.name;
+    }
+
 }

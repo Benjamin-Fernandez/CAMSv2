@@ -17,16 +17,31 @@ public class CampManager {
 
     public Camp getCamp(String campName){
         //for each camp in campList
+        ArrayList<Camp> campList = new ArrayList<Camp>();
+        campList = this.getCampList();
+        Camp camp = new Camp();
+
+        for(int i=0; i<campList.size();i++){
+            camp = campList.get(i);
+            if(campName.equals(camp.getCampName())){
+                return camp;
+            }//if
+        }//for
         //if campName == campList[i].info.name, return campList[i]
+        return null;//if it doesnt find a camp
     }
 
     public boolean getStaffinCharge(String campName, String Staffname){
         //for each camp in campList
         //if staffname == campList[i].info.staffincharge && campName == campList[i].info.name return true
+        String staffIC;
+        Camp camp = new Camp();
+        camp = getCamp(campName);
+        staffIC = camp.getStaffName();
 
+        return staffIC.equals(Staffname);
+        }
 
-        //return false
-    }
 
     public void editCamp(String campName,String staffName){
         if(getStaffinCharge(campName, staffName)) {
@@ -63,4 +78,37 @@ public class CampManager {
     public ArrayList<Camp> getCampList(){
         return campList;
     }
+
+    // public ArrayList<Student> getStudentList(){
+    //     Camp camp = new Camp();
+    //     return camp.getStudentList();
+    // }
+
+    public void generateReport(String staffName){
+        ArrayList<Camp> campList = this.getCampList();
+        ArrayList<Student> studentList;
+        CampManager campManager = new CampManager();
+        String campName;
+        Camp camp = new Camp();
+
+        for(int i=0;i<campList.size();i++){
+            campName = campList.get(i).getCampName();
+            //String name of camp obj
+
+            if(this.getStaffinCharge(campName, staffName)){
+                camp = campManager.getCamp(campName); //cmap obj itself
+                studentList = camp.getStudentList();
+                for(int j=0;j<studentList.size();j++){
+                    Student student = new Student();
+                    student = studentList.get(j);
+                    // System.out.println(student.getName() + student.getStudentRole()); 
+                    //getstudentrole is in student class
+                }//for
+
+
+
+            }
+        }
+    }
 }
+

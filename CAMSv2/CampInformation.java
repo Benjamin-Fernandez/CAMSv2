@@ -1,4 +1,7 @@
 package CAMSv2;
+
+import java.util.ArrayList;
+
 public class CampInformation {
 
     private String CampName;
@@ -24,6 +27,15 @@ public class CampInformation {
 
 
     }
+
+    public String getCampName(){
+            return this.CampName;
+    }
+
+    public String getStaffName(){
+            return this.Staff_in_charge;
+    }
+
 
 
 }
