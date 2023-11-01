@@ -91,24 +91,42 @@ public class CampManager {
         String campName;
         Camp camp = new Camp();
 
+        //the 8 details apart from StudentName and Role
+        String dates;
+        String registrationClosingDate;
+        String userGroup;
+        String location;
+        String totalSlots;
+        String campCommitteeSlots;
+        String description;
+        String staffInCharge;
+
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
             //String name of camp obj
 
             if(this.getStaffinCharge(campName, staffName)){
-                camp = campManager.getCamp(campName); //cmap obj itself
+                camp = campManager.getCamp(campName); //camp obj itself
+                dates = camp.CampInformation.getDates();
                 studentList = camp.getStudentList();
+               
+
+                
                 for(int j=0;j<studentList.size();j++){
                     Student student = new Student();
                     student = studentList.get(j);
                     // System.out.println(student.getName() + student.getStudentRole()); 
                     //getstudentrole is in student class
                 }//for
-
+               
 
 
             }
         }
+
+
     }
+
+
 }
 
