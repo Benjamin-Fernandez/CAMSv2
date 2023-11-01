@@ -1,10 +1,10 @@
 package CAMSv2;
 
 public class User {
-    String UserID;
-    String Password;
-    String Faculty;
-    String Name;
+    String userID;
+    String password;
+    String faculty;
+    String name;
 
     String Role; //either staff or student
 

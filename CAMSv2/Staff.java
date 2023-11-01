@@ -1,5 +1,7 @@
 package CAMSv2;
 
+import java.util.Scanner;
+
 public class Staff extends User {
     public Staff(name,emailID, faculty,password,role){
         //super(name,emailID, faculty,password,role)
@@ -55,7 +57,22 @@ public class Staff extends User {
     }
 
     public void replyEnquiries(){
-        
+        EnquiryManager enqManager = new EnquiryManager();
+        Scanner sc = new Scanner(System.in);
+        String campName;
+        System.out.println("which camp's enquiry would you want to reply to? ");
+        campName = sc.nextLine();
+        enqManager.replyEnquiry(campName, this.name);
+
+    }
+
+    public void viewSuggestion(){
+         //ask which ccamp name they want to view
+        SuggestionManager suggManager = new SuggestionManager();
+        suggManager.viewSuggestion(campName);
+    }
+
+    public void approveAdvice(){
 
     }
 

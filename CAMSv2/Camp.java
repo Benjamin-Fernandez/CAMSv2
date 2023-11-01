@@ -8,7 +8,7 @@ public class Camp {
     private CampInformation info;
     private ArrayList<Student> StudentList;
     private ArrayList<Enquiries> EnquiryList;
-
+    private ArrayList<Suggestion> SuggestionsList;
 
     public Camp(8 parameters){
 
@@ -26,7 +26,15 @@ public class Camp {
         EnquiryList.add(enquiry);
     }
 
+    public void addSuggestion(Suggestion suggestion){
+        SuggestionsList.add(suggestion);
+    }
+
     public ArrayList<Enquiries> getEnquiries(){
         return EnquiryList;
+    }
+
+    public ArrayList<Suggestion> getSuggestions(){
+        return SuggestionsList;
     }
 }
