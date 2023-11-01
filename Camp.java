@@ -4,7 +4,8 @@ public class Camp {
 
     boolean visibility;
     private CampInformation info;
-    private ArrayList<Students> StudentList;
+    private ArrayList<Student> StudentList;
+    private ArrayList<Enquiries> EnquiryList;
 
 
     public Camp(8 parameters){
@@ -17,5 +18,9 @@ public class Camp {
 
     public void setVisibility(boolean choice){
         this.visibility = choice;
+    }
+
+    public void addEnquiry(Enquiries enquiry){
+        EnquiryList.add(enquiry);
     }
 }

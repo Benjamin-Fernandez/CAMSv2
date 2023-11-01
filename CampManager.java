@@ -1,4 +1,6 @@
+package
 import java.util.ArrayList;
+
 
 public class CampManager {
     private static ArrayList<Camp> campList;
