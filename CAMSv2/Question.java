@@ -11,6 +11,8 @@ public class Question {
         this.question = question;
         this.reply = new ArrayList<String>() ;
     }
+
+    
     //methods
     public ArrayList<String> getReply() {
         return reply;

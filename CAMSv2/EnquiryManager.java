@@ -49,9 +49,9 @@ public class EnquiryManager {
     
     public void replyEnquiry(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
-        Camp newCamp = new Camp();
+        Camp curCamp = new Camp();
         CampManager campManager = new CampManager();
-        newCamp = campManager.getCamp(campName);
+        curCamp = campManager.getCamp(campName);
 
         int enqIndex;
         int qnsIndex;
@@ -75,6 +75,7 @@ public class EnquiryManager {
         // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
         System.out.println("Enter your reply");
         newReply = sc.nextLine();
+        curCamp.getEnquiries().get(enqIndex).getQuestion().get(qnsIndex)
 
 
         
