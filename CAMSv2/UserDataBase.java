@@ -43,6 +43,8 @@ public class UserDataBase {
         }
     }
 
+    public void writeToCSV
+
 
     public ArrayList<User> getUsers() {
         return users;

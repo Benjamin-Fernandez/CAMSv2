@@ -10,10 +10,21 @@ public class Camp {
     private ArrayList<Enquiries> EnquiryList;
     private ArrayList<Suggestion> SuggestionsList;
 
-    public Camp(8 parameters){
+    // public Camp(){
+    //     this.info = null;
+    //     this.StudentList = new ArrayList<Student>  ;
+    //     this.EnquiryList = null;
+    //     this.SuggestionsList = null;
+    //     this.visibility = false;
+
+
+    // }
+
+    public Camp(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
+
 
         this.visibility = false;
-        this.info = new CampInformation(8 parameters);
+        this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots , Camp_Committee_slots,  Description, Staff_in_charge);
         this.StudentList = new ArrayList<Students>();
 
     }
@@ -45,10 +56,43 @@ public class Camp {
     }
 
     public String getCampName(){
-       this.info.getCampName();
+      return this.info.getCampName();
     }
 
     public String getStaffName(){
-        this.info.getStaffName();
+       return this.info.getStaffName();
     }
+
+    
+    //Camp information functions
+
+    public String getDates(){
+        return this.info.getDates();
+    }
+
+    public String getRegistrationClosingDate(){
+        return this.info.getRegistrationClosingDate();
+    }
+
+    public String getUserGroup(){
+        return this.info.getUserGroup();
+    }
+
+    public String getLocation(){
+        return this.info.getLocation();
+    }
+
+    public String getTotalSlots(){
+        return this.info.getTotalSlots();
+    }
+
+    public String[] getCampCommitteeSlots(){
+        return this.info.getCampCommitteeSlots();
+    }
+
+    public String getDescription(){
+        return this.info.getDescription();
+    }
+
+
 }

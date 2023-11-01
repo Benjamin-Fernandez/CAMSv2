@@ -88,8 +88,9 @@ public class CampManager {
         ArrayList<Camp> campList = this.getCampList();
         ArrayList<Student> studentList;
         CampManager campManager = new CampManager();
+
         String campName;
-        Camp camp = new Camp();
+        //Camp camp = new Camp();
 
         //the 8 details apart from StudentName and Role
         String dates;
@@ -97,27 +98,35 @@ public class CampManager {
         String userGroup;
         String location;
         String totalSlots;
-        String campCommitteeSlots;
+        String[] campCommitteeSlots;
         String description;
-        String staffInCharge;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
             //String name of camp obj
 
             if(this.getStaffinCharge(campName, staffName)){
-                camp = campManager.getCamp(campName); //camp obj itself
-                dates = camp.CampInformation.getDates();
+                Camp camp = campManager.getCamp(campName); //camp obj itself            
                 studentList = camp.getStudentList();
-               
-
-                
+                dates = camp.getDates();
+                registrationClosingDate = camp.getRegistrationClosingDate();
+                userGroup = camp.getUserGroup();
+                location = camp.getLocation();
+                totalSlots = camp.getTotalSlots();
+                description = camp.getDescription();
+                campCommitteeSlots = camp.getCampCommitteeSlots();
+                 
+                for(int j = 0 ; j < 10 ; j++){
+                    //go through campCommitteeSlots array
+                    //write each index to csv file.
+                }
+        
                 for(int j=0;j<studentList.size();j++){
                     Student student = new Student();
                     student = studentList.get(j);
                     // System.out.println(student.getName() + student.getStudentRole()); 
                     //getstudentrole is in student class
-                }//for
+                }//send everything to a csv file.
                
 
 
