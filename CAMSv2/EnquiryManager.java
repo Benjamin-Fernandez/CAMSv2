@@ -32,7 +32,13 @@ public class EnquiryManager {
 
 
                 for(int j=0;j<camp.getEnquiries().size();j++){
-                    System.out.println(j+1 + ". " + camp.getEnquiries().get(j).getQuestion().get(j));
+
+                    for(int k=0;k<camp.getEnquiries().get(j).getQuestion().size();k++){
+
+                    System.out.println("Question " + j+1 + "Enquiry " + k+1 + ". " + camp.getEnquiries().get(j).getQuestion().get(k));
+                    //enq 1 qns 2 will = 12
+
+                    }//inner for
                 }
 
             }//if
@@ -43,16 +49,35 @@ public class EnquiryManager {
     
     public void replyEnquiry(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
+        Camp newCamp = new Camp();
+        CampManager campManager = new CampManager();
+        newCamp = campManager.getCamp(campName);
+
         int enqIndex;
+        int qnsIndex;
+        String newReply;
         //call view enquiry 
-        this.viewEnquiry(campName,staffName);
+
+        this.viewEnquiry(campName,staffName);//prints list of enq
+
         System.out.println("Which enquiry would you like to reply to?");
         //value taken is +1 of actual index
         enqIndex = sc.nextInt();
         enqIndex--; //now is correct index
 
+        System.out.println("Which question would you like to reply to?");
+        qnsIndex = sc.nextInt();
+        qnsIndex--;
+
+
         //this is reply portion
         //replying to a specific enquiry from a specific camp
+        // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
+        System.out.println("Enter your reply");
+        newReply = sc.nextLine();
+
+
+        
         
 
 

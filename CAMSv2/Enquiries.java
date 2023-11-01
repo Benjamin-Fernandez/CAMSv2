@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Enquiries {
     //enquiry will hold a list of question and replies
-    private ArrayList<Question> Questions;
+    private ArrayList<Questions> Questions;
     //private ArrayList<String> reply;
 
     public Enquiries(Question question){

@@ -15,4 +15,9 @@ public class Question {
     public ArrayList<String> getReply() {
         return reply;
     }
+
+    public void setReply(String Reply) {
+        this.reply.add(Reply);
+
+    }
 }
