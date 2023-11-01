@@ -75,14 +75,8 @@ public class EnquiryManager {
         // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
         System.out.println("Enter your reply");
         newReply = sc.nextLine();
-        curCamp.getEnquiries().get(enqIndex).getQuestion().get(qnsIndex)
-
-
-        
-        
-
-
-
+        curCamp.getEnquiries().get(enqIndex).getQuestion().get(qnsIndex).setReply(newReply);
+        System.out.println("Reply uploaded");
 
         sc.close();
     }
