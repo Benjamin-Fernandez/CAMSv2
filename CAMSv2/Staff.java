@@ -1,47 +1,84 @@
 package CAMSv2;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Staff extends User {
-    public Staff(name,emailID, faculty,password,role){
+    public Staff(name,emailID,faculty,password,role){
         //super(name,emailID, faculty,password,role)
     }
 
     public void createCamp(){
-
-    CampManager util = new CampManager();
-    util.createCamp(this.nameame);
-
+        CampManager util = new CampManager();
+        util.createCamp(this.name);
     }
 
-    public void editCamp(String campName) {
+    public void editCamp() {
+        String campName;
+        int index;
+        Scanner sc = new Scanner(System.in);
+        CampManager campManager = new CampManager();
+  
+        this.viewCamp(); //this prints a table of camp choices
 
-     CampManager util = new CampManager();
-     util.editCamp(campName,this.name);
-
-
+        System.out.println("Enter the index of the camp to delete");
+        index = sc.nextInt();
+        campName = getCampName(--index); //index is one larger than actual index
+        
+        //visibility calls campManager
+        campManager.editCamp(campName,this.name);
+        
     }
 
     public void deleteCamp() {
-//ask for what camp to delete
-        //scan the string and then String CampName = scan
-        CampManager util = new CampManager();
-        util.deleteCamp(campName);
+        String campName;
+        int index;
+        Scanner sc = new Scanner(System.in);
+        CampManager campManager = new CampManager();
+  
+        this.viewCamp();
+        //take in integer of which camp they wnat to view, i--; and get its camp name from its index
 
-
+        System.out.println("Enter the index of the camp to delete");
+        index = sc.nextInt();
+        campName = getCampName(--index);
+        
+        //delete calls campManager
+        campManager.deleteCamp(campName);
     }
 
     public void changeVisibility(){
-        //ask for which camp
-        //scan and String campName = scan
-        // CampManager util = new CampManager();
-        //        util.changeVisibility(campName);
+        String campName;
+        int index;
+        Scanner sc = new Scanner(System.in);
+        CampManager campManager = new CampManager();
+  
+        this.viewCamp();
+        //take in integer of which camp they wnat to view, i--; and get its camp name from its index
+
+        System.out.println("Enter the index of the camp to change visibility");
+        index = sc.nextInt();
+        campName = getCampName(--index);
+        
+        //visibility calls campManager
+        campManager.changeVisibility(campName);
         }
 
     public void viewCamp(){
-    Camp camp = new Camp();
-    //use for loop to go through array to print all the camp object.name
-    }
+        //any staff can view all camps
+        //all this method does is print out a list of camps
+        CampManager campManager = new CampManager();
+        ArrayList<Camp> campList = campManager.getCampList();
+        int numOfCamps = campList.size();
+        Camp camp = new Camp();
+        String campName;
+
+        for(int i=0;i<numOfCamps;i++){
+            camp = campList.get(i);
+            campName = camp.getCampName();
+            System.out.println(i+1 + ". "+ campName);
+        }//end for
+
+    }//end viewCamp()
 
     public void myList(){
         // CampManager util = new CampManager();
@@ -85,7 +122,22 @@ public class Staff extends User {
     }
 
 
+    public String getCampName(int indexOfCamp){
+        String campName;
+        ArrayList<Camp> campList = new ArrayList<Camp>();
+        CampManager campManager = new CampManager();
+        Scanner sc = new Scanner(System.in);
 
+        indexOfCamp = sc.nextInt();
+        indexOfCamp--;
+        sc.close();
+
+        //find name of camp
+        campList = campManager.getCampList();
+        campName = campList.get(indexOfCamp).getCampName();
+
+        return campName;
+    }
 
 
 

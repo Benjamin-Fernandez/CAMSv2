@@ -1,6 +1,6 @@
 package CAMSv2;
 import java.util.Scanner;
-import CAMSv2.CampManager;
+//import CAMSv2.CampManager;
 
 public class EnquiryManager {
     //attribute
@@ -44,7 +44,7 @@ public class EnquiryManager {
             }//if
 
         }//for
-    }
+    }//viewEnquiry
 
     
     public void replyEnquiry(String campName, String staffName){
@@ -79,7 +79,7 @@ public class EnquiryManager {
         System.out.println("Reply uploaded");
 
         sc.close();
-    }
+    }//replyEnquiry
 
     //student functions
     public void deleteEnquiry(){

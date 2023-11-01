@@ -25,26 +25,26 @@ public class SuggestionManager {
         CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
         for(int i=0;i<campManager.getCampList().size();i++){
+
             if(campManager.getStaffinCharge(campName,staffName)){
+
                 Camp camp = campManager.getCamp(campName);
                 System.out.println(campName + "suggestion");
-
 
                 for(int j=0;j<camp.getSuggestions().size();j++){
 
                     for(int k=0;k<camp.getSuggestions().get(j).getAdviceList().size();k++){
 
-                    System.out.println("Suggestion " + j+1 + "Advice " + k+1 + ". " + camp.getSuggestions().get(j).getAdviceList().get(k));
-                    //enq 1 qns 2 will = 12
+                    System.out.println("Suggestion " + j+1 + " Advice " + k+1 + "- " + camp.getSuggestions().get(j).getAdviceList().get(k));
 
                     }//inner for
-                }
-            }
+                }//mid for
+            }//if
 
            
 
-        }//for
-    }
+        }//outer for
+    }//viewSuggestion
 
     //approve suggestion
     //staff.approvesuggestion-> suggManager.approveAdvice->
@@ -58,7 +58,7 @@ public class SuggestionManager {
         int suggIndex;
         int adviceIndex;
 
-        this.viewSuggestion(campName);
+        this.viewSuggestion(campName, staffName);
 
         System.out.println("Which suggestion would you like to attend to?");
         //value taken is +1 of actual index
