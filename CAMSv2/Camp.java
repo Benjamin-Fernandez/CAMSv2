@@ -10,7 +10,8 @@ public class Camp {
 
     // Constructors
     public Camp(){ 
-        //empty constructor}
+        //empty constructor
+    }
    
 
     public Camp(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
