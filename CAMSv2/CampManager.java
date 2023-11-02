@@ -70,9 +70,25 @@ public class CampManager {
         //resultofgetcamp.setVisibility(true/false)
     }
 
-    public void StaffCampListGenerator(String staffname){
+    public void StaffCampListGenerator(String staffName){
         //for each camp in campList
-        //if staffName == campList[i].info.staffname, print(campList[i].info.campname
+        int numOfCamps;
+        int index=1;
+        Camp curCamp = new Camp();
+        ArrayList<Camp> campList = new ArrayList<Camp>();
+        numOfCamps = campList.size();
+
+        for(int i=0;i<numOfCamps;i++){
+            curCamp = campList.get(i);
+
+            if(curCamp.getStaffName() == staffName){
+                System.out.println("Your List:");
+                System.out.println(index + ". " + curCamp.getCampName());
+                index++;
+                }  
+        }
+        return;
+        
     }
 
     public ArrayList<Camp> getCampList(){

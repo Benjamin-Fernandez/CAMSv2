@@ -24,7 +24,7 @@ public class Staff extends User {
         index = sc.nextInt();
         campName = getCampName(--index); //index is one larger than actual index
         
-        //visibility calls campManager
+        // calls campManager
         campManager.editCamp(campName,this.name);
         
     }
@@ -112,7 +112,7 @@ public class Staff extends User {
     public void approveAdvice(){
         //ask which ccamp name they want to approve;
         SuggestionManager suggManager = new SuggestionManager();
-        suggManager.approveAdvice(campName, this.name)
+        suggManager.approveAdvice(campName, this.name);
 
     }
 
