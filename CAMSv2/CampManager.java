@@ -11,8 +11,8 @@ public class CampManager {
     public void createCamp(String name){
         //print and scan logic is here
     // call constructor from camp, parameters are all the 8 inputs
-        Camp SpecificCamp = new Camp(8 parameters);
-        campList.add(SpecificCamp);
+      //Camp SpecificCamp = new Camp(8 parameters);
+      //campList.add(SpecificCamp);
     }
 
     public Camp getCamp(String campName){
