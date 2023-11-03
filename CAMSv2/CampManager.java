@@ -94,9 +94,8 @@ public class CampManager {
         }//end if
         else{
             System.out.println(errorMessage);
-        }
-        
-
+        }//end else
+        return;
     }//end edit camp
 
     public void deleteCamp(String campName){
