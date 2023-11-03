@@ -23,19 +23,21 @@ public class UserDataBase {
                 String emailID = values[1].split("@")[0]; //Retrieve only the ID before @ part in email
                 String faculty = values[2];
                 String password = "password"; // Assume default password
-                // if csv == student.csv , String role = student
-                //else if cvs == staff.csv , String role= staff
+                // if csv == student.csv ,
+                //    String role = student;
+                //else if cvs == staff.csv ,
+                // String role= staff
 
                 User user;
                 // Check if the CSV file is for students or staff
                 if (csvFilePath.contains("student.csv")) {
-                    user = new Student(name,emailID, faculty,password,role);
+                    //Student student = new Student(name,emailID, faculty,password,role);
                 }
                 else {
-                    user = new Staff(name,emailID, faculty,password);
+                   // Staff staff = new Staff(name,emailID, faculty,password, role);
                 }
 
-                users.add(user);
+                //users.add(user);
 
             }
         } catch (IOException e) {

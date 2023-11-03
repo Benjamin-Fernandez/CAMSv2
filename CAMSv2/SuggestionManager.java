@@ -20,7 +20,7 @@ public class SuggestionManager {
 
     //staff fucntion
     public void viewSuggestion(String campName, String staffName){
-        //pritngin and logic will occur in this methoed
+        //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
@@ -51,9 +51,8 @@ public class SuggestionManager {
     public void approveAdvice(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
 
-        Camp curCamp = new Camp();
         CampManager campManager = new CampManager();
-        curCamp = campManager.getCamp(campName);
+        Camp curCamp = campManager.getCamp(campName);
 
         int suggIndex;
         int adviceIndex;
