@@ -201,34 +201,14 @@ public class CampManager {
         }//end outer for
 
 
-    }//end genrerateReport
+    }//end generateReport
 
-    public void addStudent(String studentName, String campName){
+    public void addStudent(String studentName, String campName, String role){
         Camp camp = this.getCamp(campName);
-        camp.addStudent(studentName);
+        camp.addStudent(studentName, role);
     }
 
 
-
-
-
-
-
-
-
-
-
-    public void addCampCommitteeMember(String studentName, String campName){
-        Camp camp = this.getCamp(campName);
-
-
-        if(camp.getCampCommitteeSlots().size() > 10){
-            System.out.println("No available slot");
-            return;
-        }
-        CampCommitteeMember committeeMember = new CampCommitteeMember(studentName,campName);
-        camp.getCampCommitteeSlots().add(committeeMember);
-    }
 
 }
 

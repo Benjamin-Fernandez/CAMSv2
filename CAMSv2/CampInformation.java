@@ -29,6 +29,10 @@ public class CampInformation {
 
     }
 
+    public void addCampCommitteeMember(Student student){
+        this.Camp_Committee_slots.add(student);
+    }
+
     // public void editCampInfo(int choice){ //do we really want this here? i put in cmapManeger
     //     //switch case 1- date etc
     //     //ask what they want chng

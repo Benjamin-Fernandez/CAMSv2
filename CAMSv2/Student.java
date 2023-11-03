@@ -11,16 +11,18 @@ public class Student extends User{
         super(emailID, password, faculty, name, role);
     }
 
-    public JoiningCamp(){
+    public void RegisterCamp(){
         //ask what camp he wants to apply
         // IsStudentInBlackList()
         // IsCampFull()
         // IsBeforeCampDeadline()
+        //ask him for the role
         CampManager campManager = new CampManager();
+
 
     }
 
-    public getEnquries(){
+    public void getEnquries(){
         //ask for camp name
         //CampManager campManager = new CampManager();
         //Camp camp = campManager.getCamp(campName);
@@ -29,7 +31,11 @@ public class Student extends User{
 
     }
 
-    public generateReport(){
+    //this is only committee member method
+    public void generateReport(){
+        if(this.getRole() == "camp committee member"){
 
+        }
     }
+
 }

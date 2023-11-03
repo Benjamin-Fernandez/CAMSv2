@@ -25,8 +25,17 @@ public class Camp {
     }
 
     // Methods
-    public void addStudent(String studentName){
+    public void addStudent(String studentName, String role){
         //logic to add student into StudentList
+        for(int i = 0; i< UserDataBase.getStudents().size();i++){
+            Student currStudent = UserDataBase.getStudents().get(i);
+            if(currStudent.getName() == studentName && Integer.parseInt(this.info.getTotalSlots()) >0 ){
+                StudentList.add(currStudent);
+                if(role == "Camp committee Member" && this.info.getCampCommitteeSlots().size() <= 10){
+                    this.info.addCampCommitteeMember(currStudent);
+                }
+            }
+        }
     }
 
 
