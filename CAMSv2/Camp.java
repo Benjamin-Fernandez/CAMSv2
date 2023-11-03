@@ -59,6 +59,8 @@ public class Camp {
     
     //Camp information functions
 
+    //get methods
+
     public String getDates(){
         return this.info.getDates();
     }
@@ -86,7 +88,36 @@ public class Camp {
     public String getDescription(){
         return this.info.getDescription();
     }
+    
 
+
+    //set methods
+    public void setCampName(String campName){
+        this.info.setCampName(campName);
+    }
+
+    public void setDates(String dates){
+        this.info.setDates(dates);
+    }
+
+    public void setRegistrationClosingDate(String closingDate){
+        this.info.setRegistrationClosingDate(closingDate);
+    }
+
+    public void setUserGroup(String userGroup){
+        this.info.setUserGroup(userGroup);
+    }
+
+    public void setLocation(String location){
+        this.info.setLocation(location);
+    }
+
+    public void setDescription(String description){
+        this.setDescription(description);
+    }
+
+
+    //additional methods
     public void printCampInfoTable(){
         this.info.printCampInfoTable();
     }

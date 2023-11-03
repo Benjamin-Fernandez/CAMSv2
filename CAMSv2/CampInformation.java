@@ -28,14 +28,14 @@ public class CampInformation {
 
     }
 
-    public void editCampInfo(int choice){
+    public void editCampInfo(int choice){ //do we really want this here? i put in cmapManeger
         //switch case 1- date etc
         //ask what they want chng
         //scanf(newChange)
-        // this.Dates = newChange;
-
-
+        // this.Dates = newChange
     }
+
+    //get methods
 
     public String getCampName(){
             return this.CampName;
@@ -73,10 +73,37 @@ public class CampInformation {
         return this.getDescription();
     }
 
+
+    //set methods
+    public void setCampName(String campName){
+        this.CampName = campName;
+    }
+
+    public void setDates(String dates){
+        this.Dates = dates;
+    }
+
+    public void setRegistrationClosingDate(String closingDate){
+        this.Registration_closing_date = closingDate;
+    }
+
+    public void setUserGroup(String userGroup){
+        this.User_group = userGroup;
+    }
+
+    public void setLocation(String location){
+        this.Location = location;
+    }
+
+    public void setDescription(String description){
+        this.Description = description;
+    }
+
+
     public void printCampInfoTable(){
         System.out.println("1. Camp Name = " + this.CampName);
 
-        System.out.println("2. Camp Dates = " + this.dates);
+        System.out.println("2. Camp Dates = " + this.Dates);
 
         System.out.println("3. Registration Closing Date = " + this.Registration_closing_date);
 
