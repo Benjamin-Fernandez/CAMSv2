@@ -81,8 +81,8 @@ public class Staff extends User {
     }//end viewCamp()
 
     public void myList(){
-        // CampManager util = new CampManager();
-        //        util.StaffCampListGenerator(this.name);
+        CampManager campManager = new CampManager();
+        campManager.StaffCampListGenerator(this.name);
 
     }
 
