@@ -55,8 +55,9 @@ public class CampManager {
 
         
         if(getStaffinCharge(campName, staffName)) {
-            System.out.println("What would you like to edit?");
+            
             currentCamp.printCampInfoTable();
+            System.out.println("What would you like to edit?");
             choice = sc.nextInt();
             while(choice>0 && choice<8){
                 //switch case that calls and takes in specific string needed for each case
@@ -87,6 +88,9 @@ public class CampManager {
                         case 7: currentCamp.setDescription(updatedInfo);
                             break;
                 }//end switch
+            currentCamp.printCampInfoTable();
+            System.out.println("Enter 8 to exit, or enter next attribute to edit");
+            choice = sc.nextInt();
 
             }//end while
             sc.close();
