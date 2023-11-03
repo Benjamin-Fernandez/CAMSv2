@@ -89,6 +89,7 @@ public class CampManager {
                 }//end switch
 
             }//end while
+            sc.close();
             
             System.out.println(exitMessage);
         }//end if
