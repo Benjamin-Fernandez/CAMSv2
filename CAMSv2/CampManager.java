@@ -46,20 +46,58 @@ public class CampManager {
 
 
     public void editCamp(String campName,String staffName){
+        int choice;
+        Scanner sc = new Scanner(System.in);
+        Camp currentCamp = getCamp(campName);
+        String errorMessage = "Staff is not in charge";
+        String exitMessage = "Exitting edit";
+        String updatedInfo;
+
+        
         if(getStaffinCharge(campName, staffName)) {
-            //ask for what u want to edit
-            //make it a whileloop
-            //print table 1-7 for edit of which info
-            //8 is exit
-            //scan for the choice
-            //e.g. he want change date -> scanner.nextint
-            Camp currentCamp = getCamp(campName);
+            System.out.println("What would you like to edit?");
+            currentCamp.printCampInfoTable();
+            choice = sc.nextInt();
+            while(choice>0 && choice<8){
+                //switch case that calls and takes in specific string needed for each case
+                //call the set method in camp.info.setVariable()
+                System.out.println("Enter updated information");
+                updatedInfo = sc.nextLine();
 
-            //currentCamp.info.editCampInfo(int choice)
+                switch(choice){
+                    
+                        case 1: currentCamp.setCampname(updatedInfo);
+                            break;
+
+                        case 2: currentCamp.setDates(updatedInfo);
+                            break;
+                    
+                        case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
+                            break;
+                    
+                        case 4: currentCamp.setUserGroup(updatedInfo);
+                            break;
+                    
+                        case 5:  currentCamp.setLocation(updatedInfo);
+                            break;
+
+                        case 6: currentCamp.setTotalSlots(updatedInfo);
+                            break;
+                    
+                        case 7: currentCamp.getDescription(updatedInfo);
+                            break;
+                }//end switch
+
+            }//end while
+            
+            System.out.println(exitMessage);
+        }//end if
+        else{
+            System.out.println(errorMessage);
         }
-        //else print "Staff is not incharge"
+        
 
-    }
+    }//end edit camp
 
     public void deleteCamp(String campName){
         Camp camp = this.getCamp(campName);
@@ -80,6 +118,7 @@ public class CampManager {
 
         Camp camp = this.getCamp(campName);
         camp.setVisibility(choice);
+        sc.close();
     }
 
     public void StaffCampListGenerator(String staffName){
@@ -107,10 +146,7 @@ public class CampManager {
         return campList;
     }
 
-    // public ArrayList<Student> getStudentList(){
-    //     Camp camp = new Camp();
-    //     return camp.getStudentList();
-    // }
+
 
     public void generateReport(String staffName){
         ArrayList<Camp> campList = this.getCampList();
@@ -158,10 +194,10 @@ public class CampManager {
 
 
             }
-        }
+        }//end outer for
 
 
-    }
+    }//end genrerateReport
 
 
 }

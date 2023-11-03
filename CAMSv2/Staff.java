@@ -63,6 +63,7 @@ public class Staff extends User {
         
         //visibility calls campManager
         campManager.changeVisibility(campName);
+        sc.close();
         }
 
     public void viewCamp(){

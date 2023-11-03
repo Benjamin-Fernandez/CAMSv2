@@ -73,5 +73,23 @@ public class CampInformation {
         return this.getDescription();
     }
 
+    public void printCampInfoTable(){
+        System.out.println("1. Camp Name = " + this.CampName);
+
+        System.out.println("2. Camp Dates = " + this.dates);
+
+        System.out.println("3. Registration Closing Date = " + this.Registration_closing_date);
+
+        System.out.println("4. User Group = " + this.User_group);
+
+        System.out.println("5. Camp Location = " + this.Location);
+
+        System.out.println("6. Total Camp Slots = " + this.Total_Slots);
+
+        System.out.println("7. Camp Description = " + this.Description);
+
+    }
+
+    
 
 }

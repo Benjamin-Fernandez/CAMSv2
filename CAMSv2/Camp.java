@@ -87,5 +87,9 @@ public class Camp {
         return this.info.getDescription();
     }
 
+    public void printCampInfoTable(){
+        this.info.printCampInfoTable();
+    }
+
 
 }
