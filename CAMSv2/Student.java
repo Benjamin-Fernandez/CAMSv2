@@ -33,9 +33,7 @@ public class Student extends User{
 
     //this is only committee member method
     public void generateReport(){
-        if(this.getRole() == "camp committee member"){
-
-        }
+       
     }
 
 }

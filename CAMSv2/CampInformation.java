@@ -7,16 +7,16 @@ public class CampInformation {
 
     private String CampName;
     private String Dates;
-    private String Registration_closing_date;
+    private int Registration_closing_date;
     private String User_group;
     private String Location;
-    private String Total_Slots;
+    private int Total_Slots;
 
     private ArrayList<Student> Camp_Committee_slots;
     private String Description;
     private String Staff_in_charge;
 
-    public CampInformation(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots, String Description, String Staff_in_charge){
+    public CampInformation(String CampName , String Dates , int Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
 
         this.CampName = CampName;
         this.Dates = Dates;
@@ -55,7 +55,7 @@ public class CampInformation {
         return this.Dates;
     }
 
-    public String getRegistrationClosingDate(){
+    public int getRegistrationClosingDate(){
         return this.Registration_closing_date;
     }
 
@@ -67,11 +67,11 @@ public class CampInformation {
         return this.Location;
     }
 
-    public String getTotalSlots(){
+    public int getTotalSlots(){
         return this.Total_Slots;
     }
 
-    public ArrayList<CampCommitteeMember> getCampCommitteeSlots(){
+    public ArrayList<Student> getCampCommitteeSlots(){
         return this.Camp_Committee_slots;
     }
     
@@ -89,7 +89,7 @@ public class CampInformation {
         this.Dates = dates;
     }
 
-    public void setRegistrationClosingDate(String closingDate){
+    public void setRegistrationClosingDate(int closingDate){
         this.Registration_closing_date = closingDate;
     }
 
@@ -101,7 +101,7 @@ public class CampInformation {
         this.Location = location;
     }
 
-    public void setTotalSlots(String totalSlots){
+    public void setTotalSlots(int totalSlots){
         this.Total_Slots = totalSlots;
     }
 
