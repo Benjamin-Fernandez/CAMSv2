@@ -29,7 +29,7 @@ public class Camp {
     }
 
     public void addCampCommitteeMember(Student student) {
-        info.getCampCommitteeSlots().add(student)
+        info.getCampCommitteeSlots().add(student);
     }
 
     public boolean isStudentInBlackList(Student student) {
