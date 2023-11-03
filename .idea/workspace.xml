@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Camp.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Camp.java" afterDir="false" />
@@ -12,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1698988819142</updated>
       <workItem from="1698988820349" duration="339000" />
+      <workItem from="1698989327416" duration="2862000" />
     </task>
     <servers />
   </component>
