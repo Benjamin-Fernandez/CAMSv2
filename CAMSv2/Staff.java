@@ -20,7 +20,7 @@ public class Staff extends User {
   
         this.viewCamp(); //this prints a table of camp choices
 
-        System.out.println("Enter the index of the camp to delete");
+        System.out.println("Enter the index of the camp to edit");
         index = sc.nextInt();
         campName = getCampName(--index); //index is one larger than actual index
         

@@ -12,7 +12,7 @@ public class CampInformation {
     private String Location;
     private String Total_Slots;
 
-    private ArrayList<CampCommitteeMember> Camp_Committee_slots;
+    private ArrayList<Student> Camp_Committee_slots;
     private String Description;
     private String Staff_in_charge;
 

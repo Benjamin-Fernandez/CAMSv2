@@ -209,6 +209,15 @@ public class CampManager {
     }
 
 
+
+
+
+
+
+
+
+
+
     public void addCampCommitteeMember(String studentName, String campName){
         Camp camp = this.getCamp(campName);
 

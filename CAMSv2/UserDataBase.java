@@ -66,14 +66,4 @@ public class UserDataBase {
     }
 
 
-    //Check if a particular student is in the database
-    public static boolean checkStudentInside(String studentName) {
-        for (int i = 0; i < UserDataBase.getStudents().size(); i++) {
-            Student student = UserDataBase.getStudents().get(i);
-            if (student.getName() == studentName) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

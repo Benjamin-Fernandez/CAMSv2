@@ -5,6 +5,8 @@ public class Camp {
     boolean visibility;
     private CampInformation info;
     private ArrayList<Student> StudentList;
+
+    //blacklist
     private ArrayList<Enquiries> EnquiryList;
     private ArrayList<Suggestion> SuggestionsList;
 
@@ -24,9 +26,7 @@ public class Camp {
 
     // Methods
     public void addStudent(String studentName){
-        if(UserDataBase.checkStudentInside(studentName)){
-            this.StudentList.add()
-        }
+        //logic to add student into StudentList
     }
 
 
