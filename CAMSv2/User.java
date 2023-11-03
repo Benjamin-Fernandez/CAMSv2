@@ -2,13 +2,20 @@ package CAMSv2;
 
 public class User {
     //attributes
-    String userID;
+    String emailID;
     String password;
     String faculty;
     String name;
-    String Role; //either staff or student
+    String role; //either staff or student
     
     //methods
+    public User(String emailID, String password, String faculty, String name, String role){
+        this.emailID = emailID; //before '@'in the email
+        this.password = password;
+        this.faculty = faculty;
+        this.name = name;
+        this.role = role;
+    }
 
     public boolean login(String password, String UserID , String role){
         return false;
