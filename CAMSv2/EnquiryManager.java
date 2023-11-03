@@ -20,7 +20,7 @@ public class EnquiryManager {
 
     //staff fucntion
     public void viewEnquiry(String campName, String staffName){
-        //pritngin and logic will occur in this methoed
+        //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
         //for loop to iterate arraylist of enquiries
@@ -49,15 +49,14 @@ public class EnquiryManager {
     
     public void replyEnquiry(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
-        Camp curCamp = new Camp();
         CampManager campManager = new CampManager();
-        curCamp = campManager.getCamp(campName);
+        Camp curCamp = campManager.getCamp(campName);
 
         int enqIndex;
         int qnsIndex;
         String newReply;
-        //call view enquiry 
 
+        //call view enquiry
         this.viewEnquiry(campName,staffName);//prints list of enq
 
         System.out.println("Which enquiry would you like to reply to?");

@@ -1,16 +1,18 @@
 package CAMSv2;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class CampManager {
-    //attribtues
+    //attributes
     private static ArrayList<Camp> campList;
 
     //method
     public void createCamp(String name){
         //print and scan logic is here
-    // call constructor from camp, parameters are all the 8 inputs
+        // call constructor from camp, parameters are all the 8 inputs
       //Camp SpecificCamp = new Camp(8 parameters);
       //campList.add(SpecificCamp);
     }
@@ -60,14 +62,24 @@ public class CampManager {
     }
 
     public void deleteCamp(String campName){
-        //use getCamp function; ->return camp object
-        //use .remove(currentCamp);
+        Camp camp = this.getCamp(campName);
+        campList.remove(camp);
     }
 
     public void changeVisibility(String campName){
         //ask the user whether true/false
-        //getCamp(campName)
-        //resultofgetcamp.setVisibility(true/false)
+        String settings;
+        boolean choice;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Set visibility of" + campName + "on or off?");
+        settings = sc.nextLine();
+        if(settings.equals("on"))
+            choice = true;
+        else
+            choice = false;
+
+        Camp camp = this.getCamp(campName);
+        camp.setVisibility(choice);
     }
 
     public void StaffCampListGenerator(String staffName){
@@ -114,8 +126,8 @@ public class CampManager {
         String userGroup;
         String location;
         String totalSlots;
-        String[] campCommitteeSlots;
         String description;
+        String[] campCommitteeSlots;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
@@ -138,8 +150,7 @@ public class CampManager {
                 }
         
                 for(int j=0;j<studentList.size();j++){
-                    Student student = new Student();
-                    student = studentList.get(j);
+                    Student student = studentList.get(j);
                     // System.out.println(student.getName() + student.getStudentRole()); 
                     //getstudentrole is in student class
                 }//send everything to a csv file.
