@@ -129,6 +129,7 @@ public class Staff extends User {
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
         suggManager.approveAdvice(campName, this.name);
+        sc.close();
 
     }
 

@@ -112,6 +112,10 @@ public class Camp {
         this.info.setLocation(location);
     }
 
+    public void setTotalSlots(String totalSlots){
+        this.info.setTotalSlots(totalSlots);
+    }
+
     public void setDescription(String description){
         this.setDescription(description);
     }

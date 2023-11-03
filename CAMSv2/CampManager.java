@@ -66,7 +66,7 @@ public class CampManager {
 
                 switch(choice){
                     
-                        case 1: currentCamp.setCampname(updatedInfo);
+                        case 1: currentCamp.setCampName(updatedInfo);
                             break;
 
                         case 2: currentCamp.setDates(updatedInfo);
@@ -84,7 +84,7 @@ public class CampManager {
                         case 6: currentCamp.setTotalSlots(updatedInfo);
                             break;
                     
-                        case 7: currentCamp.getDescription(updatedInfo);
+                        case 7: currentCamp.setDescription(updatedInfo);
                             break;
                 }//end switch
 

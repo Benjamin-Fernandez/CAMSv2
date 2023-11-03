@@ -1,5 +1,5 @@
 package CAMSv2;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class CampInformation {
 
@@ -28,12 +28,12 @@ public class CampInformation {
 
     }
 
-    public void editCampInfo(int choice){ //do we really want this here? i put in cmapManeger
-        //switch case 1- date etc
-        //ask what they want chng
-        //scanf(newChange)
-        // this.Dates = newChange
-    }
+    // public void editCampInfo(int choice){ //do we really want this here? i put in cmapManeger
+    //     //switch case 1- date etc
+    //     //ask what they want chng
+    //     //scanf(newChange)
+    //     // this.Dates = newChange
+    // }
 
     //get methods
 
@@ -93,6 +93,10 @@ public class CampInformation {
 
     public void setLocation(String location){
         this.Location = location;
+    }
+
+    public void setTotalSlots(String totalSlots){
+        this.Total_Slots = totalSlots;
     }
 
     public void setDescription(String description){
