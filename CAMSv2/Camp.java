@@ -15,7 +15,7 @@ public class Camp {
     }
    
 
-    public Camp(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
+    public Camp(String CampName , String Dates , int Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
 
         this.visibility = false;
         this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
@@ -62,7 +62,7 @@ public class Camp {
 
     public boolean isCampFull() {
         int length = StudentList.size();
-        return Integer.parseInt(info.getTotalSlots()) == length;
+        return info.getTotalSlots() == length;
     }
 
     
@@ -109,7 +109,7 @@ public class Camp {
         return this.info.getDates();
     }
 
-    public String getRegistrationClosingDate(){
+    public int getRegistrationClosingDate(){
         return this.info.getRegistrationClosingDate();
     }
 
@@ -121,11 +121,11 @@ public class Camp {
         return this.info.getLocation();
     }
 
-    public String getTotalSlots(){
+    public int getTotalSlots(){
         return this.info.getTotalSlots();
     }
 
-    public ArrayList<CampCommitteeMember> getCampCommitteeSlots(){
+    public ArrayList<Student> getCampCommitteeSlots(){
         return this.info.getCampCommitteeSlots();
     }
 
@@ -144,7 +144,7 @@ public class Camp {
         this.info.setDates(dates);
     }
 
-    public void setRegistrationClosingDate(String closingDate){
+    public void setRegistrationClosingDate(int closingDate){
         this.info.setRegistrationClosingDate(closingDate);
     }
 
@@ -156,7 +156,7 @@ public class Camp {
         this.info.setLocation(location);
     }
 
-    public void setTotalSlots(String totalSlots){
+    public void setTotalSlots(int totalSlots){
         this.info.setTotalSlots(totalSlots);
     }
 

@@ -25,7 +25,7 @@ public class Student extends User{
         // get Camp from CampManager
         Camp camp = CampManager.getCamp(campName);
         // Display available slots
-        System.out.println("Available Slots: " + (Integer.parseInt(camp.getTotalSlots()) - camp.getStudentList().size()));
+        System.out.println("Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
         // Camp Manager should check that the camp is Visible and userGroup
     }
 
@@ -87,6 +87,7 @@ public class Student extends User{
         int enquiryIndex = scanner.nextInt();
         enquiries.getQuestions().remove(enquiryIndex-1);
         System.out.println("Enquiry removed successfully!");
+
 
     }
 

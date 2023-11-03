@@ -73,7 +73,7 @@ public class CampManager {
                         case 2: currentCamp.setDates(updatedInfo);
                             break;
                     
-                        case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
+                        case 3:  currentCamp.setRegistrationClosingDate(Integer.parseInt(updatedInfo));
                             break;
                     
                         case 4: currentCamp.setUserGroup(updatedInfo);
@@ -82,7 +82,7 @@ public class CampManager {
                         case 5:  currentCamp.setLocation(updatedInfo);
                             break;
 
-                        case 6: currentCamp.setTotalSlots(updatedInfo);
+                        case 6: currentCamp.setTotalSlots(Integer.parseInt(updatedInfo));
                             break;
                     
                         case 7: currentCamp.setDescription(updatedInfo);
@@ -161,13 +161,14 @@ public class CampManager {
         //Camp camp = new Camp();
 
         //the 8 details apart from StudentName and Role
-        String dates;
-        String registrationClosingDate;
+
         String userGroup;
         String location;
-        String totalSlots;
         String description;
-        ArrayList<CampCommitteeMember> campCommitteeSlots;
+        String dates;
+        int registrationClosingDate;
+        int totalSlots;
+        ArrayList<Student> campCommitteeSlots;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
@@ -201,34 +202,14 @@ public class CampManager {
         }//end outer for
 
 
-    }//end genrerateReport
+    }//end generateReport
 
-    public void addStudent(String studentName, String campName){
+    public void addStudent(String studentName, String campName, String role){
         Camp camp = this.getCamp(campName);
-        camp.addStudent(studentName);
+        camp.addStudent(studentName, role);
     }
 
 
-
-
-
-
-
-
-
-
-
-    public void addCampCommitteeMember(String studentName, String campName){
-        Camp camp = this.getCamp(campName);
-
-
-        if(camp.getCampCommitteeSlots().size() > 10){
-            System.out.println("No available slot");
-            return;
-        }
-        CampCommitteeMember committeeMember = new CampCommitteeMember(studentName,campName);
-        camp.getCampCommitteeSlots().add(committeeMember);
-    }
 
 }
 
