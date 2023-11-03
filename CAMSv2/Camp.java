@@ -5,10 +5,9 @@ public class Camp {
     boolean visibility;
     private CampInformation info;
     private ArrayList<Student> StudentList;
-
-    //blacklist
     private ArrayList<Enquiries> EnquiryList;
     private ArrayList<Suggestion> SuggestionsList;
+    private ArrayList<Student> blackList;
 
     // Constructors
     public Camp(){ 
@@ -25,9 +24,48 @@ public class Camp {
     }
 
     // Methods
-    public void addStudent(String studentName){
-        //logic to add student into StudentList
+    public void addToBlackList(Student student) {
+        blackList.add(student);
     }
+
+    public void addCampCommitteeMember(Student student) {
+        info.getCampCommitteeSlots().add(student)
+    }
+
+    public boolean isStudentInBlackList(Student student) {
+        for (Student s : blackList) {
+            if (s.getName().equals(student.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addStudent(String studentName){
+        if(UserDataBase.checkStudentInside(studentName)){
+            this.StudentList.add();
+        }
+    }
+
+    // check if student Enquiries is already in Camp
+    // if not, create a new enquiry
+    // add to camp
+    public Enquiries addStudentEnquiriesInList(String studentName) {
+        for (Enquiries enquiries : EnquiryList) {
+            if (enquiries.getEnqurier() == studentName) {
+                return enquiries;
+            }
+        
+        }
+        return new Enquiries(studentName);
+    }
+
+    public boolean isCampFull() {
+        int length = StudentList.size();
+        return Integer.parseInt(info.getTotalSlots()) == length;
+    }
+
+    
 
 
     public void setVisibility(boolean choice){

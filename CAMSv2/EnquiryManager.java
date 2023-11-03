@@ -6,17 +6,22 @@ public class EnquiryManager {
     //attribute
 
     //methods
-    public void createEnquiry(String campName, String enquiry){
+    public static void createEnquiry(String campName, String enquiry, Student student ){
         //student will have their own method called makeEnquiry which calls this method, 
         //append student's enquiry to their own lsit of enquiry
         //find the correct camp
         //append this enquiry to that particular camp
-        Question newQuestion = new Question(enquiry);
-        Enquiries newEnquiry = new Enquiries(newQuestion);
-        CampManager campManager = new CampManager();
-        Camp camp = campManager.getCamp(campName);
-        camp.addEnquiry(newEnquiry);
-    }
+        Question newQuestion = new Question(enquiry, campName);
+        // check if the enquiries for this student exist in that camp
+        Camp camp = CampManager.getCamp(campName);
+        // add enquiry to camp, if not add the new question to the existing enquiry in camp
+        Enquiries newEnquiry = camp.addStudentEnquiriesInList(student.getName());
+        // add question to camp
+        newEnquiry.addQuestion(newQuestion);
+        // add question to student
+        student.getEnquiries().addQuestion(newQuestion);
+
+    }  
 
     //staff fucntion
     public void viewEnquiry(String campName, String staffName){
@@ -33,9 +38,9 @@ public class EnquiryManager {
 
                 for(int j=0;j<camp.getEnquiries().size();j++){
 
-                    for(int k=0;k<camp.getEnquiries().get(j).getQuestion().size();k++){
+                    for(int k=0;k<camp.getEnquiries().get(j).getQuestions().size();k++){
 
-                    System.out.println("Enquiry " + j+1 + "Question " + k+1 + ". " + camp.getEnquiries().get(j).getQuestion().get(k));
+                    System.out.println("Enquiry " + j+1 + "Question " + k+1 + ". " + camp.getEnquiries().get(j).getQuestions().get(k));
                     //enq 1 qns 2 will = 12
 
                     }//inner for
@@ -74,7 +79,7 @@ public class EnquiryManager {
         // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
         System.out.println("Enter your reply");
         newReply = sc.nextLine();
-        curCamp.getEnquiries().get(enqIndex).getQuestion().get(qnsIndex).setReply(newReply);
+        curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
         System.out.println("Reply uploaded");
 
         sc.close();

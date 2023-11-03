@@ -67,7 +67,7 @@ public class CampInformation {
         return this.Total_Slots;
     }
 
-    public ArrayList<CampCommitteeMember> getCampCommitteeSlots(){
+    public ArrayList<Student> getCampCommitteeSlots(){
         return this.Camp_Committee_slots;
     }
     

@@ -5,20 +5,23 @@ import java.util.*;
 public class Enquiries {
     //enquiry will hold a list of question and replies
     private String enqurier;
-    private ArrayList<Question> Questions;
+    private ArrayList<Question> Questions = new ArrayList<Question>();
     
 
-    public Enquiries(Question question){
-        this.Questions.add(question);
-        
+    public Enquiries(String enqurier){
+        this.enqurier = enqurier;       
     }
 
-    public ArrayList<Question> getQuestion(){
+    public void addQuestion(Question question) {
+        Questions.add(question);
+    }
+
+    public ArrayList<Question> getQuestions(){
         return Questions;
     }
 
-    public Enquiries getEnquirier{
-        //get function
+    public String getEnqurier() {
+        return enqurier;
     }
 
     

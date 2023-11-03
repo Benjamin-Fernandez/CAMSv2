@@ -17,10 +17,10 @@ public class CampManager {
       //campList.add(SpecificCamp);
     }
 
-    public Camp getCamp(String campName){
+    public static Camp getCamp(String campName){
         //for each camp in campList
         ArrayList<Camp> campList = new ArrayList<Camp>();
-        campList = this.getCampList();
+        campList = getCampList();
         Camp camp = new Camp();
 
         for(int i=0; i<campList.size();i++){
@@ -146,10 +146,10 @@ public class CampManager {
         
     }
 
-    public ArrayList<Camp> getCampList(){
+    public static ArrayList<Camp> getCampList(){
+        // Should also check for Visiblity and UserGroup
         return campList;
     }
-
 
 
     public void generateReport(String staffName){
