@@ -1,6 +1,8 @@
 package CAMSv2;
 //import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class CampInformation {
 
     private String CampName;
@@ -10,11 +12,11 @@ public class CampInformation {
     private String Location;
     private String Total_Slots;
 
-    private String[] Camp_Committee_slots;
+    private ArrayList<CampCommitteeMember> Camp_Committee_slots;
     private String Description;
     private String Staff_in_charge;
 
-    public CampInformation(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
+    public CampInformation(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots, String Description, String Staff_in_charge){
 
         this.CampName = CampName;
         this.Dates = Dates;
@@ -22,7 +24,6 @@ public class CampInformation {
         this.User_group = User_group;
         this.Location = Location;
         this.Total_Slots = Total_Slots;
-        this.Camp_Committee_slots = Camp_Committee_slots;
         this.Description = Description;
         this.Staff_in_charge = Staff_in_charge;
 
@@ -34,6 +35,7 @@ public class CampInformation {
     //     //scanf(newChange)
     //     // this.Dates = newChange
     // }
+
 
     //get methods
 
@@ -65,7 +67,7 @@ public class CampInformation {
         return this.Total_Slots;
     }
 
-    public String[] getCampCommitteeSlots(){
+    public ArrayList<CampCommitteeMember> getCampCommitteeSlots(){
         return this.Camp_Committee_slots;
     }
     

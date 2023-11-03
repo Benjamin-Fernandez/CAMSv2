@@ -167,7 +167,7 @@ public class CampManager {
         String location;
         String totalSlots;
         String description;
-        String[] campCommitteeSlots;
+        ArrayList<CampCommitteeMember> campCommitteeSlots;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
@@ -203,6 +203,23 @@ public class CampManager {
 
     }//end genrerateReport
 
+    public void addStudent(String studentName, String campName){
+        Camp camp = this.getCamp(campName);
+        camp.addStudent(studentName);
+    }
+
+
+    public void addCampCommitteeMember(String studentName, String campName){
+        Camp camp = this.getCamp(campName);
+
+
+        if(camp.getCampCommitteeSlots().size() > 10){
+            System.out.println("No available slot");
+            return;
+        }
+        CampCommitteeMember committeeMember = new CampCommitteeMember(studentName,campName);
+        camp.getCampCommitteeSlots().add(committeeMember);
+    }
 
 }
 

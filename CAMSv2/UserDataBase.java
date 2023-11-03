@@ -6,11 +6,17 @@ import java.util.ArrayList;
 
 public class UserDataBase {
     private String csvFilePath;
-    public static ArrayList<Student> Student; //this must be global variable
-    public static ArrayList<Staff> Staff;
+    private static ArrayList<Student> Student; //this must be global variable
+    private static ArrayList<Staff> Staff;
     public UserDataBase(String csvFilePath) {
         this.csvFilePath = csvFilePath;
-        this.users = new ArrayList<>(); // Initialize the ArrayList
+        if(csvFilePath.contains("student.csv")) {
+            this.Student = new ArrayList<>(); // Initialize the Student ArrayList//
+        }
+        else{
+            this.Staff = new ArrayList<>(); // Initialize the Staff ArrayList//
+        }
+
         loadDataFromCSV(this.csvFilePath);
     }
 
@@ -28,13 +34,14 @@ public class UserDataBase {
                 //else if cvs == staff.csv ,
                 // String role= staff
 
-                User user;
                 // Check if the CSV file is for students or staff
                 if (csvFilePath.contains("student.csv")) {
-                    //Student student = new Student(name,emailID, faculty,password,role);
+                    String role = "student";
+                    Student student = new Student(name,emailID, faculty,password,role);
                 }
                 else {
-                   // Staff staff = new Staff(name,emailID, faculty,password, role);
+                    String role = "staff";
+                    Staff staff = new Staff(name,emailID, faculty,password, role);
                 }
 
                 //users.add(user);
@@ -45,11 +52,28 @@ public class UserDataBase {
         }
     }
 
-    public void writeToCSV
+    //public void writeToCSV
 
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public static ArrayList<Student> getStudents() {
+        return Student;
         //hi ethan
+    }
+
+    public static ArrayList<Staff> getStaffs() {
+        return Staff;
+        //hi ethan
+    }
+
+
+    //Check if a particular student is in the database
+    public static boolean checkStudentInside(String studentName) {
+        for (int i = 0; i < UserDataBase.getStudents().size(); i++) {
+            Student student = UserDataBase.getStudents().get(i);
+            if (student.getName() == studentName) {
+                return true;
+            }
+        }
+        return false;
     }
 }

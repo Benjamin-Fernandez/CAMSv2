@@ -17,12 +17,18 @@ public class Camp {
     public Camp(String CampName , String Dates , String Registration_closing_date, String User_group , String Location , String Total_Slots , String[]Camp_Committee_slots, String Description, String Staff_in_charge){
 
         this.visibility = false;
-        this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots , Camp_Committee_slots,  Description, Staff_in_charge);
+        this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
         this.StudentList = new ArrayList<Student>();
 
     }
 
     // Methods
+    public void addStudent(String studentName){
+        if(UserDataBase.checkStudentInside(studentName)){
+            this.StudentList.add()
+        }
+    }
+
 
     public void setVisibility(boolean choice){
         this.visibility = choice;
@@ -81,7 +87,7 @@ public class Camp {
         return this.info.getTotalSlots();
     }
 
-    public String[] getCampCommitteeSlots(){
+    public ArrayList<CampCommitteeMember> getCampCommitteeSlots(){
         return this.info.getCampCommitteeSlots();
     }
 
