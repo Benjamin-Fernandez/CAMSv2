@@ -6,20 +6,20 @@ public class SuggestionManager {
     //attribute
 
     //methods
-    public void createSuggestion(String campName, String suggestion){
-        //student will have their own method called makeEnquiry which calls this method, 
+    public void createSuggestion(String campName, String suggestion,String name){
+        //student will have their own method called makeSuggestion which calls this method,
         //append student's suggestion to their own list of suggestion
         //find the correct camp
         //append this suggestion to that particular camp
         Advice newAdvice = new Advice(suggestion);
-        Suggestion newSuggestion = new Suggestion(newAdvice);
+        Suggestion newSuggestion = new Suggestion(newAdvice,name);
         CampManager campManager = new CampManager();
         Camp camp = campManager.getCamp(campName);
         camp.addSuggestion(newSuggestion);
     }
 
     //staff fucntion
-    public void viewSuggestion(String campName, String staffName){
+    public void viewSuggestionForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
@@ -57,7 +57,7 @@ public class SuggestionManager {
         int suggIndex;
         int adviceIndex;
 
-        this.viewSuggestion(campName, staffName);
+        this.viewSuggestionForStaff(campName, staffName);
 
         System.out.println("Which suggestion would you like to attend to?");
         //value taken is +1 of actual index
@@ -85,16 +85,57 @@ public class SuggestionManager {
         sc.close();
     }
 
-    
-    
-
     //committee functions
-    public void deleteSuggestion(){
+    public void viewSuggestionForCommitteeMember(String committeeMemberName,String campName){
+        //printing and logic will occur in this method
+        // staff->viewEn->thisviewEnq->getcamp->
+        CampManager campManager = new CampManager();
+        //for loop to iterate arraylist of suggestion
+        for(int i=0;i<campManager.getCampList().size();i++){
+            Camp camp = campManager.getCamp(campName);
+            System.out.println(campName + "suggestion");
+                for(int j=0;j<camp.getSuggestions().size();j++){
+                    if(camp.getSuggestions().get(i).getStudent() == committeeMemberName){
+                      for(int k=0;k<camp.getSuggestions().get(j).getAdviceList().size();k++){
+                        System.out.println("Advice " + k+1 + "- " + camp.getSuggestions().get(j).getAdviceList().get(k));
 
+                    }//inner for
+                }//if
+            }//mid for
+        }//outer for
+    }//viewSuggestion
+
+    public void editSuggestionForCommitteeMember(String studentName, String campName){
+         int advIndex;
+         String newAdvice;
+         Scanner sc = new Scanner(System.in);
+         this.viewSuggestionForCommitteeMember(studentName,campName);
+         System.out.println("which advice would you like to edit");
+         advIndex = sc.nextInt();
+         advIndex--; //now is correct index
+
+         System.out.println("Enter your new advice");
+         newAdvice = sc.nextLine();
+
+         Camp camp = new Camp();
+         camp.editSuggestion(studentName,newAdvice,advIndex);
+
+
+    }
+
+    public void deleteSuggestionForCommitteeMember(String studentName, String campName){
+        int advIndex;
+        String newAdvice;
+        Scanner sc = new Scanner(System.in);
+        this.viewSuggestionForCommitteeMember(studentName,campName);
+        System.out.println("which advice would you like to delete");
+        advIndex = sc.nextInt();
+        advIndex--; //now is correct index
+
+        Camp camp = new Camp();
+        camp.deleteSuggestion(studentName,advIndex);
     }
    
-    public void editSuggestion(){
 
-    }
     
 }

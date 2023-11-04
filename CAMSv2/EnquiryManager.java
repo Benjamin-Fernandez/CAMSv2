@@ -24,7 +24,7 @@ public class EnquiryManager {
     }  
 
     //staff fucntion
-    public void viewEnquiry(String campName, String staffName){
+    public void viewEnquiryForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
@@ -51,8 +51,9 @@ public class EnquiryManager {
         }//for
     }//viewEnquiry
 
+
     
-    public void replyEnquiry(String campName, String staffName){
+    public void replyEnquiryFromStaff(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
         CampManager campManager = new CampManager();
         Camp curCamp = campManager.getCamp(campName);
@@ -62,7 +63,7 @@ public class EnquiryManager {
         String newReply;
 
         //call view enquiry
-        this.viewEnquiry(campName,staffName);//prints list of enq
+        this.viewEnquiryForStaff(campName,staffName);//prints list of enq
 
         System.out.println("Which enquiry would you like to reply to?");
         //value taken is +1 of actual index
@@ -83,6 +84,57 @@ public class EnquiryManager {
         System.out.println("Reply uploaded");
 
         sc.close();
+    }//replyEnquiry
+
+    //committee member function
+    public void viewEnquiryForCampCommitteeMember(String campName){
+        CampManager campManager = new CampManager();
+        //for loop to iterate arraylist of enquiries
+        for(int i=0;i<campManager.getCampList().size();i++) {
+            Camp camp = campManager.getCamp(campName);
+            System.out.println(campName + "enquiries");
+
+            for (int j = 0; j < camp.getEnquiries().size(); j++) {
+                for (int k = 0; k < camp.getEnquiries().get(j).getQuestions().size(); k++) {
+                    System.out.println("Enquiry " + j + 1 + "Question " + k + 1 + ". " + camp.getEnquiries().get(j).getQuestions().get(k));
+                    //enq 1 qns 2 will = 12
+                }
+            }
+        }
+    }
+
+    public void replyEnquiryFromCampCommitteeMember(String campName){
+        Scanner sc = new Scanner(System.in);
+        CampManager campManager = new CampManager();
+        Camp curCamp = campManager.getCamp(campName);
+
+        int enqIndex;
+        int qnsIndex;
+        String newReply;
+
+        //call view enquiry
+        this.viewEnquiryForCampCommitteeMember(campName);//prints list of enq
+
+        System.out.println("Which enquiry would you like to reply to?");
+        //value taken is +1 of actual index
+        enqIndex = sc.nextInt();
+        enqIndex--; //now is correct index
+
+        System.out.println("Which question would you like to reply to?");
+        qnsIndex = sc.nextInt();
+        qnsIndex--;
+
+
+        //this is reply portion
+        //replying to a specific enquiry from a specific camp
+        // committeeMember.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] ->
+        System.out.println("Enter your reply");
+        newReply = sc.nextLine();
+        curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
+        System.out.println("Reply uploaded");
+
+        sc.close();
+
     }//replyEnquiry
 
     //student functions

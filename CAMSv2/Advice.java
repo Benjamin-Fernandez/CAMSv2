@@ -13,8 +13,13 @@ public class Advice {
         this.approved = false;
     }
 
+
     public void setApproval(boolean bool){
         this.approved = bool;
+    }
+
+    public void setNewAdvice(String newAdvice){
+        advice = newAdvice;
     }
 
 }  

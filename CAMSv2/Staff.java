@@ -95,7 +95,7 @@ public class Staff extends User {
         System.out.println("which camp's enquiry would you want to view? ");
         campName = sc.nextLine();
         EnquiryManager enqManager = new EnquiryManager();
-        enqManager.viewEnquiry(campName, this.name);
+        enqManager.viewEnquiryForStaff(campName, this.name);
         sc.close();
     }
 
@@ -105,7 +105,7 @@ public class Staff extends User {
         String campName;
         System.out.println("which camp's enquiry would you want to reply to? ");
         campName = sc.nextLine();
-        enqManager.replyEnquiry(campName, this.name);
+        enqManager.replyEnquiryFromStaff(campName, this.name);
         sc.close();
 
     }
@@ -117,7 +117,7 @@ public class Staff extends User {
         System.out.println("which camp's suggestion would you want to view? ");
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
-        suggManager.viewSuggestion(campName, this.name);
+        suggManager.viewSuggestionForStaff(campName, this.name);
         sc.close();
     }
 

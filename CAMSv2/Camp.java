@@ -16,7 +16,7 @@ public class Camp {
    
 
     public Camp(String CampName , String Dates , int Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
-
+        //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
         this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
         this.StudentList = new ArrayList<Student>();
@@ -42,7 +42,7 @@ public class Camp {
     }
 
     public void addStudent(String studentName){
-        if(UserDataBase.checkStudentInside(studentName)){
+        if(UserDataBase.checkStudentInside(studentName)){ //check student in database
             this.StudentList.add();
         }
     }
@@ -65,8 +65,23 @@ public class Camp {
         return info.getTotalSlots() == length;
     }
 
-    
+    public void editSuggestion(String studentName, String newAdvice, int AdviceIndex){
+        for (Suggestion suggestion : SuggestionsList) {
+            if (suggestion.getStudent() == studentName) {
+                suggestion.getAdviceList().get(AdviceIndex).setNewAdvice(newAdvice);
+            }
 
+        }
+    }
+
+    public void deleteSuggestion(String studentName, int AdviceIndex){
+        for (Suggestion suggestion : SuggestionsList) {
+            if (suggestion.getStudent() == studentName) {
+                suggestion.getAdviceList().remove(AdviceIndex);
+            }
+
+        }
+    }
 
     public void setVisibility(boolean choice){
         this.visibility = choice;

@@ -134,6 +134,8 @@ public class Student extends User{
         camp.addStudent(this.getName());
         if (campRole.equals("committee")) {
             camp.addCampCommitteeMember(this);
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember();
+            CampAndRole campAndRole = new CampAndRole(camp,campCommitteeMember);
         }
     }
 
@@ -152,13 +154,13 @@ public class Student extends User{
     }
 
     // search for student role in this camp
-    public String getCampRole(Camp camp) {
+    public Role getCampRole(Camp camp) {
         for (CampAndRole campAndRole : registeredCamps) {
             if (campAndRole.getCamp().equals(camp)) {
                 return campAndRole.getRole();
             }
         }
-        return "Error";
+        return null;
     }
 
 }
