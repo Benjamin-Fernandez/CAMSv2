@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserDataBase {
-    private String csvFilePath;
+    private String studentCSVFilePath;
+    private String staffCSVFilePath;
     private static ArrayList<Student> studentList; //this must be global variable
     private static ArrayList<Staff> staffList;
-    public UserDataBase(String csvFilePath) {
-        this.csvFilePath = csvFilePath;
-        if(csvFilePath.contains("Student_List.csv")) {
-            UserDataBase.studentList = new ArrayList<>(); // Initialize the Student ArrayList//
-        }
-        else{
-            UserDataBase.staffList = new ArrayList<>(); // Initialize the Staff ArrayList//
-        }
+    public UserDataBase(String studentCSVFilePath, String staffCSVFilePath) {
+        this.studentCSVFilePath = studentCSVFilePath;
+        this.staffCSVFilePath = staffCSVFilePath;
 
-        loadDataFromCSV(this.csvFilePath);
+        UserDataBase.studentList = new ArrayList<>(); // Initialize the Student ArrayList//
+        UserDataBase.staffList = new ArrayList<>(); // Initialize the Staff ArrayList//
+
+        loadDataFromCSV(this.studentCSVFilePath);
+        loadDataFromCSV(this.staffCSVFilePath);
     }
 
     public void loadDataFromCSV(String csvFilePath) {
