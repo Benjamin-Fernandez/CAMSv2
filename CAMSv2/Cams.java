@@ -1,6 +1,7 @@
 package CAMSv2;
 
 import java.net.UnknownServiceException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,10 +12,17 @@ public class Cams {
 
         Scanner scanner = new Scanner(System.in);
 
+        // Get the project's base directory
+        String projectDirectory = System.getProperty("user.dir");
+
+        // Construct the relative paths to the CSV files
+        String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv ";
+        String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv ";
+
+
         // Initialize user accounts from CSV files
-        UserDataBase studentDB = new UserDataBase("C:\\Users\\joshu\\OneDrive\\Documents\\GitHub\\CAMSv2\\CAMSv2\\Data CSV\\Student_list.csv");
-        UserDataBase staffDB = new UserDataBase("C:\\Users\\joshu\\OneDrive\\Documents\\GitHub\\CAMSv2\\CAMSv2\\Data CSV\\Staff_list.csv");
-        // Access and use the data from the UserDataBase objects
+        UserDataBase studentDB = new UserDataBase(studentCSVPath);
+        UserDataBase staffDB = new UserDataBase(staffCSVPath);
 
         ArrayList<Student> studentUsers = UserDataBase.getStudents();
         ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
