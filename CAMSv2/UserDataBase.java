@@ -66,7 +66,7 @@ public class UserDataBase {
         //hi ethan
     }
 
-    public boolean checkStudentInside(String curStudent){
+    public static boolean checkStudentInside(String curStudent){
         for(Student student: getStudents()){
             if (curStudent.equals(student.getName())) return true;
         }
