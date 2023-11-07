@@ -206,7 +206,7 @@ public class CampManager {
 
     public void addStudent(String studentName, String campName, String role){
         Camp camp = this.getCamp(campName);
-        camp.addStudent(studentName, role);
+       // camp.addStudent(studentName, role);
     }
 
 

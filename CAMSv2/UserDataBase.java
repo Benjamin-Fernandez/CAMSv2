@@ -10,7 +10,7 @@ public class UserDataBase {
     private static ArrayList<Staff> staffList;
     public UserDataBase(String csvFilePath) {
         this.csvFilePath = csvFilePath;
-        if(csvFilePath.contains("student.csv")) {
+        if(csvFilePath.contains("Student_List.csv")) {
             UserDataBase.studentList = new ArrayList<>(); // Initialize the Student ArrayList//
         }
         else{
@@ -35,7 +35,7 @@ public class UserDataBase {
                 // String role= staff
 
                 // Check if the CSV file is for students or staff
-                if (csvFilePath.contains("student.csv")) {
+                if (csvFilePath.contains("Student_List.csv")) {
                     String role = "student";
                     Student student = new Student(name,emailID, faculty,password,role);
                     studentList.add(student);

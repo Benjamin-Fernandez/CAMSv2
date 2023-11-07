@@ -43,7 +43,7 @@ public class Camp {
 
     public void addStudent(String studentName){
         if(UserDataBase.checkStudentInside(studentName)){ //check student in database
-            this.StudentList.add();
+            //this.StudentList.add();
         }
     }
 
