@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Cams {
 
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
 
         // Get the project's base directory
@@ -21,7 +21,7 @@ public class Cams {
 
 
         // Initialize user accounts from CSV files
-        UserDataBase studentDB = new UserDataBase(studentCSVPath, staffCSVPath);
+        UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath);
 
         ArrayList<Student> studentUsers = UserDataBase.getStudents();
         ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
@@ -30,11 +30,11 @@ public class Cams {
 
         System.out.println("Student Data:");
         for (int i = 0; i < studentUsers.size(); i++) {
-            User staff = studentUsers.get(i);
-            System.out.println("Student Name: " + staff.getName());
-            System.out.println("Student Email: " + staff.getEmailID());
-            System.out.println("Student Faculty: " + staff.getFaculty());
-            System.out.println("Student Password: " + staff.getPassword());
+            User student = studentUsers.get(i);
+            System.out.println("Student Name: " + student.getName());
+            System.out.println("Student Email: " + student.getEmailID());
+            System.out.println("Student Faculty: " + student.getFaculty());
+            System.out.println("Student Password: " + student.getPassword());
         }
         /*int choice;
 
