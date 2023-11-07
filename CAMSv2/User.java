@@ -29,5 +29,16 @@ public class User {
     public String getName(){
         return this.name;
     }
-
+    public String getFaculty(){
+        return this.faculty;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+    public String getEmailID(){
+        return this.emailID;
+    }
+    public String getRole(){
+        return this.role;
+    }
 }
