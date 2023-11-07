@@ -150,10 +150,10 @@ public class Staff extends User {
         return campName;
     }
 
-
-
-
-
+    public void staffInterface(){
+        //print a table of staff methods; e.g.
+        //1.viewCamp(); 2.editcamp
+    }
 
 
 

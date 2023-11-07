@@ -60,4 +60,9 @@ public class CampCommitteeMember implements Role {
         SuggestionManager suggestionManager = new SuggestionManager();
         suggestionManager.deleteSuggestionForCommitteeMember(studentName,campName);
     }
+
+    public void committeeInterface(){
+        //print a table of commitee methods; e.g.
+        //1.viewCamp(); 2.editcamp
+    }
 }

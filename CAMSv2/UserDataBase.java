@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class UserDataBase {
     private String csvFilePath;
-    private static ArrayList<Student> Student; //this must be global variable
-    private static ArrayList<Staff> Staff;
+    private static ArrayList<Student> studentList; //this must be global variable
+    private static ArrayList<Staff> staffList;
     public UserDataBase(String csvFilePath) {
         this.csvFilePath = csvFilePath;
         if(csvFilePath.contains("student.csv")) {
-            this.Student = new ArrayList<>(); // Initialize the Student ArrayList//
+            UserDataBase.studentList = new ArrayList<>(); // Initialize the Student ArrayList//
         }
         else{
-            this.Staff = new ArrayList<>(); // Initialize the Staff ArrayList//
+            UserDataBase.staffList = new ArrayList<>(); // Initialize the Staff ArrayList//
         }
 
         loadDataFromCSV(this.csvFilePath);
@@ -38,12 +38,12 @@ public class UserDataBase {
                 if (csvFilePath.contains("student.csv")) {
                     String role = "student";
                     Student student = new Student(name,emailID, faculty,password,role);
-                    Student.add(student);
+                    studentList.add(student);
                 }
                 else {
                     String role = "staff";
                     Staff staff = new Staff(name,emailID, faculty,password, role);
-                    Staff.add(staff);
+                    staffList.add(staff);
                 }
 
 
@@ -57,13 +57,20 @@ public class UserDataBase {
 
 
     public static ArrayList<Student> getStudents() {
-        return Student;
+        return studentList;
         //hi ethan
     }
 
     public static ArrayList<Staff> getStaffs() {
-        return Staff;
+        return staffList;
         //hi ethan
+    }
+
+    public boolean checkStudentInside(String curStudent){
+        for(Student student: getStudents()){
+            if (curStudent.equals(student.getName())) return true;
+        }
+        return false;
     }
 
 

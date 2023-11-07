@@ -163,5 +163,10 @@ public class Student extends User{
         return null;
     }
 
+    public void studentInterface(){
+        //print a table of student methods; e.g.
+        //1.viewCamp(); 2.editcamp
+    }
+
 }
 
