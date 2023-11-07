@@ -9,7 +9,7 @@ public class User {
     String role; //either staff or student
     
     //methods
-    public User(String emailID, String password, String faculty, String name, String role){
+    public User(String name, String emailID, String faculty, String password, String role){
         this.emailID = emailID; //before '@'in the email
         this.password = password;
         this.faculty = faculty;
