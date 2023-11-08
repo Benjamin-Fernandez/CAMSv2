@@ -26,7 +26,7 @@ public class Cams {
         ArrayList<Student> studentUsers = UserDataBase.getStudents();
         ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
         // Have two ArrayLists: studentUsers and staffUsers,
-        // containing User objects with name, password, email, and faculty.
+        // containing Student/Staff objects with name, password, email, and faculty.
 
         System.out.println("Student Data:");
         for (int i = 0; i < studentUsers.size(); i++) {

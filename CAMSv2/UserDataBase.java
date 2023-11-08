@@ -28,7 +28,7 @@ public class UserDataBase {
                 String name = values[0];
                 String emailID = values[1].split("@")[0]; //Retrieve only the ID before @ part in email
                 String faculty = values[2];
-                String password = "password"; // Assumedefault password
+                String password = "password"; // Assume default password
                 // if csv == student.csv ,
                 //    String role = student;
                 //else if cvs == staff.csv ,
@@ -45,25 +45,19 @@ public class UserDataBase {
                     Staff staff = new Staff(name,emailID, faculty,password, role);
                     staffList.add(staff);
                 }
-
-
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     //public void writeToCSV
 
-
+    //get methods
     public static ArrayList<Student> getStudents() {
         return studentList;
-        //hi ethan
     }
 
     public static ArrayList<Staff> getStaffs() {
         return staffList;
-        //hi ethan
     }
 
     public static boolean checkStudentInside(String curStudent){
