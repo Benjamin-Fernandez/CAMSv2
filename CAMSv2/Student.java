@@ -25,14 +25,14 @@ public class Student extends User{
         // get Camp from CampManager
         Camp camp = CampManager.getCamp(campName);
         // Display available slots
-        System.out.println("Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
+        System.out.println( camp.getCampName() + " Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
         // Camp Manager should check that the camp is Visible and userGroup
     }
 
     public void viewRegisteredCamps() {
         // getRegisteredCamps and print it
         for (CampAndRole campAndRole : registeredCamps) {
-            System.out.println(emailID);            
+            System.out.println(campAndRole.getCamp().getCampName());
         }
     }
 
