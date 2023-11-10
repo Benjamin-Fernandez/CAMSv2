@@ -153,6 +153,23 @@ public class Staff extends User {
     public void staffInterface(){
         //print a table of staff methods; e.g.
         //1.viewCamp(); 2.editcamp
+        System.out.println("Select which action you would like to take");
+        System.out.println("1. Create a camp");
+        System.out.println("2. Edit one of my camp");
+        System.out.println("3. Delete one of my camp");
+        System.out.println("4. Change Visibilty of a camp");
+        System.out.println("5. View all camps");
+        System.out.println("6. View my camps"); // is this needed?purpose is to edit camp?
+        System.out.println("7. View enquiries from my camp");
+        System.out.println("8. Reply enquiries from my camp");
+        System.out.println("9. View enquiries from my camp");
+        System.out.println("10. Reply enquiries from my camp");
+        System.out.println("11. Generate attendance report");
+        System.out.println("Generate performance report");
+
+
+
+
     }
 
 
