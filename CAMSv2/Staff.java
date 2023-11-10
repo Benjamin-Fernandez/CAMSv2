@@ -165,10 +165,7 @@ public class Staff extends User {
         System.out.println("9. View enquiries from my camp");
         System.out.println("10. Reply enquiries from my camp");
         System.out.println("11. Generate attendance report");
-        System.out.println("Generate performance report");
-
-
-
+        System.out.println("12. Generate performance report");
 
     }
 
