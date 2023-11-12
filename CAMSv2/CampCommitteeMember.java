@@ -64,5 +64,14 @@ public class CampCommitteeMember implements Role {
     public void committeeInterface(){
         //print a table of commitee methods; e.g.
         //1.viewCamp(); 2.editcamp
+        System.out.println("Select which action you would like to take");
+        System.out.println("1. View camp details"); // thecamps they are registered for
+        System.out.println("2. Submit a suggestion"); //only for camp they are comitee of
+        System.out.println("3. View enquiries"); //print table with index of enquiries
+        System.out.println("4. Reply to an enquiry"); //choose one
+        System.out.println("5. Manage open suggestions"); //will show open suggestions and ask to edit/delete
+        System.out.println("6. View my camps"); // is this needed?purpose is to edit camp?
+        System.out.println("7. Generate attendance report"); //of participants and roles -- wiht filters for format
+        
     }
 }

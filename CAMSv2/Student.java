@@ -166,6 +166,14 @@ public class Student extends User{
     public void studentInterface(){
         //print a table of student methods; e.g.
         //1.viewCamp(); 2.editcamp
+        System.out.println("Select which action you would like to take");
+        System.out.println("1. View list of camps available"); //show remaining slots also
+        System.out.println("2. Register for a camp"); //later give option - comittee or attendee
+        System.out.println("3. Create an enquiry");
+        System.out.println("4. Manage my open enquiries"); //let them view and choose to edit,delete
+        System.out.println("5. View registered camps"); // show camps registered for and roles
+        System.out.println("6. Withdraw from a camp"); // is this needed?purpose is to edit camp?
+    
     }
 
 }
