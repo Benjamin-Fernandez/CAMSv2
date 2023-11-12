@@ -10,11 +10,53 @@ public class CampManager {
     private static ArrayList<Camp> campList;
 
     //method
-    public void createCamp(String name){
+    public void createCamp(String staffName){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
       //Camp SpecificCamp = new Camp(8 parameters);
       //campList.add(SpecificCamp);
+        Scanner sc = new Scanner(System.in);
+        String errorMessage = "Camp with this name already exists";
+        String campName;
+        String dates;
+        int registrationClosingDate;
+        String userGroup;
+        String location;
+        int totalSlots;
+        String description;
+
+        System.out.println("Enter camp name");
+        campName = sc.nextLine();
+        System.out.println("Enter camp dates");
+        dates = sc.nextLine();
+        System.out.println("Enter registration closing date");
+        registrationClosingDate = sc.nextInt();
+        System.out.println("Enter user group this camp will be available to");
+        userGroup = sc.nextLine();
+        System.out.println("Enter camp location");
+        location = sc.nextLine();
+        System.out.println("Enter total number of slots");
+        totalSlots = sc.nextInt();
+        System.out.println("Enter camp description");
+        description = sc.nextLine();
+        
+        sc.close();
+        //check if camp already exists
+        if(getCamp(campName) != null){
+            System.out.println(errorMessage);
+            return;
+        }
+        
+        Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+
+        addCamp(newCamp);
+        
+        return;
+
+    }
+
+    public static void addCamp(Camp camp){
+        campList.add(camp);
     }
 
     public static Camp getCamp(String campName){
