@@ -51,6 +51,8 @@ public class CampManager {
 
         addCamp(newCamp);
         
+        System.out.println(campName + " camp created");
+        
         return;
 
     }
