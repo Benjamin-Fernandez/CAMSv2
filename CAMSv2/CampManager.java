@@ -3,6 +3,10 @@ package CAMSv2;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class CampManager {
@@ -19,7 +23,7 @@ public class CampManager {
         String errorMessage = "Camp with this name already exists";
         String campName;
         String dates;
-        int registrationClosingDate;
+        String registrationClosingDate;
         String userGroup;
         String location;
         int totalSlots;
@@ -37,14 +41,28 @@ public class CampManager {
         
         System.out.println("Enter camp dates");
         dates = sc.nextLine();
+
         System.out.println("Enter registration closing date");
-        registrationClosingDate = sc.nextInt();
+        registrationClosingDate = sc.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        //Ensures that the registration closing date is after the local clock
+        if (userDateTime.isAfter(currentDateTime)) {                                    
+            System.out.println("Input date is in the future: " + currentDateTime);
+        } else {
+            System.out.println("Input date must be in the future.");
+        }
+
         System.out.println("Enter user group this camp will be available to");
         userGroup = sc.nextLine();
+
         System.out.println("Enter camp location");
         location = sc.nextLine();
+
         System.out.println("Enter total number of slots");
         totalSlots = sc.nextInt();
+
         System.out.println("Enter camp description");
         description = sc.nextLine();
         
@@ -257,7 +275,18 @@ public class CampManager {
        // camp.addStudent(studentName, role);
     }
 
+    public static boolean isValidDate(String input) {
+        // Define a custom date format that you expect
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        try {
+            // Try to parse the input as a LocalDate using the defined format
+            LocalDate date = LocalDate.parse(input, dateFormatter);
+            return true; // Input is a valid date
+        } catch (DateTimeParseException e) {
+            return false; // Input is not a valid date
+        }
+    }
 
 }
 
