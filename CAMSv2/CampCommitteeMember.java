@@ -70,8 +70,43 @@ public class CampCommitteeMember implements Role {
         System.out.println("3. View enquiries"); //print table with index of enquiries
         System.out.println("4. Reply to an enquiry"); //choose one
         System.out.println("5. Manage open suggestions"); //will show open suggestions and ask to edit/delete
-        System.out.println("6. View my camps"); // is this needed?purpose is to edit camp?
-        System.out.println("7. Generate attendance report"); //of participants and roles -- wiht filters for format
+        System.out.println("6. Generate attendance report"); //of participants and roles -- wiht filters for format
+
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        sc.close();
+
+        switch(choice){
+
+            case 1:
+                // viewDetails(null); how do we do this
+                break;
+
+            case 2: 
+                // submitSuggestion(null, null);
+                break;
+
+            case 3:
+                // viewEnquiries(null);
+                break;
+
+            case 4:
+                // replyEnquiries(null);
+                break;
+
+            case 5:
+                // viewSuggestion(null, null);
+                break;
+
+            case 6:
+                //generateReport
+                break;
+
+            default:
+                break;
+
+        }//end switch
         
-    }
+    }//end interface
+
 }
