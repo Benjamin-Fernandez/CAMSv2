@@ -27,6 +27,14 @@ public class CampManager {
 
         System.out.println("Enter camp name");
         campName = sc.nextLine();
+
+        //check if camp already exists
+        if(getCamp(campName) != null){
+            System.out.println(errorMessage);
+            sc.close();
+            return;
+        }
+        
         System.out.println("Enter camp dates");
         dates = sc.nextLine();
         System.out.println("Enter registration closing date");
@@ -41,11 +49,7 @@ public class CampManager {
         description = sc.nextLine();
         
         sc.close();
-        //check if camp already exists
-        if(getCamp(campName) != null){
-            System.out.println(errorMessage);
-            return;
-        }
+        
         
         Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
