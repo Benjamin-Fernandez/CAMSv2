@@ -3,6 +3,11 @@ package CAMSv2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** 
+ Representing a Student user registered in the system.
+ @author Zhu Yu Hao
+ @since 13-11-2023
+ */
 public class Student extends User{
     ArrayList<CampAndRole> registeredCamps = new ArrayList<CampAndRole>();
     Enquiries enquiries = new Enquiries(super.name);
@@ -38,9 +43,15 @@ public class Student extends User{
 
     // --- Enquiries -----------------------------------------------------
     // have to decide if we are going to use EnquiryManager for managing the logic or not
-    public void createEnquiry(String camp, String enquiryDescription) {
+    public void createEnquiry() {
         // create new Enquiry Object through EnquiryManager
-        EnquiryManager.createEnquiry(camp, enquiryDescription, this);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter camp name: ");
+        String campName = scanner.nextLine();
+        System.out.println("Please enter enquiry Description");
+        String enquiryDescription = scanner.nextLine();
+        EnquiryManager.createEnquiry(campName, enquiryDescription, this);
     }
 
 
@@ -163,16 +174,45 @@ public class Student extends User{
         return null;
     }
 
+    /**
+     * Student Interface class that will contain all the choices presented to the Student user.
+     * New choices can be registered in the Student Interface class during setup in Cams.java
+     */
     public void studentInterface(){
-        //print a table of student methods; e.g.
-        //1.viewCamp(); 2.editcamp
+
         System.out.println("Select which action you would like to take");
-        System.out.println("1. View list of camps available"); //show remaining slots also
-        System.out.println("2. Register for a camp"); //later give option - comittee or attendee
-        System.out.println("3. Create an enquiry");
-        System.out.println("4. Manage my open enquiries"); //let them view and choose to edit,delete
-        System.out.println("5. View registered camps"); // show camps registered for and roles
-        System.out.println("6. Withdraw from a camp"); // is this needed?purpose is to edit camp?
+        System.out.println("1. Change Password"); 
+        System.out.println("2. View list of camps available"); 
+        System.out.println("3. Submit Enquiries for a camp");
+        System.out.println("4. View registered camps"); 
+        System.out.println("5. View reply to enquiries"); 
+        System.out.println("6. Request to Withdraw from Camps"); 
+
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                
+                break;
+            case 2:
+                viewListOfCamps();
+                break;
+            case 3:
+                // to rename all enquiry to question
+                createEnquiry();
+                viewAllQuestions();
+            case 4:
+                viewRegisteredCamps();
+            case 5:
+                viewAllQuestions();
+                viewEnquiry();
+            case 6:
+                viewRegisteredCamps();
+                withdrawFromCamp();
+            default:
+                break;
+        }
+
     
     }
 
