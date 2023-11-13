@@ -174,6 +174,7 @@ public class Staff extends User {
 
         //choice is valid from 1-12
         int choice = sc.nextInt();
+        sc.close();
 
         switch(choice){
             case 1:
