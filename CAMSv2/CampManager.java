@@ -3,10 +3,15 @@ package CAMSv2;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CampManager {
@@ -22,7 +27,7 @@ public class CampManager {
         Scanner sc = new Scanner(System.in);
         String errorMessage = "Camp with this name already exists";
         String campName;
-        String dates;
+        Date[] Dates;            //NEWLY ADDED
         String registrationClosingDate;
         String userGroup;
         String location;
@@ -38,9 +43,25 @@ public class CampManager {
             sc.close();
             return;
         }
+
+        System.out.println("Enter camp duration(days)");
+        int numOfDays = sc.nextInt();
+        System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
-        System.out.println("Enter camp dates");
-        dates = sc.nextLine();
+        Date[] dates = new Date[numOfDays];
+        for (int i = 0; i < numOfDays; i++) {
+            while (true) {
+                try {
+                    System.out.print("Date " + (i + 1) + ": ");
+                    String userInput = sc.nextLine();
+                    dates[i] = dateFormat.parse(userInput);
+                    break; // Break the loop if parsing is successful
+                } catch (ParseException e) {
+                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                }
+            }
+        }
 
         System.out.println("Enter registration closing date");
         registrationClosingDate = sc.nextLine();
@@ -69,7 +90,7 @@ public class CampManager {
         sc.close();
         
         
-        Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
         
@@ -136,10 +157,28 @@ public class CampManager {
                         case 1: currentCamp.setCampName(updatedInfo);
                             break;
 
-                        case 2: currentCamp.setDates(updatedInfo);
+                        case 2: 
+                            System.out.println("Enter camp duration(days)");
+                            int numOfDays = sc.nextInt();
+                            System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+                            Date[] dates = new Date[numOfDays];
+                            for (int i = 0; i < numOfDays; i++) {
+                                while (true) {
+                                    try {
+                                        System.out.print("Date " + (i + 1) + ": ");
+                                        String userInput = sc.nextLine();
+                                         dates[i] = dateFormat.parse(userInput);
+                                        break; // Break the loop if parsing is successful
+                                    } catch (ParseException e) {
+                                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                                    }
+                                }
+                            }   
                             break;
                     
-                        case 3:  currentCamp.setRegistrationClosingDate(Integer.parseInt(updatedInfo));
+                        case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
                             break;
                     
                         case 4: currentCamp.setUserGroup(updatedInfo);
@@ -231,8 +270,8 @@ public class CampManager {
         String userGroup;
         String location;
         String description;
-        String dates;
-        int registrationClosingDate;
+        Date[] Dates;
+        String registrationClosingDate;
         int totalSlots;
         ArrayList<Student> campCommitteeSlots;
 
@@ -243,7 +282,7 @@ public class CampManager {
             if(this.getStaffinCharge(campName, staffName)){
                 Camp camp = campManager.getCamp(campName); //camp obj itself            
                 studentList = camp.getStudentList();
-                dates = camp.getDates();
+                Date[] Dates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate();
                 userGroup = camp.getUserGroup();
                 location = camp.getLocation();
