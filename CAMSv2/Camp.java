@@ -1,5 +1,6 @@
 package CAMSv2;
 import java.util.ArrayList;
+import java.util.Date;
 public class Camp {
 
     boolean visibility;
@@ -15,10 +16,10 @@ public class Camp {
     }
    
 
-    public Camp(String CampName , String Dates , int Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public Camp(String CampName , Date[] Dates , String Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
         //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
-        this.info = new CampInformation( CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
+        this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
         this.StudentList = new ArrayList<Student>();
 
     }
@@ -120,11 +121,11 @@ public class Camp {
 
     //get methods
 
-    public String getDates(){
+    public Date[] getDates(){
         return this.info.getDates();
     }
 
-    public int getRegistrationClosingDate(){
+    public String getRegistrationClosingDate(){
         return this.info.getRegistrationClosingDate();
     }
 
@@ -155,11 +156,11 @@ public class Camp {
         this.info.setCampName(campName);
     }
 
-    public void setDates(String dates){
-        this.info.setDates(dates);
+    public void setDates(Date[] Dates){
+        this.info.setDates(Dates);
     }
 
-    public void setRegistrationClosingDate(int closingDate){
+    public void setRegistrationClosingDate(String closingDate){
         this.info.setRegistrationClosingDate(closingDate);
     }
 
