@@ -282,7 +282,7 @@ public class CampManager {
             if(this.getStaffinCharge(campName, staffName)){
                 Camp camp = campManager.getCamp(campName); //camp obj itself            
                 studentList = camp.getStudentList();
-                Date[] Dates = camp.getDates();
+                Date[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate();
                 userGroup = camp.getUserGroup();
                 location = camp.getLocation();
