@@ -25,9 +25,9 @@ public class UserDataBase {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",");
-                String name = values[0];
-                String emailID = values[1].split("@")[0]; //Retrieve only the ID before @ part in email
-                String faculty = values[2];
+                String name = values[0].trim();
+                String emailID = values[1].split("@")[0].trim(); //Retrieve only the ID before @ part in email
+                String faculty = values[2].trim();
                 String password = "password"; // Assume default password
                 // if csv == student.csv ,
                 //    String role = student;
