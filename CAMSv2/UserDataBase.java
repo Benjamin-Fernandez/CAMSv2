@@ -1,7 +1,12 @@
 package CAMSv2;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class UserDataBase {
@@ -21,9 +26,17 @@ public class UserDataBase {
     }
 
     public void loadDataFromCSV(String csvFilePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+
+        try (InputStream inputStream = new FileInputStream(csvFilePath);
+             Reader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+             BufferedReader reader = new BufferedReader(inputStreamReader)) {
+                reader.mark(1);
+            if (reader.read() != 0xFEFF) {
+                reader.reset(); // Reset if the first character is not the BOM
+            }
             String line;
             while ((line = reader.readLine()) != null) {
+
                 String[] values = line.split(",");
                 String name = values[0].trim();
                 String emailID = values[1].split("@")[0].trim(); //Retrieve only the ID before @ part in email
