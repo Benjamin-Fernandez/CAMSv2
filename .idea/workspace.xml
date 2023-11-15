@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Camp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Camp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampInformation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +58,7 @@
       <updated>1698988819142</updated>
       <workItem from="1698988820349" duration="339000" />
       <workItem from="1698989327416" duration="2862000" />
+      <workItem from="1700036709503" duration="151000" />
     </task>
     <servers />
   </component>

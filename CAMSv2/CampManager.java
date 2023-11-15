@@ -90,7 +90,7 @@ public class CampManager {
         sc.close();
         
         
-        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
         
