@@ -40,9 +40,9 @@ public class Cams {
         String projectDirectory = System.getProperty("user.dir");
         //System.out.println(projectDirectory);
 
-        // Construct the relative paths to the CSV files
-        String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv ";
-        String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv ";
+        // Construct the absolute paths to the CSV files
+        String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
+        String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
 
 
         // Initialize user accounts from CSV files
