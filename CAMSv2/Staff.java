@@ -45,7 +45,7 @@ public class Staff extends User {
         
         //delete calls campManager
         campManager.deleteCamp(campName);
-        sc.close();
+        //sc.close();
     }
 
     public void changeVisibility(){
@@ -92,7 +92,8 @@ public class Staff extends User {
         //ask which camp name they want to view
         Scanner sc = new Scanner(System.in);
         String campName;
-        System.out.println("which camp's enquiry would you want to view? ");
+        System.out.println("Enter the camp name of the camps enquiry you want to view ");
+        myList();
         campName = sc.nextLine();
         EnquiryManager enqManager = new EnquiryManager();
         enqManager.viewEnquiryForStaff(campName, this.name);

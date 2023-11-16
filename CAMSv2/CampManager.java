@@ -243,7 +243,7 @@ public class CampManager {
         int numOfCamps;
         int index=1;
         Camp curCamp = new Camp();
-        ArrayList<Camp> campList = new ArrayList<Camp>();
+        //ArrayList<Camp> campList = new ArrayList<Camp>();
         numOfCamps = campList.size();
 
         for(int i=0;i<numOfCamps;i++){
