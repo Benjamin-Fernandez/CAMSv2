@@ -171,7 +171,7 @@ public class Staff extends User {
         System.out.println("10. Approve suggestion of my camp");
         System.out.println("11. Generate attendance report");
         System.out.println("12. Generate performance report");
-
+        System.out.println("13. Change Password");
         //choice is valid from 1-12
         int choice = sc.nextInt();
         sc.close();
@@ -224,6 +224,10 @@ public class Staff extends User {
 
             case 12:
                 //performance report of cmamp commitee member
+                break;
+
+            case 13:
+                //change password
                 break;
 
             default:
