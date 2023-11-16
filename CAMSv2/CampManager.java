@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class CampManager {
     //attributes
-    private static ArrayList<Camp> campList;
+    private static ArrayList<Camp> campList = new ArrayList<Camp>();
 
     //method
     public void createCamp(String staffName){
@@ -69,7 +69,7 @@ public class CampManager {
         System.out.println("Enter registration closing date");
         registrationClosingDate = sc.nextLine();
         registrationClosingDate += " 23:59";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm1");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
         
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -90,6 +90,7 @@ public class CampManager {
         totalSlots = sc.nextInt();
 
         System.out.println("Enter camp description");
+        sc.nextLine();
         description = sc.nextLine();
         
         sc.close();
@@ -204,7 +205,7 @@ public class CampManager {
             choice = sc.nextInt();
 
             }//end while
-            sc.close();
+            //sc.close();
             
             System.out.println(exitMessage);
         }//end if
