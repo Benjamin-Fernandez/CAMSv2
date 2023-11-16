@@ -25,6 +25,7 @@ public class CampManager {
       //Camp SpecificCamp = new Camp(8 parameters);
       //campList.add(SpecificCamp);
         Scanner sc = new Scanner(System.in);
+
         String errorMessage = "Camp with this name already exists";
         String campName;
         Date[] Dates;            //NEWLY ADDED
@@ -34,7 +35,7 @@ public class CampManager {
         int totalSlots;
         String description;
 
-        System.out.println("Enter camp name");
+        System.out.println("Enter camp name: ");
         campName = sc.nextLine();
 
         //check if camp already exists
@@ -110,13 +111,14 @@ public class CampManager {
         campList = getCampList();
         Camp camp = new Camp();
 
-        for(int i=0; i<campList.size();i++){
-            camp = campList.get(i);
-            if(campName.equals(camp.getCampName())){
-                return camp;
-            }//if
-        }//for
-       
+        if(campList != null) {
+            for (int i = 0; i < campList.size(); i++) {
+                camp = campList.get(i);
+                if (campName.equals(camp.getCampName())) {
+                    return camp;
+                }//if
+            }//for
+        }
         return null;//if it doesnt find a camp
     }
 
