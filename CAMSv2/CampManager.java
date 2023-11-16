@@ -13,6 +13,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.util.List;
+
 
 public class CampManager {
     //attributes
@@ -269,6 +274,8 @@ public class CampManager {
         ArrayList<Camp> campList = this.getCampList();
         ArrayList<Student> studentList;
         CampManager campManager = new CampManager();
+        Scanner sc = new Scanner(System.in);
+        int choice;
 
         String campName;
         //Camp camp = new Camp();
@@ -282,14 +289,27 @@ public class CampManager {
         String registrationClosingDate;
         int totalSlots;
         ArrayList<Student> campCommitteeSlots;
+        ArrayList<Student> filteredStudentList;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
             //String name of camp obj
 
             if(this.getStaffinCharge(campName, staffName)){
-                Camp camp = campManager.getCamp(campName); //camp obj itself            
+                Camp camp = campManager.getCamp(campName); //camp obj itself
+
                 studentList = camp.getStudentList();
+                System.out.println("Filter by 1) Attendee");
+                System.out.println("Filter by 2) Camp Committee Member");
+                System.out.println("3) Display all members");
+                choice = sc.nextInt();
+                if(choice == 1 || choice == 2 ){
+                     filteredStudentList = this.filterStudentsByRole(camp,studentList, choice--);
+                }
+                else{
+                    filteredStudentList = studentList;
+                }
+                
                 Date[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate();
                 userGroup = camp.getUserGroup();
@@ -297,25 +317,76 @@ public class CampManager {
                 totalSlots = camp.getTotalSlots();
                 description = camp.getDescription();
                 campCommitteeSlots = camp.getCampCommitteeSlots();
+
+                generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
+                
+
+
                  
-                for(int j = 0 ; j < 10 ; j++){
-                    //go through campCommitteeSlots array
-                    //write each index to csv file.
-                }
+            //     for(int j = 0 ; j < 10 ; j++){
+            //         //go through campCommitteeSlots array
+            //         //write each index to csv file.
+            //     }
         
-                for(int j=0;j<studentList.size();j++){
-                    Student student = studentList.get(j);
-                    // System.out.println(student.getName() + student.getStudentRole()); 
-                    //getstudentrole is in student class
-                }//send everything to a csv file.
+            //     for(int j=0;j<studentList.size();j++){
+            //         Student student = studentList.get(j);
+            //         // System.out.println(student.getName() + student.getStudentRole()); 
+            //         //getstudentrole is in student class
+            //     }//send everything to a csv file.
                
 
 
-            }
+            // }
         }//end outer for
+    }
 
 
     }//end generateReport
+
+
+    //method to filter students based on their role
+    private ArrayList<Student> filterStudentsByRole(Camp camp,ArrayList<Student>students, int choice){
+        ArrayList<Student> filteredList = new ArrayList<>();
+        Role[] roles = Role.values();
+        for(Student student : students){
+            if(student.getCampRole(camp) == roles[choice]){ //yuhao pls implement this 
+                filteredList.add(student);
+            }
+        }
+        return filteredList;
+
+
+    }
+
+    //method to generate CSV format
+
+    public void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
+        String filename = "camp_report.csv";
+        StringBuilder csvContent = new StringBuilder();
+        String totalSlot = Integer.toString(totalSlots);
+
+        csvContent.append("Student Name , Student Role\n");
+
+        for(Student student : filteredStudentList){
+            csvContent.append(String.format("%s , %s", student.getName() , student.getCampRole(camp)));
+
+        }
+
+        csvContent.append("Camp Dates");
+    
+
+        //for(int i = 0 ; i<) write dates into csv
+
+        csvContent.append(registrationClosingDate,userGroup,location,totalSlot,description);
+
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))){
+            writer.write(csvContent.toString());
+            System.out.println("CSV file created successfully" + filename);
+
+        }
+
+    }
 
     public void addStudent(String studentName, String campName, String role){
         Camp camp = this.getCamp(campName);
