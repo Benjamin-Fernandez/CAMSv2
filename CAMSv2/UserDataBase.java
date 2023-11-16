@@ -15,7 +15,7 @@ public class UserDataBase {
     private String campCommitteeMemberCSVFilePath;
     private static ArrayList<Student> studentList; //this must be global variable
     private static ArrayList<Staff> staffList;
-    private static ArrayList<Student> campCommitteeList = new ArrayList<Student>(); //this must be global variable
+    private static ArrayList<CampCommitteeMember> campCommitteeList = new ArrayList<CampCommitteeMember>(); //this must be global variable
     public UserDataBase(String studentCSVFilePath, String staffCSVFilePath, String campCommitteeMemberCSVFilePath) {
         this.studentCSVFilePath = studentCSVFilePath;
         this.staffCSVFilePath = staffCSVFilePath;
@@ -63,7 +63,7 @@ public class UserDataBase {
                 }
                 else{
                     CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER);
-                    //add
+                    campCommitteeList.add(campCommitteeMember);
                 }
             }
         } catch (IOException e) {e.printStackTrace();}
@@ -79,7 +79,9 @@ public class UserDataBase {
     public static ArrayList<Staff> getStaffs() {
         return staffList;
     }
-
+    public static ArrayList<CampCommitteeMember> getCampCommitteeMembers() {
+        return campCommitteeList;
+    }
     public static boolean checkStudentInside(String curStudent){
         for(Student student: getStudents()){
             if (curStudent.equals(student.getName())) return true;

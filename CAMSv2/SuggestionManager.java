@@ -48,7 +48,7 @@ public class SuggestionManager {
 
     //approve suggestion
     //staff.approvesuggestion-> suggManager.approveAdvice->
-    public void approveAdvice(String campName, String staffName){
+    public Suggestion approveAdvice(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
 
         CampManager campManager = new CampManager();
@@ -81,7 +81,7 @@ public class SuggestionManager {
             campManager.editCamp(campName, staffName);
             //edit camp
         }
-
+        return curCamp.getSuggestions().get(suggIndex);
         //sc.close();
     }
 

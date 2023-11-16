@@ -63,6 +63,10 @@ public class CampCommitteeMember  extends Student {
         suggestionManager.deleteSuggestionForCommitteeMember(studentName,campName);
     }
 
+    public void addPointsForSuggestions(){
+        points +=1;
+    }
+
     /**
      *
      */

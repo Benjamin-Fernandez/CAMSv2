@@ -8,11 +8,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Authenticator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Cams.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Cams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/CampCommitteeMember_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/CampCommitteeMember_List.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/SuggestionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/SuggestionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/SuggestionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/SuggestionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

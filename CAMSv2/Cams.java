@@ -62,6 +62,7 @@ public class Cams {
             System.out.println("Student Password: " + student.getPassword());
         }
         int choice;
+        int login_option;
 
         do {
             System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
@@ -76,9 +77,11 @@ public class Cams {
             System.out.print("Enter your password: ");
             String password = scanner.nextLine();
 
-            System.out.print("Enter your role: ");
-            String role = scanner.nextLine();
-
+            System.out.print("Select your option: ");
+            System.out.println("1. Staff");
+            System.out.println("2. Student");
+            System.out.println("3. Camp committee member");
+            login_option = scanner.nextInt();
 
 
             switch (choice) {
@@ -87,28 +90,33 @@ public class Cams {
                     // LoginService login = new LoginService(studentUsers, staffUsers);
                     // login.performLogin(emailID, password);
                     // break;
-                    User user = Authenticator.check(emailID,password,role);
+                    User user = Authenticator.check(emailID,password,login_option);
                     if(user == null){
                         System.out.println("Wrong credentials");
                         break;
                     }
 
-                    if(role.equals("staff")){
+                    if(login_option == 1){
                         System.out.println("Correct credentials");
                         Staff staff = (Staff) user;
                         staff.staffInterface();
                     }
-                    else{
+                    else if(login_option == 2){
                         Student student = (Student) user;
                         student.studentInterface();
                     }
+                    else{
+                        CampCommitteeMember campCommitteeMember = (CampCommitteeMember) user;
+                        campCommitteeMember.committeeInterface();
+                    }
+
                     break;
 
                 default: break;
 
 
             }
-        }while (choice == 1|| choice == 2);
+        }while (choice == 1);
 
 
     }

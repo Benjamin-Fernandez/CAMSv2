@@ -131,8 +131,9 @@ public class Staff extends User {
         System.out.println("which camp's suggestion would you want to approve? ");
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
-        suggManager.approveAdvice(campName, this.name);
+        Suggestion suggestion = suggManager.approveAdvice(campName, this.name);
         //sc.close();
+        addPointsForApprovedSuggestions(suggestion.getStudent());
 
     }
 
@@ -152,6 +153,19 @@ public class Staff extends User {
 
         return campName;
     }
+
+    public void addPointsForApprovedSuggestions(String campCommitteeMemberName){
+        for(int i = 0; i< UserDataBase.getCampCommitteeMembers().size(); i++){
+            CampCommitteeMember campCommitteeMember = UserDataBase.getCampCommitteeMembers().get(i);
+            if(campCommitteeMember.getName().equals(campCommitteeMemberName)){
+                campCommitteeMember.addPointsForSuggestions();
+            }
+
+        }
+
+    }
+
+
 
     public void staffInterface(){
         //print a table of staff methods; e.g.
