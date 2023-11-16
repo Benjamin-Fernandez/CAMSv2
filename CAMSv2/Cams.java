@@ -43,10 +43,10 @@ public class Cams {
         // Construct the absolute paths to the CSV files
         String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
         String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
-
+        String campCommitteeMemberCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
         // Initialize user accounts from CSV files
-        UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath);
+        UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath, campCommitteeMemberCSVPath);
 
         ArrayList<Student> studentUsers = UserDataBase.getStudents();
         ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
@@ -92,6 +92,7 @@ public class Cams {
                         System.out.println("Wrong credentials");
                         break;
                     }
+
                     if(role.equals("staff")){
                         System.out.println("Correct credentials");
                         Staff staff = (Staff) user;

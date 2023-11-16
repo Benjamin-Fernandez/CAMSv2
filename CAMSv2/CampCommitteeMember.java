@@ -2,10 +2,11 @@ package CAMSv2;
 
 import java.util.Scanner;
 
-public class CampCommitteeMember implements Role {
+public class CampCommitteeMember  extends Student implements Role {
     private int points;
 
-    public CampCommitteeMember(){
+    public CampCommitteeMember(String emailID, String password, String faculty, String name, String role) {
+        super(emailID, password, faculty, name, role);
         points = 0;
     }
     public void viewDetails(Camp camp){

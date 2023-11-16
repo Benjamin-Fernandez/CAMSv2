@@ -12,17 +12,22 @@ import java.util.ArrayList;
 public class UserDataBase {
     private String studentCSVFilePath;
     private String staffCSVFilePath;
+    private String campCommitteeMemberCSVFilePath;
     private static ArrayList<Student> studentList; //this must be global variable
     private static ArrayList<Staff> staffList;
-    public UserDataBase(String studentCSVFilePath, String staffCSVFilePath) {
+    private static ArrayList<Student> campCommitteeList = new ArrayList<Student>(); //this must be global variable
+    public UserDataBase(String studentCSVFilePath, String staffCSVFilePath, String campCommitteeMemberCSVFilePath) {
         this.studentCSVFilePath = studentCSVFilePath;
         this.staffCSVFilePath = staffCSVFilePath;
+        this.campCommitteeMemberCSVFilePath = campCommitteeMemberCSVFilePath;
 
         UserDataBase.studentList = new ArrayList<>(); // Initialize the Student ArrayList//
         UserDataBase.staffList = new ArrayList<>(); // Initialize the Staff ArrayList//
+        UserDataBase.campCommitteeList = new ArrayList<>();
 
         loadDataFromCSV(this.studentCSVFilePath);
         loadDataFromCSV(this.staffCSVFilePath);
+        loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
     }
 
     public void loadDataFromCSV(String csvFilePath) {
@@ -53,10 +58,14 @@ public class UserDataBase {
                     Student student = new Student(name,emailID, faculty,password,role);
                     studentList.add(student);
                 }
-                else {
+                else if(csvFilePath.contains("Staff_List.csv")){
                     String role = "staff";
                     Staff staff = new Staff(name,emailID, faculty,password, role);
                     staffList.add(staff);
+                }
+                else{
+                    String role = "camp committee member";
+                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, role);
                 }
             }
         } catch (IOException e) {e.printStackTrace();}
