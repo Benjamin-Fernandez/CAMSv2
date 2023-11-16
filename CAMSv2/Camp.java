@@ -177,7 +177,7 @@ public class Camp {
     }
 
     public void setDescription(String description){
-        this.setDescription(description);
+        this.info.setDescription(description);
     }
 
 

@@ -41,7 +41,7 @@ public class CampManager {
         //check if camp already exists
         if(getCamp(campName) != null){
             System.out.println(errorMessage);
-            sc.close();
+            //sc.close();
             return;
         }
 
@@ -93,7 +93,7 @@ public class CampManager {
         sc.nextLine();
         description = sc.nextLine();
         
-        sc.close();
+        //sc.close();
         
         
         Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
@@ -157,6 +157,7 @@ public class CampManager {
                 //switch case that calls and takes in specific string needed for each case
                 //call the set method in camp.info.setVariable()
                 System.out.println("Enter updated information");
+                sc.nextLine();
                 updatedInfo = sc.nextLine();
 
                 switch(choice){
@@ -234,7 +235,7 @@ public class CampManager {
 
         Camp camp = this.getCamp(campName);
         camp.setVisibility(choice);
-        sc.close();
+        //sc.close();
     }
 
     public void StaffCampListGenerator(String staffName){

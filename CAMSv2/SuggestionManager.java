@@ -82,7 +82,7 @@ public class SuggestionManager {
             //edit camp
         }
 
-        sc.close();
+        //sc.close();
     }
 
     //committee functions

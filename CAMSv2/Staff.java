@@ -26,7 +26,7 @@ public class Staff extends User {
         
         // calls campManager
         campManager.editCamp(campName,this.name);
-        sc.close();
+        //sc.close();
         
     }
 
@@ -63,7 +63,7 @@ public class Staff extends User {
         
         //visibility calls campManager
         campManager.changeVisibility(campName);
-        sc.close();
+        //sc.close();
         }
 
     public void viewCamp(){
@@ -96,7 +96,7 @@ public class Staff extends User {
         campName = sc.nextLine();
         EnquiryManager enqManager = new EnquiryManager();
         enqManager.viewEnquiryForStaff(campName, this.name);
-        sc.close();
+        //sc.close();
     }
 
     public void replyEnquiries(){
@@ -106,7 +106,7 @@ public class Staff extends User {
         System.out.println("which camp's enquiry would you want to reply to? ");
         campName = sc.nextLine();
         enqManager.replyEnquiryFromStaff(campName, this.name);
-        sc.close();
+        //sc.close();
 
     }
 
@@ -118,7 +118,7 @@ public class Staff extends User {
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
         suggManager.viewSuggestionForStaff(campName, this.name);
-        sc.close();
+        //sc.close();
     }
 
     public void approveAdvice(){
@@ -129,7 +129,7 @@ public class Staff extends User {
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
         suggManager.approveAdvice(campName, this.name);
-        sc.close();
+        //sc.close();
 
     }
 
@@ -153,9 +153,9 @@ public class Staff extends User {
     public void staffInterface(){
         //print a table of staff methods; e.g.
         //1.viewCamp(); 2.editcamp
-        
+        int choice;
         Scanner sc = new Scanner(System.in);
-
+        do{
         System.out.println("Select which action you would like to take");
 
 
@@ -172,8 +172,8 @@ public class Staff extends User {
         System.out.println("11. Generate attendance report");
         System.out.println("12. Generate performance report");
         System.out.println("13. Change Password");
-        //choice is valid from 1-12
-        int choice = sc.nextInt();
+        //choice is valid from 1-13
+        choice = sc.nextInt();
 
         switch(choice){
             case 1:
@@ -233,6 +233,7 @@ public class Staff extends User {
                 break;
 
         }// end switch
+    }while(choice>=1 && choice <=13);
 
     }// end staff interface
 

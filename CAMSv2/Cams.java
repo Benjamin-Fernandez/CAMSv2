@@ -66,7 +66,7 @@ public class Cams {
         do {
             System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
             choice = scanner.nextInt();
-            if(choice == 3){break;}
+            if(choice == 2){break;}
             // scanner.nextLine(); // Consume the newline character
 
             System.out.print("Enter your Email: ");

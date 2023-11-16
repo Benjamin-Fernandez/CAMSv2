@@ -74,7 +74,7 @@ public class CampCommitteeMember implements Role {
 
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
-        sc.close();
+       // sc.close();
 
         switch(choice){
 
