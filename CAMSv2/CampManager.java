@@ -56,6 +56,7 @@ public class CampManager {
             while (true) {
                 try {
                     System.out.print("Date " + (i + 1) + ": ");
+                    sc.nextLine();
                     String userInput = sc.nextLine();
                     dates[i] = dateFormat.parse(userInput);
                     break; // Break the loop if parsing is successful
@@ -67,8 +68,10 @@ public class CampManager {
 
         System.out.println("Enter registration closing date");
         registrationClosingDate = sc.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        registrationClosingDate += " 23:59";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm1");
         LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
+        
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
         if (userDateTime.isAfter(currentDateTime)) {                                    
