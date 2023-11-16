@@ -8,7 +8,7 @@ public class Authenticator {
         if (role.equals("student")) {
             for (int i = 0; i < UserDataBase.getStudents().size(); i++) {
                 Student student = UserDataBase.getStudents().get(i);
-                if (student.getEmailID().equals(UserID) && student.getPassword().equals(student.getPassword())) {
+                if (student.getEmailID().equals(UserID) && student.getPassword().equals(Password)) {
                     return student;
                 }
             }

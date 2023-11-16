@@ -8,9 +8,10 @@ import java.util.Scanner;
  @author Zhu Yu Hao
  @since 13-11-2023
  */
-public class Student extends User{
+public class Student extends User {
     ArrayList<CampAndRole> registeredCamps = new ArrayList<CampAndRole>();
     Enquiries enquiries = new Enquiries(super.name);
+
     public Student(String emailID, String password, String faculty, String name, String role) {
         super(emailID, password, faculty, name, role);
     }
@@ -30,7 +31,7 @@ public class Student extends User{
         // get Camp from CampManager
         Camp camp = CampManager.getCamp(campName);
         // Display available slots
-        System.out.println( camp.getCampName() + " Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
+        System.out.println(camp.getCampName() + " Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
         // Camp Manager should check that the camp is Visible and userGroup
     }
 
@@ -70,7 +71,7 @@ public class Student extends User{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select the Enquiry Number to view in detail: ");
         int enquiryIndex = scanner.nextInt();
-        Question question = enquiries.getQuestions().get(enquiryIndex-1); 
+        Question question = enquiries.getQuestions().get(enquiryIndex - 1);
         ArrayList<String> replies = question.getReply();
         System.out.println("Question: " + question.getQuestion());
         int counter = 1;
@@ -78,25 +79,25 @@ public class Student extends User{
             System.out.println("Reply " + counter + ": " + string);
             counter++;
         }
-    }    
+    }
 
     public void editEnquiry() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select the Enquiry Number to edit: ");
         int enquiryIndex = scanner.nextInt();
         System.out.println("Please enter the new enquiry Description: ");
-        String enquiryInformation = scanner.nextLine();        
-        Question question = enquiries.getQuestions().get(enquiryIndex-1);
+        String enquiryInformation = scanner.nextLine();
+        Question question = enquiries.getQuestions().get(enquiryIndex - 1);
         // there should be an enquiry user interface responsible for asking inputs
         question.setQuestion(enquiryInformation);
-        System.out.println("Successfully set new enquiry description!");        
+        System.out.println("Successfully set new enquiry description!");
     }
 
     public void deleteEnquiry() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select the Enquiry Number to delete: ");
         int enquiryIndex = scanner.nextInt();
-        enquiries.getQuestions().remove(enquiryIndex-1);
+        enquiries.getQuestions().remove(enquiryIndex - 1);
         System.out.println("Enquiry removed successfully!");
 
 
@@ -115,25 +116,25 @@ public class Student extends User{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of camp to register: ");
         String campName = scanner.next();
-        System.out.println("Please enter the role to register (attendee or committee): ");     
+        System.out.println("Please enter the role to register (attendee or committee): ");
         String role = scanner.next();
         Camp camp = CampManager.getCamp(campName);
         if (camp.isStudentInBlackList(this)) {
             System.out.println("You have been blacklisted from this camp!");
-            return;            
-        }
-        else if(camp.isCampFull()) {
+            return;
+        } else if (camp.isCampFull()) {
             System.out.println("Camp is full, select another camp!");
             return;
         }
-        
+
         // register student
         registerCampRole(role, camp);
     }
 
     // should be implemented on Camp side.
-    public boolean IsBeforeCampDeadline() {return true;}
-
+    public boolean IsBeforeCampDeadline() {
+        return true;
+    }
 
 
     // --- Strategy Pattern, inject CampRole interface and directly call registerRole()
@@ -145,10 +146,10 @@ public class Student extends User{
         camp.addStudent(this.getName());
         if (campRole.equals("camp committee member")) {
             String role = "camp committee member";
-            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID,this.faculty,this.name,role);
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, role);
             camp.addCampCommitteeMember(campCommitteeMember);
             //call Userdatabase write to csv method
-            CampAndRole campAndRole = new CampAndRole(camp,campCommitteeMember);
+            CampAndRole campAndRole = new CampAndRole(camp, campCommitteeMember);
         }
     }
 
@@ -180,43 +181,54 @@ public class Student extends User{
      * Student Interface class that will contain all the choices presented to the Student user.
      * New choices can be registered in the Student Interface class during setup in Cams.java
      */
-    public void studentInterface(){
+    public void studentInterface() {
+        int choice;
+
+    do{
 
         System.out.println("Select which action you would like to take");
-        System.out.println("1. Change Password"); 
-        System.out.println("2. View list of camps available"); 
+        System.out.println("1. Change Password");
+        System.out.println("2. View list of camps available");
         System.out.println("3. Submit Enquiries for a camp");
-        System.out.println("4. View registered camps"); 
-        System.out.println("5. View reply to enquiries"); 
-        System.out.println("6. Request to Withdraw from Camps"); 
+        System.out.println("4. View registered camps");
+        System.out.println("5. View reply to enquiries");
+        System.out.println("6. Request to Withdraw from Camps");
 
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+
+        choice = scanner.nextInt();
+
         switch (choice) {
             case 1:
-                
+
                 break;
             case 2:
                 viewListOfCamps();
                 break;
             case 3:
                 // to rename all enquiry to question
+                viewListOfCamps();
                 createEnquiry();
                 viewAllQuestions();
+                break;
             case 4:
                 viewRegisteredCamps();
+                break;
             case 5:
                 viewAllQuestions();
                 viewEnquiry();
+                break;
             case 6:
                 viewRegisteredCamps();
                 withdrawFromCamp();
+                break;
             default:
                 break;
         }
 
-    
-    }
 
+        }while(choice >0&&choice<=6);
+
+    }
 }
 

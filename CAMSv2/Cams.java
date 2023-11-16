@@ -53,14 +53,14 @@ public class Cams {
         // Have two ArrayLists: studentUsers and staffUsers,
         // containing Student/Staff objects with name, password, email, and faculty.
 
-        /*System.out.println("Student Data:");
+        System.out.println("Student Data:");
         for (int i = 0; i < studentUsers.size(); i++) {
             User student = studentUsers.get(i);
             System.out.println("Student Name: " + student.getName());
             System.out.println("Student Email: " + student.getEmailID());
             System.out.println("Student Faculty: " + student.getFaculty());
             System.out.println("Student Password: " + student.getPassword());
-        }*/
+        }
         int choice;
 
         do {

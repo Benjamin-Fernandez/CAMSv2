@@ -27,7 +27,7 @@ public class UserDataBase {
 
         loadDataFromCSV(this.studentCSVFilePath);
         loadDataFromCSV(this.staffCSVFilePath);
-        loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
+       // loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
     }
 
     public void loadDataFromCSV(String csvFilePath) {
@@ -54,6 +54,7 @@ public class UserDataBase {
 
                 // Check if the CSV file is for students or staff
                 if (csvFilePath.contains("Student_List.csv")) {
+                    System.out.println("oiwdjfoiw");
                     String role = "student";
                     Student student = new Student(name,emailID, faculty,password,role);
                     studentList.add(student);
@@ -66,6 +67,7 @@ public class UserDataBase {
                 else{
                     String role = "camp committee member";
                     CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, role);
+                    //add
                 }
             }
         } catch (IOException e) {e.printStackTrace();}

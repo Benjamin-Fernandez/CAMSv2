@@ -53,7 +53,7 @@ public class Camp {
     // add to camp
     public Enquiries addStudentEnquiriesInList(String studentName) {
         for (Enquiries enquiries : EnquiryList) {
-            if (enquiries.getEnqurier() == studentName) {
+            if (enquiries.getEnqurier().equals(studentName)) {
                 return enquiries;
             }
         
