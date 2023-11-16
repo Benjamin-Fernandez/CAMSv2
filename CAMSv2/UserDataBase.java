@@ -54,19 +54,15 @@ public class UserDataBase {
 
                 // Check if the CSV file is for students or staff
                 if (csvFilePath.contains("Student_List.csv")) {
-                    System.out.println("oiwdjfoiw");
-                    String role = "student";
-                    Student student = new Student(name,emailID, faculty,password,role);
+                    Student student = new Student(name,emailID, faculty,password,Role.STUDENT);
                     studentList.add(student);
                 }
                 else if(csvFilePath.contains("Staff_List.csv")){
-                    String role = "staff";
-                    Staff staff = new Staff(name,emailID, faculty,password, role);
+                    Staff staff = new Staff(name,emailID, faculty,password, Role.STAFF);
                     staffList.add(staff);
                 }
                 else{
-                    String role = "camp committee member";
-                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, role);
+                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER);
                     //add
                 }
             }

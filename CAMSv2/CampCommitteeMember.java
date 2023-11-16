@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CampCommitteeMember  extends Student {
     private int points;
 
-    public CampCommitteeMember(String emailID, String password, String faculty, String name, String role) {
+    public CampCommitteeMember(String emailID, String password, String faculty, String name, Role role) {
         super(emailID, password, faculty, name, role);
         points = 0;
     }

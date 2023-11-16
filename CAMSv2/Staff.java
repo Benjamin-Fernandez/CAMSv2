@@ -3,7 +3,7 @@ package CAMSv2;
 import java.util.*;
 
 public class Staff extends User {
-    public Staff(String emailID, String password, String faculty, String name, String role){
+    public Staff(String emailID, String password, String faculty, String name, Role role){
         super(emailID,password,faculty,name,role);
     }
 

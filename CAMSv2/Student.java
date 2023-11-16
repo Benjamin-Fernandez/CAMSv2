@@ -12,7 +12,7 @@ public class Student extends User {
     ArrayList<CampAndRole> registeredCamps = new ArrayList<CampAndRole>();
     Enquiries enquiries = new Enquiries(super.name);
 
-    public Student(String emailID, String password, String faculty, String name, String role) {
+    public Student(String emailID, String password, String faculty, String name, Role role) {
         super(emailID, password, faculty, name, role);
     }
     // Student User Interface
@@ -144,12 +144,11 @@ public class Student extends User {
         // Register as committee
         // else register as member
         camp.addStudent(this.getName());
-        if (campRole.equals("camp committee member")) {
-            String role = "camp committee member";
-            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, role);
+        if (campRole.equals("camp committee member")){
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, Role.CAMP_COMMITTEE_MEMBER);
             camp.addCampCommitteeMember(campCommitteeMember);
             //call Userdatabase write to csv method
-            CampAndRole campAndRole = new CampAndRole(camp, campCommitteeMember);
+            //CampAndRole campAndRole = new CampAndRole(camp, campCommitteeMember);
         }
     }
 
