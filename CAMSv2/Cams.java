@@ -14,25 +14,25 @@ public class Cams {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         // Create a separate thread for updating and displaying date and time
-        Thread dateTimeThread = new Thread(() -> {
-            while (true) {
-                // Get the current date and time
-                LocalDateTime now = LocalDateTime.now();
-
-                // Format and display the date and time
-                String formattedDateTime = now.format(formatter);
-               // System.out.print("\r" + formattedDateTime ); // Use carriage return for updating in the same line
-
-                // Wait for 1 second before updating again (adjust the sleep duration as needed)
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        // Start the thread
-        dateTimeThread.start();
+//        Thread dateTimeThread = new Thread(() -> {
+//            while (true) {
+//                // Get the current date and time
+//                LocalDateTime now = LocalDateTime.now();
+//
+//                // Format and display the date and time
+//                String formattedDateTime = now.format(formatter);
+//               // System.out.print("\r" + formattedDateTime ); // Use carriage return for updating in the same line
+//
+//                // Wait for 1 second before updating again (adjust the sleep duration as needed)
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        // Start the thread
+//        dateTimeThread.start();
 
         Scanner scanner = new Scanner(System.in);
 

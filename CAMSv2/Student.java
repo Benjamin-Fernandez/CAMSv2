@@ -222,6 +222,11 @@ public class Student extends User {
                 viewRegisteredCamps();
                 withdrawFromCamp();
                 break;
+
+            case 7:
+                registerCampInterface();
+                break;
+
             default:
                 break;
         }

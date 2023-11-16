@@ -2,7 +2,7 @@ package CAMSv2;
 
 import java.util.Scanner;
 
-public class CampCommitteeMember  extends Student implements Role {
+public class CampCommitteeMember  extends Student {
     private int points;
 
     public CampCommitteeMember(String emailID, String password, String faculty, String name, String role) {
@@ -10,6 +10,7 @@ public class CampCommitteeMember  extends Student implements Role {
         points = 0;
     }
     public void viewDetails(Camp camp){
+
         System.out.println("Camp name: " + camp.getCampName() + '\n' +
                            "Camp date: " + camp.getDates()    + '\n' +
                            "Camp Registration Closing Date: " + camp.getRegistrationClosingDate() + '\n' +
@@ -62,16 +63,20 @@ public class CampCommitteeMember  extends Student implements Role {
         suggestionManager.deleteSuggestionForCommitteeMember(studentName,campName);
     }
 
+    /**
+     *
+     */
     public void committeeInterface(){
         //print a table of commitee methods; e.g.
         //1.viewCamp(); 2.editcamp
-        System.out.println("Select which action you would like to take");
+        super.studentInterface();
         System.out.println("1. View camp details"); // thecamps they are registered for
         System.out.println("2. Submit a suggestion"); //only for camp they are comitee of
         System.out.println("3. View enquiries"); //print table with index of enquiries
         System.out.println("4. Reply to an enquiry"); //choose one
         System.out.println("5. Manage open suggestions"); //will show open suggestions and ask to edit/delete
         System.out.println("6. Generate attendance report"); //of participants and roles -- wiht filters for format
+        System.out.println("Select which action you would like to take");
 
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -80,6 +85,7 @@ public class CampCommitteeMember  extends Student implements Role {
         switch(choice){
 
             case 1:
+
                 // viewDetails(null); how do we do this
                 break;
 
