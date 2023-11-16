@@ -5,10 +5,10 @@ public class Camp {
 
     boolean visibility;
     private CampInformation info;
-    private ArrayList<Student> StudentList;
-    private ArrayList<Enquiries> EnquiryList;
-    private ArrayList<Suggestion> SuggestionsList;
-    private ArrayList<Student> blackList;
+    private ArrayList<Student> StudentList = new ArrayList<Student>();
+    private ArrayList<Enquiries> EnquiryList = new ArrayList<Enquiries>();
+    private ArrayList<Suggestion> SuggestionsList = new ArrayList<Suggestion>();
+    private ArrayList<Student> blackList = new ArrayList<Student>();
 
     // Constructors
     public Camp(){ 
