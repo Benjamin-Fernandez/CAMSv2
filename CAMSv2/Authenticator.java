@@ -5,8 +5,7 @@ public class Authenticator {
     //
     static User check(String UserID, String Password, String role) {
 
-
-        if (role == "student") {
+        if (role.equals("student")) {
             for (int i = 0; i < UserDataBase.getStudents().size(); i++) {
                 Student student = UserDataBase.getStudents().get(i);
                 if (student.getEmailID().equals(UserID) && student.getPassword().equals(student.getPassword())) {
@@ -15,10 +14,10 @@ public class Authenticator {
             }
         }
 
-        if (role == "staff") {
+        if (role.equals("staff")) {
             for (int i = 0; i < UserDataBase.getStaffs().size(); i++) {
                 Staff staff = UserDataBase.getStaffs().get(i);
-                if (staff.getEmailID().equals(UserID) && staff.getPassword().equals(staff.getPassword())) {
+                if (staff.getEmailID().equals(UserID) && staff.getPassword().equals(Password)) {
                     return staff;
                 }
             }

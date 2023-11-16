@@ -21,7 +21,7 @@ public class Cams {
 
                 // Format and display the date and time
                 String formattedDateTime = now.format(formatter);
-                System.out.print("\r" + formattedDateTime); // Use carriage return for updating in the same line
+               // System.out.print("\r" + formattedDateTime ); // Use carriage return for updating in the same line
 
                 // Wait for 1 second before updating again (adjust the sleep duration as needed)
                 try {
@@ -64,12 +64,13 @@ public class Cams {
         int choice;
 
         do {
-            System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Change password\n3. Exit");
+            System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
             choice = scanner.nextInt();
             if(choice == 3){break;}
             // scanner.nextLine(); // Consume the newline character
 
             System.out.print("Enter your Email: ");
+            scanner.nextLine();
             String email = scanner.nextLine();
             String emailID = email.split("@")[0];
 
@@ -92,7 +93,8 @@ public class Cams {
                         System.out.println("Wrong credentials");
                         break;
                     }
-                    if(role == "staff"){
+                    if(role.equals("staff")){
+                        System.out.println("Correct credentials");
                         Staff staff = (Staff) user;
                         staff.staffInterface();
                     }
