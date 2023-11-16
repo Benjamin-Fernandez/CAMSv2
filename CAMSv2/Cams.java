@@ -53,15 +53,15 @@ public class Cams {
         // Have two ArrayLists: studentUsers and staffUsers,
         // containing Student/Staff objects with name, password, email, and faculty.
 
-        System.out.println("Student Data:");
+        /*System.out.println("Student Data:");
         for (int i = 0; i < studentUsers.size(); i++) {
             User student = studentUsers.get(i);
             System.out.println("Student Name: " + student.getName());
             System.out.println("Student Email: " + student.getEmailID());
             System.out.println("Student Faculty: " + student.getFaculty());
             System.out.println("Student Password: " + student.getPassword());
-        }
-        /*int choice;
+        }*/
+        int choice;
 
         do {
             System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Change password\n3. Exit");
@@ -69,12 +69,17 @@ public class Cams {
             if(choice == 3){break;}
             // scanner.nextLine(); // Consume the newline character
 
-            // System.out.print("Enter your Email: ");
-            // String email = scanner.nextLine();
-            // String emailID = email.split("@")[0];
+            System.out.print("Enter your Email: ");
+            String email = scanner.nextLine();
+            String emailID = email.split("@")[0];
 
-            // System.out.print("Enter your password: ");
-            // String password = scanner.nextLine();
+            System.out.print("Enter your password: ");
+            String password = scanner.nextLine();
+
+            System.out.print("Enter your role: ");
+            String role = scanner.nextLine();
+
+
 
             switch (choice) {
                 case (1):
@@ -82,23 +87,27 @@ public class Cams {
                     // LoginService login = new LoginService(studentUsers, staffUsers);
                     // login.performLogin(emailID, password);
                     // break;
+                    User user = Authenticator.check(emailID,password,role);
+                    if(user == null){
+                        System.out.println("Wrong credentials");
+                        break;
+                    }
+                    if(role == "staff"){
+                        Staff staff = (Staff) user;
+                        staff.staffInterface();
+                    }
+                    else{
+                        Student student = (Student) user;
+                        student.studentInterface();
+                    }
+                    break;
 
-                    Student student = UserDataBase.getStudents().get(0);
+                default: break;
 
-                case (2):
-                //     PasswordService changePassword = new PasswordService(studentUsers, staffUsers);
-                //     System.out.print("Enter your new password: ");
-                //     String newPassword = scanner.nextLine();
-                //     changePassword.performChange(emailID, password,newPassword);
-                //     break;
-
-                // default: break;
-                    Staff staff = UserDataBase.getStaffs().get(0);
-                    System.out.println(staff.getName());
 
             }
         }while (choice == 1|| choice == 2);
 
-       */
+
     }
 }

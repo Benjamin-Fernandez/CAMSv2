@@ -1,13 +1,36 @@
 package CAMSv2;
 
 
-public class Authenticator{
+public class Authenticator {
     //
-    boolean check(String UserID , String Password , String role){
-        return false;
-    }
+    static User check(String UserID, String Password, String role) {
+
+
+        if (role == "student") {
+            for (int i = 0; i < UserDataBase.getStudents().size(); i++) {
+                Student student = UserDataBase.getStudents().get(i);
+                if (student.getEmailID().equals(UserID) && student.getPassword().equals(student.getPassword())) {
+                    return student;
+                }
+            }
+        }
+
+        if (role == "staff") {
+            for (int i = 0; i < UserDataBase.getStaffs().size(); i++) {
+                Staff staff = UserDataBase.getStaffs().get(i);
+                if (staff.getEmailID().equals(UserID) && staff.getPassword().equals(staff.getPassword())) {
+                    return staff;
+                }
+            }
+        }
+
+
         //we preassign staff/student(role) to database
-    //depending on what the role is , we check the respective database for the credentials ,
-    // if credentials are not inside , he is not a student
+        //depending on what the role is , we check the respective database for the credentials ,
+        // if credentials are not inside , he is not a student
         //use the userDatabase attribute (Staff and student)
+
+
+        return null;
+    }
 }
