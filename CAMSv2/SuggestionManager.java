@@ -24,12 +24,12 @@ public class SuggestionManager {
         // staff->viewEn->thisviewEnq->getcamp->
         CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
-        for(int i=0;i<campManager.getCampList().size();i++){
+        for(int i=0;i<CampManager.getCampList().size();i++){
 
             if(campManager.getStaffinCharge(campName,staffName)){
 
                 Camp camp = campManager.getCamp(campName);
-                System.out.println(campName + "suggestion");
+                System.out.println(campName + " suggestion");
 
                 for(int j=0;j<camp.getSuggestions().size();j++){
 

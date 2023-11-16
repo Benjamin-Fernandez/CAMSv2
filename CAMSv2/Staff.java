@@ -104,7 +104,8 @@ public class Staff extends User {
         EnquiryManager enqManager = new EnquiryManager();
         Scanner sc = new Scanner(System.in);
         String campName;
-        System.out.println("which camp's enquiry would you want to reply to? ");
+        System.out.println("Enter camp name of enquries you want to reply to");
+        myList();
         campName = sc.nextLine();
         enqManager.replyEnquiryFromStaff(campName, this.name);
         //sc.close();
@@ -115,7 +116,8 @@ public class Staff extends User {
          //ask which camp name they want to view
         Scanner sc = new Scanner(System.in);
         String campName;
-        System.out.println("which camp's suggestion would you want to view? ");
+        System.out.println("Enter camp name of suggestions you want to view ");
+        myList();
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
         suggManager.viewSuggestionForStaff(campName, this.name);
