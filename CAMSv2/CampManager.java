@@ -49,7 +49,8 @@ public class CampManager {
         int numOfDays = sc.nextInt();
         System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        
+
+
         Date[] dates = new Date[numOfDays];
         for (int i = 0; i < numOfDays; i++) {
             while (true) {

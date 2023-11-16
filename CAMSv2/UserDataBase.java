@@ -39,7 +39,7 @@ public class UserDataBase {
 
                 String[] values = line.split(",");
                 String name = values[0].trim();
-                String emailID = values[1].split("@")[0].trim(); //Retrieve only the ID before @ part in email
+                String emailID = values[1];
                 String faculty = values[2].trim();
                 String password = "password"; // Assume default password
                 // if csv == student.csv ,
