@@ -27,7 +27,7 @@ public class UserDataBase {
 
         loadDataFromCSV(this.studentCSVFilePath);
         loadDataFromCSV(this.staffCSVFilePath);
-       // loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
+        loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
     }
 
     public void loadDataFromCSV(String csvFilePath) {
