@@ -412,11 +412,6 @@ public class CampManager {
 
     }
 
-    public static void addStudent(String studentName, String campName, String role){
-        Camp camp = CampManager.getCamp(campName);
-       // camp.addStudent(studentName, role);
-    }
-
     public static boolean isValidDate(String input) {
         // Define a custom date format that you expect
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -215,4 +215,11 @@ public class Camp {
     }
 
 
+    public void deleteEnquiry(Question question, String studentName) {
+        Enquiries enquiries = addStudentEnquiriesInList(studentName);
+        ArrayList<Question> questions = enquiries.getQuestions();
+        questions.remove(question);
+    }
+
+
 }

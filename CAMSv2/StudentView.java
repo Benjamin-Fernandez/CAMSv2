@@ -13,7 +13,7 @@ public class StudentView {
         System.out.println("3. View registered camps");  
         System.out.println("4. View Profile"); 
         System.out.println("5. Manage Enquiries (View, Edit and Delete)");
-        System.out.println("6. Select a Camp to access more options(submit enquiry, register/withdraw)");
+        System.out.println("6. Select a Camp to access more options(submit enquiry, register/withdraw, view available slots)");
     }
 
     public void displayReturnToPreviousPage() {
@@ -67,6 +67,15 @@ public class StudentView {
 
     public void displaySubmitEnquiry() {
         System.out.println("1. Submit an Enquiry"); 
+    }
+
+    public void displayRemainingCampSlots() {
+        System.out.println("3. View Remaining Camp Slots");
+    }
+
+    public void displayRemainingCampSlots(Camp camp) {
+        System.out.println( camp.getCampName() + " Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
+        // Camp Manager should check that the camp is Visible and userGroup
     }
 // --------------Register------------------------
     public void displayRoleToRegister() {

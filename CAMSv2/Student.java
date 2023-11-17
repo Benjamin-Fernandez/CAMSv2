@@ -47,21 +47,38 @@ public class Student extends User{
         return null;
     }
 
+    /**
+     * Don't need to change the Camp Question because they are the same reference.
+     * @param question
+     * @param description
+     */
     public void editEnquiry(Question question, String description) {
-        question.setQuestion(description);
+        question.setQuestion(description);   
     }
 
-    public void deleteEnquiry(int Id) {
+    public void deleteEnquiry(int Id, Camp camp) {
         ArrayList<Question> questions = enquiries.getQuestions();
+        Question thisQuestion = null;
         for (int i = 0; i < questions.size(); i++) {
             if (questions.get(i).getQuestionId() == Id) {
                 // remove
+                thisQuestion = questions.get(i);
                 questions.remove(i);
                 // debugging message
-                System.out.println("Deleted the question!");
-                return;
+                System.out.println("Deleted the Enquiry!");
+                break;
             }
         }
+        if (thisQuestion == null) {
+            System.out.println("No such Enquiry!");
+            return;
+        }
+        else {
+            camp.deleteEnquiry(thisQuestion, getName());            
+        }
+
+
+
     }
 
     public void deleteAllEnquiries() {
@@ -72,8 +89,7 @@ public class Student extends User{
         return enquiries;
     }
 
-    // --- Registration Manager --------------------------------------
-    // camp side?
+    // --- Registration--------------------------------------
     public boolean canRegisterCamp(Camp camp) {
         if (camp.isStudentInBlackList(this)) {
             System.out.println("You have been blacklisted from this camp!");

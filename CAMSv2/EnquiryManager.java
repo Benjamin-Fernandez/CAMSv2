@@ -1,4 +1,5 @@
 package CAMSv2;
+import java.util.ArrayList;
 import java.util.Scanner;
 //import CAMSv2.CampManager;
 
@@ -141,6 +142,16 @@ public class EnquiryManager {
 
     public static int getEnquiryCounter() {
         return enquiryCounter;
+    }
+
+    public static void printQuestions(Enquiries enquiries) {
+        System.out.println(enquiries.getEnqurier());
+        ArrayList<Question> questions = enquiries.getQuestions();
+        for (Question question : questions) {
+            System.out.println(question.getQuestionId());
+            System.out.println(question.getQuestion());
+            System.out.println(question.getReply());
+        }
     }
 
 }

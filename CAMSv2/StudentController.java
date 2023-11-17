@@ -118,8 +118,10 @@ public class StudentController {
 
     public void enterDeleteEnquiry() {
         Question question = enterGetEnquiry();
-        student.deleteEnquiry(question.getQuestionId());
+        student.deleteEnquiry(question.getQuestionId(), this.camp);
     }
+
+
 
     public void enterCampSpecificOptions() {
 
@@ -167,7 +169,9 @@ public class StudentController {
                         enterCampRegister();
                     }
                     break;
-
+                case 3:
+                    view.displayRemainingCampSlots(this.camp);
+                    break;
                 case 111:
                     running = false;
                     // remove state

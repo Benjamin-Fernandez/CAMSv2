@@ -20,6 +20,15 @@ public class Enquiries {
         return Questions;
     }
 
+    public Question getQuestion(int Id) {
+        for (Question question : Questions) {
+            if (question.getQuestionId() == Id) {
+                return question;
+            }
+        }
+        return null;
+    }
+
     public String getEnqurier() {
         return enqurier;
     }
