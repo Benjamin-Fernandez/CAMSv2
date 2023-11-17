@@ -24,7 +24,7 @@ public class CampManager {
     private static ArrayList<Camp> campList = new ArrayList<Camp>();
 
     //method
-    public void createCamp(String staffName){
+    public static void createCamp(String staffName){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
       //Camp SpecificCamp = new Camp(8 parameters);
@@ -44,7 +44,7 @@ public class CampManager {
         campName = sc.nextLine();
 
         //check if camp already exists
-        if(getCamp(campName) != null){
+        if(CampManager.getCamp(campName) != null){
             System.out.println(errorMessage);
             //sc.close();
             return;
@@ -118,7 +118,7 @@ public class CampManager {
     public static Camp getCamp(String campName){
         //for each camp in campList
         ArrayList<Camp> campList = new ArrayList<Camp>();
-        campList = getCampList();
+        campList = CampManager.getCampList();
         Camp camp = new Camp();
 
         if(campList != null) {
@@ -132,19 +132,19 @@ public class CampManager {
         return null;//if it doesnt find a camp
     }
 
-    public boolean getStaffinCharge(String campName, String Staffname){
+    public static boolean getStaffinCharge(String campName, String Staffname){
         //for each camp in campList
         //if staffname == campList[i].info.staffincharge && campName == campList[i].info.name return true
         String staffIC;
         Camp camp = new Camp();
-        camp = getCamp(campName);
+        camp = CampManager.getCamp(campName);
         staffIC = camp.getStaffName();
 
         return staffIC.equals(Staffname);
         }
 
 
-    public void editCamp(String campName,String staffName){
+    public static void editCamp(String campName,String staffName){
         int choice;
         Scanner sc = new Scanner(System.in);
         Camp currentCamp = getCamp(campName);
@@ -221,12 +221,12 @@ public class CampManager {
         return;
     }//end edit camp
 
-    public void deleteCamp(String campName){
-        Camp camp = this.getCamp(campName);
+    public static void deleteCamp(String campName){
+        Camp camp = CampManager.getCamp(campName);
         campList.remove(camp);
     }
 
-    public void changeVisibility(String campName){
+    public static void changeVisibility(String campName){
         //ask the user whether true/false
         String settings;
         boolean choice;
@@ -238,12 +238,12 @@ public class CampManager {
         else
             choice = false;
 
-        Camp camp = this.getCamp(campName);
+        Camp camp = CampManager.getCamp(campName);
         camp.setVisibility(choice);
         //sc.close();
     }
 
-    public void StaffCampListGenerator(String staffName){
+    public static void StaffCampListGenerator(String staffName){
         //for each camp in campList
         int numOfCamps;
         int index=1;
@@ -270,10 +270,10 @@ public class CampManager {
     }
 
 
-    public void generateReport(String staffName){
-        ArrayList<Camp> campList = this.getCampList();
+    public static void generateReport(String staffName){
+        ArrayList<Camp> campList = CampManager.getCampList();
         ArrayList<Student> studentList;
-        CampManager campManager = new CampManager();
+        //CampManager campManager = new CampManager();
         Scanner sc = new Scanner(System.in);
         int choice;
 
@@ -295,8 +295,8 @@ public class CampManager {
             campName = campList.get(i).getCampName();
             //String name of camp obj
 
-            if(this.getStaffinCharge(campName, staffName)){
-                Camp camp = campManager.getCamp(campName); //camp obj itself
+            if(CampManager.getStaffinCharge(campName, staffName)){
+                Camp camp = CampManager.getCamp(campName); //camp obj itself
 
                 studentList = camp.getStudentList();
                 System.out.println("Filter by 1) Attendee");
@@ -304,7 +304,7 @@ public class CampManager {
                 System.out.println("3) Display all members");
                 choice = sc.nextInt();
                 if(choice == 1 || choice == 2 ){
-                     filteredStudentList = this.filterStudentsByRole(camp,studentList, choice--);
+                     filteredStudentList = CampManager.filterStudentsByRole(camp,studentList, choice--);
                 }
                 else{
                     filteredStudentList = studentList;
@@ -345,7 +345,7 @@ public class CampManager {
 
 
     //method to filter students based on their role
-    private ArrayList<Student> filterStudentsByRole(Camp camp,ArrayList<Student>students, int choice){
+    private static ArrayList<Student> filterStudentsByRole(Camp camp,ArrayList<Student>students, int choice){
         ArrayList<Student> filteredList = new ArrayList<>();
         Role[] roles = Role.values();
         for(Student student : students){
@@ -360,7 +360,7 @@ public class CampManager {
 
     //method to generate CSV format
 
-    public void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
+    public static void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
         String filename = "camp_report.csv";
         StringBuilder csvContent = new StringBuilder();
         String totalSlot = Integer.toString(totalSlots);
@@ -388,8 +388,8 @@ public class CampManager {
 
     }
 
-    public void addStudent(String studentName, String campName, String role){
-        Camp camp = this.getCamp(campName);
+    public static void addStudent(String studentName, String campName, String role){
+        Camp camp = CampManager.getCamp(campName);
        // camp.addStudent(studentName, role);
     }
 

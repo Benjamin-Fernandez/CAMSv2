@@ -13,8 +13,7 @@ public class SuggestionManager {
         //append this suggestion to that particular camp
         Advice newAdvice = new Advice(suggestion);
         Suggestion newSuggestion = new Suggestion(newAdvice,name);
-        CampManager campManager = new CampManager();
-        Camp camp = campManager.getCamp(campName);
+        Camp camp = CampManager.getCamp(campName);
         camp.addSuggestion(newSuggestion);
     }
 
@@ -22,13 +21,12 @@ public class SuggestionManager {
     public void viewSuggestionForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
-        CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
         for(int i=0;i<CampManager.getCampList().size();i++){
 
-            if(campManager.getStaffinCharge(campName,staffName)){
+            if(CampManager.getStaffinCharge(campName,staffName)){
 
-                Camp camp = campManager.getCamp(campName);
+                Camp camp = CampManager.getCamp(campName);
                 System.out.println(campName + " suggestion");
 
                 for(int j=0;j<camp.getSuggestions().size();j++){
@@ -51,8 +49,7 @@ public class SuggestionManager {
     public Suggestion approveAdvice(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
 
-        CampManager campManager = new CampManager();
-        Camp curCamp = campManager.getCamp(campName);
+        Camp curCamp = CampManager.getCamp(campName);
 
         int suggIndex;
         int adviceIndex;
@@ -78,7 +75,7 @@ public class SuggestionManager {
         curCamp.getSuggestions().get(suggIndex).getAdviceList().get(adviceIndex).setApproval(approved);
 
         if(approved){
-            campManager.editCamp(campName, staffName);
+            CampManager.editCamp(campName, staffName);
             //edit camp
         }
         return curCamp.getSuggestions().get(suggIndex);
@@ -89,10 +86,9 @@ public class SuggestionManager {
     public void viewSuggestionForCommitteeMember(String committeeMemberName,String campName){
         //printing and logic will occur in this method
         // staff->viewEn->thisviewEnq->getcamp->
-        CampManager campManager = new CampManager();
         //for loop to iterate arraylist of suggestion
-        for(int i=0;i<campManager.getCampList().size();i++){
-            Camp camp = campManager.getCamp(campName);
+        for(int i=0;i<CampManager.getCampList().size();i++){
+            Camp camp = CampManager.getCamp(campName);
             System.out.println(campName + "suggestion");
                 for(int j=0;j<camp.getSuggestions().size();j++){
                     if(camp.getSuggestions().get(i).getStudent() == committeeMemberName){

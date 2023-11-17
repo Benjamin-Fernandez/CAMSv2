@@ -8,15 +8,13 @@ public class Staff extends User {
     }
 
     public void createCamp(){
-        CampManager campManager = new CampManager();
-        campManager.createCamp(this.name);
+        CampManager.createCamp(this.name);
     }
 
     public void editCamp() {
         String campName;
         int index;
         Scanner sc = new Scanner(System.in);
-        CampManager campManager = new CampManager();
   
         this.viewCamp(); //this prints a table of camp choices
 
@@ -25,7 +23,7 @@ public class Staff extends User {
         campName = getCampName(--index); //index is one larger than actual index
         
         // calls campManager
-        campManager.editCamp(campName,this.name);
+        CampManager.editCamp(campName,this.name);
         //sc.close();
         
     }
@@ -34,7 +32,6 @@ public class Staff extends User {
         String campName;
         int index;
         Scanner sc = new Scanner(System.in);
-        CampManager campManager = new CampManager();
   
         this.viewCamp();
         //take in integer of which camp they want to view, i--; and get its camp name from its index
@@ -44,7 +41,7 @@ public class Staff extends User {
         campName = this.getCampName(--index);
         
         //delete calls campManager
-        campManager.deleteCamp(campName);
+        CampManager.deleteCamp(campName);
         //sc.close();
     }
 
@@ -52,8 +49,7 @@ public class Staff extends User {
         String campName;
         int index;
         Scanner sc = new Scanner(System.in);
-        CampManager campManager = new CampManager();
-  
+
         this.viewCamp();
         //take in integer of which camp they wnat to view, i--; and get its camp name from its index
 
@@ -62,15 +58,14 @@ public class Staff extends User {
         campName = this.getCampName(--index);
         
         //visibility calls campManager
-        campManager.changeVisibility(campName);
+        CampManager.changeVisibility(campName);
         //sc.close();
         }
 
     public void viewCamp(){
         //any staff can view all camps
         //all this method does is print out a list of camps
-        CampManager campManager = new CampManager();
-        ArrayList<Camp> campList = campManager.getCampList();
+        ArrayList<Camp> campList = CampManager.getCampList();
         int numOfCamps = campList.size();
         String campName;
 
@@ -83,9 +78,7 @@ public class Staff extends User {
     }//end viewCamp()
 
     public void myList(){
-        CampManager campManager = new CampManager();
-        campManager.StaffCampListGenerator(this.name);
-
+        CampManager.StaffCampListGenerator(this.name);
     }
 
     public void viewEnquiries(){
@@ -145,10 +138,9 @@ public class Staff extends User {
 
     public String getCampName(int indexOfCamp){
         String campName;
-        CampManager campManager = new CampManager();
 
         //find name of camp
-        ArrayList<Camp> campList = campManager.getCampList();
+        ArrayList<Camp> campList = CampManager.getCampList();
         campName = campList.get(indexOfCamp).getCampName();
 
         return campName;

@@ -27,12 +27,11 @@ public class EnquiryManager {
     public void viewEnquiryForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
-        CampManager campManager = new CampManager();
         //for loop to iterate arraylist of enquiries
-        for(int i=0;i<campManager.getCampList().size();i++){
+        for(int i=0;i<CampManager.getCampList().size();i++){
 
-            if(campManager.getStaffinCharge(campName,staffName)){
-                Camp camp = campManager.getCamp(campName);
+            if(CampManager.getStaffinCharge(campName,staffName)){
+                Camp camp = CampManager.getCamp(campName);
                 System.out.println(campName + "enquiries");
 
 
@@ -55,8 +54,7 @@ public class EnquiryManager {
     
     public void replyEnquiryFromStaff(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
-        CampManager campManager = new CampManager();
-        Camp curCamp = campManager.getCamp(campName);
+        Camp curCamp = CampManager.getCamp(campName);
 
         int enqIndex;
         int qnsIndex;
@@ -88,10 +86,9 @@ public class EnquiryManager {
 
     //committee member function
     public void viewEnquiryForCampCommitteeMember(String campName){
-        CampManager campManager = new CampManager();
         //for loop to iterate arraylist of enquiries
-        for(int i=0;i<campManager.getCampList().size();i++) {
-            Camp camp = campManager.getCamp(campName);
+        for(int i=0;i<CampManager.getCampList().size();i++) {
+            Camp camp = CampManager.getCamp(campName);
             System.out.println(campName + "enquiries");
 
             for (int j = 0; j < camp.getEnquiries().size(); j++) {
@@ -105,8 +102,7 @@ public class EnquiryManager {
 
     public void replyEnquiryFromCampCommitteeMember(String campName){
         Scanner sc = new Scanner(System.in);
-        CampManager campManager = new CampManager();
-        Camp curCamp = campManager.getCamp(campName);
+        Camp curCamp = CampManager.getCamp(campName);
 
         int enqIndex;
         int qnsIndex;
