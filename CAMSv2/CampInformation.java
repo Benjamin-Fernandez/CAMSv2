@@ -11,7 +11,7 @@ public class CampInformation {
     private String CampName;
     private LocalDate[] Dates; 
     private LocalDateTime Registration_closing_date;
-    private String User_group;
+    private  UserGroup User_group;
     private String Location;
     private int Total_Slots;
 
@@ -19,7 +19,7 @@ public class CampInformation {
     private String Description;
     private String Staff_in_charge;
 
-    public CampInformation(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public CampInformation(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
 
         this.CampName = CampName;
         this.Dates = Dates;
@@ -62,7 +62,7 @@ public class CampInformation {
         return this.Registration_closing_date;
     }
 
-    public String getUserGroup(){
+    public UserGroup getUserGroup(){
         return this.User_group;
     }
 
@@ -97,7 +97,11 @@ public class CampInformation {
     }
 
     public void setUserGroup(String userGroup){
-        this.User_group = userGroup;
+        for (UserGroup usergroups : UserGroup.values()) {
+            if(userGroup.equals(usergroups.toString())){
+                this.User_group = usergroups;
+            }
+        }
     }
 
     public void setLocation(String location){

@@ -19,7 +19,7 @@ public class Camp {
     }
    
 
-    public Camp(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public Camp(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
         //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
         this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
@@ -147,7 +147,7 @@ public class Camp {
         return this.info.getRegistrationClosingDate();
     }
 
-    public String getUserGroup(){
+    public UserGroup getUserGroup(){
         return this.info.getUserGroup();
     }
 

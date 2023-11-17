@@ -48,6 +48,7 @@ public class CampManager {
         LocalDate[] Dates;            //NEWLY ADDED
         LocalDateTime registrationClosingDate;
         String userGroup;
+        UserGroup validUserGroup;
         String location;
         int totalSlots;
         String description;
@@ -88,8 +89,17 @@ public class CampManager {
             System.out.println("Input date must be in the future. and before the start of camp.");
         }
 
-        System.out.println("Enter user group this camp will be available to");
+        System.out.println("Enter user group this camp will be available to IN CAPS");
         userGroup = sc.nextLine();
+        userGroup.toUpperCase();
+        //check if its a valid userGroup
+        validUserGroup = checkUserGroupExist(userGroup);
+
+        //if its not valid user group, break
+        if(validUserGroup == null){
+            System.out.println("INVALID USER GROUP, EXITING");
+            return;
+        }
 
         System.out.println("Enter camp location");
         location = sc.nextLine();
@@ -104,12 +114,23 @@ public class CampManager {
         //sc.close();
 
 
-        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,validUserGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
 
         System.out.println(campName + " camp created");
 
+    }
+
+    public static UserGroup checkUserGroupExist(String userGroup){
+        //returns null if user group doesnt exist
+        // returns type of usergroup if it does exist
+        for (UserGroup usergroups : UserGroup.values()) {
+            if(userGroup.equals(usergroups.toString())){
+                return usergroups;
+            }
+        }
+        return null;
     }
 
     public static void addCamp(Camp camp){
@@ -305,7 +326,7 @@ public class CampManager {
         //Camp camp = new Camp();
 
         //the 8 details apart from StudentName and Role
-
+        UserGroup validUserGroup;
         String userGroup;
         String location;
         String description;
@@ -336,7 +357,8 @@ public class CampManager {
 
                 LocalDate[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate().toString();
-                userGroup = camp.getUserGroup();
+                validUserGroup = camp.getUserGroup();
+                userGroup = validUserGroup.toString();
                 location = camp.getLocation();
                 totalSlots = camp.getTotalSlots();
                 description = camp.getDescription();
