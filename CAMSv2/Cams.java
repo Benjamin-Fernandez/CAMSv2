@@ -105,7 +105,8 @@ public class Cams {
                             staff.staffInterface();
                         } else if (login_option == 2) {
                             Student student = (Student) user;
-                            student.studentInterface();
+                            StudentController studentController = new StudentController(student);
+                            studentController.startStudentProgram();
                         } else {
                             CampCommitteeMember campCommitteeMember = (CampCommitteeMember) user;
                             campCommitteeMember.committeeInterface();

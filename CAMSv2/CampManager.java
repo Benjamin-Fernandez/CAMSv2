@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CampManager {
     //attributes
-    private static ArrayList<Camp> campList = new ArrayList<Camp>();
+    private static ArrayList<Camp> campList;
 
     //method
     public static void createCamp(String staffName){
@@ -36,7 +36,7 @@ public class CampManager {
 
         String errorMessage = "Camp with this name already exists";
         String campName;
-        LocalDate[] Dates;            
+        LocalDate[] Dates;            //NEWLY ADDED
         String registrationClosingDate;
         String userGroup;
         String location;
@@ -47,9 +47,9 @@ public class CampManager {
         campName = sc.nextLine();
 
         //check if camp already exists
-        if(CampManager.getCamp(campName) != null){
+        if(getCamp(campName) != null){
             System.out.println(errorMessage);
-            //sc.close();
+            sc.close();
             return;
         }
 
@@ -100,8 +100,6 @@ public class CampManager {
         addCamp(newCamp);
 
         System.out.println(campName + " camp created");
-
-        return;
 
     }
 
@@ -349,16 +347,31 @@ public class CampManager {
 
 
     //method to filter students based on their role
-    private static ArrayList<Student> filterStudentsByRole(Camp camp,ArrayList<Student>students, int choice){
+    private static ArrayList<Student> filterStudentsByRole(Camp camp, ArrayList<Student>students, int choice){
+        // choice 1 is attendee
+        // choice 2 is campCommitteeMember
         ArrayList<Student> filteredList = new ArrayList<>();
-        Role[] roles = Role.values();
-        for(Student student : students){
-            if(student.getCampRole(camp) == roles[choice]){ //yuhao pls implement this
-                filteredList.add(student);
-            }
+        switch (choice) {
+            case 1:
+                for(Student student : students){
+                    if(student.role == Role.STUDENT){ //yuhao pls implement this
+                        filteredList.add(student);
+                    }
+                }                
+                break;
+
+            case 2:
+                for(Student student : students){
+                    if(student.role == Role.CAMP_COMMITTEE_MEMBER){ //yuhao pls implement this
+                        filteredList.add(student);
+                    }
+                }            
+                break;
+        
+            default:
+                break;
         }
         return filteredList;
-
 
     }
 
@@ -374,7 +387,7 @@ public class CampManager {
             printWriter.println("Student Name, Student Role");
 
             for (Student student : filteredStudentList) {
-                printWriter.println(student.getName() + "," + student.getCampRole(camp));
+                printWriter.println(student.getName() + "," + student.getRole().toString());
             }
 
             printWriter.println("Camp Dates");

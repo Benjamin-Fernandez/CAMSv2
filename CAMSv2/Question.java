@@ -5,12 +5,13 @@ public class Question {
     //attritbutes
     // added camp name to identify which camp does question belongs to.
     boolean processed = false;
+    int id;
     String campName;
     String question;
     ArrayList<String> reply;
 
     //constructor
-    public Question(String question, String campNameString){
+    public Question(String question, String campNameString, int id){
         this.question = question;
         this.campName = campNameString;
         this.reply = new ArrayList<String>() ;
@@ -30,6 +31,9 @@ public class Question {
     }
     public ArrayList<String> getReply() {
         return reply;
+    }
+    public int getQuestionId() {
+        return this.id;
     }
 
     public void setReply(String Reply) {

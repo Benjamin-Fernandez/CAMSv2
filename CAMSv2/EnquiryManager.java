@@ -4,14 +4,17 @@ import java.util.Scanner;
 
 public class EnquiryManager {
     //attribute
+    public static int enquiryCounter = 0;
 
     //methods
-    public static void createEnquiry(String campName, String enquiry, Student student ){
+    public static void createEnquiry(String campName, String enquiry, Student student){
         //student will have their own method called makeEnquiry which calls this method, 
         //append student's enquiry to their own lsit of enquiry
         //find the correct camp
         //append this enquiry to that particular camp
-        Question newQuestion = new Question(enquiry, campName);
+        
+        Question newQuestion = new Question(enquiry, campName, enquiryCounter);
+        enquiryCounter++;
         // check if the enquiries for this student exist in that camp
         Camp camp = CampManager.getCamp(campName);
         // add enquiry to camp, if not add the new question to the existing enquiry in camp

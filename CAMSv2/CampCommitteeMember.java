@@ -9,7 +9,7 @@ public class CampCommitteeMember  extends Student {
     public CampCommitteeMember(String emailID, String password, String faculty, String name, Role role, Camp camp) {
         super(emailID, password, faculty, name, role);
         points = 0;
-        camp = camp;
+        this.camp = camp;
     }
     public void viewDetails(){
 
@@ -75,7 +75,7 @@ public class CampCommitteeMember  extends Student {
     public void committeeInterface(){
         //print a table of commitee methods; e.g.
         //1.viewCamp(); 2.editcamp
-        super.studentInterface();
+        // super.studentInterface();
         System.out.println("1. View camp details"); // thecamps they are registered for
         System.out.println("2. Submit a suggestion"); //only for camp they are comitee of
         System.out.println("3. View suggestion"); //only for camp they are comitee of
