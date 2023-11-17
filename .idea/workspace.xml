@@ -5,18 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CAMSv2/StaffDataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CAMSv2/StudentDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Authenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Cams.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Cams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/CampCommitteeMember_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/CampCommitteeMember_List.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/Staff_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/Staff_List.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/Student_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/Student_List.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Camp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Camp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampAndRole.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeMember.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampInformation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampInformation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Staff_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Staff_List.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Student_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Student_List.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/nbs.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/scse.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Enquiries.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Enquiries.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/EnquiryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/EnquiryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Question.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

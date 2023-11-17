@@ -7,6 +7,7 @@ public class Staff extends User {
         super(emailID,password,faculty,name,role);
     }
 
+
     public void createCamp(){
         CampManager.createCamp(this.name);
     }
@@ -255,6 +256,7 @@ public class Staff extends User {
 
             case 13:
                 //change password
+                super.changePassword();
                 break;
 
             default:

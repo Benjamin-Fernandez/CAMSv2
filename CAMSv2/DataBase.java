@@ -2,7 +2,7 @@ package CAMSv2;
 
 import java.util.ArrayList;
 
-public abstract class DataBase<T> {
+/*public abstract class DataBase<T> {
     // Singleton
     // private ArrayList<T> list;
     // private String filePath;
@@ -27,3 +27,4 @@ public abstract class DataBase<T> {
 //     }
 
 // }
+*/

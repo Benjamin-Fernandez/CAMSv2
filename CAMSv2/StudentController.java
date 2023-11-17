@@ -33,6 +33,7 @@ public class StudentController {
             switch (choice) {
                 case 1:
                     // change password
+                    student.changePassword();
                     break;
                 case 2:
                     // view list of camps

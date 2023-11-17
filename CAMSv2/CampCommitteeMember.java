@@ -69,6 +69,12 @@ public class CampCommitteeMember  extends Student {
         points +=1;
     }
 
+    public Camp getCamp(){
+        return camp;
+    }
+    public int getPoints(){
+        return points;
+    }
     /**
      *
      */
@@ -89,6 +95,7 @@ public class CampCommitteeMember  extends Student {
             switch (choice) {
                 case 1:
                     // change password
+                    super.changePassword();
                     break;
                 case 2:
                     // view list of camps

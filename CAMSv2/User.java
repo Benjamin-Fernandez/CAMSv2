@@ -1,5 +1,7 @@
 package CAMSv2;
 
+import java.util.Scanner;
+
 public class User {
     //attributes
     String emailID;
@@ -22,8 +24,11 @@ public class User {
     }//create authenticator object to call check(password , userid)
     
 
-    public void changePassword(String newpassword){
-
+    public void changePassword(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter new password");
+        String newPassword = sc.nextLine();
+        this.password = newPassword;
     }
 
     public String getName(){

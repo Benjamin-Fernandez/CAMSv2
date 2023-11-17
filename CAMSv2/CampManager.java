@@ -468,10 +468,17 @@ public class CampManager {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
         for (Camp camp : campList) {
             System.out.println(camp.getUserGroup());
-            
-            if (camp.getUserGroup().equals(faculty) && camp.visibility) {
-                filteredCamps.add(camp);
-            }
+            String campUserGroup = camp.getUserGroup().toString();
+            String schoolName = "NTU"; //for school wide camps?
+            // if (camp.getUserGroup().equals(faculty) && camp.visibility) {
+            //     filteredCamps.add(camp);
+            // }
+            // if camp's user group is == NTU, and visibilit is set,
+            if(camp.visibility){
+                if(campUserGroup.equals(schoolName) || campUserGroup.equals(faculty)){
+                    filteredCamps.add(camp);
+                }//end inner
+            }//end outer if
         }
         return filteredCamps;
     }

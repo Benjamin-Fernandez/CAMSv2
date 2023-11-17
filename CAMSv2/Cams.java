@@ -37,7 +37,8 @@ public class Cams {
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
-        while (running) {
+
+
             // Get the project's base directory
             String projectDirectory = System.getProperty("user.dir");
             //System.out.println(projectDirectory);
@@ -46,15 +47,19 @@ public class Cams {
             String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
             String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
             String campCommitteeMemberCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
-
             // Initialize user accounts from CSV files
-            UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath, campCommitteeMemberCSVPath);
-
-            ArrayList<Student> studentUsers = UserDataBase.getStudents();
-            ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
+            StudentDataBase studentDataBase = new StudentDataBase(studentCSVPath);
+            StaffDataBase staffDataBase = new StaffDataBase(staffCSVPath);
+            CampCommitteeDataBase campCommitteeDataBase = new CampCommitteeDataBase(campCommitteeMemberCSVPath);
+        while(running){
+            //ArrayList<Student> studentUsers = StudentDataBase.getStudents();
+            //ArrayList<Staff> staffUsers = StaffDataBase.getStaffList();
+            //ArrayList<CampCommitteeMember> campCommitteeMembersUsers = CampCommitteeDataBase.getCampCommitteeMembersList();
             // Have two ArrayLists: studentUsers and staffUsers,
             // containing Student/Staff objects with name, password, email, and faculty.
 
+            //studentDataBase.loadToCSV();
+             staffDataBase.loadToCSV();
 //        System.out.println("Student Data:");
 //        for (int i = 0; i < studentUsers.size(); i++) {
 //            User student = studentUsers.get(i);
@@ -119,10 +124,10 @@ public class Cams {
                         running = false;
                         break;
 
-
                 }
-
-
+            //studentDataBase.writeToCSV();
+            staffDataBase.writeToCSV();
+            //campCommitteeDataBase.writeToCSV();
 
         }
     }
