@@ -58,7 +58,9 @@ public class Camp {
             }
         
         }
-        return new Enquiries(studentName);
+        Enquiries newEnquiry = new Enquiries(studentName);
+        addEnquiry(newEnquiry);
+        return newEnquiry;
     }
 
     public boolean isCampFull() {
