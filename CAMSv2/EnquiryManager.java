@@ -37,6 +37,7 @@ public class EnquiryManager {
                 //check if empty
                 if(camp.getEnquiries().size()==0){
                     System.out.println("There are no enquiries");
+                    break;
                 }
                 else{
                     for(int j=0;j<camp.getEnquiries().size();j++){

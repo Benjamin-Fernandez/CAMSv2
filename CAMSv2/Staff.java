@@ -173,6 +173,7 @@ public class Staff extends User {
         int choice;
         Scanner sc = new Scanner(System.in);
         do{
+        System.out.println();
         System.out.println("Select which action you would like to take");
 
 

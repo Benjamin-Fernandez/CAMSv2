@@ -252,17 +252,23 @@ public class CampManager {
         ArrayList<Camp> staffCampList = new ArrayList<>();
         //ArrayList<Camp> campList = new ArrayList<Camp>();
         numOfCamps = campList.size();
+        if(numOfCamps==0){
+            System.out.println("You have no camps");
+        }
 
-        for(int i=0;i<numOfCamps;i++){
+        else{
+            System.out.println("Your List:");
+            for(int i=0;i<numOfCamps;i++){
             curCamp = campList.get(i);
 
             if(curCamp.getStaffName() == staffName){
-                System.out.println("Your List:");
                 System.out.println(index + ". " + curCamp.getCampName());
                 index++;
                 staffCampList.add(curCamp);
                 }  
+            }
         }
+
         return staffCampList;
         
     }

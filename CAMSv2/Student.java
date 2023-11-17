@@ -184,7 +184,7 @@ public class Student extends User {
         int choice;
 
     do{
-
+        System.out.println();
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password");
         System.out.println("2. View list of camps available");
