@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/EnquiryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/EnquiryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +55,7 @@
       <workItem from="1700192654920" duration="811000" />
       <workItem from="1700195859423" duration="271000" />
       <workItem from="1700196327591" duration="1097000" />
+      <workItem from="1700198985404" duration="45000" />
     </task>
     <servers />
   </component>
