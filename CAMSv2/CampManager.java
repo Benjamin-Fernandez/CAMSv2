@@ -65,6 +65,7 @@ public class CampManager {
             currentDate = currentDate.plusDays(1); // Move to the next day
         }
 
+
         System.out.println("Enter registration closing date");
         registrationClosingDate = sc.nextLine();
         registrationClosingDate += " 23:59";
@@ -76,7 +77,7 @@ public class CampManager {
         if (userDateTime.isAfter(currentDateTime)) {
             System.out.println("Registration closing set as: " + currentDateTime);
         } else {
-            System.out.println("Input date must be in the future.");
+            System.out.println("Input date must be in the future. and before the start of camp.");
         }
 
         System.out.println("Enter user group this camp will be available to");
