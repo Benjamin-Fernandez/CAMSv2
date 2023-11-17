@@ -7,6 +7,7 @@ public class StudentView {
 
 // --------------------General--------------------
     public void displayStudentMenu() {
+        System.out.println("---------------STUDENT MENU-------------------");
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password"); 
         System.out.println("2. View list of camps available"); 
@@ -31,7 +32,7 @@ public class StudentView {
     public void displayEnquiries(ArrayList<Question> questions) {
 
         for (Question question : questions) {
-            System.out.println(question.getQuestionId() + "." + " Enquiry: " + question.getQuestion() + "camp: " + question.getCampName());
+            System.out.println("EnquiryId: " + question.getQuestionId() + "|" + " Enquiry: " + question.getQuestion() + "|" + " Camp: " + question.getCampName());
         }
     }
 
@@ -40,6 +41,7 @@ public class StudentView {
     }
     
     public void displayEnquiriesMenu() {
+        System.out.println("---------------ENQUIRIES MENU-------------------");
         System.out.println("1. View all enquiries");  
         System.out.println("2. Edit an enquiry"); 
         System.out.println("3. Delete an enquiry");        
@@ -66,6 +68,7 @@ public class StudentView {
     }
 
     public void displaySubmitEnquiry() {
+        System.out.println("---------------CAMP MENU-------------------");
         System.out.println("1. Submit an Enquiry"); 
     }
 
@@ -74,7 +77,7 @@ public class StudentView {
     }
 
     public void displayRemainingCampSlots(Camp camp) {
-        System.out.println( camp.getCampName() + " Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
+        System.out.println(" Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
         // Camp Manager should check that the camp is Visible and userGroup
     }
 // --------------Register------------------------
@@ -101,7 +104,7 @@ public class StudentView {
 // -------------------Camp General---------------
     public void displayListOfCamps(ArrayList<Camp> camps) {
         for (int i = 0; i < camps.size(); i++) {
-            System.out.println(i + ": " + camps.get(i).getCampName());
+            System.out.println(i+1 + ": " + camps.get(i).getCampName());
         }
     }
 

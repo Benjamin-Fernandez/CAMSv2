@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Enquiries {
     //enquiry will hold a list of question and replies
-    private String enqurier;
-    private ArrayList<Question> Questions = new ArrayList<Question>();
+    private String enqurier = "";
+    private ArrayList<Question> questions = new ArrayList<Question>();
     
 
     public Enquiries(String enqurier){
@@ -13,15 +13,15 @@ public class Enquiries {
     }
 
     public void addQuestion(Question question) {
-        Questions.add(question);
+        questions.add(question);
     }
 
     public ArrayList<Question> getQuestions(){
-        return Questions;
+        return questions;
     }
 
     public Question getQuestion(int Id) {
-        for (Question question : Questions) {
+        for (Question question : questions) {
             if (question.getQuestionId() == Id) {
                 return question;
             }

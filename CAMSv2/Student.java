@@ -35,6 +35,7 @@ public class Student extends User{
     // have to decide if we are going to use EnquiryManager for managing the logic or not
     public void createEnquiry(String description, Camp camp) {
         Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
+        enquiries.addQuestion(question);
         EnquiryManager.createEnquiry(question, camp, getName());
     }
 

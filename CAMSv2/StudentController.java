@@ -65,13 +65,14 @@ public class StudentController {
     }
 
     public void enterEnquiriesMenu() {
-        view.displayEnquiriesMenu();
-        view.displayReturnToPreviousPage();
-        int choice = sc.nextInt();
-        // get rid of carriage
-        sc.nextLine();
         boolean running = true;
-        do {
+        do {    
+            view.displayEnquiriesMenu();
+            view.displayReturnToPreviousPage();
+            int choice = sc.nextInt();
+            // get rid of carriage
+            sc.nextLine();
+
             switch (choice) {
             case 1:
                 view.displayEnquiries(student.getEnquiries().getQuestions());
@@ -118,7 +119,9 @@ public class StudentController {
 
     public void enterDeleteEnquiry() {
         Question question = enterGetEnquiry();
-        student.deleteEnquiry(question.getQuestionId(), this.camp);
+        String campName = question.getCampName();
+        Camp camp = CampManager.getCamp(campName);
+        student.deleteEnquiry(question.getQuestionId(), camp);
     }
 
 
@@ -137,27 +140,30 @@ public class StudentController {
         System.out.println("You chosed Camp: " + this.camp.getCampName());
 
         boolean running = true;
-        view.displaySubmitEnquiry();
-        boolean studentRegistered = camp.isStudentRegistered(student.getName());
-        System.out.println("student registered: " + studentRegistered);
-        if (studentRegistered) {
-            view.displayWithdraw();
-        }
-        else {
-            view.displayRegister();
-        }
-
-        int choice = sc.nextInt();
-        // clear buffer
-        sc.nextLine();
-        
         do {
+            view.displaySubmitEnquiry();
+            boolean studentRegistered = camp.isStudentRegistered(student.getName());
+            System.out.println("student registered: " + studentRegistered);
+            if (studentRegistered) {
+                view.displayWithdraw();
+            }
+            else {
+                view.displayRegister();
+            }
+            view.displayRemainingCampSlots();
+            view.displayReturnToPreviousPage();
+
+            int choice = sc.nextInt();
+            // clear buffer
+            sc.nextLine();
+        
             switch (choice) {
                 case 1:
                     // Submit Enquiry to camp
                     view.displayEnterNewEnquiryDescription();
                     String description = sc.nextLine();
                     student.createEnquiry(description, this.camp);
+                    view.displayEnquiries(student.getEnquiries().getQuestions());
                     break;
                 case 2:
                     if (studentRegistered) {
@@ -202,4 +208,5 @@ public class StudentController {
         student.registerCampRole(role, this.camp);
     }
 }
+
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class EnquiryManager {
     //attribute
-    private static int enquiryCounter = 0;
+    private static int enquiryCounter = 1;
 
     //methods
     public static void createEnquiry(Question question, Camp camp, String studentName){
