@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class StaffDataBase {
     private static ArrayList<Staff> staffList = new ArrayList<>();
-    private static String filePath;
+    private String filePath;
 
 
     public StaffDataBase(String filePath) {
@@ -15,7 +15,7 @@ public class StaffDataBase {
 
 
 
-    public static void loadToCSV(){
+    public void loadToCSV(){
         try (InputStream inputStream = new FileInputStream(filePath);
              Reader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(inputStreamReader)) {
@@ -51,12 +51,15 @@ public class StaffDataBase {
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
             for (Staff staff : staffList) {
-                printWriter.println( staff.getName()+ "," +staff.getEmailID()  + "," +staff.getFaculty()  + ","+ staff.getPassword());
+                printWriter.println(staff.getName()+ "," +staff.getEmailID()  + "," +staff.getFaculty()  + ","+ staff.getPassword());
             }
+
         }
         catch (IOException e) {
             System.out.println("CSV file not found");
-        }
+        }finally {
+            // Clear the staffList after writing to the CSV file
+            staffList.clear();}
     }
 
     public static ArrayList<Staff> getStaffList() {

@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 // abstract
-public class UserDataBase {
+/*public class UserDataBase {
     //
     private String studentCSVFilePath;
     private String staffCSVFilePath;
@@ -104,3 +104,6 @@ public class UserDataBase {
     // write a method to change user password.
 
 }
+
+ */
+

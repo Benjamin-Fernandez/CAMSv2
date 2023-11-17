@@ -51,6 +51,7 @@ public class Cams {
             StudentDataBase studentDataBase = new StudentDataBase(studentCSVPath);
             StaffDataBase staffDataBase = new StaffDataBase(staffCSVPath);
             CampCommitteeDataBase campCommitteeDataBase = new CampCommitteeDataBase(campCommitteeMemberCSVPath);
+
         while(running){
             //ArrayList<Student> studentUsers = StudentDataBase.getStudents();
             //ArrayList<Staff> staffUsers = StaffDataBase.getStaffList();
