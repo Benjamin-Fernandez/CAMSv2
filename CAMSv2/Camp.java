@@ -219,6 +219,7 @@ public class Camp {
         Enquiries enquiries = addStudentEnquiriesInList(studentName);
         ArrayList<Question> questions = enquiries.getQuestions();
         questions.remove(question);
+        
     }
 
 

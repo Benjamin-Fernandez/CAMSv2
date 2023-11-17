@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CampManager {
     //attributes
-    private static ArrayList<Camp> campList;
+    private static ArrayList<Camp> campList = new ArrayList<Camp>();
 
     //method
     public static void createCamp(String staffName){
