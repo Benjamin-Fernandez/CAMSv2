@@ -69,7 +69,7 @@ public class UserDataBase {
                 else{
                     String campName = values[3].trim();
                     Camp camp = CampManager.getCamp(campName);
-                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER,camp);
+                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER,camp);
                     campCommitteeList.add(campCommitteeMember);
                 }
             }
@@ -96,5 +96,6 @@ public class UserDataBase {
         return false;
     }
 
+    // write a method to change user password.
 
 }

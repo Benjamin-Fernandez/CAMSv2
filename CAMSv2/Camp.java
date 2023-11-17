@@ -5,9 +5,9 @@ public class Camp {
 
     boolean visibility;
     private CampInformation info;
-    private ArrayList<Student> StudentList = new ArrayList<Student>();
-    private ArrayList<Enquiries> EnquiryList = new ArrayList<Enquiries>();
-    private ArrayList<Suggestion> SuggestionsList = new ArrayList<Suggestion>();
+    private ArrayList<Student> studentList = new ArrayList<Student>();
+    private ArrayList<Enquiries> enquiryList = new ArrayList<Enquiries>();
+    private ArrayList<Suggestion> suggestionsList = new ArrayList<Suggestion>();
     private ArrayList<Student> blackList = new ArrayList<Student>();
 
     // Constructors
@@ -20,7 +20,7 @@ public class Camp {
         //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
         this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
-        this.StudentList = new ArrayList<Student>();
+        this.studentList = new ArrayList<Student>();
 
     }
 
@@ -42,6 +42,15 @@ public class Camp {
         return false;
     }
 
+    public boolean isStudentRegistered(String name) {
+        for (Student student : studentList) {
+            if (student.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addStudent(String studentName){
         if(UserDataBase.checkStudentInside(studentName)){ //check student in database
             //this.StudentList.add();
@@ -52,7 +61,7 @@ public class Camp {
     // if not, create a new enquiry
     // add to camp
     public Enquiries addStudentEnquiriesInList(String studentName) {
-        for (Enquiries enquiries : EnquiryList) {
+        for (Enquiries enquiries : enquiryList) {
             if (enquiries.getEnqurier().equals(studentName)) {
                 return enquiries;
             }
@@ -64,12 +73,12 @@ public class Camp {
     }
 
     public boolean isCampFull() {
-        int length = StudentList.size();
+        int length = studentList.size();
         return info.getTotalSlots() == length;
     }
 
     public void editSuggestion(String studentName, String newAdvice, int AdviceIndex){
-        for (Suggestion suggestion : SuggestionsList) {
+        for (Suggestion suggestion : suggestionsList) {
             if (suggestion.getStudent() == studentName) {
                 suggestion.getAdviceList().get(AdviceIndex).setNewAdvice(newAdvice);
             }
@@ -78,7 +87,7 @@ public class Camp {
     }
 
     public void deleteSuggestion(String studentName, int AdviceIndex){
-        for (Suggestion suggestion : SuggestionsList) {
+        for (Suggestion suggestion : suggestionsList) {
             if (suggestion.getStudent() == studentName) {
                 suggestion.getAdviceList().remove(AdviceIndex);
             }
@@ -91,23 +100,23 @@ public class Camp {
     }
 
     public void addEnquiry(Enquiries enquiry){
-        EnquiryList.add(enquiry);
+        enquiryList.add(enquiry);
     }
 
     public void addSuggestion(Suggestion suggestion){
-        SuggestionsList.add(suggestion);
+        suggestionsList.add(suggestion);
     }
 
     public ArrayList<Enquiries> getEnquiries(){
-        return EnquiryList;
+        return enquiryList;
     }
 
     public ArrayList<Suggestion> getSuggestions(){
-        return SuggestionsList;
+        return suggestionsList;
     }
 
     public ArrayList<Student> getStudentList(){
-            return StudentList;
+            return studentList;
     }
 
     public String getCampName(){

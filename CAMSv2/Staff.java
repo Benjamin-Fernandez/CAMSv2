@@ -166,7 +166,7 @@ public class Staff extends User {
         for(int i = 0; i< UserDataBase.getCampCommitteeMembers().size(); i++){
             CampCommitteeMember campCommitteeMember = UserDataBase.getCampCommitteeMembers().get(i);
             if(campCommitteeMember.getName().equals(campCommitteeMemberName)){
-                campCommitteeMember.addPointsForSuggestions();
+                // campCommitteeMember.addPointsForSuggestions();
             }
 
         }
