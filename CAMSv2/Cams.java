@@ -36,7 +36,8 @@ public class Cams {
 
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        boolean running = true;
+        while (running) {
             // Get the project's base directory
             String projectDirectory = System.getProperty("user.dir");
             //System.out.println(projectDirectory);
@@ -99,8 +100,8 @@ public class Cams {
                             break;
                         }
 
+                        System.out.println("Correct credentials");
                         if (login_option == 1) {
-                            System.out.println("Correct credentials");
                             Staff staff = (Staff) user;
                             staff.staffInterface();
                         } else if (login_option == 2) {
@@ -115,6 +116,7 @@ public class Cams {
                         break;
 
                     default:
+                        running = false;
                         break;
 
 
