@@ -24,10 +24,11 @@ public class EnquiryManager {
     }  
 
     //staff fucntion
-    public void viewEnquiryForStaff(String campName, String staffName){
+    public boolean viewEnquiryForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         //for loop to iterate arraylist of enquiries
+        //returns true if empty, return false if have enquiries
         for(int i=0;i<CampManager.getCampList().size();i++){
 
             if(CampManager.getStaffinCharge(campName,staffName)){
@@ -37,7 +38,7 @@ public class EnquiryManager {
                 //check if empty
                 if(camp.getEnquiries().size()==0){
                     System.out.println("There are no enquiries");
-                    break;
+                    return true; //it is empty
                 }
                 else{
                     for(int j=0;j<camp.getEnquiries().size();j++){
@@ -55,6 +56,7 @@ public class EnquiryManager {
             }//if
 
         }//for
+        return false; //enquiries are not empty
     }//viewEnquiry
 
 
@@ -62,33 +64,36 @@ public class EnquiryManager {
     public void replyEnquiryFromStaff(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
         Camp curCamp = CampManager.getCamp(campName);
-
+        boolean empty;
         int enqIndex;
         int qnsIndex;
         String newReply;
 
         //call view enquiry
-        this.viewEnquiryForStaff(campName,staffName);//prints list of enq
+        empty = this.viewEnquiryForStaff(campName,staffName);//prints list of enq
+        //should i make above a boolean
+        if(empty==false){
 
-        System.out.println("Which enquiry would you like to reply to?");
-        //value taken is +1 of actual index
-        enqIndex = sc.nextInt();
-        enqIndex--; //now is correct index
+        
+            System.out.println("Which enquiry would you like to reply to?");
+            //value taken is +1 of actual index
+            enqIndex = sc.nextInt();
+            enqIndex--; //now is correct index
 
-        System.out.println("Which question would you like to reply to?");
-        qnsIndex = sc.nextInt();
-        qnsIndex--;
+            System.out.println("Which question would you like to reply to?");
+            qnsIndex = sc.nextInt();
+            qnsIndex--;
 
 
-        //this is reply portion
-        //replying to a specific enquiry from a specific camp
-        // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
-        System.out.println("Enter your reply");
-        newReply = sc.nextLine();
-        curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
-        System.out.println("Reply uploaded");
+            //this is reply portion
+            //replying to a specific enquiry from a specific camp
+            // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
+            System.out.println("Enter your reply");
+            newReply = sc.nextLine();
+            curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
+            System.out.println("Reply uploaded");
+        }
 
-        sc.close();
     }//replyEnquiry
 
     //committee member function

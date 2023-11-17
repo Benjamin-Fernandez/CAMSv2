@@ -105,9 +105,17 @@ public class Staff extends User {
         EnquiryManager enqManager = new EnquiryManager();
         Scanner sc = new Scanner(System.in);
         String campName;
-        System.out.println("Enter camp name of enquries you want to reply to");
-        myList();
-        campName = sc.nextLine();
+        Camp curCamp;
+        int campIndex;
+        ArrayList<Camp> staffCampList = new ArrayList<>();
+
+
+        System.out.println("Enter index of camp's enquries you want to reply to");
+
+        staffCampList = myList();
+        campIndex = sc.nextInt();
+        curCamp = staffCampList.get(--campIndex);
+        campName = curCamp.getCampName();
         enqManager.replyEnquiryFromStaff(campName, this.name);
         //sc.close();
 
@@ -190,6 +198,7 @@ public class Staff extends User {
         System.out.println("11. Generate attendance report");
         System.out.println("12. Generate performance report");
         System.out.println("13. Change Password");
+        System.out.println("14. Exit");
         //choice is valid from 1-13
         choice = sc.nextInt();
 
