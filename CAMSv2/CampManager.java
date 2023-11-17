@@ -377,9 +377,9 @@ public class CampManager {
 
         //for(int i = 0 ; i<) write dates into csv
 
-        csvContent.append("Registration Deadline, Student Role, Location of Camp, Camp Slots, Camp Description");
+        csvContent.append("Registration Deadline, User Group, Location of Camp, Camp Slots, Camp Description\n");
 
-        csvContent.append(String.format("%s %s %s %s %s",registrationClosingDate,userGroup,location,totalSlot,description));
+        csvContent.append(String.format("%s, %s ,%s, %s ,%s",registrationClosingDate,userGroup,location,totalSlot,description));
 
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))){
