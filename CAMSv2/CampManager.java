@@ -264,7 +264,7 @@ public class CampManager {
             for(int i=0;i<numOfCamps;i++){
             curCamp = campList.get(i);
 
-            if(curCamp.getStaffName() == staffName){
+            if(curCamp.getStaffName().equals(staffName)){
                 System.out.println(index + ". " + curCamp.getCampName());
                 index++;
                 staffCampList.add(curCamp);
