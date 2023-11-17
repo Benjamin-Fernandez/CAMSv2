@@ -77,7 +77,7 @@ public class CampInformation {
     }
     
     public String getDescription(){
-        return this.getDescription();
+        return this.Description;
     }
 
 
