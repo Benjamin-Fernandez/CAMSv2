@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.HashSet;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +26,16 @@ public class CampManager {
     private static ArrayList<Camp> campList;
 
     //method
+    public static ArrayList<Camp> getCampListByFacultyAndVisibility(String faculty) {
+        ArrayList<Camp> filteredCampList = new ArrayList<Camp>();
+        for (Camp camp : campList) {
+            if (camp.getUserGroup().equals(faculty) && camp.visibility) {
+                filteredCampList.add(camp);
+            }
+        }
+        return filteredCampList;
+    }
+
     public static void createCamp(String staffName){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
@@ -36,7 +46,7 @@ public class CampManager {
         String errorMessage = "Camp with this name already exists";
         String campName;
         Date[] Dates;           //NEWLY ADDED
-        String registrationClosingDate;
+        LocalDateTime registrationClosingDate;
         String userGroup;
         String location;
         int totalSlots;
@@ -74,14 +84,14 @@ public class CampManager {
         }
 
         System.out.println("Enter registration closing date");
-        registrationClosingDate = sc.nextLine();
-        registrationClosingDate += " 23:59";
+        String dateinput = sc.nextLine();
+        dateinput += " 23:59";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
+        registrationClosingDate = LocalDateTime.parse(dateinput, formatter);
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
-        if (userDateTime.isAfter(currentDateTime)) {
+        if (registrationClosingDate.isAfter(currentDateTime)) {
             System.out.println("Input date is in the future: " + currentDateTime);
         } else {
             System.out.println("Input date must be in the future.");
@@ -191,7 +201,12 @@ public class CampManager {
                             }
                             break;
 
-                        case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
+                        case 3: 
+                            // convert string into localdatetime format
+                            updatedInfo += " 23:59";
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                            LocalDateTime registrationClosingDate = LocalDateTime.parse(updatedInfo, formatter);
+                            currentCamp.setRegistrationClosingDate(registrationClosingDate);
                             break;
 
                         case 4: currentCamp.setUserGroup(updatedInfo);
@@ -282,7 +297,7 @@ public class CampManager {
 
     public static void generateReport(String staffName){
         ArrayList<Camp> campList = CampManager.getCampList();
-        ArrayList<Student> studentList;
+        HashSet<Student> studentList;
         //CampManager campManager = new CampManager();
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -298,8 +313,8 @@ public class CampManager {
         Date[] Dates;
         String registrationClosingDate;
         int totalSlots;
-        ArrayList<Student> campCommitteeSlots;
-        ArrayList<Student> filteredStudentList;
+        HashSet<Student> campCommitteeSlots;
+        HashSet<Student> filteredStudentList;
 
         for(int i=0;i<campList.size();i++){
             campName = campList.get(i).getCampName();
@@ -321,7 +336,7 @@ public class CampManager {
                 }
 
                 Date[] campDates = camp.getDates();
-                registrationClosingDate = camp.getRegistrationClosingDate();
+                registrationClosingDate = camp.getRegistrationClosingDate().toString();
                 userGroup = camp.getUserGroup();
                 location = camp.getLocation();
                 totalSlots = camp.getTotalSlots();
@@ -355,10 +370,10 @@ public class CampManager {
 
 
     //method to filter students based on their role
-    private static ArrayList<Student> filterStudentsByRole(Camp camp, ArrayList<Student>students, int choice){
+    private static HashSet<Student> filterStudentsByRole(Camp camp, HashSet<Student>students, int choice){
         // choice 1 is attendee
         // choice 2 is campCommitteeMember
-        ArrayList<Student> filteredList = new ArrayList<>();
+        HashSet<Student> filteredList = new HashSet<>();
         switch (choice) {
             case 1:
                 for(Student student : students){
@@ -387,7 +402,7 @@ public class CampManager {
 
 
 
-    public static void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
+    public static void generateCSV(HashSet<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
         String projectDirectory = System.getProperty("user.dir");
         String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + ".csv";
 

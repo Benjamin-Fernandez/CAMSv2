@@ -1,11 +1,11 @@
 package CAMSv2;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class StudentView {
 
 // --------------------General--------------------
-
     public void displayStudentMenu() {
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password"); 
@@ -19,7 +19,7 @@ public class StudentView {
     public void displayReturnToPreviousPage() {
         System.out.println(" <--- Return to previous page (type 111)");
     }
-    
+
     public void displaySuccessfulMessage() {
         System.out.println("Successful!");
     }
@@ -68,6 +68,16 @@ public class StudentView {
     public void displaySubmitEnquiry() {
         System.out.println("1. Submit an Enquiry"); 
     }
+// --------------Register------------------------
+    public void displayRoleToRegister() {
+        System.out.println("<Roles>");
+        for (Role role : Role.values()) {
+            System.out.println(role.toString());
+        }
+        System.out.println("Enter the role you would like to register (Full Uppercase): ");
+    }
+// --------------Withdrawal----------------------
+
 // -------------Password-------------------------
     public void displayEnterNewPassword() {
         System.out.println("Enter your new Password: ");       

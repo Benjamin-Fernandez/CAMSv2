@@ -4,27 +4,18 @@ import java.util.Scanner;
 
 public class EnquiryManager {
     //attribute
-    public static int enquiryCounter = 0;
+    private static int enquiryCounter = 0;
 
     //methods
-    public static void createEnquiry(String campName, String enquiry, Student student){
-        //student will have their own method called makeEnquiry which calls this method, 
-        //append student's enquiry to their own lsit of enquiry
-        //find the correct camp
-        //append this enquiry to that particular camp
-        
-        Question newQuestion = new Question(enquiry, campName, enquiryCounter);
+    public static void createEnquiry(Question question, Camp camp, String studentName){
+        // check if an Enquiries already exist for the student calling this.
         enquiryCounter++;
-        // check if the enquiries for this student exist in that camp
-        Camp camp = CampManager.getCamp(campName);
-        // add enquiry to camp, if not add the new question to the existing enquiry in camp
-        Enquiries newEnquiry = camp.addStudentEnquiriesInList(student.getName());
+        Enquiries newEnquiries = camp.addStudentEnquiriesInList(studentName);
         // add question to camp
-        newEnquiry.addQuestion(newQuestion);
-        // add question to student
-        student.getEnquiries().addQuestion(newQuestion);
+        newEnquiries.addQuestion(question);
 
-    }  
+    } 
+    
 
     //staff fucntion
     public boolean viewEnquiryForStaff(String campName, String staffName){
@@ -148,13 +139,8 @@ public class EnquiryManager {
 
     }//replyEnquiry
 
-    //student functions
-    public void deleteEnquiry(){
-
-    }
-   
-    public void editEnquiry(){
-
+    public static int getEnquiryCounter() {
+        return enquiryCounter;
     }
 
 }

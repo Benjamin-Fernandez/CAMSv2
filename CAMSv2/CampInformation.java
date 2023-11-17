@@ -1,23 +1,26 @@
 package CAMSv2;
 //import java.util.ArrayList;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 public class CampInformation {
 
     private String CampName;
     private Date[] Dates; 
-    private String Registration_closing_date;
+    private LocalDateTime Registration_closing_date;
     private String User_group;
     private String Location;
     private int Total_Slots;
 
-    private ArrayList<Student> Camp_Committee_slots;
+    private HashSet<Student> Camp_Committee_slots;
     private String Description;
     private String Staff_in_charge;
 
-    public CampInformation(String CampName , Date[] Dates , String Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public CampInformation(String CampName , Date[] Dates , LocalDateTime Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
 
         this.CampName = CampName;
         this.Dates = Dates;
@@ -56,7 +59,7 @@ public class CampInformation {
         return this.Dates;
     }
 
-    public String getRegistrationClosingDate(){
+    public LocalDateTime getRegistrationClosingDate(){
         return this.Registration_closing_date;
     }
 
@@ -72,7 +75,7 @@ public class CampInformation {
         return this.Total_Slots;
     }
 
-    public ArrayList<Student> getCampCommitteeSlots(){
+    public HashSet<Student> getCampCommitteeSlots(){
         return this.Camp_Committee_slots;
     }
     
@@ -90,7 +93,7 @@ public class CampInformation {
         this.Dates = Dates;
     }
 
-    public void setRegistrationClosingDate(String closingDate){
+    public void setRegistrationClosingDate(LocalDateTime closingDate){
         this.Registration_closing_date = closingDate;
     }
 

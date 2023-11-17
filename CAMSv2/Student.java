@@ -1,7 +1,7 @@
 package CAMSv2;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashSet;
 
 /** 
  Representing a Student user registered in the system.
@@ -33,15 +33,9 @@ public class Student extends User{
 
     // --- Enquiries -----------------------------------------------------
     // have to decide if we are going to use EnquiryManager for managing the logic or not
-    public void createEnquiry() {
-        // create new Enquiry Object through EnquiryManager
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Please enter camp name: ");
-        String campName = scanner.nextLine();
-        System.out.println("Please enter enquiry Description");
-        String enquiryDescription = scanner.nextLine();
-        EnquiryManager.createEnquiry(campName, enquiryDescription, this);
+    public void createEnquiry(String description, Camp camp) {
+        Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
+        EnquiryManager.createEnquiry(question, camp, getName());
     }
 
     public Question getEnquiryById(int id) {
@@ -79,57 +73,48 @@ public class Student extends User{
     }
 
     // --- Registration Manager --------------------------------------
-    public void registerCampInterface() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the name of camp to register: ");
-        String campName = scanner.next();
-        System.out.println("Please enter the role to register (attendee or committee): ");     
-        String role = scanner.next();
-        Camp camp = CampManager.getCamp(campName);
+    // camp side?
+    public boolean canRegisterCamp(Camp camp) {
         if (camp.isStudentInBlackList(this)) {
             System.out.println("You have been blacklisted from this camp!");
-            return;            
+            return false;            
         }
         else if(camp.isCampFull()) {
             System.out.println("Camp is full, select another camp!");
-            return;
+            return false;
         }
+        else if (camp.isRegistrationOverDeadline()) {
+            System.out.println("Over Registration deadline!");
+            return false;            
+        }
+        return true;
         
-        // register student
-        registerCampRole(role, camp);
     }
 
-    // should be implemented on Camp side.
-    public boolean IsBeforeCampDeadline() {return true;}
-
-
-
-    // --- Strategy Pattern, inject CampRole interface and directly call registerRole()
-    public void registerCampRole(String campRole, Camp camp) {
-        // if campRole == "committee"
-        // Check in registeredCamps not already a committee
-        // Register as committee
-        // else register as member
-        camp.addStudent(this.getName());
-        if (campRole.equals("camp committee member")){
-            // CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, Role.CAMP_COMMITTEE_MEMBER,camp);
-            // camp.addCampCommitteeMember(campCommitteeMember);
-            //call campcommiteelist write to csv method
-            //CampAndRole campAndRole = new CampAndRole(camp, campCommitteeMember);
+    public void registerCampRole(Role role, Camp camp) {
+        // to be replaced with factory;
+        if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
+            // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(emailID, password, faculty, name, role, camp);
+            camp.addCampCommitteeMember(campCommitteeMember);
+            camp.addStudent(this);
+            // append into database of Camp Committee Member
         }
+        else if (role.equals(Role.STUDENT)) {
+            camp.addStudent(this);
+        }
+        camp.printStudentList();
+        registeredCamps.add(camp);
+        
     }
 
-    public void withdrawFromCamp() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the camp to withdraw: ");
-        String campName = scanner.next();
-        Camp camp = CampManager.getCamp(campName);
+    public void withdrawFromCamp(Camp camp) {
         // if camp committee member should remove from camp
         camp.getStudentList().remove(this);
         camp.addToBlackList(this);
-
+        System.out.println("Withdrawn from camp");
+        
     }
-
 
 }
 

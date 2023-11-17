@@ -1,14 +1,17 @@
 package CAMSv2;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 public class Camp {
 
     boolean visibility;
     private CampInformation info;
-    private ArrayList<Student> studentList = new ArrayList<Student>();
+    private HashSet<Student> studentList = new HashSet<Student>();
     private ArrayList<Enquiries> enquiryList = new ArrayList<Enquiries>();
     private ArrayList<Suggestion> suggestionsList = new ArrayList<Suggestion>();
-    private ArrayList<Student> blackList = new ArrayList<Student>();
+    private HashSet<Student> blackList = new HashSet<Student>();
 
     // Constructors
     public Camp(){ 
@@ -16,15 +19,19 @@ public class Camp {
     }
    
 
-    public Camp(String CampName , Date[] Dates , String Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public Camp(String CampName , Date[] Dates , LocalDateTime Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
         //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
         this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
-        this.studentList = new ArrayList<Student>();
 
     }
 
     // Methods
+    public boolean isRegistrationOverDeadline() {
+        // get registration deadline
+        LocalDateTime now = LocalDateTime.now();
+        return now.isAfter(info.getRegistrationClosingDate());
+    }
     public void addToBlackList(Student student) {
         blackList.add(student);
     }
@@ -51,10 +58,8 @@ public class Camp {
         return false;
     }
 
-    public void addStudent(String studentName){
-        if(UserDataBase.checkStudentInside(studentName)){ //check student in database
-            //this.StudentList.add();
-        }
+    public void addStudent(Student student){
+        studentList.add(student);
     }
 
     // check if student Enquiries is already in Camp
@@ -115,7 +120,7 @@ public class Camp {
         return suggestionsList;
     }
 
-    public ArrayList<Student> getStudentList(){
+    public HashSet<Student> getStudentList(){
             return studentList;
     }
 
@@ -136,7 +141,7 @@ public class Camp {
         return this.info.getDates();
     }
 
-    public String getRegistrationClosingDate(){
+    public LocalDateTime getRegistrationClosingDate(){
         return this.info.getRegistrationClosingDate();
     }
 
@@ -152,7 +157,7 @@ public class Camp {
         return this.info.getTotalSlots();
     }
 
-    public ArrayList<Student> getCampCommitteeSlots(){
+    public HashSet<Student> getCampCommitteeSlots(){
         return this.info.getCampCommitteeSlots();
     }
 
@@ -171,7 +176,7 @@ public class Camp {
         this.info.setDates(Dates);
     }
 
-    public void setRegistrationClosingDate(String closingDate){
+    public void setRegistrationClosingDate(LocalDateTime closingDate){
         this.info.setRegistrationClosingDate(closingDate);
     }
 
@@ -195,6 +200,18 @@ public class Camp {
     //additional methods
     public void printCampInfoTable(){
         this.info.printCampInfoTable();
+    }
+
+    public void printStudentList() {
+        for (Student student : studentList) {
+            System.out.println(student.getName());
+        }
+    }
+
+    public void printBlackList() {
+    for (Student blackStudent : blackList) {
+        System.out.println(blackStudent.getName());
+    }
     }
 
 

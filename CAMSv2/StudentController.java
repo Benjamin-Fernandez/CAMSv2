@@ -36,7 +36,7 @@ public class StudentController {
                     break;
                 case 2:
                     // view list of camps
-                    view.displayListOfCamps(CampManager.getCampList());
+                    view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(student.getFaculty()));
                     break;
                 case 3:
                     // View registered camps
@@ -153,15 +153,18 @@ public class StudentController {
             switch (choice) {
                 case 1:
                     // Submit Enquiry to camp
+                    view.displayEnterNewEnquiryDescription();
+                    String description = sc.nextLine();
+                    student.createEnquiry(description, this.camp);
                     break;
                 case 2:
                     if (studentRegistered) {
-                        // register Student
-
+                        // withdraw student
+                        enterCampWithdrawal();
                     }
                     else {
-                        // withdraw student
-
+                        // register Student
+                        enterCampRegister();
                     }
                     break;
 
@@ -172,6 +175,27 @@ public class StudentController {
                     break;
             }
         } while (running);
+    }
+
+    private void enterCampWithdrawal() {
+        student.withdrawFromCamp(this.camp);
+    }
+
+    private void enterCampRegister() {
+        // check if camp is full
+        if (!student.canRegisterCamp(this.camp)) {return;}
+        Role role;
+        while (true) {
+            view.displayRoleToRegister();
+            String input = sc.nextLine();
+            try {
+                role = Role.valueOf(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Your input does not match any roles!");
+            }
+        }
+        student.registerCampRole(role, this.camp);
     }
 }
 
