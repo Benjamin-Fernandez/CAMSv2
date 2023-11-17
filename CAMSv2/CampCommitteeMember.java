@@ -76,59 +76,112 @@ public class CampCommitteeMember  extends Student {
         //print a table of commitee methods; e.g.
         //1.viewCamp(); 2.editcamp
         // super.studentInterface();
-        System.out.println("1. View camp details"); // thecamps they are registered for
-        System.out.println("2. Submit a suggestion"); //only for camp they are comitee of
-        System.out.println("3. View suggestion"); //only for camp they are comitee of
-        System.out.println("4. Edit suggestion"); //only for camp they are comitee of
-        System.out.println("5. Delete suggestion"); //only for camp they are comitee of
-        System.out.println("6. View enquiries"); //print table with index of enquiries
-        System.out.println("7. Reply to an enquiry"); //choose one
-        System.out.println("8. Generate attendance report"); //of participants and roles -- wiht filters for format
-        System.out.println("Select which action you would like to take");
-
         Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        // sc.close();
+        StudentController controller = new StudentController(this);
+        boolean running = true;
+        while (running) {
+            controller.view.displayStudentMenu();
+            System.out.println("Access Camp Committee Menu");
+            controller.view.displayReturnToPreviousPage();
+            int choice = sc.nextInt();
+            // get rid of buffered carriage return
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    // change password
+                    break;
+                case 2:
+                    // view list of camps
+                    controller.view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(super.getFaculty()));
+                    break;
+                case 3:
+                    // View registered camps
+                    controller.view.displayListOfCamps(super.getRegisteredCamps());
+                    break;
+                case 4:
+                    // View profile
+                    controller.view.displayProfile(super.getName(), super.getPassword(), super.getFaculty(), super.getRole(), "");
+                    break;
+                case 5:
+                    controller.enterEnquiriesMenu();
+                    break;
+                case 6:
+                    controller.enterCampSpecificOptions();
+                    break;
+                case 7:
 
-        switch(choice){
+                
+                    break;
+                case 111:
+                    // return to previous page
+                    running = false;
+                    break;
+                default:
+                    break;
+            }
+    
+        }
+        // all displays below under 7
 
-            case 1:
-                viewDetails();
-                break;
-
-            case 2:
-                submitSuggestion();
-                break;
-
-            case 3:
-                viewSuggestion();
-                break;
-
-            case 4:
-                editSuggestion();
-                break;
-
-            case 5:
-                deleteSuggestion();
-                break;
-
-            case 6:
-                viewEnquiries();
-                break;
-
-            case 7:
-                replyEnquiries();
-                break;
-
-            case 8:
-
-                break;
-
-            default:
-                break;
-
-        }//end switch
 
     }//end interface
+    public void enterCampCommitteeMenu() {
+
+        while(true) {
+
+            System.out.println("1. View camp details"); // thecamps they are registered for
+            System.out.println("2. Submit a suggestion"); //only for camp they are comitee of
+            System.out.println("3. View suggestion"); //only for camp they are comitee of
+            System.out.println("4. Edit suggestion"); //only for camp they are comitee of
+            System.out.println("5. Delete suggestion"); //only for camp they are comitee of
+            System.out.println("6. View enquiries of Camp"); //print table with index of enquiries
+            System.out.println("7. Reply to an enquiry"); //choose one
+            System.out.println("8. Generate attendance report"); //of participants and roles -- wiht filters for format
+            System.out.println("Select which action you would like to take");
+
+            Scanner sc = new Scanner(System.in);
+            int choice = sc.nextInt();
+            // sc.close();
+
+            switch(choice){
+
+                case 1:
+                    viewDetails();
+                    break;
+
+                case 2:
+                    submitSuggestion();
+                    break;
+
+                case 3:
+                    viewSuggestion();
+                    break;
+
+                case 4:
+                    editSuggestion();
+                    break;
+
+                case 5:
+                    deleteSuggestion();
+                    break;
+
+                case 6:
+                    viewEnquiries();
+                    break;
+
+                case 7:
+                    replyEnquiries();
+                    break;
+
+                case 8:
+                    
+                    break;
+
+                default:
+                    break;
+
+            }//end switch
+        }
+    }
 
 }

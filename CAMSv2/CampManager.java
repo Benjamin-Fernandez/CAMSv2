@@ -27,6 +27,15 @@ public class CampManager {
     private static ArrayList<Camp> campList = new ArrayList<Camp>();
 
     //method
+
+    // public static Enquiries findStudentEnquirier(String name) {
+    //     for (Camp camp : campList) {
+    //         for (Enquiries enquiryEnquiries : camp.getEnquiries()) {
+                
+    //         }
+    //     }
+    // }
+    
     public static void createCamp(String staffName){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
@@ -49,7 +58,6 @@ public class CampManager {
         //check if camp already exists
         if(getCamp(campName) != null){
             System.out.println(errorMessage);
-            sc.close();
             return;
         }
 
@@ -197,7 +205,16 @@ public class CampManager {
                         case 5:  currentCamp.setLocation(updatedInfo);
                             break;
 
-                        case 6: currentCamp.setTotalSlots(Integer.parseInt(updatedInfo));
+                        case 6:
+                            // check with studentList
+                            int length = currentCamp.getStudentList().size();
+                            int input = Integer.parseInt(updatedInfo);
+                            if (input < length) {
+                                System.out.println("Value too low");
+                                
+                            }else {
+                                currentCamp.setTotalSlots(input);                                
+                            }
                             break;
 
                         case 7: currentCamp.setDescription(updatedInfo);
@@ -428,6 +445,8 @@ public class CampManager {
     public static ArrayList<Camp> getCampListByFacultyAndVisibility(String faculty) {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
         for (Camp camp : campList) {
+            System.out.println(camp.getUserGroup());
+            
             if (camp.getUserGroup().equals(faculty) && camp.visibility) {
                 filteredCamps.add(camp);
             }

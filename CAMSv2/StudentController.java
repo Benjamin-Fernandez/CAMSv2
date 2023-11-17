@@ -59,7 +59,7 @@ public class StudentController {
                     break;
                 default:
                     break;
-        }
+            }
     
         }
     }

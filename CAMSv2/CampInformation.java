@@ -15,7 +15,7 @@ public class CampInformation {
     private String Location;
     private int Total_Slots;
 
-    private HashSet<Student> Camp_Committee_slots;
+    private HashSet<Student> Camp_Committee_slots = new HashSet<Student>();
     private String Description;
     private String Staff_in_charge;
 

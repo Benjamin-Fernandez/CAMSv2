@@ -9,7 +9,9 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+// abstract
 public class UserDataBase {
+    //
     private String studentCSVFilePath;
     private String staffCSVFilePath;
     private String campCommitteeMemberCSVFilePath;
@@ -28,6 +30,8 @@ public class UserDataBase {
         loadDataFromCSV(this.studentCSVFilePath);
         loadDataFromCSV(this.staffCSVFilePath);
         loadDataFromCSV(this.campCommitteeMemberCSVFilePath);
+        // Student
+        // 
     }
 
     public void loadDataFromCSV(String csvFilePath) {
@@ -36,17 +40,18 @@ public class UserDataBase {
              Reader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(inputStreamReader)) {
                 reader.mark(1);
+            String line;
+
             if (reader.read() != 0xFEFF) {
                 reader.reset(); // Reset if the first character is not the BOM
             }
-            String line;
-
 
             while ((line = reader.readLine()) != null) {
-                String firstLine = reader.readLine(); // Check the first line
-                if (firstLine == null) {
-                    return; // Exit method if the file is empty
-                }
+                if (line.equals("")) {return;}
+                // String firstLine = reader.readLine(); // Check the first line
+                // if (firstLine == null) {
+                //     return; // Exit method if the file is empty
+                // }
                 String[] values = line.split(",");
                 String name = values[0].trim();
                 String emailID = values[1];
@@ -66,7 +71,7 @@ public class UserDataBase {
                     Staff staff = new Staff(name,emailID, faculty,password, Role.STAFF);
                     staffList.add(staff);
                 }
-                else{
+                else {
                     String campName = values[3].trim();
                     Camp camp = CampManager.getCamp(campName);
                     CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER,camp);

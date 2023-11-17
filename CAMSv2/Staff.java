@@ -117,6 +117,7 @@ public class Staff extends User {
         curCamp = staffCampList.get(--campIndex);
         campName = curCamp.getCampName();
         enqManager.replyEnquiryFromStaff(campName, this.name);
+        
         //sc.close();
 
     }
@@ -147,8 +148,8 @@ public class Staff extends User {
     }
 
     public void generateReport(){
-        CampManager campManager = new CampManager();
-        campManager.generateReport(this.name);
+
+        CampManager.generateReport(this.name);
     }
 
 

@@ -84,6 +84,7 @@ public class StudentView {
     public void displayRoleToRegister() {
         System.out.println("<Roles>");
         for (Role role : Role.values()) {
+            if (role.equals(Role.STAFF)) {continue;}
             System.out.println(role.toString());
         }
         System.out.println("Enter the role you would like to register (Full Uppercase): ");

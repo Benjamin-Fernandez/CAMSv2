@@ -13,6 +13,8 @@ public class Student extends User{
     Enquiries enquiries = new Enquiries(super.name);
     public Student(String emailID, String password, String faculty, String name, Role role) {
         super(emailID, password, faculty, name, role);
+        // loop thorugh camps and find the user enquiries
+        
     }
     // Student User Interface
 
@@ -116,6 +118,8 @@ public class Student extends User{
             camp.addCampCommitteeMember(campCommitteeMember);
             camp.addStudent(this);
             // append into database of Camp Committee Member
+    
+            campCommitteeMember.committeeInterface();
         }
         else if (role.equals(Role.STUDENT)) {
             camp.addStudent(this);

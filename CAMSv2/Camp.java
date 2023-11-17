@@ -79,6 +79,8 @@ public class Camp {
 
     public boolean isCampFull() {
         int length = studentList.size();
+        // System.out.println("StudentList: "  + length + "getTotalSlots: " + getTotalSlots());
+        // System.out.println(info.getTotalSlots() == length);
         return info.getTotalSlots() == length;
     }
 
