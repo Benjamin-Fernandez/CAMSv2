@@ -1,13 +1,14 @@
 package CAMSv2;
-//import java.util.ArrayList;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.LocalDate;
 
 public class CampInformation {
 
     private String CampName;
-    private Date[] Dates; 
+    private LocalDate[] Dates; 
     private String Registration_closing_date;
     private String User_group;
     private String Location;
@@ -17,7 +18,7 @@ public class CampInformation {
     private String Description;
     private String Staff_in_charge;
 
-    public CampInformation(String CampName , Date[] Dates , String Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public CampInformation(String CampName , LocalDate[] Dates , String Registration_closing_date, String User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
 
         this.CampName = CampName;
         this.Dates = Dates;
@@ -52,7 +53,7 @@ public class CampInformation {
             return this.Staff_in_charge;
     }
 
-    public Date[] getDates(){
+    public LocalDate[] getDates(){
         return this.Dates;
     }
 
@@ -86,7 +87,7 @@ public class CampInformation {
         this.CampName = campName;
     }
 
-    public void setDates(Date[] Dates){
+    public void setDates(LocalDate[] Dates){
         this.Dates = Dates;
     }
 

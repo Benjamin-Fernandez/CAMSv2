@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +36,7 @@ public class CampManager {
 
         String errorMessage = "Camp with this name already exists";
         String campName;
-        Date[] Dates;            //NEWLY ADDED
+        LocalDate[] Dates;            
         String registrationClosingDate;
         String userGroup;
         String location;
@@ -54,23 +55,14 @@ public class CampManager {
 
         System.out.println("Enter camp duration(days)");
         int numOfDays = sc.nextInt();
-        System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
-        Date[] dates = new Date[numOfDays];
+        sc.nextLine();
+        System.out.print("Enter the starting date (YYYY-MM-DD):");
+        String userInput = sc.nextLine();
+        Dates = new LocalDate[numOfDays];
+        LocalDate currentDate = LocalDate.parse(userInput);
         for (int i = 0; i < numOfDays; i++) {
-            while (true) {
-                try {
-                    System.out.print("Date " + (i + 1) + ": ");
-                    sc.nextLine();
-                    String userInput = sc.nextLine();
-                    dates[i] = dateFormat.parse(userInput);
-                    break; // Break the loop if parsing is successful
-                } catch (ParseException e) {
-                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
-                }
-            }
+            Dates[i] = currentDate;
+            currentDate = currentDate.plusDays(1); // Move to the next day
         }
 
         System.out.println("Enter registration closing date");
@@ -82,7 +74,7 @@ public class CampManager {
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
         if (userDateTime.isAfter(currentDateTime)) {
-            System.out.println("Input date is in the future: " + currentDateTime);
+            System.out.println("Registration closing set as: " + currentDateTime);
         } else {
             System.out.println("Input date must be in the future.");
         }
@@ -103,7 +95,7 @@ public class CampManager {
         //sc.close();
 
 
-        Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
 
@@ -175,7 +167,7 @@ public class CampManager {
                         case 2:
                             System.out.println("Enter camp duration(days)");
                             int numOfDays = sc.nextInt();
-                            System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
+                            System.out.println("Enter start date (YYYY-MM-DD):");
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                             Date[] dates = new Date[numOfDays];
@@ -322,7 +314,7 @@ public class CampManager {
                     filteredStudentList = studentList;
                 }
 
-                Date[] campDates = camp.getDates();
+                LocalDate[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate();
                 userGroup = camp.getUserGroup();
                 location = camp.getLocation();
