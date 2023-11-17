@@ -318,7 +318,7 @@ public class CampManager {
                 description = camp.getDescription();
                 campCommitteeSlots = camp.getCampCommitteeSlots();
 
-                generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
+                CampManager.generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
                 
 
 
@@ -377,13 +377,17 @@ public class CampManager {
 
         //for(int i = 0 ; i<) write dates into csv
 
-        csvContent.append(registrationClosingDate,userGroup,location,totalSlot,description);
+        csvContent.append("Registration Deadline, Student Role, Location of Camp, Camp Slots, Camp Description");
+
+        csvContent.append(String.format("%s %s %s %s %s",registrationClosingDate,userGroup,location,totalSlot,description));
 
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))){
             writer.write(csvContent.toString());
             System.out.println("CSV file created successfully" + filename);
 
+        } catch (IOException e) {
+            System.out.println("CSV file not found");
         }
 
     }
