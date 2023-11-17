@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,16 +27,6 @@ public class CampManager {
     private static ArrayList<Camp> campList;
 
     //method
-    public static ArrayList<Camp> getCampListByFacultyAndVisibility(String faculty) {
-        ArrayList<Camp> filteredCampList = new ArrayList<Camp>();
-        for (Camp camp : campList) {
-            if (camp.getUserGroup().equals(faculty) && camp.visibility) {
-                filteredCampList.add(camp);
-            }
-        }
-        return filteredCampList;
-    }
-
     public static void createCamp(String staffName){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
@@ -45,7 +36,7 @@ public class CampManager {
 
         String errorMessage = "Camp with this name already exists";
         String campName;
-        Date[] Dates;           //NEWLY ADDED
+        LocalDate[] Dates;            //NEWLY ADDED
         LocalDateTime registrationClosingDate;
         String userGroup;
         String location;
@@ -64,37 +55,29 @@ public class CampManager {
 
         System.out.println("Enter camp duration(days)");
         int numOfDays = sc.nextInt();
-        System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
-        Date[] dates = new Date[numOfDays];
+        sc.nextLine();
+        System.out.print("Enter the starting date (YYYY-MM-DD):");
+        String userInput = sc.nextLine();
+        Dates = new LocalDate[numOfDays];
+        LocalDate currentDate = LocalDate.parse(userInput);
         for (int i = 0; i < numOfDays; i++) {
-            while (true) {
-                try {
-                    System.out.print("Date " + (i + 1) + ": ");
-                    sc.nextLine();
-                    String userInput = sc.nextLine();
-                    dates[i] = dateFormat.parse(userInput);
-                    break; // Break the loop if parsing is successful
-                } catch (ParseException e) {
-                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
-                }
-            }
+            Dates[i] = currentDate;
+            currentDate = currentDate.plusDays(1); // Move to the next day
         }
 
+
         System.out.println("Enter registration closing date");
-        String dateinput = sc.nextLine();
-        dateinput += " 23:59";
+        userInput = sc.nextLine();
+        userInput += " 23:59";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        registrationClosingDate = LocalDateTime.parse(dateinput, formatter);
+        registrationClosingDate = LocalDateTime.parse(userInput, formatter);
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
         if (registrationClosingDate.isAfter(currentDateTime)) {
-            System.out.println("Input date is in the future: " + currentDateTime);
+            System.out.println("Registration closing set as: " + currentDateTime);
         } else {
-            System.out.println("Input date must be in the future.");
+            System.out.println("Input date must be in the future. and before the start of camp.");
         }
 
         System.out.println("Enter user group this camp will be available to");
@@ -113,7 +96,7 @@ public class CampManager {
         //sc.close();
 
 
-        Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
 
@@ -183,7 +166,7 @@ public class CampManager {
                         case 2:
                             System.out.println("Enter camp duration(days)");
                             int numOfDays = sc.nextInt();
-                            System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
+                            System.out.println("Enter start date (YYYY-MM-DD):");
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                             Date[] dates = new Date[numOfDays];
@@ -201,8 +184,7 @@ public class CampManager {
                             }
                             break;
 
-                        case 3: 
-                            // convert string into localdatetime format
+                        case 3:  
                             updatedInfo += " 23:59";
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                             LocalDateTime registrationClosingDate = LocalDateTime.parse(updatedInfo, formatter);
@@ -329,13 +311,13 @@ public class CampManager {
                 System.out.println("3) Display all members");
                 choice = sc.nextInt();
                 if(choice == 1 || choice == 2 ){
-                     filteredStudentList = CampManager.filterStudentsByRole(camp,studentList, choice--);
+                     filteredStudentList = CampManager.filterStudentsByRole(camp, studentList, choice--);
                 }
                 else{
                     filteredStudentList = studentList;
                 }
 
-                Date[] campDates = camp.getDates();
+                LocalDate[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate().toString();
                 userGroup = camp.getUserGroup();
                 location = camp.getLocation();
@@ -402,7 +384,7 @@ public class CampManager {
 
 
 
-    public static void generateCSV(HashSet<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
+    public static void generateCSV(HashSet<Student>filteredStudentList, LocalDate[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
         String projectDirectory = System.getProperty("user.dir");
         String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + ".csv";
 
@@ -448,435 +430,14 @@ public class CampManager {
         }
     }
 
-}
-
-package CAMSv2;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Properties;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.BufferedWriter;
-import java.util.List;
-
-
-
-public class CampManager {
-    //attributes
-    private static ArrayList<Camp> campList;
-
-    //method
-    public static void createCamp(String staffName){
-        //print and scan logic is here
-        // call constructor from camp, parameters are all the 8 inputs
-      //Camp SpecificCamp = new Camp(8 parameters);
-      //campList.add(SpecificCamp);
-        Scanner sc = new Scanner(System.in);
-
-        String errorMessage = "Camp with this name already exists";
-        String campName;
-        LocalDate[] Dates;            //NEWLY ADDED
-        String registrationClosingDate;
-        String userGroup;
-        String location;
-        int totalSlots;
-        String description;
-
-        System.out.println("Enter camp name: ");
-        campName = sc.nextLine();
-
-        //check if camp already exists
-        if(getCamp(campName) != null){
-            System.out.println(errorMessage);
-            sc.close();
-            return;
-        }
-
-        System.out.println("Enter camp duration(days)");
-        int numOfDays = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Enter the starting date (YYYY-MM-DD):");
-        String userInput = sc.nextLine();
-        Dates = new LocalDate[numOfDays];
-        LocalDate currentDate = LocalDate.parse(userInput);
-        for (int i = 0; i < numOfDays; i++) {
-            Dates[i] = currentDate;
-            currentDate = currentDate.plusDays(1); // Move to the next day
-        }
-
-
-        System.out.println("Enter registration closing date");
-        registrationClosingDate = sc.nextLine();
-        registrationClosingDate += " 23:59";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
-
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        //Ensures that the registration closing date is after the local clock
-        if (userDateTime.isAfter(currentDateTime)) {
-            System.out.println("Registration closing set as: " + currentDateTime);
-        } else {
-            System.out.println("Input date must be in the future. and before the start of camp.");
-        }
-
-        System.out.println("Enter user group this camp will be available to");
-        userGroup = sc.nextLine();
-
-        System.out.println("Enter camp location");
-        location = sc.nextLine();
-
-        System.out.println("Enter total number of slots");
-        totalSlots = sc.nextInt();
-
-        System.out.println("Enter camp description");
-        sc.nextLine();
-        description = sc.nextLine();
-
-        //sc.close();
-
-
-        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
-
-        addCamp(newCamp);
-
-        System.out.println(campName + " camp created");
-
-    }
-
-    public static void addCamp(Camp camp){
-        campList.add(camp);
-    }
-
-    public static Camp getCamp(String campName){
-        //for each camp in campList
-        ArrayList<Camp> campList = new ArrayList<Camp>();
-        campList = CampManager.getCampList();
-        Camp camp = new Camp();
-
-        if(campList != null) {
-            for (int i = 0; i < campList.size(); i++) {
-                camp = campList.get(i);
-                if (campName.equals(camp.getCampName())) {
-                    return camp;
-                }//if
-            }//for
-        }
-        return null;//if it doesnt find a camp
-    }
-
-    public static boolean getStaffinCharge(String campName, String Staffname){
-        //for each camp in campList
-        //if staffname == campList[i].info.staffincharge && campName == campList[i].info.name return true
-        String staffIC;
-        Camp camp = new Camp();
-        camp = CampManager.getCamp(campName);
-        staffIC = camp.getStaffName();
-
-        return staffIC.equals(Staffname);
-        }
-
-
-    public static void editCamp(String campName,String staffName){
-        int choice;
-        Scanner sc = new Scanner(System.in);
-        Camp currentCamp = getCamp(campName);
-        String errorMessage = "Staff is not in charge";
-        String exitMessage = "Exitting edit";
-        String updatedInfo;
-
-
-        if(getStaffinCharge(campName, staffName)) {
-
-            currentCamp.printCampInfoTable();
-            System.out.println("What would you like to edit?");
-            choice = sc.nextInt();
-            while(choice>0 && choice<8){
-                //switch case that calls and takes in specific string needed for each case
-                //call the set method in camp.info.setVariable()
-                System.out.println("Enter updated information");
-                sc.nextLine();
-                updatedInfo = sc.nextLine();
-
-                switch(choice){
-
-                        case 1: currentCamp.setCampName(updatedInfo);
-                            break;
-
-                        case 2:
-                            System.out.println("Enter camp duration(days)");
-                            int numOfDays = sc.nextInt();
-                            System.out.println("Enter start date (YYYY-MM-DD):");
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-                            Date[] dates = new Date[numOfDays];
-                            for (int i = 0; i < numOfDays; i++) {
-                                while (true) {
-                                    try {
-                                        System.out.print("Date " + (i + 1) + ": ");
-                                        String userInput = sc.nextLine();
-                                         dates[i] = dateFormat.parse(userInput);
-                                        break; // Break the loop if parsing is successful
-                                    } catch (ParseException e) {
-                                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
-                                    }
-                                }
-                            }
-                            break;
-
-                        case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
-                            break;
-
-                        case 4: currentCamp.setUserGroup(updatedInfo);
-                            break;
-
-                        case 5:  currentCamp.setLocation(updatedInfo);
-                            break;
-
-                        case 6: currentCamp.setTotalSlots(Integer.parseInt(updatedInfo));
-                            break;
-
-                        case 7: currentCamp.setDescription(updatedInfo);
-                            break;
-                }//end switch
-            currentCamp.printCampInfoTable();
-            System.out.println("Enter 8 to exit, or enter next attribute to edit");
-            choice = sc.nextInt();
-
-            }//end while
-            //sc.close();
-
-            System.out.println(exitMessage);
-        }//end if
-        else{
-            System.out.println(errorMessage);
-        }//end else
-        return;
-    }//end edit camp
-
-    public static void deleteCamp(String campName){
-        Camp camp = CampManager.getCamp(campName);
-        campList.remove(camp);
-    }
-
-    public static void changeVisibility(String campName){
-        //ask the user whether true/false
-        String settings;
-        boolean choice;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Set visibility of" + campName + "on or off?");
-        settings = sc.nextLine();
-        if(settings.equals("on"))
-            choice = true;
-        else
-            choice = false;
-
-        Camp camp = CampManager.getCamp(campName);
-        camp.setVisibility(choice);
-        //sc.close();
-    }
-
-    public static ArrayList<Camp> StaffCampListGenerator(String staffName){
-        //hello ethan
-        //this function prints staff camp list as well as return the array
-        //for each camp in campList
-        int numOfCamps;
-        int index=1;
-        Camp curCamp = new Camp();
-        ArrayList<Camp> staffCampList = new ArrayList<>();
-        //ArrayList<Camp> campList = new ArrayList<Camp>();
-        numOfCamps = campList.size();
-        if(numOfCamps==0){
-            System.out.println("You have no camps");
-        }
-
-        else{
-            System.out.println("Your List:");
-            for(int i=0;i<numOfCamps;i++){
-            curCamp = campList.get(i);
-
-            if(curCamp.getStaffName().equals(staffName)){
-                System.out.println(index + ". " + curCamp.getCampName());
-                index++;
-                staffCampList.add(curCamp);
-                }
+    public static ArrayList<Camp> getCampListByFacultyAndVisibility(String faculty) {
+        ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
+        for (Camp camp : campList) {
+            if (camp.getUserGroup().equals(faculty) && camp.visibility) {
+                filteredCamps.add(camp);
             }
         }
-
-        return staffCampList;
-
+        return filteredCamps;
     }
-
-    public static ArrayList<Camp> getCampList(){
-        // Should also check for Visiblity and UserGroup
-        return campList;
-    }
-
-
-    public static void generateReport(String staffName){
-        ArrayList<Camp> campList = CampManager.getCampList();
-        ArrayList<Student> studentList;
-        //CampManager campManager = new CampManager();
-        Scanner sc = new Scanner(System.in);
-        int choice;
-
-        String campName;
-        //Camp camp = new Camp();
-
-        //the 8 details apart from StudentName and Role
-
-        String userGroup;
-        String location;
-        String description;
-        Date[] Dates;
-        String registrationClosingDate;
-        int totalSlots;
-        ArrayList<Student> campCommitteeSlots;
-        ArrayList<Student> filteredStudentList;
-
-        for(int i=0;i<campList.size();i++){
-            campName = campList.get(i).getCampName();
-            //String name of camp obj
-
-            if(CampManager.getStaffinCharge(campName, staffName)){
-                Camp camp = CampManager.getCamp(campName); //camp obj itself
-
-                studentList = camp.getStudentList();
-                System.out.println("Filter by 1) Attendee");
-                System.out.println("Filter by 2) Camp Committee Member");
-                System.out.println("3) Display all members");
-                choice = sc.nextInt();
-                if(choice == 1 || choice == 2 ){
-                     filteredStudentList = CampManager.filterStudentsByRole(camp,studentList, choice--);
-                }
-                else{
-                    filteredStudentList = studentList;
-                }
-
-                LocalDate[] campDates = camp.getDates();
-                registrationClosingDate = camp.getRegistrationClosingDate();
-                userGroup = camp.getUserGroup();
-                location = camp.getLocation();
-                totalSlots = camp.getTotalSlots();
-                description = camp.getDescription();
-                campCommitteeSlots = camp.getCampCommitteeSlots();
-
-                CampManager.generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
-
-
-
-
-            //     for(int j = 0 ; j < 10 ; j++){
-            //         //go through campCommitteeSlots array
-            //         //write each index to csv file.
-            //     }
-
-            //     for(int j=0;j<studentList.size();j++){
-            //         Student student = studentList.get(j);
-            //         // System.out.println(student.getName() + student.getStudentRole());
-            //         //getstudentrole is in student class
-            //     }//send everything to a csv file.
-
-
-
-            // }
-        }//end outer for
-    }
-
-
-    }//end generateReport
-
-
-    //method to filter students based on their role
-    private static ArrayList<Student> filterStudentsByRole(Camp camp, ArrayList<Student>students, int choice){
-        // choice 1 is attendee
-        // choice 2 is campCommitteeMember
-        ArrayList<Student> filteredList = new ArrayList<>();
-        switch (choice) {
-            case 1:
-                for(Student student : students){
-                    if(student.role == Role.STUDENT){ //yuhao pls implement this
-                        filteredList.add(student);
-                    }
-                }                
-                break;
-
-            case 2:
-                for(Student student : students){
-                    if(student.role == Role.CAMP_COMMITTEE_MEMBER){ //yuhao pls implement this
-                        filteredList.add(student);
-                    }
-                }            
-                break;
-        
-            default:
-                break;
-        }
-        return filteredList;
-
-    }
-
-    //method to generate CSV format
-
-
-
-    public static void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
-        String projectDirectory = System.getProperty("user.dir");
-        String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + ".csv";
-
-        try (PrintWriter printWriter = new PrintWriter(new FileWriter(filename, false))) {
-            printWriter.println("Student Name, Student Role");
-
-            for (Student student : filteredStudentList) {
-                printWriter.println(student.getName() + "," + student.getRole().toString());
-            }
-
-            printWriter.println("Camp Dates");
-            // Write dates into csv
-            // Assuming dates is a list of dates
-            /*for (Date date : campDates) {
-                printWriter.println(date.toString());
-            }*/
-
-            printWriter.println("Registration Deadline,User Group,Location of Camp,Camp Slots,Camp Description");
-            printWriter.println(registrationClosingDate + "," + userGroup + "," + location + "," + totalSlots + "," + description);
-
-            System.out.println("CSV file created successfully: " + filename);
-        } catch (IOException e) {
-            System.out.println("CSV file not found");
-        }
-
-    }
-
-    public static void addStudent(String studentName, String campName, String role){
-        Camp camp = CampManager.getCamp(campName);
-       // camp.addStudent(studentName, role);
-    }
-
-    public static boolean isValidDate(String input) {
-        // Define a custom date format that you expect
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        try {
-            // Try to parse the input as a LocalDate using the defined format
-            LocalDate date = LocalDate.parse(input, dateFormatter);
-            return true; // Input is a valid date
-        } catch (DateTimeParseException e) {
-            return false; // Input is not a valid date
-        }
-    }
-
 }
 
