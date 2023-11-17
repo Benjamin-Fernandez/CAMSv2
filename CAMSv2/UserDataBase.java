@@ -40,8 +40,13 @@ public class UserDataBase {
                 reader.reset(); // Reset if the first character is not the BOM
             }
             String line;
-            while ((line = reader.readLine()) != null) {
 
+
+            while ((line = reader.readLine()) != null) {
+                String firstLine = reader.readLine(); // Check the first line
+                if (firstLine == null) {
+                    return; // Exit method if the file is empty
+                }
                 String[] values = line.split(",");
                 String name = values[0].trim();
                 String emailID = values[1];
