@@ -77,18 +77,26 @@ public class Staff extends User {
 
     }//end viewCamp()
 
-    public void myList(){
-        CampManager.StaffCampListGenerator(this.name);
+    public ArrayList<Camp> myList(){
+        return CampManager.StaffCampListGenerator(this.name);
     }
 
     public void viewEnquiries(){
         //ask which camp name they want to view
+        int campIndex;
         Scanner sc = new Scanner(System.in);
         String campName;
-        System.out.println("Enter the camp name of the camps enquiry you want to view ");
-        myList();
-        campName = sc.nextLine();
+        Camp curCamp;
+        ArrayList<Camp> staffCampList = new ArrayList<>();
         EnquiryManager enqManager = new EnquiryManager();
+
+
+        System.out.println("Enter the index of the camp's enquiry you want to view ");
+        
+        staffCampList = myList();
+        campIndex = sc.nextInt();
+        curCamp = staffCampList.get(--campIndex);
+        campName = curCamp.getCampName();
         enqManager.viewEnquiryForStaff(campName, this.name);
         //sc.close();
     }

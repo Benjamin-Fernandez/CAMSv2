@@ -243,11 +243,13 @@ public class CampManager {
         //sc.close();
     }
 
-    public static void StaffCampListGenerator(String staffName){
+    public static ArrayList<Camp> StaffCampListGenerator(String staffName){
+        //this function prints staff camp list as well as return the array
         //for each camp in campList
         int numOfCamps;
         int index=1;
         Camp curCamp = new Camp();
+        ArrayList<Camp> staffCampList = new ArrayList<>();
         //ArrayList<Camp> campList = new ArrayList<Camp>();
         numOfCamps = campList.size();
 
@@ -258,9 +260,10 @@ public class CampManager {
                 System.out.println("Your List:");
                 System.out.println(index + ". " + curCamp.getCampName());
                 index++;
+                staffCampList.add(curCamp);
                 }  
         }
-        return;
+        return staffCampList;
         
     }
 

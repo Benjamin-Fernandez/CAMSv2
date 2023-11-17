@@ -77,7 +77,7 @@ public class Cams {
             System.out.print("Enter your password: ");
             String password = scanner.nextLine();
 
-            System.out.print("Select your option: ");
+            System.out.println("Select your option: ");
             System.out.println("1. Staff");
             System.out.println("2. Student");
             System.out.println("3. Camp committee member");

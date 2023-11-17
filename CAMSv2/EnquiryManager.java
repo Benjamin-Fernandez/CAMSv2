@@ -32,18 +32,24 @@ public class EnquiryManager {
 
             if(CampManager.getStaffinCharge(campName,staffName)){
                 Camp camp = CampManager.getCamp(campName);
-                System.out.println(campName + "enquiries");
+                System.out.println(campName + " enquiries:");
 
-
-                for(int j=0;j<camp.getEnquiries().size();j++){
-
-                    for(int k=0;k<camp.getEnquiries().get(j).getQuestions().size();k++){
-
-                    System.out.println("Enquiry " + j+1 + "Question " + k+1 + ". " + camp.getEnquiries().get(j).getQuestions().get(k));
-                    //enq 1 qns 2 will = 12
-
-                    }//inner for
+                //check if empty
+                if(camp.getEnquiries().size()==0){
+                    System.out.println("There are no enquiries");
                 }
+                else{
+                    for(int j=0;j<camp.getEnquiries().size();j++){
+
+                        for(int k=0;k<camp.getEnquiries().get(j).getQuestions().size();k++){
+
+                        System.out.println("Enquiry " + j+1 + "Question " + k+1 + ". " + camp.getEnquiries().get(j).getQuestions().get(k));
+                        //enq 1 qns 2 will = 12
+
+                        }//inner for
+                    }
+                }
+            
 
             }//if
 
