@@ -62,7 +62,9 @@ public class UserDataBase {
                     staffList.add(staff);
                 }
                 else{
-                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER);
+                    String campName = values[3].trim();
+                    Camp camp = CampManager.getCamp(campName);
+                    CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password, Role.CAMP_COMMITTEE_MEMBER,camp);
                     campCommitteeList.add(campCommitteeMember);
                 }
             }

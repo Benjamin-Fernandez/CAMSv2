@@ -145,9 +145,9 @@ public class Student extends User {
         // else register as member
         camp.addStudent(this.getName());
         if (campRole.equals("camp committee member")){
-            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, Role.CAMP_COMMITTEE_MEMBER);
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(this.emailID, this.emailID, this.faculty, this.name, Role.CAMP_COMMITTEE_MEMBER,camp);
             camp.addCampCommitteeMember(campCommitteeMember);
-            //call Userdatabase write to csv method
+            //call campcommiteelist write to csv method
             //CampAndRole campAndRole = new CampAndRole(camp, campCommitteeMember);
         }
     }

@@ -36,22 +36,23 @@ public class Cams {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Get the project's base directory
-        String projectDirectory = System.getProperty("user.dir");
-        //System.out.println(projectDirectory);
+        while (true) {
+            // Get the project's base directory
+            String projectDirectory = System.getProperty("user.dir");
+            //System.out.println(projectDirectory);
 
-        // Construct the absolute paths to the CSV files
-        String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
-        String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
-        String campCommitteeMemberCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
+            // Construct the absolute paths to the CSV files
+            String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
+            String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
+            String campCommitteeMemberCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
-        // Initialize user accounts from CSV files
-        UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath, campCommitteeMemberCSVPath);
+            // Initialize user accounts from CSV files
+            UserDataBase dataBase = new UserDataBase(studentCSVPath, staffCSVPath, campCommitteeMemberCSVPath);
 
-        ArrayList<Student> studentUsers = UserDataBase.getStudents();
-        ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
-        // Have two ArrayLists: studentUsers and staffUsers,
-        // containing Student/Staff objects with name, password, email, and faculty.
+            ArrayList<Student> studentUsers = UserDataBase.getStudents();
+            ArrayList<Staff> staffUsers = UserDataBase.getStaffs();
+            // Have two ArrayLists: studentUsers and staffUsers,
+            // containing Student/Staff objects with name, password, email, and faculty.
 
 //        System.out.println("Student Data:");
 //        for (int i = 0; i < studentUsers.size(); i++) {
@@ -61,63 +62,66 @@ public class Cams {
 //            System.out.println("Student Faculty: " + student.getFaculty());
 //            System.out.println("Student Password: " + student.getPassword());
 //        }
-        int choice;
-        int login_option;
-
-        do {
-            System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
-            choice = scanner.nextInt();
-            if(choice == 2){break;}
-            // scanner.nextLine(); // Consume the newline character
-
-            System.out.print("Enter your Email: ");
-            scanner.nextLine();
-            String emailID = scanner.nextLine();
-
-            System.out.print("Enter your password: ");
-            String password = scanner.nextLine();
-
-            System.out.println("Select your option: ");
-            System.out.println("1. Staff");
-            System.out.println("2. Student");
-            System.out.println("3. Camp committee member");
-            login_option = scanner.nextInt();
+            int choice;
+            int login_option;
 
 
-            switch (choice) {
-                case (1):
-                    // Create a Login object for handling logins
-                    // LoginService login = new LoginService(studentUsers, staffUsers);
-                    // login.performLogin(emailID, password);
-                    // break;
-                    User user = Authenticator.check(emailID,password,login_option);
-                    if(user == null){
-                        System.out.println("Wrong credentials");
-                        break;
-                    }
-
-                    if(login_option == 1){
-                        System.out.println("Correct credentials");
-                        Staff staff = (Staff) user;
-                        staff.staffInterface();
-                    }
-                    else if(login_option == 2){
-                        Student student = (Student) user;
-                        student.studentInterface();
-                    }
-                    else{
-                        CampCommitteeMember campCommitteeMember = (CampCommitteeMember) user;
-                        campCommitteeMember.committeeInterface();
-                    }
-
+                System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
+                choice = scanner.nextInt();
+                if (choice == 2) {
                     break;
+                }
+                // scanner.nextLine(); // Consume the newline character
 
-                default: break;
+                System.out.print("Enter your Email: ");
+                scanner.nextLine();
+                String emailID = scanner.nextLine();
+
+                System.out.print("Enter your password: ");
+                String password = scanner.nextLine();
+
+                System.out.println("Select your option: ");
+                System.out.println("1. Staff");
+                System.out.println("2. Student");
+                System.out.println("3. Camp committee member");
+                login_option = scanner.nextInt();
 
 
-            }
-        }while (choice == 1);
+                switch (choice) {
+                    case (1):
+                        // Create a Login object for handling logins
+                        // LoginService login = new LoginService(studentUsers, staffUsers);
+                        // login.performLogin(emailID, password);
+                        // break;
+                        User user = Authenticator.check(emailID, password, login_option);
+                        if (user == null) {
+                            System.out.println("Wrong credentials");
+                            break;
+                        }
+
+                        if (login_option == 1) {
+                            System.out.println("Correct credentials");
+                            Staff staff = (Staff) user;
+                            staff.staffInterface();
+                        } else if (login_option == 2) {
+                            Student student = (Student) user;
+                            student.studentInterface();
+                        } else {
+                            CampCommitteeMember campCommitteeMember = (CampCommitteeMember) user;
+                            campCommitteeMember.committeeInterface();
+                        }
+
+                        break;
+
+                    default:
+                        break;
 
 
+                }
+
+
+
+        }
     }
 }
+

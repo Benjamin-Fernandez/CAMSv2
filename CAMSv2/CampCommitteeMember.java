@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class CampCommitteeMember  extends Student {
     private int points;
+    private Camp camp;
 
-    public CampCommitteeMember(String emailID, String password, String faculty, String name, Role role) {
+    public CampCommitteeMember(String emailID, String password, String faculty, String name, Role role, Camp camp) {
         super(emailID, password, faculty, name, role);
         points = 0;
+        camp = camp;
     }
     public void viewDetails(Camp camp){
 
