@@ -244,6 +244,7 @@ public class CampManager {
     }
 
     public static ArrayList<Camp> StaffCampListGenerator(String staffName){
+        //hello ethan
         //this function prints staff camp list as well as return the array
         //for each camp in campList
         int numOfCamps;
