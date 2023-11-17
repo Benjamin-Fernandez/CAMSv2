@@ -3,7 +3,7 @@ package CAMSv2;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.Properties;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,8 +15,10 @@ import java.util.Date;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.BufferedWriter;
 import java.util.List;
+
 
 
 public class CampManager {
@@ -76,10 +78,10 @@ public class CampManager {
         registrationClosingDate += " 23:59";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime userDateTime = LocalDateTime.parse(registrationClosingDate, formatter);
-        
+
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
-        if (userDateTime.isAfter(currentDateTime)) {                                    
+        if (userDateTime.isAfter(currentDateTime)) {
             System.out.println("Input date is in the future: " + currentDateTime);
         } else {
             System.out.println("Input date must be in the future.");
@@ -97,16 +99,16 @@ public class CampManager {
         System.out.println("Enter camp description");
         sc.nextLine();
         description = sc.nextLine();
-        
+
         //sc.close();
-        
-        
+
+
         Camp newCamp = new Camp(campName,dates,registrationClosingDate,userGroup,location,totalSlots,description,staffName);
 
         addCamp(newCamp);
-        
+
         System.out.println(campName + " camp created");
-        
+
         return;
 
     }
@@ -152,9 +154,9 @@ public class CampManager {
         String exitMessage = "Exitting edit";
         String updatedInfo;
 
-        
+
         if(getStaffinCharge(campName, staffName)) {
-            
+
             currentCamp.printCampInfoTable();
             System.out.println("What would you like to edit?");
             choice = sc.nextInt();
@@ -166,16 +168,16 @@ public class CampManager {
                 updatedInfo = sc.nextLine();
 
                 switch(choice){
-                    
+
                         case 1: currentCamp.setCampName(updatedInfo);
                             break;
 
-                        case 2: 
+                        case 2:
                             System.out.println("Enter camp duration(days)");
                             int numOfDays = sc.nextInt();
                             System.out.println("Enter " + numOfDays + " consecutive dates (YYYY-MM-DD):");
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        
+
                             Date[] dates = new Date[numOfDays];
                             for (int i = 0; i < numOfDays; i++) {
                                 while (true) {
@@ -188,21 +190,21 @@ public class CampManager {
                                     System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
                                     }
                                 }
-                            }   
+                            }
                             break;
-                    
+
                         case 3:  currentCamp.setRegistrationClosingDate(updatedInfo);
                             break;
-                    
+
                         case 4: currentCamp.setUserGroup(updatedInfo);
                             break;
-                    
+
                         case 5:  currentCamp.setLocation(updatedInfo);
                             break;
 
                         case 6: currentCamp.setTotalSlots(Integer.parseInt(updatedInfo));
                             break;
-                    
+
                         case 7: currentCamp.setDescription(updatedInfo);
                             break;
                 }//end switch
@@ -212,7 +214,7 @@ public class CampManager {
 
             }//end while
             //sc.close();
-            
+
             System.out.println(exitMessage);
         }//end if
         else{
@@ -266,12 +268,12 @@ public class CampManager {
                 System.out.println(index + ". " + curCamp.getCampName());
                 index++;
                 staffCampList.add(curCamp);
-                }  
+                }
             }
         }
 
         return staffCampList;
-        
+
     }
 
     public static ArrayList<Camp> getCampList(){
@@ -319,7 +321,7 @@ public class CampManager {
                 else{
                     filteredStudentList = studentList;
                 }
-                
+
                 Date[] campDates = camp.getDates();
                 registrationClosingDate = camp.getRegistrationClosingDate();
                 userGroup = camp.getUserGroup();
@@ -329,21 +331,21 @@ public class CampManager {
                 campCommitteeSlots = camp.getCampCommitteeSlots();
 
                 CampManager.generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
-                
 
 
-                 
+
+
             //     for(int j = 0 ; j < 10 ; j++){
             //         //go through campCommitteeSlots array
             //         //write each index to csv file.
             //     }
-        
+
             //     for(int j=0;j<studentList.size();j++){
             //         Student student = studentList.get(j);
-            //         // System.out.println(student.getName() + student.getStudentRole()); 
+            //         // System.out.println(student.getName() + student.getStudentRole());
             //         //getstudentrole is in student class
             //     }//send everything to a csv file.
-               
+
 
 
             // }
@@ -359,7 +361,7 @@ public class CampManager {
         ArrayList<Student> filteredList = new ArrayList<>();
         Role[] roles = Role.values();
         for(Student student : students){
-            if(student.getCampRole(camp) == roles[choice]){ //yuhao pls implement this 
+            if(student.getCampRole(camp) == roles[choice]){ //yuhao pls implement this
                 filteredList.add(student);
             }
         }
@@ -370,32 +372,30 @@ public class CampManager {
 
     //method to generate CSV format
 
+
+
     public static void generateCSV(ArrayList<Student>filteredStudentList, Date[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
-        String filename = "camp_report.csv";
-        StringBuilder csvContent = new StringBuilder();
-        String totalSlot = Integer.toString(totalSlots);
+        String projectDirectory = System.getProperty("user.dir");
+        String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + ".csv";
 
-        csvContent.append("Student Name , Student Role\n");
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(filename, false))) {
+            printWriter.println("Student Name, Student Role");
 
-        for(Student student : filteredStudentList){
-            csvContent.append(String.format("%s , %s", student.getName() , student.getCampRole(camp)));
+            for (Student student : filteredStudentList) {
+                printWriter.println(student.getName() + "," + student.getCampRole(camp));
+            }
 
-        }
+            printWriter.println("Camp Dates");
+            // Write dates into csv
+            // Assuming dates is a list of dates
+            /*for (Date date : campDates) {
+                printWriter.println(date.toString());
+            }*/
 
-        csvContent.append("Camp Dates");
-    
+            printWriter.println("Registration Deadline,User Group,Location of Camp,Camp Slots,Camp Description");
+            printWriter.println(registrationClosingDate + "," + userGroup + "," + location + "," + totalSlots + "," + description);
 
-        //for(int i = 0 ; i<) write dates into csv
-
-        csvContent.append("Registration Deadline, User Group, Location of Camp, Camp Slots, Camp Description\n");
-
-        csvContent.append(String.format("%s, %s ,%s, %s ,%s",registrationClosingDate,userGroup,location,totalSlot,description));
-
-
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filename,true))){
-            writer.write(csvContent.toString());
-            System.out.println("CSV file created successfully" + filename);
-
+            System.out.println("CSV file created successfully: " + filename);
         } catch (IOException e) {
             System.out.println("CSV file not found");
         }
