@@ -12,7 +12,7 @@ import java.io.Reader;
 import java.io.PrintWriter;
 
 
-public class StudentDataBase {
+public class StudentDataBase extends DataBase{
     private static StudentDataBase instance;
     private static ArrayList<Student> studentList = new ArrayList<>();
     private String filePath;

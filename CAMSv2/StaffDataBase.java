@@ -4,7 +4,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class StaffDataBase {
+public class StaffDataBase extends DataBase {
     private static StaffDataBase instance;
     private static ArrayList<Staff> staffList = new ArrayList<>();
     private String filePath;

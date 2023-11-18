@@ -4,7 +4,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class CampCommitteeDataBase {
+public class CampCommitteeDataBase extends DataBase{
     private static CampCommitteeDataBase instance;
     private static ArrayList<CampCommitteeMember> campCommitteeMembersList = new ArrayList<>();
     private String filePath;
