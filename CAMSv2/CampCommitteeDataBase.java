@@ -56,9 +56,9 @@ public class CampCommitteeDataBase {
 
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
-//            if(campCommitteeMembersList.size() == 0){
-//                return;
-//            }
+            if(campCommitteeMembersList.size() == 0){
+                return;
+            }
             for (CampCommitteeMember campCommitteeMember: campCommitteeMembersList) {
                 printWriter.println( campCommitteeMember.getName()+ "," +campCommitteeMember.getEmailID()  + "," + campCommitteeMember.getFaculty()  + ","
                                      + campCommitteeMember.getPassword() + "," + campCommitteeMember.getCamp().getCampName());
