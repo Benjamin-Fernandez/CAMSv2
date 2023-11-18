@@ -5,15 +5,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class CampCommitteeDataBase {
+    private static CampCommitteeDataBase instance;
     private static ArrayList<CampCommitteeMember> campCommitteeMembersList = new ArrayList<>();
     private String filePath;
 
 
     public CampCommitteeDataBase(String filePath) {
         this.filePath = filePath;
-        loadToCSV();
     }
 
+    public static CampCommitteeDataBase getInstance(String filePath) {
+        if (instance == null) {
+            instance = new CampCommitteeDataBase(filePath);
+        }
+        return instance;
+    }
 
 
     public void loadToCSV(){
@@ -39,11 +45,8 @@ public class CampCommitteeDataBase {
                 String faculty = values[2].trim();
                 String password = values[3].trim(); // Assume default password
                 String campName = values[4].trim(); // Assume default password
+
                 Camp camp = CampManager.getCamp(campName);
-                // if csv == student.csv ,
-                //    String role = student;
-                //else if cvs == staff.csv ,
-                // String role= staff
                 CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password,Role.CAMP_COMMITTEE_MEMBER, camp);
                 campCommitteeMembersList.add(campCommitteeMember);
             }
@@ -53,14 +56,19 @@ public class CampCommitteeDataBase {
 
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
+//            if(campCommitteeMembersList.size() == 0){
+//                return;
+//            }
             for (CampCommitteeMember campCommitteeMember: campCommitteeMembersList) {
-
-                printWriter.println( campCommitteeMember.getName()+ "," +campCommitteeMember.getEmailID()  + "," + campCommitteeMember.getFaculty()  + ","+ campCommitteeMember.getPassword() + "," + campCommitteeMember.getCamp().getCampName());
+                printWriter.println( campCommitteeMember.getName()+ "," +campCommitteeMember.getEmailID()  + "," + campCommitteeMember.getFaculty()  + ","
+                                     + campCommitteeMember.getPassword() + "," + campCommitteeMember.getCamp().getCampName());
             }
         }
         catch (IOException e) {
             System.out.println("CSV file not found");
-        }
+        }finally {
+            // Clear the staffList after writing to the CSV file
+            campCommitteeMembersList.clear();}
     }
 
     public static ArrayList<CampCommitteeMember> getCampCommitteeMembersList() {

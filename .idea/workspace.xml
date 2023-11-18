@@ -6,18 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Authenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Cams.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Cams.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/Staff_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/Staff_List.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/Student_Enquiries.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Data CSV/Student_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Data CSV/Student_List.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/StaffDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/StaffDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/UserDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/StudentDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/StudentDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Authenticator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/CampCommitteeDataBase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Cams.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Staff_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Staff_List.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Student_Enquiries.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Staff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Student_List.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/Data CSV/Student_List.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StaffDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StaffDataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/UserDataBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAMSv2/CAMSv2/StudentDataBase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

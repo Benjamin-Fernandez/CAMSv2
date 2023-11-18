@@ -6,7 +6,8 @@ public class Authenticator {
     static User check(String UserID, String Password, int login_option) {
 
         if (login_option == 1) {
-            for (int i = 0; i < StaffDataBase.getStaffList().size(); i++) {
+
+            for (int i = 0; i <StaffDataBase.getStaffList().size(); i++) {
                 Staff staff = StaffDataBase.getStaffList().get(i);
                 if (staff.getEmailID().equals(UserID) && staff.getPassword().equals(Password)) {
                     return staff;
@@ -16,12 +17,12 @@ public class Authenticator {
 
 
         if (login_option == 2) {
-            for (int i = 0; i < StudentDataBase.getStudents().size(); i++) {
-                Student student = StudentDataBase.getStudents().get(i);
+            for (Student student : StudentDataBase.getStudents()) {
                 if (student.getEmailID().equals(UserID) && student.getPassword().equals(Password)) {
                     return student;
                 }
             }
+
         }
 
 
