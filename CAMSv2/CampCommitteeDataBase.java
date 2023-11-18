@@ -35,16 +35,13 @@ public class CampCommitteeDataBase {
 
             while ((line = reader.readLine()) != null) {
                 if (line.equals("")) {return;}
-                // String firstLine = reader.readLine(); // Check the first line
-                // if (firstLine == null) {
-                //     return; // Exit method if the file is empty
-                // }
+
                 String[] values = line.split(",");
                 String name = values[0].trim();
                 String emailID = values[1];
                 String faculty = values[2].trim();
-                String password = values[3].trim(); // Assume default password
-                String campName = values[4].trim(); // Assume default password
+                String password = values[3].trim();
+                String campName = values[4].trim();
 
                 Camp camp = CampManager.getCamp(campName);
                 CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password,Role.CAMP_COMMITTEE_MEMBER, camp);
@@ -57,11 +54,13 @@ public class CampCommitteeDataBase {
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
             if(campCommitteeMembersList.size() == 0){
+                printWriter.println("");
                 return;
             }
             for (CampCommitteeMember campCommitteeMember: campCommitteeMembersList) {
-                printWriter.println( campCommitteeMember.getName()+ "," +campCommitteeMember.getEmailID()  + "," + campCommitteeMember.getFaculty()  + ","
-                                     + campCommitteeMember.getPassword() + "," + campCommitteeMember.getCamp().getCampName());
+                printWriter.println(campCommitteeMember.getName() + "," + campCommitteeMember.getEmailID() + "," +
+                                    campCommitteeMember.getFaculty() + "," + campCommitteeMember.getPassword() + "," +
+                                    campCommitteeMember.getCamp().getCampName());
             }
         }
         catch (IOException e) {

@@ -78,8 +78,7 @@ public class Cams {
             // Write changes to the CSV files if needed
             studentDataBase.writeToCSV();
             staffDataBase.writeToCSV();
-            if(CampCommitteeDataBase.getCampCommitteeMembersList().size() >0){
-                campCommitteeDataBase.writeToCSV();}
-        }
+            campCommitteeDataBase.writeToCSV();}
+
     }
 }
