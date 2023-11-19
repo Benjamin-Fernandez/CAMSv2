@@ -12,9 +12,25 @@ public class CampCommitteeMemberController extends StudentController {
 
     @Override
     public void enterCampSpecificOptions() {
-        super.handleCampSelection();
+        super.camp = super.handleCampSelection();
+        if (camp == null) {return;}
+        
         boolean running = true;
+        boolean studentRegistered = camp.isStudentRegistered(user.getName());
+        System.out.println("student registered: " + studentRegistered);
+        boolean isCCM = (camp.equals(ccm.getCamp()));
+        ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
+        view.displayReturnToPreviousPage();
+        int choice = sc.nextInt();
+        sc.nextLine();
+
         while (running) {
+            if (isCCM) {
+                running = handleCampSpecificOptions(choice, studentRegistered);                
+            }
+            else {
+                running = handleCampCommitteeMemberMenu(choice);
+            }
 
         }
     }
@@ -22,11 +38,22 @@ public class CampCommitteeMemberController extends StudentController {
     private boolean handleCampCommitteeMemberMenu(int choice) {
         // Implement additional menu options specific to CampCommitteeMember
         switch (choice) {
-            // case 1, 2, etc. for CampCommitteeMember specific actions
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;  
+            case 5:
+                break;
+            case 6:
+                break;
+
             case 111:
                 return false;
-            default:
-                return true;
         }
+        return true;
     }
 }
