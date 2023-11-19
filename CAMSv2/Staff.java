@@ -7,6 +7,12 @@ public class Staff extends User {
         super(emailID,password,faculty,name,role);
     }
 
+    @Override
+    public void changePassword() {
+        super.changePassword();
+        StaffDataBase.getInstance().writeToCSV();
+    }
+
 
     public void createCamp(){
         CampManager.createCamp(this.getName());
@@ -163,12 +169,10 @@ public class Staff extends User {
     }
 
     public void addPointsForApprovedSuggestions(String campCommitteeMemberName){
-        for(int i = 0; i< CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().size(); i++){
-            CampCommitteeMember campCommitteeMember = CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().get(i);
+        for (CampCommitteeMember campCommitteeMember : CampCommitteeDataBase.getInstance().getCampCommitteeMembersList()) {
             if(campCommitteeMember.getName().equals(campCommitteeMemberName)){
                 // campCommitteeMember.addPointsForSuggestions();
-            }
-
+            }            
         }
 
     }

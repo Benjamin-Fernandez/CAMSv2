@@ -52,10 +52,13 @@ public class CampManager {
     }
 
     public static ArrayList<Camp> setUpStudentRegisteredCamps(String name) {
+        System.out.println("Passed Name: " + name);
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         for (Camp camp : campList) {
             for (Student student : camp.getStudentList()) {
+                System.out.println("Name to check: " + student.getName());
                 if (student.getName().equals(name)) {
+                    System.out.println("Camp is registered");
                     registeredCamps.add(camp);
                 }
             }

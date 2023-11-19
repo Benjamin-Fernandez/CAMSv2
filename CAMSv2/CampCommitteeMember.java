@@ -12,6 +12,13 @@ public class CampCommitteeMember extends Student {
         this.camp = camp;
     }
 
+    @Override
+    public void changePassword() {
+        // TODO Auto-generated method stub
+        super.changePassword();
+        CampCommitteeDataBase.getInstance().writeToCSV();
+    }
+
 
     // public void viewEnquiries() {
     //     EnquiryManager enquiryManager = new EnquiryManager();
@@ -27,24 +34,23 @@ public class CampCommitteeMember extends Student {
     public void submitSuggestion(String suggestion){
         SuggestionManager.getInstance().createSuggestion(camp.getCampName(), suggestion, this.name);
         System.out.println("Suggestion added");
-        points++;
     }
 
-    public void viewSuggestion() {
-        SuggestionManager suggestionManager = SuggestionManager.getInstance();
-        suggestionManager.viewSuggestionForCommitteeMember(this.name,camp.getCampName());
-    }
+    // public void viewSuggestion() {
+    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
+    //     suggestionManager.viewSuggestionForCommitteeMember(this.name,camp.getCampName());
+    // }
 
-    public void editSuggestion(){
-        SuggestionManager suggestionManager = SuggestionManager.getInstance();
-        suggestionManager.editSuggestionForCommitteeMember(this.name,camp.getCampName());
+    // public void editSuggestion(){
+    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
+    //     suggestionManager.editSuggestionForCommitteeMember(this.name,camp.getCampName());
 
-    }
+    // }
 
-    public void deleteSuggestion(){
-        SuggestionManager suggestionManager = SuggestionManager.getInstance();
-        suggestionManager.deleteSuggestionForCommitteeMember(this.name,camp.getCampName());
-    }
+    // public void deleteSuggestion(){
+    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
+    //     suggestionManager.deleteSuggestionForCommitteeMember(this.name,camp.getCampName());
+    // }
 
     public void addPointsByOne(){
         points +=1;

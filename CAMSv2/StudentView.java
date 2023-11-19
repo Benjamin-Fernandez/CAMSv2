@@ -49,9 +49,8 @@ public class StudentView {
     }
 
     public void displayEnquiry(Question question) {
-
+        System.out.println("EnquiryId: " + question.getQuestionId() + "|" + " Enquiry: " + question.getQuestion() + "|" + " Camp: " + question.getCampName());
         for (Reply reply : question.getReplies()) {
-            System.out.println("EnquiryId: " + question.getQuestionId() + "|" + " Enquiry: " + question.getQuestion() + "|" + " Camp: " + question.getCampName());
             System.out.println(reply.getName() + "replied: " + reply.getReply());
         }
     }
@@ -122,6 +121,12 @@ public class StudentView {
 
 // -------------------Camp General---------------
     public void displayListOfCamps(ArrayList<Camp> camps) {
+        // int counter = 1;
+        // for (Camp camp : camps) {
+        //     System.out.println(counter + ": " + camp.getCampName());       
+        //     counter++;     
+        // }
+
         for (int i = 0; i < camps.size(); i++) {
             System.out.println(i+1 + ": " + camps.get(i).getCampName());
         }

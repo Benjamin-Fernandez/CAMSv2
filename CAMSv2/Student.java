@@ -14,6 +14,12 @@ public class Student extends User{
         // setup the enquiries and registeredCamps
         enquiries = CampManager.setUpStudentEnquiries(name);
         registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
+        System.out.println("Registered Camp: " + getRegisteredCamps());
+    }
+    @Override
+    public void changePassword() {
+        super.changePassword();
+        StudentDataBase.getInstance().writeToCSV();
     }
 
     public Camp ifCampNameInAvailableListOfCamps(String campName) {
@@ -47,9 +53,10 @@ public class Student extends User{
 
     // --- Enquiries -----------------------------------------------------
     public void createEnquiry(String description, Camp camp) {
-
         Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
+        System.out.println("Created Question: " + question);
         enquiries.addQuestion(question);
+        System.out.println("EnquiryList: " + enquiries.getQuestions());
         EnquiryManager.createEnquiry(question, camp, getName());
     }
 
@@ -127,16 +134,17 @@ public class Student extends User{
         if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
             System.out.println("Camp: " + camp);
+            camp.addStudent(this);
             CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty, password, role, camp);
             System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
             camp.addCampCommitteeMember(campCommitteeMember);
-            camp.addStudent(this);
             // append into database of Camp Committee Member
             CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().add(campCommitteeMember);
             CampCommitteeDataBase.getInstance().printList();
             CampCommitteeDataBase.getInstance().writeToCSV();
             System.out.println("REMINDER: Please Re-Login to access Camp Committee Member Privileges...");
             camp.printCCMList();
+            camp.printStudentList();
             registeredCamps.add(camp);
             return false;
         }

@@ -3,10 +3,11 @@ package CAMSv2;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CampCommitteeDataBase extends DataBase{
     private static CampCommitteeDataBase instance;
-    private ArrayList<CampCommitteeMember> campCommitteeMembersList = new ArrayList<>();
+    private HashSet<CampCommitteeMember> campCommitteeMembersList = new HashSet<>();
     private String filePath = System.getProperty("user.dir") + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
 
@@ -86,7 +87,7 @@ public class CampCommitteeDataBase extends DataBase{
         }
     }
 
-    public ArrayList<CampCommitteeMember> getCampCommitteeMembersList() {
+    public HashSet<CampCommitteeMember> getCampCommitteeMembersList() {
         return campCommitteeMembersList;
     }
 

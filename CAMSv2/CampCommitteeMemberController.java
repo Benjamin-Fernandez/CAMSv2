@@ -44,16 +44,16 @@ public class CampCommitteeMemberController extends StudentController {
         if (camp == null) {return;}
         
         boolean running = true;
-        boolean studentRegistered = camp.isStudentRegistered(user.getName());
-        System.out.println("student registered: " + studentRegistered);
-        boolean isCCM = (camp.equals(ccm.getCamp()));
-        // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
-        ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
-        view.displayReturnToPreviousPage();
-        int choice = sc.nextInt();
-        sc.nextLine();
-
         while (running) {
+            boolean studentRegistered = camp.isStudentRegistered(user.getName());
+            System.out.println("student registered: " + studentRegistered);
+            boolean isCCM = (camp.equals(ccm.getCamp()));
+            // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
+            ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
+            view.displayReturnToPreviousPage();
+            int choice = sc.nextInt();
+            sc.nextLine();
+
             if (!isCCM) {
                 running = handleCampSpecificOptions(choice, studentRegistered);                
             }
