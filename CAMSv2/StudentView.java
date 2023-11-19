@@ -115,10 +115,10 @@ public class StudentView {
     }
 
 // ------------------Profile----------------------
-    public void displayProfile(String name, String password, String faculty, Role role, String ccmCamp) {
+    public void displayProfile(String name, String password, UserGroup faculty, Role role, String ccmCamp) {
         System.out.println("Name: " + name);
         System.out.println("Password: " + password); 
-        System.out.println("Faculty: " + faculty); 
+        System.out.println("Faculty: " + faculty.toString()); 
         System.out.println("Role: " + role.toString());
         System.out.println("Camp(As a Camp Committee Member): " + ccmCamp);       
     }

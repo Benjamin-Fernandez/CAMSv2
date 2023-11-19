@@ -293,7 +293,7 @@ public class CampManager {
         String settings;
         boolean choice;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Set visibility of" + campName + "on or off?");
+        System.out.println("Set visibility to on or off?");
         settings = sc.nextLine();
         if(settings.equals("on"))
             choice = true;
@@ -498,7 +498,7 @@ public class CampManager {
             UserGroup campUserGroup = camp.getUserGroup();
 
             if(camp.visibility){
-                if(campUserGroup.equals(faculty) || campUserGroup.equals(faculty) || campUserGroup.equals(UserGroup.NTU)){
+                if(campUserGroup.equals(faculty) || campUserGroup.equals(UserGroup.NTU)){
                     filteredCamps.add(camp);
                 }
             }
