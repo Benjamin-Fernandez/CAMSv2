@@ -1,8 +1,6 @@
 package CAMSv2;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
 /** 
  Representing a Student user registered in the system.
  @author Zhu Yu Hao
@@ -10,15 +8,29 @@ import java.util.HashSet;
  */
 public class Student extends User{
     ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
-    Enquiries enquiries = new Enquiries(super.name);
-    public Student(String emailID, String password, String faculty, String name, Role role) {
-        super(emailID, password, faculty, name, role);
-        // loop thorugh camps and find the user enquiries
-        
+    Enquiries enquiries;
+    public Student(String name, String emailID, String faculty, String password, Role role) {
+        super(name, emailID, faculty, password, role);
+        // setup the enquiries and registeredCamps
+        enquiries = CampManager.setUpStudentEnquiries(name);
+        registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
     }
     // Student User Interface
 
-    // --- View Camps ---------------------------------------------------
+    public Camp ifCampNameInAvailableListOfCamps(String campName) {
+        Camp camp = CampManager.getCamp(campName);
+        if (camp == null) {
+            System.out.println("Camp not found!");
+            return null;
+        }
+        else if (!CampManager.getCampListByFacultyAndVisibility(campName).contains(camp)) {
+            return null;
+        } 
+        else {
+            return camp;
+        }
+    }
+
     public ArrayList<Camp> getRegisteredCamps() {
         return registeredCamps;
     }
@@ -34,8 +46,8 @@ public class Student extends User{
 
 
     // --- Enquiries -----------------------------------------------------
-    // have to decide if we are going to use EnquiryManager for managing the logic or not
     public void createEnquiry(String description, Camp camp) {
+
         Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
         enquiries.addQuestion(question);
         EnquiryManager.createEnquiry(question, camp, getName());
@@ -118,8 +130,6 @@ public class Student extends User{
             camp.addCampCommitteeMember(campCommitteeMember);
             camp.addStudent(this);
             // append into database of Camp Committee Member
-    
-            campCommitteeMember.committeeInterface();
         }
         else if (role.equals(Role.STUDENT)) {
             camp.addStudent(this);

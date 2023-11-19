@@ -11,6 +11,8 @@ public class EnquiryManager {
     public static void createEnquiry(Question question, Camp camp, String studentName){
         // check if an Enquiries already exist for the student calling this.
         enquiryCounter++;
+        // take existing
+        // create a new enquiries object in the camp
         Enquiries newEnquiries = camp.addStudentEnquiriesInList(studentName);
         // add question to camp
         newEnquiries.addQuestion(question);

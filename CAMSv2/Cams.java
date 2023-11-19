@@ -62,11 +62,12 @@ public class Cams {
                         staff.staffInterface();
                     } else if (loginOption == 2) {
                         Student student = (Student) user;
-                        StudentController studentController = new StudentController(student);
-                        studentController.startStudentProgram();
+                        StudentController studentController = new StudentController(student, new StudentView());
+                        studentController.startProgram();
                     } else {
                         CampCommitteeMember campCommitteeMember = (CampCommitteeMember) user;
-                        campCommitteeMember.committeeInterface();
+                        CampCommitteeMemberController campCommitteeMemberController = new CampCommitteeMemberController(campCommitteeMember, new CampCommitteeMemberView());
+                        campCommitteeMemberController.startProgram();
                     }
                     break;
 
@@ -78,7 +79,8 @@ public class Cams {
             // Write changes to the CSV files if needed
             studentDataBase.writeToCSV();
             staffDataBase.writeToCSV();
-            campCommitteeDataBase.writeToCSV();}
+            campCommitteeDataBase.writeToCSV();
+        }
 
     }
 }

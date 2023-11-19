@@ -6,8 +6,15 @@ import java.util.HashSet;
 public class StudentView {
 
 // --------------------General--------------------
+    public void displayHeader(String header) {
+        System.out.println("---------------" + header + "-------------------");        
+    }
+
+    public void displaySelectActionToTake() {
+        System.out.println("Select an option: ");
+    }
+
     public void displayStudentMenu() {
-        System.out.println("---------------STUDENT MENU-------------------");
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password"); 
         System.out.println("2. View list of camps available"); 
@@ -18,7 +25,7 @@ public class StudentView {
     }
 
     public void displayReturnToPreviousPage() {
-        System.out.println(" <--- Return to previous page (type 111)");
+        System.out.println("<--- Return to previous page (type 111)");
     }
 
     public void displaySuccessfulMessage() {
@@ -41,7 +48,6 @@ public class StudentView {
     }
     
     public void displayEnquiriesMenu() {
-        System.out.println("---------------ENQUIRIES MENU-------------------");
         System.out.println("1. View all enquiries");  
         System.out.println("2. Edit an enquiry"); 
         System.out.println("3. Delete an enquiry");        
@@ -55,34 +61,33 @@ public class StudentView {
 
 
 // ---------------------Camp Specific-----------------------
-    public void displayRegister() {
-        System.out.println("2. Register");
+    public void displayCampSpecificOptions(boolean isRegistered) {
+        System.out.println("1. Submit an Enquiry");
+        if (isRegistered) {
+            System.out.println("2. Withdraw");  
+        }
+        else {
+            System.out.println("2. Register");
+        }
+        System.out.println("3. View Remaining Camp Slots");
     }
 
-    public void displayWithdraw() {
-        System.out.println("2. Withdraw");       
-    }
 
     public void displayEnterCampName() {
         System.out.println("Please enter Camp Name: ");               
     }
 
-    public void displaySubmitEnquiry() {
-        System.out.println("---------------CAMP MENU-------------------");
-        System.out.println("1. Submit an Enquiry"); 
-    }
 
     public void displayRemainingCampSlots() {
         System.out.println("3. View Remaining Camp Slots");
     }
 
     public void displayRemainingCampSlots(Camp camp) {
-        System.out.println(" Available Slots: " + (camp.getTotalSlots() - camp.getStudentList().size()));
+        System.out.println((camp.getTotalSlots() - camp.getStudentList().size()));
         // Camp Manager should check that the camp is Visible and userGroup
     }
 // --------------Register------------------------
     public void displayRoleToRegister() {
-        System.out.println("<Roles>");
         for (Role role : Role.values()) {
             if (role.equals(Role.STAFF)) {continue;}
             System.out.println(role.toString());

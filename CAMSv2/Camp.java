@@ -72,6 +72,7 @@ public class Camp {
             }
         
         }
+
         Enquiries newEnquiry = new Enquiries(studentName);
         addEnquiry(newEnquiry);
         return newEnquiry;

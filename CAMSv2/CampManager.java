@@ -28,13 +28,40 @@ public class CampManager {
 
     //method
 
-    // public static Enquiries findStudentEnquirier(String name) {
-    //     for (Camp camp : campList) {
-    //         for (Enquiries enquiryEnquiries : camp.getEnquiries()) {
-                
-    //         }
-    //     }
-    // }
+    public static Enquiries setUpStudentEnquiries(String name) {
+        Enquiries studentEnquiries = new Enquiries(name);
+        ArrayList<Question> studentQuestions = studentEnquiries.getQuestions();
+        for (Camp camp : campList) {
+            for (Enquiries enquiries : camp.getEnquiries()) {
+                // System.out.println("Enquirer: " + enquiries.getEnqurier());
+                // System.out.println("Equals? " + name);
+                if (enquiries.getEnqurier().equals(name)) {
+                    ArrayList<Question> questions = enquiries.getQuestions();
+                    // for (Question question : questions) {
+                    //     System.out.println("question: " + question.getQuestion());
+                    // }
+                    studentQuestions.addAll(questions);
+                }
+            }
+        }
+        // System.out.println("StudentQuestions: " + studentQuestions.size());
+        // for (Question question : studentQuestions) {
+        //     System.out.println("questioninStudent: " + question.getQuestion());            
+        // }
+        return studentEnquiries;
+    }
+
+    public static ArrayList<Camp> setUpStudentRegisteredCamps(String name) {
+        ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
+        for (Camp camp : campList) {
+            for (Student student : camp.getStudentList()) {
+                if (student.getName().equals(name)) {
+                    registeredCamps.add(camp);
+                }
+            }
+        }
+        return registeredCamps;
+    }
     
     public static void createCamp(String staffName){
         //print and scan logic is here

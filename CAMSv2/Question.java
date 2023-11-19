@@ -14,7 +14,8 @@ public class Question {
     public Question(String question, String campNameString, int id){
         this.question = question;
         this.campName = campNameString;
-        this.reply = new ArrayList<String>() ;
+        this.reply = new ArrayList<String>();
+        this.id = id;
     }
 
     
