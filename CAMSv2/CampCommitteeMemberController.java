@@ -84,6 +84,12 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
+    protected void handleReplyToEnquiry() {
+        // get enquiry id
+        // set a reply in the enquiry reply list.
+        // print completed.
+    }
+
     protected void handleCampEnquiries() {
 
         boolean running = true;

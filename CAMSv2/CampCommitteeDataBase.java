@@ -21,6 +21,14 @@ public class CampCommitteeDataBase extends DataBase{
         return instance;
     }
 
+    public void printList() {
+        System.out.println("PRINTING CCM DATABASE...");
+        for (CampCommitteeMember campCommitteeMember : campCommitteeMembersList) {
+            System.out.println(campCommitteeMember.getName());
+            System.out.println(campCommitteeMember.getEmailID());
+        }
+    }
+
 
     public void loadToCSV(){
         campCommitteeMembersList.clear();
@@ -67,7 +75,7 @@ public class CampCommitteeDataBase extends DataBase{
                 return;
             }
             for (CampCommitteeMember campCommitteeMember: campCommitteeMembersList) {
-                System.out.println("Within CCMwriteToCSV: " + campCommitteeMember.getCamp());
+                if (campCommitteeMember.getCamp() == null) {continue;}
                 printWriter.println(campCommitteeMember.getName() + "," + campCommitteeMember.getEmailID() + "," +
                                     campCommitteeMember.getFaculty() + "," + campCommitteeMember.getPassword() + "," +
                                     campCommitteeMember.getCamp().getCampName());

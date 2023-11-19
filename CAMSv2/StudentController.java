@@ -118,7 +118,7 @@ public class StudentController extends BaseController<Student, StudentView>{
     protected Camp handleCampSelection() {
         view.displayHeader("CAMP SELECTION");
         // select camp
-        view.displayListOfCamps(CampManager.getCampList());
+        view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(user.getFaculty()));
         view.displayEnterCampName();
 
         // enter camp name
