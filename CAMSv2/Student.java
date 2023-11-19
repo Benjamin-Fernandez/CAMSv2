@@ -13,6 +13,7 @@ public class Student extends User{
         super(name, emailID, faculty, password, role);
         // setup the enquiries and registeredCamps
         enquiries = CampManager.setUpStudentEnquiries(name);
+        System.out.println("EnquirySetUp: " + getEnquiries().getQuestions());
         registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
         System.out.println("Registered Camp: " + getRegisteredCamps());
     }
@@ -135,6 +136,7 @@ public class Student extends User{
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
             System.out.println("Camp: " + camp);
             camp.addStudent(this);
+            
             CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty, password, role, camp);
             System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
             camp.addCampCommitteeMember(campCommitteeMember);
@@ -146,6 +148,11 @@ public class Student extends User{
             camp.printCCMList();
             camp.printStudentList();
             registeredCamps.add(camp);
+
+            // Auto logout to login page
+            // Delete this Student Object from Student Database
+            StudentDataBase.getInstance().getStudents().remove(this);
+            StudentDataBase.getInstance().writeToCSV();
             return false;
         }
         else if (role.equals(Role.STUDENT)) {
