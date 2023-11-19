@@ -36,7 +36,7 @@ public class Camp {
         blackList.add(student);
     }
 
-    public void addCampCommitteeMember(Student student) {
+    public void addCampCommitteeMember(CampCommitteeMember student) {
         info.getCampCommitteeSlots().add(student);
     }
 
@@ -160,7 +160,7 @@ public class Camp {
         return this.info.getTotalSlots();
     }
 
-    public HashSet<Student> getCampCommitteeSlots(){
+    public HashSet<CampCommitteeMember> getCampCommitteeSlots(){
         return this.info.getCampCommitteeSlots();
     }
 
@@ -206,12 +206,21 @@ public class Camp {
     }
 
     public void printStudentList() {
+        System.out.println("PRINTING STUDENTLIST");
         for (Student student : studentList) {
             System.out.println(student.getName());
         }
     }
 
+    public void printCCMList() {
+        System.out.println("PRINTING CCMLIST");
+        for (CampCommitteeMember student : info.getCampCommitteeSlots()) {
+            System.out.println(student.getName());
+        }
+    }
+
     public void printBlackList() {
+    System.out.println("PRINTING BLACKLIST");
     for (Student blackStudent : blackList) {
         System.out.println(blackStudent.getName());
     }

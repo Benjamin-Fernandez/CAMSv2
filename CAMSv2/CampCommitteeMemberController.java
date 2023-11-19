@@ -19,16 +19,18 @@ public class CampCommitteeMemberController extends StudentController {
         boolean studentRegistered = camp.isStudentRegistered(user.getName());
         System.out.println("student registered: " + studentRegistered);
         boolean isCCM = (camp.equals(ccm.getCamp()));
+        // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
         ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
         view.displayReturnToPreviousPage();
         int choice = sc.nextInt();
         sc.nextLine();
 
         while (running) {
-            if (isCCM) {
+            if (!isCCM) {
                 running = handleCampSpecificOptions(choice, studentRegistered);                
             }
             else {
+                // no registration/withdrawal check since user is CCM and thus cannot leave the camp
                 running = handleCampCommitteeMemberMenu(choice);
             }
 

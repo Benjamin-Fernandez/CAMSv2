@@ -6,17 +6,12 @@ public class Cams {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Get the project's base directory
-        String projectDirectory = System.getProperty("user.dir");
+        // ALL PATHS ARE NOW STORED WITHIN THE DATABASE ITSELF -Yuhao
 
-        // Paths to the CSV files
-        String studentCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Student_List.csv";
-        String staffCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\Staff_List.csv";
-        String campCommitteeMemberCSVPath = projectDirectory + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
-        StudentDataBase studentDataBase = StudentDataBase.getInstance(studentCSVPath);
-        StaffDataBase staffDataBase = StaffDataBase.getInstance(staffCSVPath);
-        CampCommitteeDataBase campCommitteeDataBase = CampCommitteeDataBase.getInstance(campCommitteeMemberCSVPath);
+        StudentDataBase studentDataBase = StudentDataBase.getInstance();
+        StaffDataBase staffDataBase = StaffDataBase.getInstance();
+        CampCommitteeDataBase campCommitteeDataBase = CampCommitteeDataBase.getInstance();
 
         boolean running = true;
 

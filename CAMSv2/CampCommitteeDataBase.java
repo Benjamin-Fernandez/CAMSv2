@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 public class CampCommitteeDataBase extends DataBase{
     private static CampCommitteeDataBase instance;
-    private static ArrayList<CampCommitteeMember> campCommitteeMembersList = new ArrayList<>();
-    private String filePath;
+    private ArrayList<CampCommitteeMember> campCommitteeMembersList = new ArrayList<>();
+    private String filePath = System.getProperty("user.dir") + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
 
-    public CampCommitteeDataBase(String filePath) {
-        this.filePath = filePath;
+    private CampCommitteeDataBase() {
     }
 
-    public static CampCommitteeDataBase getInstance(String filePath) {
+    // can remove filePath argument and instead intialize into the class itself
+    public static CampCommitteeDataBase getInstance() {
         if (instance == null) {
-            instance = new CampCommitteeDataBase(filePath);
+            instance = new CampCommitteeDataBase();
         }
         return instance;
     }
@@ -43,8 +43,15 @@ public class CampCommitteeDataBase extends DataBase{
                 String password = values[3].trim();
                 String campName = values[4].trim();
 
+                UserGroup userGroup = UserGroup.NTU;
+                // convert faculty to user group
+                try {
+                    userGroup = UserGroup.valueOf(faculty);
+                } catch (Exception e) {
+                    System.out.println("Cannot convert UserGroup in CSV into ENUM");
+                }
                 Camp camp = CampManager.getCamp(campName);
-                CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name,emailID, faculty,password,Role.CAMP_COMMITTEE_MEMBER, camp);
+                CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, userGroup, password, Role.CAMP_COMMITTEE_MEMBER, camp);
                 campCommitteeMembersList.add(campCommitteeMember);
             }
         } catch (IOException e) {e.printStackTrace();}
@@ -70,7 +77,7 @@ public class CampCommitteeDataBase extends DataBase{
             campCommitteeMembersList.clear();}
     }
 
-    public static ArrayList<CampCommitteeMember> getCampCommitteeMembersList() {
+    public ArrayList<CampCommitteeMember> getCampCommitteeMembersList() {
         return campCommitteeMembersList;
     }
 

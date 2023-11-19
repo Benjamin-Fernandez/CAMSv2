@@ -6,7 +6,7 @@ public class CampCommitteeMember extends Student {
     private int points;
     private Camp camp;
 
-    public CampCommitteeMember(String emailID, String password, String faculty, String name, Role role, Camp camp) {
+    public CampCommitteeMember(String emailID, String password, UserGroup faculty, String name, Role role, Camp camp) {
         super(emailID, password, faculty, name, role);
         points = 0;
         this.camp = camp;

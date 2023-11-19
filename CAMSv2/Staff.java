@@ -3,13 +3,13 @@ package CAMSv2;
 import java.util.*;
 
 public class Staff extends User {
-    public Staff(String emailID, String password, String faculty, String name, Role role){
+    public Staff(String emailID, String password, UserGroup faculty, String name, Role role){
         super(emailID,password,faculty,name,role);
     }
 
 
     public void createCamp(){
-        CampManager.createCamp(this.name);
+        CampManager.createCamp(this.getName());
     }
 
     public void editCamp() {
@@ -24,7 +24,7 @@ public class Staff extends User {
         campName = getCampName(--index); //index is one larger than actual index
         
         // calls campManager
-        CampManager.editCamp(campName,this.name);
+        CampManager.editCamp(campName,getName());
         //sc.close();
         
     }
@@ -117,7 +117,7 @@ public class Staff extends User {
         campIndex = sc.nextInt();
         curCamp = staffCampList.get(--campIndex);
         campName = curCamp.getCampName();
-        enqManager.replyEnquiryFromStaff(campName, this.name);
+        enqManager.replyEnquiryFromStaff(campName, this.getName());
         
         //sc.close();
 
@@ -131,7 +131,7 @@ public class Staff extends User {
         myList();
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
-        suggManager.viewSuggestionForStaff(campName, this.name);
+        suggManager.viewSuggestionForStaff(campName, this.getName());
         //sc.close();
     }
 
@@ -142,7 +142,7 @@ public class Staff extends User {
         System.out.println("which camp's suggestion would you want to approve? ");
         campName = sc.nextLine();
         SuggestionManager suggManager = new SuggestionManager();
-        Suggestion suggestion = suggManager.approveAdvice(campName, this.name);
+        Suggestion suggestion = suggManager.approveAdvice(campName, this.getName());
         //sc.close();
         addPointsForApprovedSuggestions(suggestion.getStudent());
 
@@ -150,7 +150,7 @@ public class Staff extends User {
 
     public void generateReport(){
 
-        CampManager.generateReport(this.name);
+        CampManager.generateReport(this.getName());
     }
 
 
@@ -165,8 +165,8 @@ public class Staff extends User {
     }
 
     public void addPointsForApprovedSuggestions(String campCommitteeMemberName){
-        for(int i = 0; i< CampCommitteeDataBase.getCampCommitteeMembersList().size(); i++){
-            CampCommitteeMember campCommitteeMember = CampCommitteeDataBase.getCampCommitteeMembersList().get(i);
+        for(int i = 0; i< CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().size(); i++){
+            CampCommitteeMember campCommitteeMember = CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().get(i);
             if(campCommitteeMember.getName().equals(campCommitteeMemberName)){
                 // campCommitteeMember.addPointsForSuggestions();
             }

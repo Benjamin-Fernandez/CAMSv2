@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Student extends User{
     ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
     Enquiries enquiries;
-    public Student(String name, String emailID, String faculty, String password, Role role) {
+    public Student(String name, String emailID, UserGroup faculty, String password, Role role) {
         super(name, emailID, faculty, password, role);
         // setup the enquiries and registeredCamps
         enquiries = CampManager.setUpStudentEnquiries(name);
@@ -23,7 +23,8 @@ public class Student extends User{
             System.out.println("Camp not found!");
             return null;
         }
-        else if (!CampManager.getCampListByFacultyAndVisibility(campName).contains(camp)) {
+        else if (!CampManager.getCampListByFacultyAndVisibility(faculty).contains(camp)) {
+            System.out.println("The chosen camp is not available to you.");
             return null;
         } 
         else {
@@ -130,13 +131,16 @@ public class Student extends User{
             camp.addCampCommitteeMember(campCommitteeMember);
             camp.addStudent(this);
             // append into database of Camp Committee Member
+            CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().add(campCommitteeMember);
+            CampCommitteeDataBase.getInstance().writeToCSV();
+            System.out.println("REMINDER: Please Re-Login to access Camp Committee Member Privileges...");
         }
         else if (role.equals(Role.STUDENT)) {
             camp.addStudent(this);
         }
         camp.printStudentList();
         registeredCamps.add(camp);
-        
+
     }
 
     public void withdrawFromCamp(Camp camp) {

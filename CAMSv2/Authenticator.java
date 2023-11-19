@@ -1,23 +1,21 @@
 package CAMSv2;
 
-
 public class Authenticator {
     //
     static User check(String UserID, String Password, int login_option) {
 
         if (login_option == 1) {
 
-            for (int i = 0; i <StaffDataBase.getStaffList().size(); i++) {
-                Staff staff = StaffDataBase.getStaffList().get(i);
+            for (int i = 0; i <StaffDataBase.getInstance().getStaffList().size(); i++) {
+                Staff staff = StaffDataBase.getInstance().getStaffList().get(i);
                 if (staff.getEmailID().equals(UserID) && staff.getPassword().equals(Password)) {
                     return staff;
                 }
             }
         }
 
-
         if (login_option == 2) {
-            for (Student student : StudentDataBase.getStudents()) {
+            for (Student student : StudentDataBase.getInstance().getStudents()) {
                 if (student.getEmailID().equals(UserID) && student.getPassword().equals(Password)) {
                     return student;
                 }
@@ -27,8 +25,8 @@ public class Authenticator {
 
 
         if (login_option == 3) {
-            for (int i = 0; i < CampCommitteeDataBase.getCampCommitteeMembersList().size(); i++) {
-                CampCommitteeMember campCommitteeMember = CampCommitteeDataBase.getCampCommitteeMembersList().get(i);
+            for (int i = 0; i < CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().size(); i++) {
+                CampCommitteeMember campCommitteeMember = CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().get(i);
                 if (campCommitteeMember.getEmailID().equals(UserID) && campCommitteeMember.getPassword().equals(Password)) {
                     return campCommitteeMember;
                 }

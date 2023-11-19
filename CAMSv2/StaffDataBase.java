@@ -6,16 +6,15 @@ import java.util.ArrayList;
 
 public class StaffDataBase extends DataBase {
     private static StaffDataBase instance;
-    private static ArrayList<Staff> staffList = new ArrayList<>();
-    private String filePath;
+    private ArrayList<Staff> staffList = new ArrayList<>();
+    private String filePath = System.getProperty("user.dir") + "\\CAMSv2\\Data CSV\\Staff_List.csv";
 
-    private StaffDataBase(String filePath) {
-        this.filePath = filePath;
+    private StaffDataBase() {
     }
 
-    public static StaffDataBase getInstance(String filePath) {
+    public static StaffDataBase getInstance() {
         if (instance == null) {
-            instance = new StaffDataBase(filePath);
+            instance = new StaffDataBase();
         }
         return instance;
     }
@@ -41,7 +40,14 @@ public class StaffDataBase extends DataBase {
                 String faculty = values[2].trim();
                 String password = values[3].trim(); // Assume default password
 
-                Staff staff = new Staff(name, emailID, faculty, password, Role.STAFF);
+                UserGroup userGroup = UserGroup.NTU;
+                // convert faculty to user group
+                try {
+                    userGroup = UserGroup.valueOf(faculty);
+                } catch (Exception e) {
+                    System.out.println("Cannot convert UserGroup in CSV into ENUM");
+                }
+                Staff staff = new Staff(name, emailID, userGroup, password, Role.STAFF);
                 staffList.add(staff);
             }
         } catch (IOException e) {
@@ -62,7 +68,7 @@ public class StaffDataBase extends DataBase {
         }
     }
 
-    public static ArrayList<Staff> getStaffList() {
+    public ArrayList<Staff> getStaffList() {
         return staffList;
     }
 }

@@ -21,7 +21,7 @@ import java.io.BufferedWriter;
 import java.util.List;
 
 
-
+// to become Singleton
 public class CampManager {
     //attributes
     private static ArrayList<Camp> campList = new ArrayList<Camp>();
@@ -360,7 +360,7 @@ public class CampManager {
         Date[] Dates;
         String registrationClosingDate;
         int totalSlots;
-        HashSet<Student> campCommitteeSlots;
+        HashSet<CampCommitteeMember> campCommitteeSlots;
         HashSet<Student> filteredStudentList;
 
         for(int i=0;i<campList.size();i++){
@@ -491,21 +491,17 @@ public class CampManager {
         }
     }
 
-    public static ArrayList<Camp> getCampListByFacultyAndVisibility(String faculty) {
+    public static ArrayList<Camp> getCampListByFacultyAndVisibility(UserGroup faculty) {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
         for (Camp camp : campList) {
             System.out.println(camp.getUserGroup());
-            String campUserGroup = camp.getUserGroup().toString();
-            String schoolName = "NTU"; //for school wide camps?
-            // if (camp.getUserGroup().equals(faculty) && camp.visibility) {
-            //     filteredCamps.add(camp);
-            // }
-            // if camp's user group is == NTU, and visibilit is set,
+            UserGroup campUserGroup = camp.getUserGroup();
+
             if(camp.visibility){
-                if(campUserGroup.equals(schoolName) || campUserGroup.equals(faculty)){
+                if(campUserGroup.equals(faculty) || campUserGroup.equals(faculty) || campUserGroup.equals(UserGroup.NTU)){
                     filteredCamps.add(camp);
-                }//end inner
-            }//end outer if
+                }
+            }
         }
         return filteredCamps;
     }

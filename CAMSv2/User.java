@@ -6,12 +6,12 @@ public class User {
     //attributes
     String emailID;
     String password;
-    String faculty;
+    UserGroup faculty;
     String name;
     Role role; //either staff or student or camp committee member
     
     //methods
-    public User(String name, String emailID, String faculty, String password, Role role){
+    public User(String name, String emailID, UserGroup faculty, String password, Role role){
         this.emailID = emailID; //before '@'in the email
         this.password = password;
         this.faculty = faculty;
@@ -34,7 +34,7 @@ public class User {
     public String getName(){
         return this.name;
     }
-    public String getFaculty(){
+    public UserGroup getFaculty(){
         return this.faculty;
     }
     public String getPassword(){

@@ -8,6 +8,7 @@ public abstract class BaseController<U, V> {
     public BaseController(U user, V view) {
         this.user = user;
         this.view = view;
+        sc = new Scanner(System.in);
     }
 
     public abstract void startProgram();

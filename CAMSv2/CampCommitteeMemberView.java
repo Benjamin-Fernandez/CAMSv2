@@ -13,7 +13,7 @@ public class CampCommitteeMemberView extends StudentView {
             System.out.println("6. Generate Camp Attendance Report");
         }
         else {
-            super.displayCampSpecificOptions(false);
+            super.displayCampSpecificOptions(isRegistered);
         }
 
     }
