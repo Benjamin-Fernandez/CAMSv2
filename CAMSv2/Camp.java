@@ -9,7 +9,7 @@ public class Camp {
     boolean visibility;
     private CampInformation info;
     private HashSet<Student> studentList = new HashSet<Student>();
-    private ArrayList<Enquiries> enquiryList = new ArrayList<Enquiries>();
+    private ArrayList<Enquiries> enquiriesList = new ArrayList<Enquiries>();
     private ArrayList<Suggestion> suggestionsList = new ArrayList<Suggestion>();
     private HashSet<Student> blackList = new HashSet<Student>();
 
@@ -66,7 +66,7 @@ public class Camp {
     // if not, create a new enquiry
     // add to camp
     public Enquiries addStudentEnquiriesInList(String studentName) {
-        for (Enquiries enquiries : enquiryList) {
+        for (Enquiries enquiries : enquiriesList) {
             if (enquiries.getEnqurier().equals(studentName)) {
                 return enquiries;
             }
@@ -108,7 +108,7 @@ public class Camp {
     }
 
     public void addEnquiry(Enquiries enquiry){
-        enquiryList.add(enquiry);
+        enquiriesList.add(enquiry);
     }
 
     public void addSuggestion(Suggestion suggestion){
@@ -116,7 +116,7 @@ public class Camp {
     }
 
     public ArrayList<Enquiries> getEnquiries(){
-        return enquiryList;
+        return enquiriesList;
     }
 
     public ArrayList<Suggestion> getSuggestions(){
@@ -227,11 +227,14 @@ public class Camp {
     }
 
     public void printEnquiriesList() {
-        for (Enquiries enquiries : enquiryList) {
+        for (Enquiries enquiries : enquiriesList) {
             System.out.println("Enquirier: " + enquiries.getEnqurier());
             System.out.println("Enquiry Id" + " | " + "Enquiry");
             for (Question question : enquiries.getQuestions()) {
                 System.out.println(question.getQuestionId() + " | " + question.getQuestion());
+                for (Reply reply : question.getReplies()) {
+                    System.out.println("Reply(" + reply.getName() + "): " + reply.getReply());
+                }
             }
         }
     }
@@ -242,6 +245,27 @@ public class Camp {
         ArrayList<Question> questions = enquiries.getQuestions();
         questions.remove(question);
 
+    }
+
+    public Question getEnquiryFromCamp(int Id) {
+        for (Enquiries enquiry : enquiriesList) {
+            for (Question question : enquiry.getQuestions()) {
+                if (question.getQuestionId() == Id) {
+                    return question;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Suggestion getSuggestionBySuggester(String name) {
+        for (Suggestion suggestion : suggestionsList) {
+            if (suggestion.getStudent().equals(name)) {
+                return suggestion;
+            }
+        }
+        System.out.println("Cannot find the suggestion created by " + name);
+        return null;
     }
 
 

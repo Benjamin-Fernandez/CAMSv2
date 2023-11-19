@@ -8,13 +8,13 @@ public class Question {
     int id;
     String campName;
     String question;
-    ArrayList<String> reply;
+    ArrayList<Reply> replies;
 
     //constructor
     public Question(String question, String campNameString, int id){
         this.question = question;
         this.campName = campNameString;
-        this.reply = new ArrayList<String>();
+        this.replies = new ArrayList<Reply>();
         this.id = id;
     }
 
@@ -30,15 +30,15 @@ public class Question {
     public String getCampName() {
         return campName;
     }
-    public ArrayList<String> getReply() {
-        return reply;
+    public ArrayList<Reply> getReplies() {
+        return replies;
     }
     public int getQuestionId() {
         return this.id;
     }
 
-    public void setReply(String Reply) {
-        this.reply.add(Reply);
+    public void setReply(Reply Reply) {
+        this.replies.add(Reply);
         processed = true;
 
     }

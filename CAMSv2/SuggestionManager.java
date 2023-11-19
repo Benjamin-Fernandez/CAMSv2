@@ -19,7 +19,7 @@ public class SuggestionManager {
         return instance;
     }
     //methods
-    public void createSuggestion(String campName, String suggestion,String name){
+    public void createSuggestion(String campName, String suggestion, String name){
         //student will have their own method called makeSuggestion which calls this method,
         //append student's suggestion to their own list of suggestion
         //find the correct camp

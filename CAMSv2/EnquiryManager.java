@@ -87,7 +87,7 @@ public class EnquiryManager {
             // staff.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] -> 
             System.out.println("Enter your reply");
             newReply = sc.nextLine();
-            curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
+            curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(new Reply(staffName, newReply));
             System.out.println("Reply uploaded");
         }
 
@@ -135,11 +135,8 @@ public class EnquiryManager {
         // committeeMember.replyEnq-> enqManager.replyEnq(campname) -> takes input of index of enq, takes input on reply itself-> camp.enqList[index] ->
         System.out.println("Enter your reply");
         newReply = sc.nextLine();
-        curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(newReply);
+        curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(new Reply(campName, newReply));
         System.out.println("Reply uploaded");
-
-        sc.close();
-
     }//replyEnquiry
 
     public static int getEnquiryCounter() {
@@ -152,7 +149,7 @@ public class EnquiryManager {
         for (Question question : questions) {
             System.out.println(question.getQuestionId());
             System.out.println(question.getQuestion());
-            System.out.println(question.getReply());
+            System.out.println(question.getReplies());
         }
     }
 

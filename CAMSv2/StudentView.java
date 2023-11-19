@@ -10,6 +10,10 @@ public class StudentView {
         System.out.println("---------------" + header + "-------------------");        
     }
 
+    public void displaySelectValidOption() {
+        System.out.println("Select a valid option");
+    }
+
     public void displaySelectActionToTake() {
         System.out.println("Select an option: ");
     }
@@ -39,7 +43,16 @@ public class StudentView {
     public void displayEnquiries(ArrayList<Question> questions) {
 
         for (Question question : questions) {
+            displayEnquiry(question);
+        }
+    
+    }
+
+    public void displayEnquiry(Question question) {
+
+        for (Reply reply : question.getReplies()) {
             System.out.println("EnquiryId: " + question.getQuestionId() + "|" + " Enquiry: " + question.getQuestion() + "|" + " Camp: " + question.getCampName());
+            System.out.println(reply.getName() + "replied: " + reply.getReply());
         }
     }
 

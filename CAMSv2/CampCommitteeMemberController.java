@@ -66,8 +66,80 @@ public class CampCommitteeMemberController extends StudentController {
     }
 
     protected void handleCampSuggestions() {
+        boolean running = true;
+        while (running) {
+            ccmView.displayHeader("CAMP SUGGESTIONS");
+            ccmView.displaySuggestionsMenu();
+            ccmView.displayReturnToPreviousPage();
+            int choice = sc.nextInt();
+            sc.nextLine();
+            running = handleCampSuggestionsSwitch(choice);
+        }
+    }        
 
+    protected boolean handleCampSuggestionsSwitch(int choice) {
+        switch (choice) {
+            case 1:
+                handleSubmitSuggestion();
+                return true;
+            case 2:
+                handleViewSuggestion();
+                return true;
+            case 3:
+                handleEditSuggestion();
+                return true;
+            case 4:
+                handleDeleteSuggestion();
+                return true;
+            case 111:
+                return false;
+            default:
+                ccmView.displaySelectValidOption();
+                return true;
+        }
     }
+
+    protected void handleSubmitSuggestion() {
+        ccmView.displaySubmitSuggestion();
+        String suggestion = sc.nextLine();
+        ccm.submitSuggestion(suggestion);
+        ccm.addPointsByOne();
+    }
+
+    protected void handleViewSuggestion() {
+        Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
+        if (suggestion == null) {return;}
+        ccmView.displayAllAdvices(suggestion);
+    }
+
+    protected Advice acquireSuggestion() {
+        handleViewSuggestion();
+        ccmView.displayGetSuggestionIndex();
+        int index = sc.nextInt() - 1;
+        sc.nextLine();
+
+        Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
+        if (suggestion == null) {return null;}
+        // get the advice
+        return suggestion.getAdviceList().get(index);
+    }
+
+    protected void handleEditSuggestion() {
+        Advice advice = acquireSuggestion();
+        ccmView.displaySubmitSuggestion();
+        String newSuggestion = sc.nextLine();
+        advice.setNewAdvice(newSuggestion);
+        System.out.println("Successfully set new suggestion!");
+    }
+
+    protected void handleDeleteSuggestion() {
+        handleViewSuggestion();
+        Advice advice = acquireSuggestion();
+        Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
+        suggestion.getAdviceList().remove(advice);
+        System.out.println("Successfully removed Suggestion");        
+    }
+    
 
     protected boolean handleCampEnquiriesSwitch(int choice) {
         switch (choice) {
@@ -75,19 +147,35 @@ public class CampCommitteeMemberController extends StudentController {
                 camp.printEnquiriesList();
                 return true;
             case 2:
-
+                handleReplyToEnquiry();
                 return true;
             case 111:
                 return false;
             default:
+                ccmView.displaySelectValidOption();
                 return true;
         }
     }
 
     protected void handleReplyToEnquiry() {
-        // get enquiry id
-        // set a reply in the enquiry reply list.
-        // print completed.
+        camp.printEnquiriesList();
+        ccmView.displayGetEnquiryId();
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        Question question = camp.getEnquiryFromCamp(id);
+        if (question == null) {
+            System.out.println("Please provide a valid EnquiryId!");
+            return;
+        }
+        ccmView.displayGetReply();
+        String reply = sc.nextLine();
+        question.getReplies().add(new Reply(ccm.getName(), reply));
+        camp.printEnquiriesList();
+
+        // increment student points
+        ccm.addPointsByOne();
+        System.out.println("Successfully sent reply!");
     }
 
     protected void handleCampEnquiries() {
@@ -96,10 +184,15 @@ public class CampCommitteeMemberController extends StudentController {
         while (running) {
             ccmView.displayHeader("CAMP ENQUIRIES");
             ccmView.displayCampEnquiriesMenu();
+            ccmView.displayReturnToPreviousPage();
             int choice = sc.nextInt();
             sc.nextLine();
             running = handleCampEnquiriesSwitch(choice);
         }
+    }
+
+    protected void handleCampAttendanceReport() {
+
     }
 
 
@@ -122,6 +215,7 @@ public class CampCommitteeMemberController extends StudentController {
                 handleCampEnquiries();
                 break;
             case 6:
+                handleCampAttendanceReport();
                 break;
 
             case 111:

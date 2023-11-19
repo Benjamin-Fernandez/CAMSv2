@@ -13,26 +13,21 @@ public class CampCommitteeMember extends Student {
     }
 
 
-    public void viewEnquiries() {
-        EnquiryManager enquiryManager = new EnquiryManager();
-        enquiryManager.viewEnquiryForCampCommitteeMember(camp.getCampName());
-    }
+    // public void viewEnquiries() {
+    //     EnquiryManager enquiryManager = new EnquiryManager();
+    //     enquiryManager.viewEnquiryForCampCommitteeMember(camp.getCampName());
+    // }
 
-    public void replyEnquiries(){
-        EnquiryManager enquiryManager = new EnquiryManager();
-        enquiryManager.replyEnquiryFromCampCommitteeMember(camp.getCampName());
-        points++;
-    }
+    // public void replyEnquiries(){
+    //     EnquiryManager enquiryManager = new EnquiryManager();
+    //     enquiryManager.replyEnquiryFromCampCommitteeMember(camp.getCampName());
+    //     points++;
+    // }
 
-    public void submitSuggestion(){
-        Scanner sc = new Scanner(System.in);
-        SuggestionManager suggestionManager = SuggestionManager.getInstance();
-        System.out.println("What suggestion would you like to make");
-        String suggestion = sc.nextLine();
-        suggestionManager.createSuggestion(camp.getCampName(), suggestion, this.name);
+    public void submitSuggestion(String suggestion){
+        SuggestionManager.getInstance().createSuggestion(camp.getCampName(), suggestion, this.name);
         System.out.println("Suggestion added");
         points++;
-
     }
 
     public void viewSuggestion() {
@@ -51,7 +46,7 @@ public class CampCommitteeMember extends Student {
         suggestionManager.deleteSuggestionForCommitteeMember(this.name,camp.getCampName());
     }
 
-    public void addPointsForSuggestions(){
+    public void addPointsByOne(){
         points +=1;
     }
 
@@ -61,5 +56,7 @@ public class CampCommitteeMember extends Student {
     public int getPoints(){
         return points;
     }
+
+
 
 }

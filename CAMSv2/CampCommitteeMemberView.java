@@ -30,6 +30,14 @@ public class CampCommitteeMemberView extends StudentView {
         System.out.println("4. Delete suggestion"); 
     }
 
+    public void displaySubmitSuggestion() {
+        System.out.println("Please enter the suggestion: ");
+    }
+
+    public void displayGetSuggestionIndex() {
+        System.out.println("Please enter the suggestion index: ");        
+    }
+
 
     public void displayCampDetails(Camp camp){
 
@@ -46,6 +54,18 @@ public class CampCommitteeMemberView extends StudentView {
         int counter = 1;
         for (Student student : camp.getCampCommitteeSlots()) {
             System.out.println( counter + ". " + student.getName());
+            counter++;
+        }
+    }
+
+    public void displayGetReply() {
+        System.out.println("Please enter your reply: ");
+    }
+
+    public void displayAllAdvices(Suggestion suggestion) {
+        int counter = 1;
+        for (Advice advice : suggestion.getAdviceList()) {
+            System.out.println(counter + ". " + advice.getAdvice() + " | " + "Approved: " + advice.getApproved());
             counter++;
         }
     }

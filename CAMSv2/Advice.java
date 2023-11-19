@@ -4,8 +4,8 @@ package CAMSv2;
 
 public class Advice {
     //attritbutes
-    String advice;
-    Boolean approved;
+    private String advice;
+    private Boolean approved;
 
     //constructor
     public Advice(String advice){
@@ -20,6 +20,14 @@ public class Advice {
 
     public void setNewAdvice(String newAdvice){
         advice = newAdvice;
+    }
+
+    public String getAdvice() {
+        return advice;
+    }
+
+    public Boolean getApproved() {
+        return approved;
     }
 
 }  
