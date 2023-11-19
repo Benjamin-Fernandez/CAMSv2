@@ -23,6 +23,7 @@ public class CampCommitteeDataBase extends DataBase{
 
 
     public void loadToCSV(){
+        campCommitteeMembersList.clear();
         try (InputStream inputStream = new FileInputStream(this.filePath);
              Reader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(inputStreamReader)) {
@@ -51,6 +52,7 @@ public class CampCommitteeDataBase extends DataBase{
                     System.out.println("Cannot convert UserGroup in CSV into ENUM");
                 }
                 Camp camp = CampManager.getCamp(campName);
+                // if (camp == null) {return;}
                 CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, userGroup, password, Role.CAMP_COMMITTEE_MEMBER, camp);
                 campCommitteeMembersList.add(campCommitteeMember);
             }
@@ -61,10 +63,11 @@ public class CampCommitteeDataBase extends DataBase{
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
             if(campCommitteeMembersList.size() == 0){
-                printWriter.println("");
+                // printWriter.println("");
                 return;
             }
             for (CampCommitteeMember campCommitteeMember: campCommitteeMembersList) {
+                System.out.println("Within CCMwriteToCSV: " + campCommitteeMember.getCamp());
                 printWriter.println(campCommitteeMember.getName() + "," + campCommitteeMember.getEmailID() + "," +
                                     campCommitteeMember.getFaculty() + "," + campCommitteeMember.getPassword() + "," +
                                     campCommitteeMember.getCamp().getCampName());
@@ -72,9 +75,7 @@ public class CampCommitteeDataBase extends DataBase{
         }
         catch (IOException e) {
             System.out.println("CSV file not found");
-        }finally {
-            // Clear the staffList after writing to the CSV file
-            campCommitteeMembersList.clear();}
+        }
     }
 
     public ArrayList<CampCommitteeMember> getCampCommitteeMembersList() {

@@ -1,6 +1,7 @@
 package CAMSv2;
 
-import java.util.ArrayList;
+
+// change to interface
 public abstract class DataBase{
     // Singleton
 

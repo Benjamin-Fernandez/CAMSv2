@@ -12,7 +12,7 @@ public class User {
     
     //methods
     public User(String name, String emailID, UserGroup faculty, String password, Role role){
-        this.emailID = emailID; //before '@'in the email
+        this.emailID = emailID; 
         this.password = password;
         this.faculty = faculty;
         this.name = name;

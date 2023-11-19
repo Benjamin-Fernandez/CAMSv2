@@ -21,8 +21,7 @@ public class StudentController extends BaseController<Student, StudentView>{
             int choice = sc.nextInt();
             // get rid of buffered carriage return
             sc.nextLine();
-            handleStudentMenu(choice);
-    
+            running = handleStudentMenu(choice);
         }
     }
 
@@ -128,7 +127,7 @@ public class StudentController extends BaseController<Student, StudentView>{
         // store the camp data temporarily here
         Camp camp = user.ifCampNameInAvailableListOfCamps(campName);
         if (camp == null) {return null;}
-        System.out.println("You chosed Camp: " + this.camp.getCampName());
+        System.out.println("You chosed Camp: " + camp.getCampName());
         return camp;
     }
 
@@ -150,14 +149,22 @@ public class StudentController extends BaseController<Student, StudentView>{
         } while (running);
     }
 
+    protected void handleSubmitEnquiryToCamp() {
+        // Submit Enquiry to camp
+        view.displayEnterNewEnquiryDescription();
+        String description = sc.nextLine();
+        user.createEnquiry(description, this.camp);
+        view.displayEnquiries(user.getEnquiries().getQuestions());
+    }
+
+    protected void handleViewRemainingTimeSlots() {
+        view.displayRemainingCampSlots(this.camp);        
+    }
+
     protected boolean handleCampSpecificOptions(int choice, boolean studentRegistered) {
         switch (choice) {
             case 1:
-                // Submit Enquiry to camp
-                view.displayEnterNewEnquiryDescription();
-                String description = sc.nextLine();
-                user.createEnquiry(description, this.camp);
-                view.displayEnquiries(user.getEnquiries().getQuestions());
+                handleSubmitEnquiryToCamp();
                 break;
             case 2:
                 if (studentRegistered) {
@@ -166,11 +173,11 @@ public class StudentController extends BaseController<Student, StudentView>{
                 }
                 else {
                     // register Student
-                    enterCampRegister();
+                    return enterCampRegister();
                 }
                 break;
             case 3:
-                view.displayRemainingCampSlots(this.camp);
+                handleViewRemainingTimeSlots();
                 break;
             case 111:
                 // reset controller camp state
@@ -184,9 +191,9 @@ public class StudentController extends BaseController<Student, StudentView>{
         user.withdrawFromCamp(this.camp);
     }
 
-    protected void enterCampRegister() {
+    protected boolean enterCampRegister() {
         // check if camp is full
-        if (!user.canRegisterCamp(this.camp)) {return;}
+        if (!user.canRegisterCamp(this.camp)) {return false;}
         Role role;
         while (true) {
             view.displayHeader("SELECT ROLES");
@@ -199,7 +206,7 @@ public class StudentController extends BaseController<Student, StudentView>{
                 System.out.println("Your input does not match any roles!");
             }
         }
-        user.registerCampRole(role, this.camp);
+        return user.registerCampRole(role, this.camp);
     }
 }
 

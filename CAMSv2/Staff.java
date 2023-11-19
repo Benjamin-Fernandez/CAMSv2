@@ -130,8 +130,7 @@ public class Staff extends User {
         System.out.println("Enter camp name of suggestions you want to view ");
         myList();
         campName = sc.nextLine();
-        SuggestionManager suggManager = new SuggestionManager();
-        suggManager.viewSuggestionForStaff(campName, this.getName());
+        SuggestionManager.getInstance().viewSuggestionForStaff(campName, this.getName());
         //sc.close();
     }
 
@@ -141,8 +140,7 @@ public class Staff extends User {
         String campName;
         System.out.println("which camp's suggestion would you want to approve? ");
         campName = sc.nextLine();
-        SuggestionManager suggManager = new SuggestionManager();
-        Suggestion suggestion = suggManager.approveAdvice(campName, this.getName());
+        Suggestion suggestion = SuggestionManager.getInstance().approveAdvice(campName, this.getName());
         //sc.close();
         addPointsForApprovedSuggestions(suggestion.getStudent());
 

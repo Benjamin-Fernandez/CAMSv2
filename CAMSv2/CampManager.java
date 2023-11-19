@@ -494,7 +494,6 @@ public class CampManager {
     public static ArrayList<Camp> getCampListByFacultyAndVisibility(UserGroup faculty) {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
         for (Camp camp : campList) {
-            System.out.println(camp.getUserGroup());
             UserGroup campUserGroup = camp.getUserGroup();
 
             if(camp.visibility){

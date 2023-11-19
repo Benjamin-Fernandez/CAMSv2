@@ -15,7 +15,6 @@ public class Student extends User{
         enquiries = CampManager.setUpStudentEnquiries(name);
         registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
     }
-    // Student User Interface
 
     public Camp ifCampNameInAvailableListOfCamps(String campName) {
         Camp camp = CampManager.getCamp(campName);
@@ -123,24 +122,31 @@ public class Student extends User{
         
     }
 
-    public void registerCampRole(Role role, Camp camp) {
+    public boolean registerCampRole(Role role, Camp camp) {
         // to be replaced with factory;
         if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
-            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(emailID, password, faculty, name, role, camp);
+            System.out.println("Camp: " + camp);
+            CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty, password, role, camp);
+            System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
             camp.addCampCommitteeMember(campCommitteeMember);
             camp.addStudent(this);
             // append into database of Camp Committee Member
             CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().add(campCommitteeMember);
             CampCommitteeDataBase.getInstance().writeToCSV();
             System.out.println("REMINDER: Please Re-Login to access Camp Committee Member Privileges...");
+            camp.printCCMList();
+            registeredCamps.add(camp);
+            return false;
         }
         else if (role.equals(Role.STUDENT)) {
             camp.addStudent(this);
+            camp.printStudentList();
+            registeredCamps.add(camp);
+            return true;
         }
-        camp.printStudentList();
-        registeredCamps.add(camp);
 
+        return true;
     }
 
     public void withdrawFromCamp(Camp camp) {

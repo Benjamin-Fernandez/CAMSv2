@@ -220,10 +220,20 @@ public class Camp {
     }
 
     public void printBlackList() {
-    System.out.println("PRINTING BLACKLIST");
-    for (Student blackStudent : blackList) {
-        System.out.println(blackStudent.getName());
+        System.out.println("PRINTING BLACKLIST");
+        for (Student blackStudent : blackList) {
+            System.out.println(blackStudent.getName());
+        }
     }
+
+    public void printEnquiriesList() {
+        for (Enquiries enquiries : enquiryList) {
+            System.out.println("Enquirier: " + enquiries.getEnqurier());
+            System.out.println("Enquiry Id" + " | " + "Enquiry");
+            for (Question question : enquiries.getQuestions()) {
+                System.out.println(question.getQuestionId() + " | " + question.getQuestion());
+            }
+        }
     }
 
 

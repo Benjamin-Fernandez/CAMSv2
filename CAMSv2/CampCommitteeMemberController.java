@@ -11,6 +11,34 @@ public class CampCommitteeMemberController extends StudentController {
     }
 
     @Override
+    protected boolean handleStudentMenu(int choice) {
+        switch (choice) {
+            case 1:
+                user.changePassword();
+                return true;
+            case 2:
+                view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(user.getFaculty()));
+                return true;
+            case 3:
+                view.displayListOfCamps(user.getRegisteredCamps());
+                return true;
+            case 4:
+                view.displayProfile(user.getName(), user.getPassword(), user.getFaculty(), user.getRole(), ccm.getCamp().getCampName());
+                return true;
+            case 5:
+                enterEnquiriesMenu();
+                return true;
+            case 6:
+                enterCampSpecificOptions();
+                return true;
+            case 111:
+                return false; // Exit the loop
+            default:
+                return true; // Invalid choice, continue loop
+        }
+    }
+
+    @Override
     public void enterCampSpecificOptions() {
         super.camp = super.handleCampSelection();
         if (camp == null) {return;}
@@ -37,18 +65,55 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
-    private boolean handleCampCommitteeMemberMenu(int choice) {
+    protected void handleCampSuggestions() {
+
+    }
+
+    protected boolean handleCampEnquiriesSwitch(int choice) {
+        switch (choice) {
+            case 1:
+                camp.printEnquiriesList();
+                return true;
+            case 2:
+
+                return true;
+            case 111:
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    protected void handleCampEnquiries() {
+
+        boolean running = true;
+        while (running) {
+            ccmView.displayHeader("CAMP ENQUIRIES");
+            ccmView.displayCampEnquiriesMenu();
+            int choice = sc.nextInt();
+            sc.nextLine();
+            running = handleCampEnquiriesSwitch(choice);
+        }
+    }
+
+
+    protected boolean handleCampCommitteeMemberMenu(int choice) {
         // Implement additional menu options specific to CampCommitteeMember
         switch (choice) {
             case 1:
+                super.handleSubmitEnquiryToCamp();
                 break;
             case 2:
+                super.handleViewRemainingTimeSlots();
                 break;
             case 3:
+                ccmView.displayCampDetails(camp);
                 break;
             case 4:
+                handleCampSuggestions();
                 break;  
             case 5:
+                handleCampEnquiries();
                 break;
             case 6:
                 break;

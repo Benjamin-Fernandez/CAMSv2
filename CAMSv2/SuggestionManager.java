@@ -2,9 +2,22 @@ package CAMSv2;
 
 import java.util.Scanner;
 
+/**
+ * Singleton class responsible for managing Suggestion utility methods
+ */
 public class SuggestionManager {
+    private static SuggestionManager instance;
     //attribute
+    private SuggestionManager() {
+    }
 
+    // can remove filePath argument and instead intialize into the class itself
+    public static SuggestionManager getInstance() {
+        if (instance == null) {
+            instance = new SuggestionManager();
+        }
+        return instance;
+    }
     //methods
     public void createSuggestion(String campName, String suggestion,String name){
         //student will have their own method called makeSuggestion which calls this method,

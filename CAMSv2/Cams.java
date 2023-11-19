@@ -14,12 +14,12 @@ public class Cams {
         CampCommitteeDataBase campCommitteeDataBase = CampCommitteeDataBase.getInstance();
 
         boolean running = true;
-
+        // Load CSV data at the start of each loop iteration
+        studentDataBase.loadToCSV();
+        staffDataBase.loadToCSV();
+        campCommitteeDataBase.loadToCSV();
         while (running) {
-            // Load CSV data at the start of each loop iteration
-            studentDataBase.loadToCSV();
-            staffDataBase.loadToCSV();
-            campCommitteeDataBase.loadToCSV();
+
 
             int choice;
             int loginOption;
@@ -70,11 +70,6 @@ public class Cams {
                     running = false;
                     break;
             }
-
-            // Write changes to the CSV files if needed
-            studentDataBase.writeToCSV();
-            staffDataBase.writeToCSV();
-            campCommitteeDataBase.writeToCSV();
         }
 
     }

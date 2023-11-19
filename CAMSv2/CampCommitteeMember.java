@@ -6,8 +6,8 @@ public class CampCommitteeMember extends Student {
     private int points;
     private Camp camp;
 
-    public CampCommitteeMember(String emailID, String password, UserGroup faculty, String name, Role role, Camp camp) {
-        super(emailID, password, faculty, name, role);
+    public CampCommitteeMember(String name, String emailID, UserGroup faculty, String password, Role role, Camp camp) {
+        super(name, emailID, faculty, password, role);
         points = 0;
         this.camp = camp;
     }
@@ -26,7 +26,7 @@ public class CampCommitteeMember extends Student {
 
     public void submitSuggestion(){
         Scanner sc = new Scanner(System.in);
-        SuggestionManager suggestionManager = new SuggestionManager();
+        SuggestionManager suggestionManager = SuggestionManager.getInstance();
         System.out.println("What suggestion would you like to make");
         String suggestion = sc.nextLine();
         suggestionManager.createSuggestion(camp.getCampName(), suggestion, this.name);
@@ -36,18 +36,18 @@ public class CampCommitteeMember extends Student {
     }
 
     public void viewSuggestion() {
-        SuggestionManager suggestionManager = new SuggestionManager();
+        SuggestionManager suggestionManager = SuggestionManager.getInstance();
         suggestionManager.viewSuggestionForCommitteeMember(this.name,camp.getCampName());
     }
 
     public void editSuggestion(){
-        SuggestionManager suggestionManager = new SuggestionManager();
+        SuggestionManager suggestionManager = SuggestionManager.getInstance();
         suggestionManager.editSuggestionForCommitteeMember(this.name,camp.getCampName());
 
     }
 
     public void deleteSuggestion(){
-        SuggestionManager suggestionManager = new SuggestionManager();
+        SuggestionManager suggestionManager = SuggestionManager.getInstance();
         suggestionManager.deleteSuggestionForCommitteeMember(this.name,camp.getCampName());
     }
 

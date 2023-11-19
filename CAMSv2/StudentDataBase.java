@@ -21,6 +21,7 @@ public class StudentDataBase extends DataBase{
     }
 
     public void loadToCSV() {
+        studentList.clear();
         try (InputStream inputStream = new FileInputStream(this.filePath);
              Reader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(inputStreamReader)) {
@@ -64,9 +65,6 @@ public class StudentDataBase extends DataBase{
             }
         } catch (IOException e) {
             System.out.println("CSV file not found");
-        }finally {
-            // Clear the staffList after writing to the CSV file
-            studentList.clear();
         }
     }
 
