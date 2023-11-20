@@ -16,7 +16,7 @@ public class CampInformation {
     private String CampName;
     private LocalDate[] Dates; 
     private LocalDateTime Registration_closing_date;
-    private  UserGroup User_group;
+    private UserGroup User_group;
     private String Location;
     private int Total_Slots;
 

@@ -106,18 +106,25 @@ public class CampManager {
 
 
         System.out.println("Enter registration closing date");
-        userInput = sc.nextLine();
-        userInput += " 23:59";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        registrationClosingDate = LocalDateTime.parse(userInput, formatter);
+        String userInput2 = userInput;
+        userInput2 += " 00:00";
 
         LocalDateTime currentDateTime = LocalDateTime.now();
-        //Ensures that the registration closing date is after the local clock
-        if (registrationClosingDate.isAfter(currentDateTime)) {
-            System.out.println("Registration closing set as: " + currentDateTime);
-        } else {
-            System.out.println("Input date must be in the future. and before the start of camp.");
-        }
+        //Ensures that the registration closing date is after the local clock and before start of camp
+        do{
+            userInput = sc.nextLine();
+            userInput += " 23:59";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            registrationClosingDate = LocalDateTime.parse(userInput, formatter);
+            LocalDateTime startDate = LocalDateTime.parse(userInput2, formatter);
+            currentDateTime = LocalDateTime.now();
+            if (registrationClosingDate.isAfter(currentDateTime) && registrationClosingDate.isBefore(startDate)) {
+                System.out.println("Registration closing set as: ");
+                break;
+            } else {
+                System.out.println("Input date must be in the future and be before the start of camp.");
+            }
+        }while(true);
 
         System.out.println("Enter user group this camp will be available to (IN CAPS)");
         userGroup = sc.nextLine();
