@@ -4,19 +4,65 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+
+/**
+ * The {@code Camp} class represents a camp event with information such as camp details,
+ * student lists, inquiries, suggestions, etc.
+ */
 public class Camp {
 
+    // Attributes
+    /**
+     * Indicates the visibility status of the camp.
+     */
+
     boolean visibility;
+
+    /**
+     * Contains detailed information about the camp.
+     */
     private CampInformation info;
+
+    /**
+     * Stores the list of students registered for the camp.
+     */
     private HashSet<Student> studentList = new HashSet<Student>();
+    /**
+     * Stores the list of inquiries made by students for the camp.
+     */
+
     private ArrayList<Enquiries> enquiriesList = new ArrayList<Enquiries>();
+
+    /**
+     * Stores the list of suggestions made by students for the camp.
+     */
     private ArrayList<Suggestion> suggestionsList = new ArrayList<Suggestion>();
+
+    /**
+     * Stores the list of students who are blacklisted from the camp.
+     */
     private HashSet<Student> blackList = new HashSet<Student>();
 
     // Constructors
+    /**
+     * Constructs an empty {@code Camp} object.
+     * Used for creating an instance without initializing attributes.
+     */
     public Camp(){ 
         //empty constructor
     }
+    /**
+     * Constructs a {@code Camp} object with specified parameters.
+     *
+     * @param CampName                  The name of the camp.
+     * @param Dates                     An array representing the dates of the camp.
+     * @param Registration_closing_date  The deadline for camp registration.
+     * @param User_group                 The user group associated with the camp.
+     * @param Location                 The location of the camp.
+     * @param Total_Slots              The total available slots for the camp.
+     * @param Description              A description of the camp.
+     * @param Staff_in_charge            The staff member in charge of the camp.
+     */
    
 
     public Camp(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
@@ -27,18 +73,42 @@ public class Camp {
     }
 
     // Methods
+
+    /**
+     * Checks if the registration deadline for the camp has passed.
+     *
+     * @return {@code true} if the registration is over the deadline, {@code false} otherwise.
+     */
     public boolean isRegistrationOverDeadline() {
         // get registration deadline
         LocalDateTime now = LocalDateTime.now();
         return now.isAfter(info.getRegistrationClosingDate());
     }
+
+    /**
+     * Adds a student to the camp's blacklist.
+     *
+     * @param student The student to be added to the blacklist.
+     */
     public void addToBlackList(Student student) {
         blackList.add(student);
     }
+    /**
+     * Adds a camp committee member to the camp.
+     *
+     * @param student The camp committee member to be added.
+     */
 
     public void addCampCommitteeMember(CampCommitteeMember student) {
         info.getCampCommitteeSlots().add(student);
     }
+
+    /**
+     * Checks if a student is in the camp's blacklist.
+     *
+     * @param student The student to check.
+     * @return {@code true} if the student is in the blacklist, {@code false} otherwise.
+     */
 
     public boolean isStudentInBlackList(Student student) {
         for (Student s : blackList) {
@@ -49,6 +119,13 @@ public class Camp {
         return false;
     }
 
+    /**
+     * Checks if a student is already registered for the camp.
+     *
+     * @param name The name of the student to check.
+     * @return {@code true} if the student is registered, {@code false} otherwise.
+     */
+
     public boolean isStudentRegistered(String name) {
         for (Student student : studentList) {
             if (student.getName().equals(name)) {
@@ -57,10 +134,22 @@ public class Camp {
         }
         return false;
     }
+    /**
+     * Adds a student to the camp's student list.
+     *
+     * @param student The student to be added.
+     */
 
     public void addStudent(Student student){
         studentList.add(student);
     }
+
+    /**
+     * Adds a student's inquiries to the camp's inquiry list or retrieves existing inquiries.
+     *
+     * @param studentName The name of the student.
+     * @return The student's inquiries.
+     */
 
     // check if student Enquiries is already in Camp
     // if not, create a new enquiry
@@ -77,6 +166,11 @@ public class Camp {
         addEnquiry(newEnquiry);
         return newEnquiry;
     }
+    /**
+     * Checks if the camp is full (reached maximum capacity).
+     *
+     * @return {@code true} if the camp is full, {@code false} otherwise.
+     */
 
     public boolean isCampFull() {
         int length = studentList.size();
@@ -85,6 +179,14 @@ public class Camp {
         return info.getTotalSlots() == length;
     }
 
+
+    /**
+     * Edits a suggestion given by a student.
+     *
+     * @param studentName The name of the student.
+     * @param newAdvice    The new advice to replace the existing one.
+     * @param AdviceIndex  The index of the advice in the suggestion.
+     */
     public void editSuggestion(String studentName, String newAdvice, int AdviceIndex){
         for (Suggestion suggestion : suggestionsList) {
             if (suggestion.getStudent() == studentName) {
@@ -93,7 +195,12 @@ public class Camp {
 
         }
     }
-
+    /**
+     * Deletes a suggestion given by a student.
+     *
+     * @param studentName The name of the student.
+     * @param AdviceIndex  The index of the advice in the suggestion to be deleted.
+     */
     public void deleteSuggestion(String studentName, int AdviceIndex){
         for (Suggestion suggestion : suggestionsList) {
             if (suggestion.getStudent() == studentName) {
@@ -102,71 +209,158 @@ public class Camp {
 
         }
     }
-
+    /**
+     * Sets the visibility status of the camp.
+     *
+     * @param choice {@code true} to make the camp visible, {@code false} to hide it.
+     */
     public void setVisibility(boolean choice){
         this.visibility = choice;
     }
+    /**
+     * Adds an inquiry to the camp's inquiry list.
+     *
+     * @param enquiry The inquiry to be added.
+     */
 
     public void addEnquiry(Enquiries enquiry){
         enquiriesList.add(enquiry);
     }
+    /**
+     * Adds a suggestion to the camp's suggestion list.
+     *
+     * @param suggestion The suggestion to be added.
+     */
 
     public void addSuggestion(Suggestion suggestion){
         suggestionsList.add(suggestion);
     }
+    /**
+     * Retrieves the list of inquiries for the camp.
+     *
+     * @return The list of inquiries.
+     */
 
     public ArrayList<Enquiries> getEnquiries(){
         return enquiriesList;
     }
 
+    /**
+     * Retrieves the list of suggestions for the camp.
+     *
+     * @return The list of suggestions.
+     */
+
     public ArrayList<Suggestion> getSuggestions(){
         return suggestionsList;
     }
 
+    /**
+     * Retrieves the list of students registered for the camp.
+     *
+     * @return The list of students.
+     */
+
     public HashSet<Student> getStudentList(){
             return studentList;
     }
+    /**
+     * Retrieves the name of the camp.
+     *
+     * @return The name of the camp.
+     */
 
     public String getCampName(){
       return this.info.getCampName();
     }
 
+    /**
+     * Retrieves the name of the staff in charge of the camp.
+     *
+     * @return The name of the staff in charge.
+     */
+
     public String getStaffName(){
        return this.info.getStaffName();
     }
 
-    
-    //Camp information functions
+    // Camp information functions - Get methods
 
-    //get methods
+    /**
+     * Retrieves the dates of the camp.
+     *
+     * @return The array of dates representing the camp schedule.
+     */
+
 
     public LocalDate[] getDates(){
         return this.info.getDates();
     }
+    /**
+     * Retrieves the registration closing date for the camp.
+     *
+     * @return The registration closing date.
+     */
 
     public LocalDateTime getRegistrationClosingDate(){
         return this.info.getRegistrationClosingDate();
     }
+    /**
+     * Retrieves the user group associated with the camp.
+     *
+     * @return The user group.
+     */
 
     public UserGroup getUserGroup(){
         return this.info.getUserGroup();
     }
 
+    /**
+     * Retrieves the location of the camp.
+     *
+     * @return The location of the camp.
+     */
+
     public String getLocation(){
         return this.info.getLocation();
     }
+    /**
+     * Retrieves the total available slots for the camp.
+     *
+     * @return The total available slots.
+     */
 
     public int getTotalSlots(){
         return this.info.getTotalSlots();
     }
 
+    /**
+     * Retrieves the set of camp committee slots.
+     *
+     * @return The set of camp committee slots.
+     */
+
     public HashSet<CampCommitteeMember> getCampCommitteeSlots(){
         return this.info.getCampCommitteeSlots();
     }
 
+    /**
+     * Retrieves the description of the camp.
+     *
+     * @return The description of the camp.
+     */
+
     public String getDescription(){
         return this.info.getDescription();
     }
+
+    // Camp information functions - Set methods
+
+    /**
+     * Sets the name of the camp.
+     *
+     * @param campName The new name of the camp.
+     */
     
 
 
@@ -175,35 +369,72 @@ public class Camp {
         this.info.setCampName(campName);
     }
 
+    /**
+     * Sets the dates for the camp.
+     *
+     * @param Dates The array of dates representing the camp schedule.
+     */
+
     public void setDates(LocalDate[] Dates){
         this.info.setDates(Dates);
     }
+    /**
+     * Sets the registration closing date for the camp.
+     *
+     * @param closingDate The new registration closing date.
+     */
 
     public void setRegistrationClosingDate(LocalDateTime closingDate){
         this.info.setRegistrationClosingDate(closingDate);
     }
+    /**
+     * Sets the user group associated with the camp.
+     *
+     * @param userGroup The new user group for the camp.
+     */
 
     public void setUserGroup(String userGroup){
         this.info.setUserGroup(userGroup);
     }
+    /**
+     * Sets the location of the camp.
+     *
+     * @param location The new location of the camp.
+     */
 
     public void setLocation(String location){
         this.info.setLocation(location);
     }
+    /**
+     * Sets the total available slots for the camp.
+     *
+     * @param totalSlots The new total available slots for the camp.
+     */
 
     public void setTotalSlots(int totalSlots){
         this.info.setTotalSlots(totalSlots);
     }
+    /**
+     * Sets the description of the camp.
+     *
+     * @param description The new description of the camp.
+     */
 
     public void setDescription(String description){
         this.info.setDescription(description);
     }
 
+// Additional methods
 
-    //additional methods
+    /**
+     * Prints a table with information about the camp.
+     */
     public void printCampInfoTable(){
         this.info.printCampInfoTable();
     }
+    /**
+     * Prints the list of students registered for the camp.
+     */
 
     public void printStudentList() {
         System.out.println("PRINTING STUDENTLIST");
@@ -211,6 +442,9 @@ public class Camp {
             System.out.println(student.getName());
         }
     }
+    /**
+     * Prints the list of camp committee members.
+     */
 
     public void printCCMList() {
         System.out.println("PRINTING CCMLIST");
@@ -218,14 +452,18 @@ public class Camp {
             System.out.println(student.getName());
         }
     }
-
+    /**
+     * Prints the list of blacklisted students.
+     */
     public void printBlackList() {
         System.out.println("PRINTING BLACKLIST");
         for (Student blackStudent : blackList) {
             System.out.println(blackStudent.getName());
         }
     }
-
+    /**
+     * Prints the list of inquiries made by students for the camp.
+     */
     public void printEnquiriesList() {
         for (Enquiries enquiries : enquiriesList) {
             System.out.println("Enquirier: " + enquiries.getEnqurier());
@@ -238,7 +476,12 @@ public class Camp {
             }
         }
     }
-
+    /**
+     * Deletes an enquiry from the camp.
+     *
+     * @param question    The question to be deleted.
+     * @param studentName The name of the student who made the enquiry.
+     */
 
     public void deleteEnquiry(Question question, String studentName) {
         Enquiries enquiries = addStudentEnquiriesInList(studentName);
@@ -246,6 +489,12 @@ public class Camp {
         questions.remove(question);
 
     }
+    /**
+     * Retrieves an enquiry from the camp based on its ID.
+     *
+     * @param Id The ID of the enquiry.
+     * @return The corresponding enquiry.
+     */
 
     public Question getEnquiryFromCamp(int Id) {
         for (Enquiries enquiry : enquiriesList) {
@@ -257,6 +506,12 @@ public class Camp {
         }
         return null;
     }
+    /**
+     * Retrieves a suggestion made by a student.
+     *
+     * @param name The name of the student who made the suggestion.
+     * @return The corresponding suggestion.
+     */
 
     public Suggestion getSuggestionBySuggester(String name) {
         for (Suggestion suggestion : suggestionsList) {
