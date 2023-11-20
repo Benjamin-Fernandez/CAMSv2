@@ -119,7 +119,7 @@ public class CampManager {
             System.out.println("Input date must be in the future. and before the start of camp.");
         }
 
-        System.out.println("Enter user group this camp will be available to IN CAPS");
+        System.out.println("Enter user group this camp will be available to (IN CAPS)");
         userGroup = sc.nextLine();
         userGroup.toUpperCase();
         //check if its a valid userGroup

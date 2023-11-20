@@ -120,7 +120,10 @@ public class CampInformation {
     public void printCampInfoTable(){
         System.out.println("1. Camp Name = " + this.CampName);
 
-        System.out.println("2. Camp Dates = " + this.Dates);
+        System.out.print("2. Camp Dates = ");
+        for (LocalDate date : Dates) {
+            System.out.println(date);
+        }
 
         System.out.println("3. Registration Closing Date = " + this.Registration_closing_date);
 
