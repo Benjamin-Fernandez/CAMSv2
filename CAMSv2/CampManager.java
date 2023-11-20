@@ -95,20 +95,31 @@ public class CampManager {
         System.out.println("Enter camp duration(days)");
         int numOfDays = sc.nextInt();
         sc.nextLine();
-        System.out.print("Enter the starting date (YYYY-MM-DD):");
-        String userInput = sc.nextLine();
         Dates = new LocalDate[numOfDays];
-        LocalDate currentDate = LocalDate.parse(userInput);
-        for (int i = 0; i < numOfDays; i++) {
-            Dates[i] = currentDate;
-            currentDate = currentDate.plusDays(1); // Move to the next day
-        }
+        String userInput;
+        do{
+            System.out.print("Enter the starting date (YYYY-MM-DD):");
+            userInput = sc.nextLine();
+            LocalDate currentDate = LocalDate.now();
+            LocalDate dateCounter = LocalDate.parse(userInput);
+            if (dateCounter.isAfter(currentDate)) {
+                for (int i = 0; i < numOfDays; i++) {
+                    Dates[i] = dateCounter;
+                    dateCounter = dateCounter.plusDays(1); // Move to the next day
+                }
+                System.out.println("Dates set!");
+                break;
+            } else {
+                System.out.println("Input date must be in the future.");
+            }
+        }while(true);
+
+        
 
 
         System.out.println("Enter registration closing date");
         String userInput2 = userInput;
         userInput2 += " 00:00";
-
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock and before start of camp
         do{
