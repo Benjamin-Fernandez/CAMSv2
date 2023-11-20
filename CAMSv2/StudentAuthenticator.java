@@ -1,6 +1,6 @@
 package CAMSv2;
 /**
- * This class implements the Authenticator interface for Student objects.
+ * This {@code StudentAuthenticator} class implements the Authenticator interface for Student objects.
  * It provides a method to authenticate a student based on their user ID and password.
  * 
  * @author Zhu Yu Hao 

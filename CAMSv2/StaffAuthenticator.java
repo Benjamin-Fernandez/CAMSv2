@@ -1,5 +1,14 @@
 package CAMSv2;
 
+/**
+ * The StaffAuthenticator class implements the Authenticator interface for Staff objects.
+ * It provides a method to authenticate a staff member based on their email ID and password.
+ * The authentication process involves checking the provided credentials against the staff database.
+ * If the credentials match an existing staff member, the method returns that staff member.
+ * If the credentials do not match any staff member, the method returns null.
+*@author Benjamin Fernandez
+*@since 13-11-2023
+ */
 public class StaffAuthenticator implements Authenticator<Staff>{
 
     @Override

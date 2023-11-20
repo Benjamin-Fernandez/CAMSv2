@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashSet;
 
 /**
+ *   @author Zhu Yu Hao
+ *   @since 13-11-2023
  * The {@code Camp} class represents a camp event with information such as camp details,
  * student lists, inquiries, suggestions, etc.
  */

@@ -1,7 +1,7 @@
 package CAMSv2;
 
 /**
- * This enum represents the different user groups in the system.
+ * This {@code UserGroup} enum represents the different user groups in the system.
  * Each user group corresponds to a different faculty or school in the university.
  * 
  * @author Benjamin Fernandez

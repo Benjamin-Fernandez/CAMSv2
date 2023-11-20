@@ -1,8 +1,19 @@
 package CAMSv2;
 
+
+/**
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
+ * The {@code CampCommitteeMemberView} class for Camp Committee Members, managing display and user interaction.
+ * Extends functionality from the StudentView class.
+ */
 public class CampCommitteeMemberView extends StudentView {
 
-
+    /**
+     * Displays specific camp-related options based on user roles.
+     * @param isRegistered Indicates if the user is registered for the camp.
+     * @param isCCM Indicates if the user is a Camp Committee Member.
+     */
     public void displayCampSpecificOptions(boolean isRegistered, boolean isCCM) {
         if (isCCM) {
             System.out.println("1. Submit an Enquiry");
@@ -18,11 +29,17 @@ public class CampCommitteeMemberView extends StudentView {
 
     }
 
+    /**
+     * Displays the menu for camp-related enquiries.
+     */
     public void displayCampEnquiriesMenu() {
         System.out.println("1. View Camp Enquiries");
         System.out.println("2. Reply to an Enquiry"); 
     }
 
+    /**
+     * Displays the menu for managing camp suggestions.
+     */
     public void displaySuggestionsMenu() {
         System.out.println("1. Submit a suggestion"); 
         System.out.println("2. View suggestion"); 
@@ -30,15 +47,24 @@ public class CampCommitteeMemberView extends StudentView {
         System.out.println("4. Delete suggestion"); 
     }
 
+    /**
+     * Displays a prompt to submit a suggestion.
+     */
     public void displaySubmitSuggestion() {
         System.out.println("Please enter the suggestion: ");
     }
 
+    /**
+     * Displays a prompt to get the index of a suggestion.
+     */
     public void displayGetSuggestionIndex() {
         System.out.println("Please enter the suggestion index: ");        
     }
 
-
+    /**
+     * Displays camp details.
+     * @param camp The Camp object containing camp details.
+     */
     public void displayCampDetails(Camp camp){
 
         System.out.println("Camp name: " + camp.getCampName() + '\n' +
@@ -58,10 +84,17 @@ public class CampCommitteeMemberView extends StudentView {
         }
     }
 
+    /**
+     * Displays a prompt to get a reply.
+     */
     public void displayGetReply() {
         System.out.println("Please enter your reply: ");
     }
 
+    /**
+     * Displays all advices for a suggestion.
+     * @param suggestion The Suggestion object containing advices.
+     */
     public void displayAllAdvices(Suggestion suggestion) {
         int counter = 1;
         for (Advice advice : suggestion.getAdviceList()) {
