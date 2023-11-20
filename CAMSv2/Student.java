@@ -29,10 +29,7 @@ public class Student extends User{
         registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
         System.out.println("Registered Camp: " + getRegisteredCamps());
     }
-     /**
-     * Overrides the changePassword method from the User class.
-     * It also writes the new password to the CSV file.
-     */
+
     @Override
     public void changePassword() {
         super.changePassword();
