@@ -3,6 +3,8 @@ package CAMSv2;
 import java.util.Scanner;
 
 /**
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
  * Represents a Camp Committee Member, extending the Student class.
  * Manages committee-specific actions within a camp.
  */
