@@ -2,10 +2,10 @@ package CAMSv2;
 
 
 /**
- * @author Zhu Yu Hao
- * @since 13-11-2023
  * The {@code CampCommitteeMemberView} class for Camp Committee Members, managing display and user interaction.
  * Extends functionality from the StudentView class.
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
  */
 public class CampCommitteeMemberView extends StudentView {
 

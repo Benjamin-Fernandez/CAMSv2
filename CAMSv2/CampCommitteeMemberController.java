@@ -1,9 +1,9 @@
 package CAMSv2;
 
 /**
- * @author Zhu Yu Hao
- *  @since 13-11-2023
  * The {@code CampCommitteeMemberController} class represents Controller for Camp Committee Member, managing their actions and interactions within the system.
+ *  @author Zhu Yu Hao
+ *  @since 13-11-2023
  */
 
 public class CampCommitteeMemberController extends StudentController {
