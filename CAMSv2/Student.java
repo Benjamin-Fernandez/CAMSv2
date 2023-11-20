@@ -9,6 +9,18 @@ import java.util.ArrayList;
 public class Student extends User{
     ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
     Enquiries enquiries;
+
+      /**
+     * Constructor for the Student class.
+     * It initializes the student's name, email ID, faculty, password, role, enquiries, and registered camps.
+     *
+     * @param name The student's name.
+     * @param emailID The student's email ID.
+     * @param faculty The faculty to which the student belongs.
+     * @param password The student's password.
+     * @param role The student's role.
+     */
+
     public Student(String name, String emailID, UserGroup faculty, String password, Role role) {
         super(name, emailID, faculty, password, role);
         // setup the enquiries and registeredCamps
@@ -17,11 +29,22 @@ public class Student extends User{
         registeredCamps = CampManager.setUpStudentRegisteredCamps(name);
         System.out.println("Registered Camp: " + getRegisteredCamps());
     }
+     /**
+     * Overrides the changePassword method from the User class.
+     * It also writes the new password to the CSV file.
+     */
     @Override
     public void changePassword() {
         super.changePassword();
         StudentDataBase.getInstance().writeToCSV();
     }
+
+     /**
+     * Checks if a given camp name is in the list of available camps.
+     *
+     * @param campName The name of the camp to check.
+     * @return The Camp object if found, null otherwise.
+     */
 
     public Camp ifCampNameInAvailableListOfCamps(String campName) {
         Camp camp = CampManager.getCamp(campName);
@@ -38,10 +61,20 @@ public class Student extends User{
         }
     }
 
+     /**
+     * This method gets the list of camps registered by the student.
+     *
+     * @return An ArrayList of Camp objects representing the camps registered by the student.
+     */
     public ArrayList<Camp> getRegisteredCamps() {
         return registeredCamps;
     }
 
+    /**
+     * This method allows the student to view the remaining slots for a given camp.
+     *
+     * @param campName The name of the camp to check.
+     */
     public void viewRemainingCampSlots(String campName) {
         // get Camp from CampManager
         Camp camp = CampManager.getCamp(campName);
@@ -53,6 +86,13 @@ public class Student extends User{
 
 
     // --- Enquiries -----------------------------------------------------
+
+     /**
+     * This method allows the student to create an enquiry for a given camp.
+     *
+     * @param description The description of the enquiry.
+     * @param camp The camp for which the enquiry is being made.
+     */
     public void createEnquiry(String description, Camp camp) {
         Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
         System.out.println("Created Question: " + question);
@@ -104,14 +144,30 @@ public class Student extends User{
 
     }
 
+     /**
+     * This method deletes all enquiries made by the student.
+     */
+
     public void deleteAllEnquiries() {
         enquiries = new Enquiries(super.name);
     }
+
+     /**
+     * This method gets the enquiries made by the student.
+     *
+     * @return An Enquiries object representing the enquiries made by the student.
+     */
 
     public Enquiries getEnquiries() {
         return enquiries;
     }
 
+     /**
+     * This method checks if the student can register for a given camp.
+     *
+     * @param camp The camp to check.
+     * @return true if the student can register for the camp, false otherwise.
+     */
     // --- Registration--------------------------------------
     public boolean canRegisterCamp(Camp camp) {
         if (camp.isStudentInBlackList(this)) {
@@ -165,6 +221,13 @@ public class Student extends User{
         return true;
     }
 
+     /**
+     * This method withdraws a student from a given camp.
+     *
+     * @param camp The camp to check.
+    * Blacklists the student from the given cmap and removes the student from the camp's student list.
+     * .
+     */
     public void withdrawFromCamp(Camp camp) {
         // if camp committee member should remove from camp
         camp.getStudentList().remove(this);
