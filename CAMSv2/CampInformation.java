@@ -7,9 +7,10 @@ import java.util.Date;
 import java.util.HashSet;
 
 /**
- *  @author Zhu Yu Hao
- *  @since 13-11-2023
+
  *The {@code CampInformation} class represents information about a camp, including its details and committee members.
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
  */
 public class CampInformation {
 

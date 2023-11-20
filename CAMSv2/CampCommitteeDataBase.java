@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * @author Zhu YuHao
- * @since 13-11-2023
+
  * The {@code CampCommitteeDatabase} class represents Database manager for Camp Committee Members, handling data loading, writing, and retrieval.
  * This class manages a HashSet of CampCommitteeMember objects and handles CSV file operations.
  * @author Zhu YuHao
-  *@since 16-11-2023
+ * @since 13-11-2023
  */
 
 public class CampCommitteeDataBase extends DataBase{
