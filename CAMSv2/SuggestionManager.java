@@ -3,7 +3,7 @@ package CAMSv2;
 import java.util.Scanner;
 
 /**
- * Singleton class responsible for managing Suggestion utility methods.
+ * Singleton {@code SuggestionManager} class responsible for managing Suggestion utility methods.
  */
 
 public class SuggestionManager {

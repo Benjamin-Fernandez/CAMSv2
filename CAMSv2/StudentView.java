@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * This class's objects displays student's view
+ * This {@code StudentView} class's objects displays student's view
  * 
  * @author Zhu Yu Hao
  * @since 13-11-2023

@@ -1,10 +1,10 @@
 package CAMSv2;
 
 import java.util.ArrayList;
-/** 
- Representing a Student user registered in the system.
- @author Zhu Yu Hao
- @since 13-11-2023
+/**
+ *This {@code Student} class represent a Student user registered in the system.
+ *@author Zhu Yu Hao
+ *@since 13-11-2023
  */
 public class Student extends User{
     ArrayList<Camp> registeredCamps = new ArrayList<Camp>();

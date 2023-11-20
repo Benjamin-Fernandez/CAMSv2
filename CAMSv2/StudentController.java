@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 
  /** 
- * This class represents the controller for the Student model.
+ * This {@code StudentController} class represents the controller for the Student model.
  * It extends the BaseController class and includes additional properties and methods specific to a Student.
  * 
  * @author Zhu Yu Hao
