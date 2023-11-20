@@ -9,7 +9,7 @@ import java.util.HashSet;
 /**
  *  @author Zhu Yu Hao
  *  @since 13-11-2023
- * Represents information about a camp, including its details and committee members.
+ *The {@code CampInformation} class represents information about a camp, including its details and committee members.
  */
 public class CampInformation {
 
