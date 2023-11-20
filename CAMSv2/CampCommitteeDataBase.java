@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- *   @author Zhu Yu Hao
+ * @author Zhu YuHao
  * @since 13-11-2023
  * Database manager for Camp Committee Members, handling data loading, writing, and retrieval.
  * This class manages a HashSet of CampCommitteeMember objects and handles CSV file operations.

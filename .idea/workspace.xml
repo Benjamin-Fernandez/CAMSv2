@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/CAMSv2/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

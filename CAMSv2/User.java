@@ -4,7 +4,7 @@ import java.util.Scanner;
 
  
 /**
- * @author Joshua Yap
+ * @author Zhu YuHao
  * @since 13-11-2023
  * The User class represents a user in the CAMSv2 system.
  * Each user has an email ID, password, faculty, name, and role.
