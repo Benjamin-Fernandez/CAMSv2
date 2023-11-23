@@ -1,8 +1,21 @@
 package CAMSv2;
 
+/**
+ * The {@code CampCommitteeMemberController} class represents Controller for Camp Committee Member, managing their actions and interactions within the system.
+ *  @author Zhu Yu Hao
+ *  @since 13-11-2023
+ */
+
 public class CampCommitteeMemberController extends StudentController {
     private CampCommitteeMember ccm;
     private CampCommitteeMemberView ccmView;
+
+    /**
+     * Constructor for CampCommitteeMemberController.
+     *
+     * @param ccm   The CampCommitteeMember object.
+     * @param view  The CampCommitteeMemberView object.
+     */
 
     public CampCommitteeMemberController(CampCommitteeMember ccm, CampCommitteeMemberView view) {
         super(ccm, view);
@@ -10,6 +23,12 @@ public class CampCommitteeMemberController extends StudentController {
         this.ccmView = view;
     }
 
+    /**
+     * Overrides the handling of the student menu choices.
+     *
+     * @param choice The selected menu option.
+     * @return True if the operation is successful and the loop should continue, false otherwise.
+     */
     @Override
     protected boolean handleStudentMenu(int choice) {
         switch (choice) {
@@ -32,6 +51,9 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
+    /**
+     * Enters specific camp-related options based on the committee member's role.
+     */
     @Override
     protected boolean enterDisplayProfile() {
         ccmView.displayHeader("PROFILE");
@@ -67,8 +89,9 @@ public class CampCommitteeMemberController extends StudentController {
         return true;
     }
 
-    
-
+    /**
+     * Handles camp suggestions, allowing committee members to submit, view, edit, or delete suggestions.
+     */
     protected void handleCampSuggestions() {
         boolean running = true;
         while (running) {
@@ -79,8 +102,13 @@ public class CampCommitteeMemberController extends StudentController {
             sc.nextLine();
             running = handleCampSuggestionsSwitch(choice);
         }
-    }        
+    }
 
+    /**
+     * Handles the switch for camp suggestions, directing functionality based on user choice.
+     * @param choice The selected option.
+     * @return True if the operation is successful and the loop should continue, false otherwise.
+     */
     protected boolean handleCampSuggestionsSwitch(int choice) {
         switch (choice) {
             case 1:
@@ -103,6 +131,9 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
+    /**
+     * Submits a suggestion to the camp.
+     */
     protected void handleSubmitSuggestion() {
         ccmView.displaySubmitSuggestion();
         String suggestion = sc.nextLine();
@@ -110,12 +141,19 @@ public class CampCommitteeMemberController extends StudentController {
         ccm.addPointsByOne();
     }
 
+    /**
+     * Handles viewing a suggestion given by the committee member.
+     */
     protected void handleViewSuggestion() {
         Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
         if (suggestion == null) {return;}
         ccmView.displayAllAdvices(suggestion);
     }
 
+    /**
+     * Handles acquiring a suggestion for editing or deletion.
+     * @return The acquired suggestion.
+     */
     protected Advice acquireSuggestion() {
         handleViewSuggestion();
         ccmView.displayGetSuggestionIndex();
@@ -128,6 +166,9 @@ public class CampCommitteeMemberController extends StudentController {
         return suggestion.getAdviceList().get(index);
     }
 
+    /**
+     * Handles editing a suggestion given by the committee member.
+     */
     protected void handleEditSuggestion() {
         Advice advice = acquireSuggestion();
         ccmView.displaySubmitSuggestion();
@@ -136,6 +177,9 @@ public class CampCommitteeMemberController extends StudentController {
         System.out.println("Successfully set new suggestion!");
     }
 
+    /**
+     * Handles deleting a suggestion given by the committee member.
+     */
     protected void handleDeleteSuggestion() {
         handleViewSuggestion();
         Advice advice = acquireSuggestion();
@@ -143,8 +187,12 @@ public class CampCommitteeMemberController extends StudentController {
         suggestion.getAdviceList().remove(advice);
         System.out.println("Successfully removed Suggestion");        
     }
-    
 
+    /**
+     * Handles the switch for camp enquiries, directing functionality based on user choice.
+     * @param choice The selected option.
+     * @return True if the operation is successful and the loop should continue, false otherwise.
+     */
     protected boolean handleCampEnquiriesSwitch(int choice) {
         switch (choice) {
             case 1:
@@ -161,6 +209,9 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
+    /**
+     * Handles replying to a camp enquiry.
+     */
     protected void handleReplyToEnquiry() {
         camp.printEnquiriesList();
         ccmView.displayGetEnquiryId();
@@ -182,6 +233,9 @@ public class CampCommitteeMemberController extends StudentController {
         System.out.println("Successfully sent reply!");
     }
 
+    /**
+     * Handles camp enquiries, allowing committee members to view enquiries and reply to them.
+     */
     protected void handleCampEnquiries() {
 
         boolean running = true;
@@ -195,11 +249,18 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
+    /**
+     * Handles generating a camp attendance report.
+     */
     protected void handleCampAttendanceReport() {
 
     }
 
-
+    /**
+     * Handles the menu options specific to CampCommitteeMember.
+     * @param choice The selected menu option.
+     * @return True if the operation is successful and the loop should continue, false otherwise.
+     */
     protected boolean handleCampCommitteeMemberMenu(int choice) {
         // Implement additional menu options specific to CampCommitteeMember
         switch (choice) {

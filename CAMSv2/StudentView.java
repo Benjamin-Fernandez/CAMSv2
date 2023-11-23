@@ -1,9 +1,44 @@
 package CAMSv2;
 
 import java.util.ArrayList;
+
+/**
+ * This {@code StudentView} class's objects displays student's view
+ * 
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
+ */
+
 public class StudentView extends View{
 
 // --------------------General--------------------
+ /**
+     * This method displays a header.
+     *
+     * @param header The header to display.
+     */
+    public void displayHeader(String header) {
+        System.out.println("---------------" + header + "-------------------");        
+    }
+
+    /**
+     * This method displays a message indicating that the user should select a valid option.
+     */
+    public void displaySelectValidOption() {
+        System.out.println("Select a valid option");
+    }
+
+    /**
+     * This method displays a message prompting the user to select an action.
+     */
+    public void displaySelectActionToTake() {
+        System.out.println("Select an option: ");
+    }
+
+
+    /**
+     * This method displays the student menu.
+     */
     public void displayStudentMenu() {
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password"); 
@@ -12,6 +47,28 @@ public class StudentView extends View{
         System.out.println("4. View Profile"); 
         System.out.println("5. Manage Enquiries (View, Edit and Delete)");
         System.out.println("6. Select a Camp to access more options(submit enquiry, register/withdraw, view available slots)");
+    }
+
+    /**
+     * This method displays a message indicating that the user can return to the previous page.
+     */
+    public void displayReturnToPreviousPage() {
+        System.out.println("<--- Return to previous page (type 111)");
+    }
+
+    /**
+     * This method displays a success message.
+     */
+    public void displaySuccessfulMessage() {
+        System.out.println("Successful!");
+    }
+
+     /**
+     * This method displays a failure message.
+     */
+
+    public void displayFailureMessage() {
+        System.out.println("Failed!");
     }
 // -----------------Enquiries------------------
     public void displayEnquiries(ArrayList<Question> questions) {

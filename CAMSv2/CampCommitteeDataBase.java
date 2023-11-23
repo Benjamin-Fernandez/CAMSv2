@@ -4,15 +4,28 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 
+/**
+
+ * The {@code CampCommitteeDatabase} class represents Database manager for Camp Committee Members, handling data loading, writing, and retrieval.
+ * This class manages a HashSet of CampCommitteeMember objects and handles CSV file operations.
+ * @author Zhu YuHao
+ * @since 13-11-2023
+ */
+
 public class CampCommitteeDataBase extends DataBase{
     private static CampCommitteeDataBase instance;
     private HashSet<CampCommitteeMember> campCommitteeMembersList = new HashSet<>();
     private String filePath = System.getProperty("user.dir") + "\\CAMSv2\\Data CSV\\CampCommitteeMember_List.csv";
 
 
+
     private CampCommitteeDataBase() {
     }
 
+    /**
+     * Retrieves the singleton instance of CampCommitteeDataBase.
+     * @return The instance of CampCommitteeDataBase.
+     */
     // can remove filePath argument and instead intialize into the class itself
     public static CampCommitteeDataBase getInstance() {
         if (instance == null) {
@@ -30,6 +43,9 @@ public class CampCommitteeDataBase extends DataBase{
     }
 
 
+    /**
+     * Loads data from the CSV file into the database.
+     */
     public void loadToCSV(){
         campCommitteeMembersList.clear();
         try (InputStream inputStream = new FileInputStream(this.filePath);
@@ -68,6 +84,9 @@ public class CampCommitteeDataBase extends DataBase{
 
     }
 
+    /**
+     * Writes the database content to the CSV file.
+     */
     public void writeToCSV() {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filePath, false))) {
             if(campCommitteeMembersList.size() == 0){
@@ -86,6 +105,10 @@ public class CampCommitteeDataBase extends DataBase{
         }
     }
 
+    /**
+     * Retrieves the Camp Committee Members list.
+     * @return The HashSet containing Camp Committee Members.
+     */
     public HashSet<CampCommitteeMember> getCampCommitteeMembersList() {
         return campCommitteeMembersList;
     }

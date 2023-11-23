@@ -3,8 +3,9 @@ package CAMSv2;
 import java.util.Scanner;
 
 /**
- * Singleton class responsible for managing Suggestion utility methods
+ * Singleton {@code SuggestionManager} class responsible for managing Suggestion utility methods.
  */
+
 public class SuggestionManager {
     private static SuggestionManager instance;
     private static int counter = 1;
@@ -16,15 +17,25 @@ public class SuggestionManager {
     private SuggestionManager() {
     }
 
-    // can remove filePath argument and instead intialize into the class itself
+    /**
+     * Retrieves the instance of the {@code SuggestionManager}.
+     *
+     * @return The instance of the {@code SuggestionManager}.
+     */
     public static SuggestionManager getInstance() {
         if (instance == null) {
             instance = new SuggestionManager();
         }
         return instance;
     }
-
     //methods
+        /**
+     * Creates a new suggestion for a given camp, associating it with a student's name.
+     *
+     * @param advice    The Advice created in the CCM.
+     * @param camp  The camp the advice is to be created in.
+     * @param name The name of the student making the suggestion.
+     */
     public void createSuggestion(Advice advice, Camp camp, String studentName){
         // increment advice id
         counter++;
@@ -37,8 +48,14 @@ public class SuggestionManager {
         suggestion.addAdvice(advice);
         camp.addSuggestion(suggestion);
     }
+    /**
+     * Allows staff members to view suggestions for a specific camp.
+     *
+     * @param campName  The name of the camp.
+     * @param staffName The name of the staff member.
+     */
 
-    //staff fucntion
+    //staff function
     public void viewSuggestionForStaff(String campName, String staffName){
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
@@ -64,6 +81,14 @@ public class SuggestionManager {
 
         }//outer for
     }//viewSuggestion
+
+    /**
+     * Allows staff members to approve an advice associated with a suggestion.
+     *
+     * @param campName  The name of the camp.
+     * @param staffName The name of the staff member.
+     * @return The approved suggestion.
+     */
 
     //approve suggestion
     //staff.approvesuggestion-> suggManager.approveAdvice->
@@ -102,7 +127,12 @@ public class SuggestionManager {
         return curCamp.getSuggestions().get(suggIndex);
         //sc.close();
     }
-
+    /**
+     * Allows committee members to view suggestions for a specific camp.
+     *
+     * @param committeeMemberName The name of the committee member.
+     * @param campName            The name of the camp.
+     */
     //committee functions
     public void viewSuggestionForCommitteeMember(String committeeMemberName,String campName){
         //printing and logic will occur in this method
@@ -121,7 +151,12 @@ public class SuggestionManager {
             }//mid for
         }//outer for
     }//viewSuggestion
-
+    /**
+     * Allows committee members to edit an advice associated with a suggestion.
+     *
+     * @param studentName The name of the committee member.
+     * @param campName    The name of the camp.
+     */
     public void editSuggestionForCommitteeMember(String studentName, String campName){
          int advIndex;
          String newAdvice;
@@ -139,6 +174,12 @@ public class SuggestionManager {
 
 
     }
+    /**
+     * Allows committee members to delete an advice associated with a suggestion.
+     *
+     * @param studentName The name of the committee member.
+     * @param campName    The name of the camp.
+     */
 
     public void deleteSuggestionForCommitteeMember(String studentName, String campName){
         int advIndex;

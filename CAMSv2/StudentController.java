@@ -5,13 +5,33 @@ import java.util.ArrayList;
 /**
  * Student Controller class
  */
+
+ /** 
+ * This {@code StudentController} class represents the controller for the Student model.
+ * It extends the BaseController class and includes additional properties and methods specific to a Student.
+ * 
+ * @author Zhu Yu Hao
+ * @since 13-11-2023
+ */
+
 public class StudentController extends BaseController<Student, StudentView>{
     Camp camp = null;
 
+     /**
+     * Constructor for the StudentController class.
+     * It initializes the student and the view.
+     *
+     * @param student The student to be controlled.
+     * @param view The view to be used.
+     */
     StudentController(Student student, StudentView view) {
         super(student, view);
     }
 
+     /**
+     * This method starts the program for the student.
+     * It displays the student menu and handles the student's choices.
+     */
     public void startProgram() {
         boolean running = true;
         while (running) {
@@ -25,6 +45,12 @@ public class StudentController extends BaseController<Student, StudentView>{
         }
     }
 
+     /**
+     * This method handles the student's menu choices.
+     *
+     * @param choice The student's menu choice.
+     * @return true if the program should continue running, false otherwise.
+     */
     protected boolean handleStudentMenu(int choice) {
         switch (choice) {
             case 1:
@@ -122,6 +148,10 @@ public class StudentController extends BaseController<Student, StudentView>{
         return question;        
     }
 
+    /**
+     * This method handles the student's choice to view the remaining time slots for a camp.
+     */
+
     protected boolean enterEditEnquiry() {
         view.displayHeader("EDIT ENQUIRY");
         Question question = enterGetEnquiry();
@@ -137,6 +167,11 @@ public class StudentController extends BaseController<Student, StudentView>{
         return true;
     }
 
+     /**
+     * This method handles the student's choice to delete an enquiry.
+     * It prompts the student for the enquiry ID and then deletes the enquiry.
+     */
+
     protected boolean enterDeleteEnquiry() {
         view.displayHeader("DELETE ENQUIRY");
         Question question = enterGetEnquiry();
@@ -146,6 +181,12 @@ public class StudentController extends BaseController<Student, StudentView>{
         return true;
     }
 
+    /**
+     * This method handles the student's selection of a camp.
+     * It prompts the student for the camp name and sets the selected camp.
+     *
+     * @return true if the camp was successfully selected, false otherwise.
+     */
     protected Camp handleCampSelection() {
         view.displayHeader("CAMP SELECTION");
         // select camp
@@ -160,6 +201,13 @@ public class StudentController extends BaseController<Student, StudentView>{
         System.out.println("You chosed Camp: " + camp.getCampName());
         return camp;
     }
+
+    /**
+     * This method handles the student's selection of camp-specific options.
+     * It displays the camp-specific menu and handles the student's choices.
+     *
+     * @return true if the program should continue running, false otherwise.
+     */
 
     protected boolean enterCampSpecificOptions() {
         this.camp = handleCampSelection();
@@ -183,6 +231,10 @@ public class StudentController extends BaseController<Student, StudentView>{
         return !goToMainMenu.getBooleanValue();
     }
 
+     /**
+     * This method handles the student's choice to submit an enquiry to a camp.
+     * It prompts the student for the enquiry description and then creates the enquiry.
+     */
     protected boolean handleSubmitEnquiryToCamp() {
         // Submit Enquiry to camp
         view.displayEnterNewEnquiryDescription();
@@ -193,6 +245,9 @@ public class StudentController extends BaseController<Student, StudentView>{
         return true;
     }
 
+    /**
+     * This method handles the student's choice to view the remaining time slots for a camp.
+     */
     protected boolean handleViewRemainingTimeSlots() {
         view.displayHeader("REMAINING CAMP SLOTS");
         view.displayRemainingCampSlots(this.camp);   
@@ -226,12 +281,20 @@ public class StudentController extends BaseController<Student, StudentView>{
         return true;
     }
 
+     /**
+     * This method handles the student's choice to withdraw from a camp.
+     */
     protected boolean enterCampWithdrawal() {
         user.withdrawFromCamp(this.camp);
         view.displayWithdrawalFromCamp(this.camp);
         return true;
     }
 
+     /**
+     * This method handles the student's choice to enter the camp registration process.
+     * @param goToMainMenu this is a object that is being passed to tell the program to exit back to main menu.
+     * @return true if the registration was successful, false otherwise.
+     */
     protected boolean enterCampRegister(GoToMainMenu goToMainMenu) {
         // check if camp is full
         if (!user.canRegisterCamp(this.camp)) {return true;}
