@@ -2,8 +2,6 @@ package CAMSv2;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 
 public class CampInformation {

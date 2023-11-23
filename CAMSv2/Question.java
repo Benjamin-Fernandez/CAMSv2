@@ -43,4 +43,8 @@ public class Question {
 
     }
 
+    public boolean getStatus() {
+        return processed;
+    }
+
 }

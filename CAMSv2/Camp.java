@@ -2,7 +2,6 @@ package CAMSv2;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 public class Camp {
 
@@ -101,6 +100,10 @@ public class Camp {
             }
 
         }
+    }
+
+    public boolean getVisibility() {
+        return visibility;
     }
 
     public void setVisibility(boolean choice){
@@ -203,19 +206,22 @@ public class Camp {
     //additional methods
     public void printCampInfoTable(){
         this.info.printCampInfoTable();
+        System.out.println("8. Visibility = " + getVisibility());
     }
 
-    public void printStudentList() {
+    public void printStudentList(HashSet<Student> students) {
         System.out.println("PRINTING STUDENTLIST");
-        for (Student student : studentList) {
-            System.out.println(student.getName());
+        System.out.println("Student Name" + " | " + "Role");
+        for (Student student : students) {
+            System.out.println(student.getName() + " | " + student.getRole());
         }
     }
 
     public void printCCMList() {
         System.out.println("PRINTING CCMLIST");
-        for (CampCommitteeMember student : info.getCampCommitteeSlots()) {
-            System.out.println(student.getName());
+        System.out.println("CCM Name" + " | " + "Points");
+        for (CampCommitteeMember ccm : info.getCampCommitteeSlots()) {
+            System.out.println(ccm.getName() + " | " + ccm.getPoints());
         }
     }
 
@@ -233,11 +239,21 @@ public class Camp {
             for (Question question : enquiries.getQuestions()) {
                 System.out.println(question.getQuestionId() + " | " + question.getQuestion());
                 for (Reply reply : question.getReplies()) {
-                    System.out.println("Reply(" + reply.getName() + "): " + reply.getReply());
+                    System.out.println(reply.getName() + " Replied: " + reply.getReply());
                 }
             }
         }
     }
+
+    public void printSuggestionList() {
+    for (Suggestion suggestion : suggestionsList) {
+        System.out.println("Suggester: " + suggestion.getStudent());
+        System.out.println("Advice Id" + " | " + "Advice" + " | " + "Status");
+        for (Advice advice : suggestion.getAdviceList()) {
+            System.out.println(advice.getId() + " | " + advice.getAdvice() + " | " + advice.getApproved());
+        }
+    }
+}
 
 
     public void deleteEnquiry(Question question, String studentName) {
@@ -267,6 +283,41 @@ public class Camp {
         System.out.println("Cannot find the suggestion created by " + name);
         return null;
     }
+
+    public Advice getAdviceFromCamp(int id) {
+        for (Suggestion suggestion : suggestionsList) {
+            for (Advice advice : suggestion.getAdviceList()) {
+                if (advice.getId() == id) {
+                    return advice;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void generateCampReport(ReportFilter filter) {
+        // list of students attending each camp
+        printCampInfoTable();
+        printStudentList(filter.getFilteredList(getStudentList()));
+        // generate csv
+        ReportDatabase.getInstance().generateCampReportCSV(this, filter);
+    }
+
+    public void generateCampCommitteeReport() {
+        // CCM name, points 
+        printCCMList();
+        // generate csv
+        ReportDatabase.getInstance().generateCCMReportCSV(this);
+    }
+
+    public void generateStudentsEnquiryReport() {
+        // Student Name, Enquiry
+        printEnquiriesList();
+        // generate csv
+        ReportDatabase.getInstance().generateStudentsEnquiryReport(this);
+    }
+    
+
 
 
 }

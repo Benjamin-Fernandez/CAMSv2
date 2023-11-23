@@ -1,9 +1,7 @@
 package CAMSv2;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Properties;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,60 +11,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.BufferedWriter;
-import java.util.List;
 
 
 // to become Singleton
 public class CampManager {
     //attributes
-    private static ArrayList<Camp> campList = new ArrayList<Camp>();
+    private static CampManager instance;
+    private ArrayList<Camp> campList = new ArrayList<Camp>();
 
     //method
-
-    public static Enquiries setUpStudentEnquiries(String name) {
-        Enquiries studentEnquiries = new Enquiries(name);
-        ArrayList<Question> studentQuestions = studentEnquiries.getQuestions();
-        for (Camp camp : campList) {
-            for (Enquiries enquiries : camp.getEnquiries()) {
-                // System.out.println("Enquirer: " + enquiries.getEnqurier());
-                // System.out.println("Equals? " + name);
-                if (enquiries.getEnqurier().equals(name)) {
-                    ArrayList<Question> questions = enquiries.getQuestions();
-                    // for (Question question : questions) {
-                    //     System.out.println("question: " + question.getQuestion());
-                    // }
-                    studentQuestions.addAll(questions);
-                }
-            }
+    private CampManager() {};
+    public static CampManager getInstance() {
+        if (instance == null) {
+            instance = new CampManager();
         }
-        // System.out.println("StudentQuestions: " + studentQuestions.size());
-        // for (Question question : studentQuestions) {
-        //     System.out.println("questioninStudent: " + question.getQuestion());            
-        // }
-        return studentEnquiries;
-    }
-
-    public static ArrayList<Camp> setUpStudentRegisteredCamps(String name) {
-        System.out.println("Passed Name: " + name);
-        ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
-        for (Camp camp : campList) {
-            for (Student student : camp.getStudentList()) {
-                System.out.println("Name to check: " + student.getName());
-                if (student.getName().equals(name)) {
-                    System.out.println("Camp is registered");
-                    registeredCamps.add(camp);
-                }
-            }
-        }
-        return registeredCamps;
+        return instance;
     }
     
-    public static void createCamp(String staffName){
+    public void createCamp(Staff staff){
         //print and scan logic is here
         // call constructor from camp, parameters are all the 8 inputs
       //Camp SpecificCamp = new Camp(8 parameters);
@@ -108,8 +73,14 @@ public class CampManager {
         System.out.println("Enter registration closing date");
         userInput = sc.nextLine();
         userInput += " 23:59";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        registrationClosingDate = LocalDateTime.parse(userInput, formatter);
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            registrationClosingDate = LocalDateTime.parse(userInput, formatter);            
+        } catch (Exception e) {
+            return;
+        }
+
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         //Ensures that the registration closing date is after the local clock
@@ -144,15 +115,16 @@ public class CampManager {
         //sc.close();
 
 
-        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,validUserGroup,location,totalSlots,description,staffName);
+        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,validUserGroup,location,totalSlots,description,staff.getName());
 
         addCamp(newCamp);
+        staff.getCreatedCamps().add(newCamp);
 
         System.out.println(campName + " camp created");
 
     }
 
-    public static UserGroup checkUserGroupExist(String userGroup){
+    public UserGroup checkUserGroupExist(String userGroup){
         //returns null if user group doesnt exist
         // returns type of usergroup if it does exist
         for (UserGroup usergroups : UserGroup.values()) {
@@ -163,15 +135,14 @@ public class CampManager {
         return null;
     }
 
-    public static void addCamp(Camp camp){
+    public void addCamp(Camp camp){
         campList.add(camp);
     }
 
-    public static Camp getCamp(String campName){
+    public Camp getCamp(String campName){
         //for each camp in campList
-        ArrayList<Camp> campList = new ArrayList<Camp>();
-        campList = CampManager.getCampList();
-        Camp camp = new Camp();
+        ArrayList<Camp> campList = getCampList();
+        Camp camp;
 
         if(campList != null) {
             for (int i = 0; i < campList.size(); i++) {
@@ -184,19 +155,19 @@ public class CampManager {
         return null;//if it doesnt find a camp
     }
 
-    public static boolean getStaffinCharge(String campName, String Staffname){
+    public boolean getStaffinCharge(String campName, String Staffname){
         //for each camp in campList
         //if staffname == campList[i].info.staffincharge && campName == campList[i].info.name return true
         String staffIC;
         Camp camp = new Camp();
-        camp = CampManager.getCamp(campName);
+        camp = getCamp(campName);
         staffIC = camp.getStaffName();
 
         return staffIC.equals(Staffname);
         }
 
 
-    public static void editCamp(String campName,String staffName){
+    public void editCamp(String campName,String staffName){
         int choice;
         Scanner sc = new Scanner(System.in);
         Camp currentCamp = getCamp(campName);
@@ -286,12 +257,11 @@ public class CampManager {
         return;
     }//end edit camp
 
-    public static void deleteCamp(String campName){
-        Camp camp = CampManager.getCamp(campName);
+    public void deleteCamp(Camp camp){
         campList.remove(camp);
     }
 
-    public static void changeVisibility(String campName){
+    public void changeVisibility(String campName){
         //ask the user whether true/false
         String settings;
         boolean choice;
@@ -303,12 +273,12 @@ public class CampManager {
         else
             choice = false;
 
-        Camp camp = CampManager.getCamp(campName);
+        Camp camp = getCamp(campName);
         camp.setVisibility(choice);
         //sc.close();
     }
 
-    public static ArrayList<Camp> StaffCampListGenerator(String staffName){
+    public ArrayList<Camp> StaffCampListGenerator(String staffName){
         //hello ethan
         //this function prints staff camp list as well as return the array
         //for each camp in campList
@@ -339,149 +309,104 @@ public class CampManager {
 
     }
 
-    public static ArrayList<Camp> getCampList(){
+    public ArrayList<Camp> getCampList(){
         // Should also check for Visiblity and UserGroup
         return campList;
     }
 
 
-    public static void generateReport(String staffName){
-        ArrayList<Camp> campList = CampManager.getCampList();
-        HashSet<Student> studentList;
-        //CampManager campManager = new CampManager();
-        Scanner sc = new Scanner(System.in);
-        int choice;
 
-        String campName;
-        //Camp camp = new Camp();
+    // public void generateReport(String staffName){
+    //     ArrayList<Camp> campList = getCampList();
+    //     HashSet<Student> studentList;
+    //     //CampManager campManager = new CampManager();
+    //     Scanner sc = new Scanner(System.in);
+    //     int choice;
 
-        //the 8 details apart from StudentName and Role
-        UserGroup validUserGroup;
-        String userGroup;
-        String location;
-        String description;
-        Date[] Dates;
-        String registrationClosingDate;
-        int totalSlots;
-        HashSet<CampCommitteeMember> campCommitteeSlots;
-        HashSet<Student> filteredStudentList;
+    //     String campName;
+    //     //Camp camp = new Camp();
 
-        for(int i=0;i<campList.size();i++){
-            campName = campList.get(i).getCampName();
-            //String name of camp obj
+    //     //the 8 details apart from StudentName and Role
+    //     UserGroup validUserGroup;
+    //     String userGroup;
+    //     String location;
+    //     String description;
+    //     Date[] Dates;
+    //     String registrationClosingDate;
+    //     int totalSlots;
+    //     HashSet<CampCommitteeMember> campCommitteeSlots;
+    //     HashSet<Student> filteredStudentList;
 
-            if(CampManager.getStaffinCharge(campName, staffName)){
-                Camp camp = CampManager.getCamp(campName); //camp obj itself
+    //     for(int i=0;i<campList.size();i++){
+    //         campName = campList.get(i).getCampName();
+    //         //String name of camp obj
 
-                studentList = camp.getStudentList();
-                System.out.println("Filter by 1) Attendee");
-                System.out.println("Filter by 2) Camp Committee Member");
-                System.out.println("3) Display all members");
-                choice = sc.nextInt();
-                if(choice == 1 || choice == 2 ){
-                     filteredStudentList = CampManager.filterStudentsByRole(camp, studentList, choice--);
-                }
-                else{
-                    filteredStudentList = studentList;
-                }
+    //         if(getStaffinCharge(campName, staffName)){
+    //             Camp camp = getCamp(campName); //camp obj itself
 
-                LocalDate[] campDates = camp.getDates();
-                registrationClosingDate = camp.getRegistrationClosingDate().toString();
-                validUserGroup = camp.getUserGroup();
-                userGroup = validUserGroup.toString();
-                location = camp.getLocation();
-                totalSlots = camp.getTotalSlots();
-                description = camp.getDescription();
-                campCommitteeSlots = camp.getCampCommitteeSlots();
+    //             studentList = camp.getStudentList();
+    //             System.out.println("Filter by 1) Attendee");
+    //             System.out.println("Filter by 2) Camp Committee Member");
+    //             System.out.println("3) Display all members");
+    //             choice = sc.nextInt();
+    //             if(choice == 1 || choice == 2 ){
+    //                  filteredStudentList = CampManager.getInstance().filterStudentsByRole(camp, studentList, choice--);
+    //             }
+    //             else{
+    //                 filteredStudentList = studentList;
+    //             }
 
-                CampManager.generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
+    //             LocalDate[] campDates = camp.getDates();
+    //             registrationClosingDate = camp.getRegistrationClosingDate().toString();
+    //             validUserGroup = camp.getUserGroup();
+    //             userGroup = validUserGroup.toString();
+    //             location = camp.getLocation();
+    //             totalSlots = camp.getTotalSlots();
+    //             description = camp.getDescription();
+    //             campCommitteeSlots = camp.getCampCommitteeSlots();
 
+    //             CampManager.getInstance().generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
 
-
-
-            //     for(int j = 0 ; j < 10 ; j++){
-            //         //go through campCommitteeSlots array
-            //         //write each index to csv file.
-            //     }
-
-            //     for(int j=0;j<studentList.size();j++){
-            //         Student student = studentList.get(j);
-            //         // System.out.println(student.getName() + student.getStudentRole());
-            //         //getstudentrole is in student class
-            //     }//send everything to a csv file.
+    //     }//end outer for
+    // }
 
 
 
-            // }
-        }//end outer for
-    }
 
+    // //method to filter students based on their role
+    // private HashSet<Student> filterStudentsByRole(Camp camp, HashSet<Student>students, int choice){
+    //     // choice 1 is attendee
+    //     // choice 2 is campCommitteeMember
+    //     HashSet<Student> filteredList = new HashSet<>();
+    //     switch (choice) {
+    //         case 1:
+    //             for(Student student : students){
+    //                 if(student.role == Role.STUDENT){ //yuhao pls implement this
+    //                     filteredList.add(student);
+    //                 }
+    //             }                
+    //             break;
 
-    }//end generateReport
-
-
-    //method to filter students based on their role
-    private static HashSet<Student> filterStudentsByRole(Camp camp, HashSet<Student>students, int choice){
-        // choice 1 is attendee
-        // choice 2 is campCommitteeMember
-        HashSet<Student> filteredList = new HashSet<>();
-        switch (choice) {
-            case 1:
-                for(Student student : students){
-                    if(student.role == Role.STUDENT){ //yuhao pls implement this
-                        filteredList.add(student);
-                    }
-                }                
-                break;
-
-            case 2:
-                for(Student student : students){
-                    if(student.role == Role.CAMP_COMMITTEE_MEMBER){ //yuhao pls implement this
-                        filteredList.add(student);
-                    }
-                }            
-                break;
+    //         case 2:
+    //             for(Student student : students){
+    //                 if(student.role == Role.CAMP_COMMITTEE_MEMBER){ //yuhao pls implement this
+    //                     filteredList.add(student);
+    //                 }
+    //             }            
+    //             break;
         
-            default:
-                break;
-        }
-        return filteredList;
+    //         default:
+    //             break;
+    //     }
+    //     return filteredList;
 
-    }
+    // }
 
     //method to generate CSV format
 
+    
 
-
-    public static void generateCSV(HashSet<Student>filteredStudentList, LocalDate[] campDates,String registrationClosingDate,String userGroup, String location, int totalSlots, String description, Camp camp){
-        String projectDirectory = System.getProperty("user.dir");
-        String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + ".csv";
-
-        try (PrintWriter printWriter = new PrintWriter(new FileWriter(filename, false))) {
-            printWriter.println("Student Name, Student Role");
-
-            for (Student student : filteredStudentList) {
-                printWriter.println(student.getName() + "," + student.getRole().toString());
-            }
-
-            printWriter.println("Camp Dates");
-            // Write dates into csv
-            // Assuming dates is a list of dates
-            /*for (Date date : campDates) {
-                printWriter.println(date.toString());
-            }*/
-
-            printWriter.println("Registration Deadline,User Group,Location of Camp,Camp Slots,Camp Description");
-            printWriter.println(registrationClosingDate + "," + userGroup + "," + location + "," + totalSlots + "," + description);
-
-            System.out.println("CSV file created successfully: " + filename);
-        } catch (IOException e) {
-            System.out.println("CSV file not found");
-        }
-
-    }
-
-    public static boolean isValidDate(String input) {
+    public boolean isValidDate(String input) {
         // Define a custom date format that you expect
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -494,9 +419,9 @@ public class CampManager {
         }
     }
 
-    public static ArrayList<Camp> getCampListByFacultyAndVisibility(UserGroup faculty) {
+    public ArrayList<Camp> getCampListByFacultyAndVisibility(UserGroup faculty) {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
-        for (Camp camp : campList) {
+        for (Camp camp : getCampList()) {
             UserGroup campUserGroup = camp.getUserGroup();
 
             if(camp.visibility){

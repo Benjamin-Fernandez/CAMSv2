@@ -1,6 +1,6 @@
 package CAMSv2;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * Student Controller class
@@ -28,31 +28,51 @@ public class StudentController extends BaseController<Student, StudentView>{
     protected boolean handleStudentMenu(int choice) {
         switch (choice) {
             case 1:
-                user.changePassword();
-                return true;
+                return enterChangePassword();
             case 2:
-                view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(user.getFaculty()));
-                return true;
+                return enterDisplayListOfCampsAvailable();
             case 3:
-                view.displayListOfCamps(user.getRegisteredCamps());
-                return true;
+                return enterDisplayRegisteredCampAndRole(user.getRegisteredCamps(), null);
             case 4:
-                view.displayProfile(user.getName(), user.getPassword(), user.getFaculty(), user.getRole(), "");
-                return true;
+                return enterDisplayProfile();
             case 5:
-                enterEnquiriesMenu();
-                return true;
+                return enterEnquiriesMenu();
             case 6:
-                enterCampSpecificOptions();
-                return true;
+                return enterCampSpecificOptions();
             case 111:
                 return false; // Exit the loop
             default:
                 return true; // Invalid choice, continue loop
         }
     }
+    protected boolean enterChangePassword() {
+        view.displayHeader("Change Password");
+        System.out.println("Enter new password");
+        String newPassword = sc.nextLine();
+        user.changePassword(newPassword);
+        return true;
+    }
 
-    protected void enterEnquiriesMenu() {
+    protected boolean enterDisplayListOfCampsAvailable() {
+        view.displayHeader("LIST OF CAMPS AVAILABLE");
+        view.displayListOfCamps(CampManager.getInstance().getCampListByFacultyAndVisibility(user.getFaculty()));
+        return true;
+    }
+
+    protected boolean enterDisplayRegisteredCampAndRole(ArrayList<Camp> camps, Camp ccmCamp) {
+        view.displayHeader("REGISTERED CAMPS");
+        view.displayRegisteredCampsAndRole(user.getRegisteredCamps(), ccmCamp);
+        return true;
+    }
+
+    protected boolean enterDisplayProfile() {
+        view.displayHeader("PROFILE");
+        user.displayProfile();
+        return true;
+    }
+
+    protected boolean enterEnquiriesMenu() {
+        boolean goToLoginPage = false;
         boolean running = true;
         do {
             view.displayHeader("ENQUIRIES MENU");    
@@ -61,24 +81,33 @@ public class StudentController extends BaseController<Student, StudentView>{
             int choice = sc.nextInt();
             // get rid of carriage
             sc.nextLine();
+            running = handleEnquiriesMenu(choice, goToLoginPage);
+        } while (running);
+        return !goToLoginPage;
+    }
 
-            switch (choice) {
+    protected boolean handleEnquiriesMenu(int choice, boolean goToLoginPage) {
+
+        switch (choice) {
             case 1:
-                view.displayEnquiries(user.getEnquiries().getQuestions());
-                break;
+                // view enquiries
+                return enterDisplayEnquiries();
             case 2:
                 // edit enquiry
-                enterEditEnquiry();
-                break;
+                return enterEditEnquiry();
             case 3:
                 // delete enquiry
-                enterDeleteEnquiry();
-                break;
+                return enterDeleteEnquiry();
             case 111:
-                running = false;
-                break;
-            }
-        } while (running);
+                return false;
+        }
+        return true;
+    }
+
+    protected boolean enterDisplayEnquiries() {
+        view.displayHeader("DISPLAY ENQUIRIES");
+        view.displayEnquiries(user.getEnquiries().getQuestions());
+        return true;
     }
 
     /**
@@ -93,47 +122,49 @@ public class StudentController extends BaseController<Student, StudentView>{
         return question;        
     }
 
-    protected void enterEditEnquiry() {
+    protected boolean enterEditEnquiry() {
         view.displayHeader("EDIT ENQUIRY");
         Question question = enterGetEnquiry();
         if (question == null) {
             view.displayFailureMessage();
-            return;
+            return true;
         }
 
         view.displayEnterNewEnquiryDescription();
         String description = sc.nextLine();
 
         user.editEnquiry(question, description);
+        return true;
     }
 
-    protected void enterDeleteEnquiry() {
+    protected boolean enterDeleteEnquiry() {
         view.displayHeader("DELETE ENQUIRY");
         Question question = enterGetEnquiry();
         String campName = question.getCampName();
-        Camp camp = CampManager.getCamp(campName);
+        Camp camp = CampManager.getInstance().getCamp(campName);
         user.deleteEnquiry(question.getQuestionId(), camp);
+        return true;
     }
 
     protected Camp handleCampSelection() {
         view.displayHeader("CAMP SELECTION");
         // select camp
-        view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(user.getFaculty()));
+        view.displayListOfCamps(CampManager.getInstance().getCampListByFacultyAndVisibility(user.getFaculty()));
         view.displayEnterCampName();
 
         // enter camp name
         String campName = sc.nextLine();
 
-        // store the camp data temporarily here
         Camp camp = user.ifCampNameInAvailableListOfCamps(campName);
         if (camp == null) {return null;}
         System.out.println("You chosed Camp: " + camp.getCampName());
         return camp;
     }
 
-    protected void enterCampSpecificOptions() {
+    protected boolean enterCampSpecificOptions() {
         this.camp = handleCampSelection();
-        if (this.camp == null) {return;}
+        if (this.camp == null) {return true;}
+        GoToMainMenu goToMainMenu = new GoToMainMenu();
         boolean running = true;
         do {
             boolean studentRegistered = camp.isStudentRegistered(user.getName());
@@ -145,40 +176,48 @@ public class StudentController extends BaseController<Student, StudentView>{
             int choice = sc.nextInt();
             // clear buffer
             sc.nextLine();
-            running = handleCampSpecificOptions(choice, studentRegistered);
+            running = handleCampSpecificOptions(choice, studentRegistered, goToMainMenu);
+            // System.out.println("running " + running);
+            // System.out.println("goTologinPageReturnVal " + goToMainMenu);
         } while (running);
+        return !goToMainMenu.getBooleanValue();
     }
 
-    protected void handleSubmitEnquiryToCamp() {
+    protected boolean handleSubmitEnquiryToCamp() {
         // Submit Enquiry to camp
         view.displayEnterNewEnquiryDescription();
         String description = sc.nextLine();
         user.createEnquiry(description, this.camp);
-        view.displayEnquiries(user.getEnquiries().getQuestions());
+        
+        enterDisplayEnquiries();
+        return true;
     }
 
-    protected void handleViewRemainingTimeSlots() {
-        view.displayRemainingCampSlots(this.camp);        
+    protected boolean handleViewRemainingTimeSlots() {
+        view.displayHeader("REMAINING CAMP SLOTS");
+        view.displayRemainingCampSlots(this.camp);   
+        return true;     
     }
 
-    protected boolean handleCampSpecificOptions(int choice, boolean studentRegistered) {
+    protected boolean handleCampSpecificOptions(int choice, boolean studentRegistered, GoToMainMenu goToLoginPage) {
+        System.out.println("Within handleCampSpecificOptions...");
         switch (choice) {
             case 1:
-                handleSubmitEnquiryToCamp();
-                break;
+                return handleSubmitEnquiryToCamp();
             case 2:
                 if (studentRegistered) {
                     // withdraw student
-                    enterCampWithdrawal();
+                    return enterCampWithdrawal();
                 }
                 else {
                     // register Student
-                    return enterCampRegister();
+                    // If he chose CCM, auto logs out
+                    return enterCampRegister(goToLoginPage);
                 }
-                break;
+
             case 3:
-                handleViewRemainingTimeSlots();
-                break;
+                return handleViewRemainingTimeSlots();
+
             case 111:
                 // reset controller camp state
                 this.camp = null;
@@ -187,13 +226,15 @@ public class StudentController extends BaseController<Student, StudentView>{
         return true;
     }
 
-    protected void enterCampWithdrawal() {
+    protected boolean enterCampWithdrawal() {
         user.withdrawFromCamp(this.camp);
+        view.displayWithdrawalFromCamp(this.camp);
+        return true;
     }
 
-    protected boolean enterCampRegister() {
+    protected boolean enterCampRegister(GoToMainMenu goToMainMenu) {
         // check if camp is full
-        if (!user.canRegisterCamp(this.camp)) {return false;}
+        if (!user.canRegisterCamp(this.camp)) {return true;}
         Role role;
         while (true) {
             view.displayHeader("SELECT ROLES");
@@ -206,7 +247,14 @@ public class StudentController extends BaseController<Student, StudentView>{
                 System.out.println("Your input does not match any roles!");
             }
         }
-        return user.registerCampRole(role, this.camp);
+
+        // if registered as CCM, return false
+        boolean result = user.registerCampRole(role, this.camp);
+        // System.out.println("Result: " + result);
+        // set goToLoginPage as true
+        goToMainMenu.setBooleanValue(!result);
+        // System.out.println("goToLoginPage: " + goToMainMenu.getBooleanValue());
+        return result;
     }
 }
 

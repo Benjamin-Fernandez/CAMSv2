@@ -14,23 +14,17 @@ public class CampCommitteeMemberController extends StudentController {
     protected boolean handleStudentMenu(int choice) {
         switch (choice) {
             case 1:
-                user.changePassword();
-                return true;
+                return enterChangePassword();
             case 2:
-                view.displayListOfCamps(CampManager.getCampListByFacultyAndVisibility(user.getFaculty()));
-                return true;
+                return enterDisplayListOfCampsAvailable();
             case 3:
-                view.displayListOfCamps(user.getRegisteredCamps());
-                return true;
+                return enterDisplayRegisteredCampAndRole(ccm.getRegisteredCamps(), ccm.getCamp());
             case 4:
-                view.displayProfile(user.getName(), user.getPassword(), user.getFaculty(), user.getRole(), ccm.getCamp().getCampName());
-                return true;
+                return enterDisplayProfile();
             case 5:
-                enterEnquiriesMenu();
-                return true;
+                return enterEnquiriesMenu();
             case 6:
-                enterCampSpecificOptions();
-                return true;
+                return enterCampSpecificOptions();
             case 111:
                 return false; // Exit the loop
             default:
@@ -39,9 +33,16 @@ public class CampCommitteeMemberController extends StudentController {
     }
 
     @Override
-    public void enterCampSpecificOptions() {
+    protected boolean enterDisplayProfile() {
+        ccmView.displayHeader("PROFILE");
+        ccm.displayProfile();
+        return true;
+    }
+
+    @Override
+    public boolean enterCampSpecificOptions() {
         super.camp = super.handleCampSelection();
-        if (camp == null) {return;}
+        if (camp == null) {return true;}
         
         boolean running = true;
         while (running) {
@@ -55,7 +56,7 @@ public class CampCommitteeMemberController extends StudentController {
             sc.nextLine();
 
             if (!isCCM) {
-                running = handleCampSpecificOptions(choice, studentRegistered);                
+                running = handleCampSpecificOptions(choice, studentRegistered, new GoToMainMenu());                
             }
             else {
                 // no registration/withdrawal check since user is CCM and thus cannot leave the camp
@@ -63,7 +64,10 @@ public class CampCommitteeMemberController extends StudentController {
             }
 
         }
+        return true;
     }
+
+    
 
     protected void handleCampSuggestions() {
         boolean running = true;
@@ -200,11 +204,9 @@ public class CampCommitteeMemberController extends StudentController {
         // Implement additional menu options specific to CampCommitteeMember
         switch (choice) {
             case 1:
-                super.handleSubmitEnquiryToCamp();
-                break;
+                return super.handleSubmitEnquiryToCamp();
             case 2:
-                super.handleViewRemainingTimeSlots();
-                break;
+                return handleViewRemainingTimeSlots();
             case 3:
                 ccmView.displayCampDetails(camp);
                 break;
@@ -222,5 +224,10 @@ public class CampCommitteeMemberController extends StudentController {
                 return false;
         }
         return true;
+    }
+
+    protected void handleDisplayCampDetails() {
+        view.displayHeader("Camp Details");
+        ccmView.displayCampDetails(camp);
     }
 }

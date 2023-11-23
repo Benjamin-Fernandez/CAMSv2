@@ -1,56 +1,46 @@
 package CAMSv2;
 
-import java.util.Scanner;
-
 public class CampCommitteeMember extends Student {
     private int points;
     private Camp camp;
+    private Suggestion suggestion; 
 
     public CampCommitteeMember(String name, String emailID, UserGroup faculty, String password, Role role, Camp camp) {
         super(name, emailID, faculty, password, role);
         points = 0;
         this.camp = camp;
+        // initialize Suggestion
+        this.suggestion = new Suggestion(name);
     }
 
     @Override
-    public void changePassword() {
-        // TODO Auto-generated method stub
-        super.changePassword();
+    public void changePassword(String newPassword) {
+        super.changePassword(newPassword);
         CampCommitteeDataBase.getInstance().writeToCSV();
     }
 
 
-    // public void viewEnquiries() {
-    //     EnquiryManager enquiryManager = new EnquiryManager();
-    //     enquiryManager.viewEnquiryForCampCommitteeMember(camp.getCampName());
-    // }
 
-    // public void replyEnquiries(){
-    //     EnquiryManager enquiryManager = new EnquiryManager();
-    //     enquiryManager.replyEnquiryFromCampCommitteeMember(camp.getCampName());
-    //     points++;
-    // }
 
     public void submitSuggestion(String suggestion){
-        SuggestionManager.getInstance().createSuggestion(camp.getCampName(), suggestion, this.name);
+        Advice advice = new Advice(suggestion, SuggestionManager.getInstance().getId(), this.name);
+        SuggestionManager.getInstance().createSuggestion(advice, this.camp, this.name);
         System.out.println("Suggestion added");
     }
 
-    // public void viewSuggestion() {
-    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
-    //     suggestionManager.viewSuggestionForCommitteeMember(this.name,camp.getCampName());
-    // }
+    public void generateCampReport(ReportFilter filter) {
+        camp.generateCampReport(filter);
+    }
 
-    // public void editSuggestion(){
-    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
-    //     suggestionManager.editSuggestionForCommitteeMember(this.name,camp.getCampName());
+    public void generateCampCommitteeReport() {
+        camp.generateCampCommitteeReport();
+    }
 
-    // }
+    public void generateStudentsEnquiryReport() {
+        camp.generateStudentsEnquiryReport();
+    }
 
-    // public void deleteSuggestion(){
-    //     SuggestionManager suggestionManager = SuggestionManager.getInstance();
-    //     suggestionManager.deleteSuggestionForCommitteeMember(this.name,camp.getCampName());
-    // }
+
 
     public void addPointsByOne(){
         points +=1;
@@ -61,6 +51,12 @@ public class CampCommitteeMember extends Student {
     }
     public int getPoints(){
         return points;
+    }
+
+    @Override
+    public void displayProfile() {
+        super.displayProfile();
+        System.out.println("Camp(CCM): " + camp.getCampName());
     }
 
 

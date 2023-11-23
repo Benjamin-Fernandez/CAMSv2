@@ -7,9 +7,9 @@ public class Suggestion {
     private ArrayList<Advice> AdviceList;
     
     //methods
-    public Suggestion(Advice advice, String student){
-        this.addAdvice(advice);
+    public Suggestion(String student){
         this.studentName = student;
+        this.AdviceList = new ArrayList<Advice>();
     }
 
     public void addAdvice(Advice advice) {

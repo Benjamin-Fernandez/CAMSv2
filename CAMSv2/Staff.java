@@ -1,168 +1,77 @@
 package CAMSv2;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Staff extends User {
+    private HashSet<Camp> createdCamps;
     public Staff(String emailID, String password, UserGroup faculty, String name, Role role){
         super(emailID,password,faculty,name,role);
+        // initialize the createdCamps array
+        createdCamps = searchForCreatedCamps();
+    }
+
+    private HashSet<Camp> searchForCreatedCamps() {
+        HashSet<Camp> camps = new HashSet<Camp>();
+        for (Camp camp : CampManager.getInstance().getCampList()) {
+            if (camp.getStaffName().equals(name)) {
+                camps.add(camp);
+            }
+        }
+        return camps;
+    }
+
+    public HashSet<Camp> getCreatedCamps() {
+        return createdCamps;
     }
 
     @Override
-    public void changePassword() {
-        super.changePassword();
+    public void changePassword(String newPassword) {
+        super.changePassword(newPassword);
         StaffDataBase.getInstance().writeToCSV();
     }
 
+    public boolean approveAdvice(Camp camp, int id){
+        // get the Advice object (Suggestion is referring to advice here)
+        Advice advice = camp.getAdviceFromCamp(id);
+        if (advice == null) {
+            System.out.println("Please provide a valid Suggestion Id!");
+            return true;
+            }
 
-    public void createCamp(){
-        CampManager.createCamp(this.getName());
+        advice.setApproval(true);
+        addPointsForApprovedSuggestions(advice.getName());
+        System.out.println("Successfully set Suggestion status");
+        camp.printSuggestionList();
+
+        return true;
     }
 
-    public void editCamp() {
-        String campName;
-        int index;
-        Scanner sc = new Scanner(System.in);
-  
-        this.viewCamp(); //this prints a table of camp choices
-
-        System.out.println("Enter the index of the camp to edit");
-        index = sc.nextInt();
-        campName = getCampName(--index); //index is one larger than actual index
-        
-        // calls campManager
-        CampManager.editCamp(campName,getName());
-        //sc.close();
-        
-    }
-
-    public void deleteCamp() {
-        String campName;
-        int index;
-        Scanner sc = new Scanner(System.in);
-  
-        this.viewCamp();
-        //take in integer of which camp they want to view, i--; and get its camp name from its index
-
-        System.out.println("Enter the index of the camp to delete");
-        index = sc.nextInt();
-        campName = this.getCampName(--index);
-        
-        //delete calls campManager
-        CampManager.deleteCamp(campName);
-        //sc.close();
-    }
-
-    public void changeVisibility(){
-        String campName;
-        int index;
-        Scanner sc = new Scanner(System.in);
-
-        this.viewCamp();
-        //take in integer of which camp they wnat to view, i--; and get its camp name from its index
-
-        System.out.println("Enter the index of the camp to change visibility");
-        index = sc.nextInt();
-        campName = this.getCampName(--index);
-        
-        //visibility calls campManager
-        CampManager.changeVisibility(campName);
-        //sc.close();
+    public void generateStaffReport(ReportFilter filter) {
+        // get staff camps
+        for (Camp camp : createdCamps) {
+            // call each camp to generate report
+            camp.generateCampReport(filter);
         }
-
-    public void viewCamp(){
-        //any staff can view all camps
-        //all this method does is print out a list of camps
-        ArrayList<Camp> campList = CampManager.getCampList();
-        int numOfCamps = campList.size();
-        String campName;
-
-        for(int i=0;i<numOfCamps;i++){
-            Camp camp = campList.get(i);
-            campName = camp.getCampName();
-            System.out.println(i+1 + ". "+ campName);
-        }//end for
-
-    }//end viewCamp()
-
-    public ArrayList<Camp> myList(){
-        return CampManager.StaffCampListGenerator(this.name);
     }
 
-    public void viewEnquiries(){
-        //ask which camp name they want to view
-        int campIndex;
-        Scanner sc = new Scanner(System.in);
-        String campName;
-        Camp curCamp;
-        ArrayList<Camp> staffCampList = new ArrayList<>();
-        EnquiryManager enqManager = new EnquiryManager();
-
-
-        System.out.println("Enter the index of the camp's enquiry you want to view ");
-        
-        staffCampList = myList();
-        campIndex = sc.nextInt();
-        curCamp = staffCampList.get(--campIndex);
-        campName = curCamp.getCampName();
-        enqManager.viewEnquiryForStaff(campName, this.name);
-        //sc.close();
+    public void generateCampCommitteeReport() {
+        for (Camp camp : createdCamps) {
+            camp.generateCampCommitteeReport();
+        }
     }
 
-    public void replyEnquiries(){
-        EnquiryManager enqManager = new EnquiryManager();
-        Scanner sc = new Scanner(System.in);
-        String campName;
-        Camp curCamp;
-        int campIndex;
-        ArrayList<Camp> staffCampList = new ArrayList<>();
-
-
-        System.out.println("Enter index of camp's enquries you want to reply to");
-
-        staffCampList = myList();
-        campIndex = sc.nextInt();
-        curCamp = staffCampList.get(--campIndex);
-        campName = curCamp.getCampName();
-        enqManager.replyEnquiryFromStaff(campName, this.getName());
-        
-        //sc.close();
-
+    public void generateStudentsEnquiryReport() {
+        for (Camp camp : createdCamps) {
+            camp.generateStudentsEnquiryReport();
+        }
     }
-
-    public void viewSuggestion(){
-         //ask which camp name they want to view
-        Scanner sc = new Scanner(System.in);
-        String campName;
-        System.out.println("Enter camp name of suggestions you want to view ");
-        myList();
-        campName = sc.nextLine();
-        SuggestionManager.getInstance().viewSuggestionForStaff(campName, this.getName());
-        //sc.close();
-    }
-
-    public void approveAdvice(){
-        //ask which camp name they want to approve;
-        Scanner sc = new Scanner(System.in);
-        String campName;
-        System.out.println("which camp's suggestion would you want to approve? ");
-        campName = sc.nextLine();
-        Suggestion suggestion = SuggestionManager.getInstance().approveAdvice(campName, this.getName());
-        //sc.close();
-        addPointsForApprovedSuggestions(suggestion.getStudent());
-
-    }
-
-    public void generateReport(){
-
-        CampManager.generateReport(this.getName());
-    }
-
 
     public String getCampName(int indexOfCamp){
         String campName;
 
         //find name of camp
-        ArrayList<Camp> campList = CampManager.getCampList();
+        ArrayList<Camp> campList = CampManager.getInstance().getCampList();
         campName = campList.get(indexOfCamp).getCampName();
 
         return campName;
@@ -171,102 +80,8 @@ public class Staff extends User {
     public void addPointsForApprovedSuggestions(String campCommitteeMemberName){
         for (CampCommitteeMember campCommitteeMember : CampCommitteeDataBase.getInstance().getCampCommitteeMembersList()) {
             if(campCommitteeMember.getName().equals(campCommitteeMemberName)){
-                // campCommitteeMember.addPointsForSuggestions();
+                campCommitteeMember.addPointsByOne();
             }            
         }
-
     }
-
-
-
-    public void staffInterface(){
-        //print a table of staff methods; e.g.
-        //1.viewCamp(); 2.editcamp
-        int choice;
-        Scanner sc = new Scanner(System.in);
-        do{
-        System.out.println();
-        System.out.println("Select which action you would like to take");
-
-
-        System.out.println("1. Create a camp");
-        System.out.println("2. Edit one of my camp");
-        System.out.println("3. Delete one of my camp");
-        System.out.println("4. Change Visibilty of a camp");
-        System.out.println("5. View all camps");
-        System.out.println("6. View my camps"); // is this needed?purpose is to edit camp?
-        System.out.println("7. View enquiries of my camp");
-        System.out.println("8. Reply enquiries of my camp");
-        System.out.println("9. View suggestions of my camp");
-        System.out.println("10. Approve suggestion of my camp");
-        System.out.println("11. Generate attendance report");
-        System.out.println("12. Generate performance report");
-        System.out.println("13. Change Password");
-        System.out.println("14. Exit");
-        //choice is valid from 1-13
-        choice = sc.nextInt();
-
-        switch(choice){
-            case 1:
-                createCamp();
-                break;
-            
-            case 2:
-                editCamp();
-                break;
-
-            case 3:
-                deleteCamp();
-                break;
-
-            case 4:
-                changeVisibility();
-                break;
-
-            case 5:
-                viewCamp();
-                break;
-
-            case 6:
-                myList();
-                break;
-            
-            case 7:
-                viewEnquiries();
-                break;
-
-            case 8:
-                replyEnquiries();
-                break;
-
-            case 9:
-                viewSuggestion();
-                break;
-
-            case 10:
-                approveAdvice();
-                break;
-            
-            case 11:
-                //attendance report
-                generateReport();
-                break;
-
-            case 12:
-                //performance report of cmamp commitee member
-                break;
-
-            case 13:
-                //change password
-                super.changePassword();
-                break;
-
-            default:
-                break;
-
-        }// end switch
-    }while(choice>=1 && choice <=13);
-
-    }// end staff interface
-
 }

@@ -66,7 +66,8 @@ public class Cams {
                 StaffAuthenticator authStaff = new StaffAuthenticator();
                 Staff staff = authStaff.authenticate(emailID, password);
                 if (staff == null) {return false;}
-                staff.staffInterface();
+                StaffController controllerStaff = new StaffController(staff, new StaffView());
+                controllerStaff.startProgram();
                 return false;
             case 2:
                 // invoke student authentication

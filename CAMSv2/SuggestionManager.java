@@ -7,7 +7,12 @@ import java.util.Scanner;
  */
 public class SuggestionManager {
     private static SuggestionManager instance;
-    //attribute
+    private static int counter = 1;
+
+    public int getId() {
+        return counter;
+    }
+
     private SuggestionManager() {
     }
 
@@ -18,16 +23,19 @@ public class SuggestionManager {
         }
         return instance;
     }
+
     //methods
-    public void createSuggestion(String campName, String suggestion, String name){
-        //student will have their own method called makeSuggestion which calls this method,
-        //append student's suggestion to their own list of suggestion
-        //find the correct camp
-        //append this suggestion to that particular camp
-        Advice newAdvice = new Advice(suggestion);
-        Suggestion newSuggestion = new Suggestion(newAdvice,name);
-        Camp camp = CampManager.getCamp(campName);
-        camp.addSuggestion(newSuggestion);
+    public void createSuggestion(Advice advice, Camp camp, String studentName){
+        // increment advice id
+        counter++;
+        // check for existing suggestion wrapper in camp already.
+        Suggestion suggestion = camp.getSuggestionBySuggester(studentName);
+        // create new suggestion if doesn't exist in camp
+        if (suggestion == null) {
+            suggestion = new Suggestion(studentName);
+        }
+        suggestion.addAdvice(advice);
+        camp.addSuggestion(suggestion);
     }
 
     //staff fucntion
@@ -35,11 +43,11 @@ public class SuggestionManager {
         //printing and logic will occur in this methoed
         // staff->viewEn->thisviewEnq->getcamp->
         //for loop to iterate arraylist of suggestion
-        for(int i=0;i<CampManager.getCampList().size();i++){
+        for(int i=0;i<CampManager.getInstance().getCampList().size();i++){
 
-            if(CampManager.getStaffinCharge(campName,staffName)){
+            if(CampManager.getInstance().getStaffinCharge(campName,staffName)){
 
-                Camp camp = CampManager.getCamp(campName);
+                Camp camp = CampManager.getInstance().getCamp(campName);
                 System.out.println(campName + " suggestion");
 
                 for(int j=0;j<camp.getSuggestions().size();j++){
@@ -62,7 +70,7 @@ public class SuggestionManager {
     public Suggestion approveAdvice(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
 
-        Camp curCamp = CampManager.getCamp(campName);
+        Camp curCamp = CampManager.getInstance().getCamp(campName);
 
         int suggIndex;
         int adviceIndex;
@@ -88,7 +96,7 @@ public class SuggestionManager {
         curCamp.getSuggestions().get(suggIndex).getAdviceList().get(adviceIndex).setApproval(approved);
 
         if(approved){
-            CampManager.editCamp(campName, staffName);
+            CampManager.getInstance().editCamp(campName, staffName);
             //edit camp
         }
         return curCamp.getSuggestions().get(suggIndex);
@@ -100,8 +108,8 @@ public class SuggestionManager {
         //printing and logic will occur in this method
         // staff->viewEn->thisviewEnq->getcamp->
         //for loop to iterate arraylist of suggestion
-        for(int i=0;i<CampManager.getCampList().size();i++){
-            Camp camp = CampManager.getCamp(campName);
+        for(int i=0;i<CampManager.getInstance().getCampList().size();i++){
+            Camp camp = CampManager.getInstance().getCamp(campName);
             System.out.println(campName + "suggestion");
                 for(int j=0;j<camp.getSuggestions().size();j++){
                     if(camp.getSuggestions().get(i).getStudent() == committeeMemberName){
@@ -134,7 +142,6 @@ public class SuggestionManager {
 
     public void deleteSuggestionForCommitteeMember(String studentName, String campName){
         int advIndex;
-        String newAdvice;
         Scanner sc = new Scanner(System.in);
         this.viewSuggestionForCommitteeMember(studentName,campName);
         System.out.println("which advice would you like to delete");

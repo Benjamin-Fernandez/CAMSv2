@@ -6,9 +6,18 @@ import java.util.Scanner;
 public class EnquiryManager {
     //attribute
     private static int enquiryCounter = 1;
+    private static EnquiryManager instance;
+
+    private EnquiryManager() {}
+    public static EnquiryManager getInstance() {
+        if (instance == null) {
+            instance = new EnquiryManager();
+        }
+        return instance;
+    }
 
     //methods
-    public static void createEnquiry(Question question, Camp camp, String studentName){
+    public void createEnquiry(Question question, Camp camp, String studentName){
         // check if an Enquiries already exist for the student calling this.
         enquiryCounter++;
         // take existing
@@ -26,10 +35,10 @@ public class EnquiryManager {
         // staff->viewEn->thisviewEnq->getcamp->
         //for loop to iterate arraylist of enquiries
         //returns true if empty, return false if have enquiries
-        for(int i=0;i<CampManager.getCampList().size();i++){
+        for(int i=0;i<CampManager.getInstance().getCampList().size();i++){
 
-            if(CampManager.getStaffinCharge(campName,staffName)){
-                Camp camp = CampManager.getCamp(campName);
+            if(CampManager.getInstance().getStaffinCharge(campName,staffName)){
+                Camp camp = CampManager.getInstance().getCamp(campName);
                 System.out.println(campName + " enquiries:");
 
                 //check if empty
@@ -60,7 +69,7 @@ public class EnquiryManager {
     
     public void replyEnquiryFromStaff(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
-        Camp curCamp = CampManager.getCamp(campName);
+        Camp curCamp = CampManager.getInstance().getCamp(campName);
         boolean empty;
         int enqIndex;
         int qnsIndex;
@@ -96,8 +105,8 @@ public class EnquiryManager {
     //committee member function
     public void viewEnquiryForCampCommitteeMember(String campName){
         //for loop to iterate arraylist of enquiries
-        for(int i=0;i<CampManager.getCampList().size();i++) {
-            Camp camp = CampManager.getCamp(campName);
+        for(int i=0;i<CampManager.getInstance().getCampList().size();i++) {
+            Camp camp = CampManager.getInstance().getCamp(campName);
             System.out.println(campName + "enquiries");
 
             for (int j = 0; j < camp.getEnquiries().size(); j++) {
@@ -111,7 +120,7 @@ public class EnquiryManager {
 
     public void replyEnquiryFromCampCommitteeMember(String campName){
         Scanner sc = new Scanner(System.in);
-        Camp curCamp = CampManager.getCamp(campName);
+        Camp curCamp = CampManager.getInstance().getCamp(campName);
 
         int enqIndex;
         int qnsIndex;

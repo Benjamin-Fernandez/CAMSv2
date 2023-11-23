@@ -11,6 +11,6 @@ public abstract class BaseController<U, V> {
         sc = new Scanner(System.in);
     }
 
-    public abstract void startProgram();
+    public abstract void startProgram();    
 
 }

@@ -2,7 +2,6 @@ package CAMSv2;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CampCommitteeDataBase extends DataBase{
@@ -60,7 +59,7 @@ public class CampCommitteeDataBase extends DataBase{
                 } catch (Exception e) {
                     System.out.println("Cannot convert UserGroup in CSV into ENUM");
                 }
-                Camp camp = CampManager.getCamp(campName);
+                Camp camp = CampManager.getInstance().getCamp(campName);
                 // if (camp == null) {return;}
                 CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, userGroup, password, Role.CAMP_COMMITTEE_MEMBER, camp);
                 campCommitteeMembersList.add(campCommitteeMember);

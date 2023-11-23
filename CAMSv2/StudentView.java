@@ -1,23 +1,9 @@
 package CAMSv2;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
-public class StudentView {
+public class StudentView extends View{
 
 // --------------------General--------------------
-    public void displayHeader(String header) {
-        System.out.println("---------------" + header + "-------------------");        
-    }
-
-    public void displaySelectValidOption() {
-        System.out.println("Select a valid option");
-    }
-
-    public void displaySelectActionToTake() {
-        System.out.println("Select an option: ");
-    }
-
     public void displayStudentMenu() {
         System.out.println("Select which action you would like to take");
         System.out.println("1. Change Password"); 
@@ -26,18 +12,6 @@ public class StudentView {
         System.out.println("4. View Profile"); 
         System.out.println("5. Manage Enquiries (View, Edit and Delete)");
         System.out.println("6. Select a Camp to access more options(submit enquiry, register/withdraw, view available slots)");
-    }
-
-    public void displayReturnToPreviousPage() {
-        System.out.println("<--- Return to previous page (type 111)");
-    }
-
-    public void displaySuccessfulMessage() {
-        System.out.println("Successful!");
-    }
-
-    public void displayFailureMessage() {
-        System.out.println("Failed!");
     }
 // -----------------Enquiries------------------
     public void displayEnquiries(ArrayList<Question> questions) {
@@ -49,9 +23,9 @@ public class StudentView {
     }
 
     public void displayEnquiry(Question question) {
-        System.out.println("EnquiryId: " + question.getQuestionId() + "|" + " Enquiry: " + question.getQuestion() + "|" + " Camp: " + question.getCampName());
+        System.out.println(" EnquiryId " + question.getQuestionId() + "|" + " Enquiry " + question.getQuestion() + "|" + " Camp " + question.getCampName());
         for (Reply reply : question.getReplies()) {
-            System.out.println(reply.getName() + "replied: " + reply.getReply());
+            System.out.println(reply.getName() + " Replied: " + reply.getReply());
         }
     }
 
@@ -85,19 +59,7 @@ public class StudentView {
     }
 
 
-    public void displayEnterCampName() {
-        System.out.println("Please enter Camp Name: ");               
-    }
 
-
-    public void displayRemainingCampSlots() {
-        System.out.println("3. View Remaining Camp Slots");
-    }
-
-    public void displayRemainingCampSlots(Camp camp) {
-        System.out.println((camp.getTotalSlots() - camp.getStudentList().size()));
-        // Camp Manager should check that the camp is Visible and userGroup
-    }
 // --------------Register------------------------
     public void displayRoleToRegister() {
         for (Role role : Role.values()) {
@@ -107,7 +69,9 @@ public class StudentView {
         System.out.println("Enter the role you would like to register (Full Uppercase): ");
     }
 // --------------Withdrawal----------------------
-
+    public void displayWithdrawalFromCamp(Camp camp) {
+        System.out.println("Withdrawm from " + camp.getCampName());
+    }
 // -------------Password-------------------------
     public void displayEnterNewPassword() {
         System.out.println("Enter your new Password: ");       
@@ -120,24 +84,19 @@ public class StudentView {
 
 
 // -------------------Camp General---------------
-    public void displayListOfCamps(ArrayList<Camp> camps) {
-        // int counter = 1;
-        // for (Camp camp : camps) {
-        //     System.out.println(counter + ": " + camp.getCampName());       
-        //     counter++;     
-        // }
 
-        for (int i = 0; i < camps.size(); i++) {
-            System.out.println(i+1 + ": " + camps.get(i).getCampName());
-        }
+    public void displayRegisteredCampsAndRole(ArrayList<Camp> camps, Camp ccmCamp) {
+        int counter = 1;
+        for (Camp camp : camps) {
+            if (ccmCamp != null && camp.equals(ccmCamp)) {
+                System.out.println(counter + ": " + camp.getCampName() + "(" + "Camp Committee Member" + ")");  
+            }
+            else {
+                System.out.println(counter + ": " + camp.getCampName() + "(" + "Attendee" + ")");       
+            }
+            counter++;     
+        }    
     }
 
 // ------------------Profile----------------------
-    public void displayProfile(String name, String password, UserGroup faculty, Role role, String ccmCamp) {
-        System.out.println("Name: " + name);
-        System.out.println("Password: " + password); 
-        System.out.println("Faculty: " + faculty.toString()); 
-        System.out.println("Role: " + role.toString());
-        System.out.println("Camp(As a Camp Committee Member): " + ccmCamp);       
-    }
 }

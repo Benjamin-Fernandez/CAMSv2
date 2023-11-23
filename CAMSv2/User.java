@@ -24,10 +24,7 @@ public class User {
     }//create authenticator object to call check(password , userid)
     
 
-    public void changePassword(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter new password");
-        String newPassword = sc.nextLine();
+    public void changePassword(String newPassword){
         this.password = newPassword;
     }
 
@@ -45,5 +42,12 @@ public class User {
     }
     public Role getRole(){
         return this.role;
+    }
+
+    public void displayProfile() {
+        System.out.println("Name: " + name);
+        System.out.println("Password: " + password); 
+        System.out.println("Faculty: " + faculty.toString()); 
+        System.out.println("Role: " + role.toString());  
     }
 }
