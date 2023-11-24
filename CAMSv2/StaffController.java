@@ -260,7 +260,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
         }
         view.displayGetReply();
         String reply = sc.nextLine();
-        question.getReplies().add(new Reply(user.getName(), reply));
+        question.setReply(new Reply(user.getName(), reply));
         camp.printEnquiriesList();
 
         System.out.println("Successfully sent reply!");
@@ -280,8 +280,12 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayCampEnquiriesMenu();
             view.displayReturnToPreviousPage();
             view.displaySelectActionToTake();
-            int choice = sc.nextInt();
-            running = handleManageEnquiries(choice);
+            try {
+                int choice = sc.nextInt();
+                running = handleManageEnquiries(choice);
+            } catch (Exception e) {
+                System.out.println("Please enter a valid option!");
+            }
         }
         return true;
     }
