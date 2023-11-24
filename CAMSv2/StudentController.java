@@ -38,10 +38,14 @@ public class StudentController extends BaseController<Student, StudentView>{
             view.displayHeader("STUDENT MENU");
             view.displayStudentMenu();
             view.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            // get rid of buffered carriage return
-            sc.nextLine();
-            running = handleStudentMenu(choice);
+            try {
+                int choice = sc.nextInt();
+                // get rid of buffered carriage return
+                sc.nextLine();
+                running = handleStudentMenu(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         }
     }
 
@@ -104,10 +108,14 @@ public class StudentController extends BaseController<Student, StudentView>{
             view.displayHeader("ENQUIRIES MENU");    
             view.displayEnquiriesMenu();
             view.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            // get rid of carriage
-            sc.nextLine();
-            running = handleEnquiriesMenu(choice, goToLoginPage);
+            try {
+                int choice = sc.nextInt();
+                // get rid of carriage
+                sc.nextLine();
+                running = handleEnquiriesMenu(choice, goToLoginPage);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         } while (running);
         return !goToLoginPage;
     }
@@ -142,10 +150,15 @@ public class StudentController extends BaseController<Student, StudentView>{
      */
     protected Question enterGetEnquiry() {
         view.displayGetEnquiryId();
-        int Id = sc.nextInt();
-        sc.nextLine();
-        Question question = user.getEnquiryById(Id);
-        return question;        
+        try {
+            int Id = sc.nextInt();
+            sc.nextLine();
+            Question question = user.getEnquiryById(Id);
+            return question;            
+        } catch (Exception e) {
+            System.out.println("Please provide a valid EnquiryId!");
+            return null;
+        }        
     }
 
     /**
@@ -221,10 +234,14 @@ public class StudentController extends BaseController<Student, StudentView>{
             view.displayCampSpecificOptions(studentRegistered);
             view.displayReturnToPreviousPage();
 
-            int choice = sc.nextInt();
-            // clear buffer
-            sc.nextLine();
-            running = handleCampSpecificOptions(choice, studentRegistered, goToMainMenu);
+            try {
+                int choice = sc.nextInt();
+                // clear buffer
+                sc.nextLine();           
+                running = handleCampSpecificOptions(choice, studentRegistered, goToMainMenu);     
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
             // System.out.println("running " + running);
             // System.out.println("goTologinPageReturnVal " + goToMainMenu);
         } while (running);

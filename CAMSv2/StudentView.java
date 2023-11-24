@@ -25,7 +25,7 @@ public class StudentView extends View{
      * This method displays a message indicating that the user should select a valid option.
      */
     public void displaySelectValidOption() {
-        System.out.println("Select a valid option");
+        System.out.println("Select a valid option!");
     }
 
     /**

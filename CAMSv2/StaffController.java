@@ -14,10 +14,14 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayHeader("STAFF MENU");
             view.displayStaffMenu();
             view.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            // get rid of buffered carriage return
-            sc.nextLine();
-            running = handleStaffMenu(choice);
+            try {
+                int choice = sc.nextInt();
+                // get rid of buffered carriage return
+                sc.nextLine();
+                running = handleStaffMenu(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         }
     }
 
@@ -62,8 +66,12 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayReportFilter();
             view.displaySelectActionToTake();
             view.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            running = handleGenerateAttendanceReport(choice);
+            try {
+                int choice = sc.nextInt();
+                running = handleGenerateAttendanceReport(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         }
         return true;
     }
@@ -148,14 +156,18 @@ public class StaffController extends BaseController<Staff, StaffView>{
                 view.displayViewOtherCampsMenu();
             }
             view.displayReturnToPreviousPage();
-            
-            int choice = sc.nextInt();
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
 
-            if (isInCreatedCamps) {
-                running = handleCampSelectionOfMyCamp(choice);                
-            }
-            else {
-                running = handleCampSelectionOfOtherCamps(choice);                   
+                if (isInCreatedCamps) {
+                    running = handleCampSelectionOfMyCamp(choice);                
+                }
+                else {
+                    running = handleCampSelectionOfOtherCamps(choice);                   
+                }                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
             }
         }
         return true;
@@ -173,8 +185,10 @@ public class StaffController extends BaseController<Staff, StaffView>{
     }
 
     protected boolean enterDisplayListOfCamps() {
-        view.displayHeader("Camp Information");
+        view.displayHeader("CAMP INFORMATION");
         camp.printCampInfoTable();
+        // print the student list as well
+        
         return true;
     }
 
@@ -209,8 +223,12 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayCampSuggestionsMenu();
             view.displayReturnToPreviousPage();
             view.displaySelectActionToTake();
-            int choice = sc.nextInt();
-            running = handleManageSuggestions(choice);
+            try {
+                int choice = sc.nextInt();
+                running = handleManageSuggestions(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         }
         return true;
     }
@@ -241,38 +259,42 @@ public class StaffController extends BaseController<Staff, StaffView>{
     protected boolean enterApproveSuggestion() {
         enterViewCampSuggestions();
         view.displayGetSuggestionId();
-        int id = sc.nextInt();
-        sc.nextLine();
+        try {
+            int id = sc.nextInt();
+            sc.nextLine();
 
-        return user.approveAdvice(camp, id);
+            return user.approveAdvice(camp, id);            
+        } catch (Exception e) {
+            view.displaySelectValidOption();
+            return true;
+        }
     }
 
     protected boolean enterReplyCampEnquiries() {
         camp.printEnquiriesList();
         view.displayGetEnquiryId();
-        int id = 0;
         try {
-            id = sc.nextInt();
+            int id = sc.nextInt();
             sc.nextLine();
+            Question question = camp.getEnquiryFromCamp(id);
+            if (question == null) {
+                System.out.println("Please provide a valid EnquiryId!");
+                return true;
+            }
+            view.displayGetReply();
+            String reply = sc.nextLine();
+            question.setReply(new Reply(user.getName(), reply));
+            camp.printEnquiriesList();
+
+            System.out.println("Successfully sent reply!");
+            return true;
                       
         } catch (Exception e) {
             System.out.println("Please provide a valid EnquiryId!");
+            return true;
 
         }
 
-        Question question = camp.getEnquiryFromCamp(id);
-        if (question == null) {
-            System.out.println("Please provide a valid EnquiryId!");
-            return true;
-        }       
-
-        view.displayGetReply();
-        String reply = sc.nextLine();
-        question.setReply(new Reply(user.getName(), reply));
-        camp.printEnquiriesList();
-
-        System.out.println("Successfully sent reply!");
-        return true;
     }
 
     protected boolean enterViewCampEnquiries() {
@@ -292,7 +314,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
                 int choice = sc.nextInt();
                 running = handleManageEnquiries(choice);
             } catch (Exception e) {
-                System.out.println("Please enter a valid option!");
+                view.displaySelectValidOption();
             }
         }
         return true;

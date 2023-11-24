@@ -28,7 +28,7 @@ public class ReportDatabase {
                     if (campCommitteeMember.getCamp().equals(camp)) {
                         printWriter.println(student.getName() + "," + Role.CAMP_COMMITTEE_MEMBER.toString());
                         continue;
-                    }
+                    } 
                 }
                 printWriter.println(student.getName() + "," + Role.STUDENT.toString());
             }

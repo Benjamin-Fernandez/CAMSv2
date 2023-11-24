@@ -84,6 +84,12 @@ public class CampCommitteeMemberView extends StudentView {
         }
     }
 
+    public void displayReportFilter() {
+        System.out.println("1. Attendee");
+        System.out.println("2. Camp Committee Member");       
+        System.out.println("3. All");     
+    }
+
     /**
      * Displays a prompt to get a reply.
      */

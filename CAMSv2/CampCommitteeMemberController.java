@@ -74,16 +74,21 @@ public class CampCommitteeMemberController extends StudentController {
             // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
             ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
             view.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            sc.nextLine();
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
 
-            if (!isCCM) {
-                running = handleCampSpecificOptions(choice, studentRegistered, new GoToMainMenu());                
+                if (!isCCM) {
+                    running = handleCampSpecificOptions(choice, studentRegistered, new GoToMainMenu());                
+                }
+                else {
+                    // no registration/withdrawal check since user is CCM and thus cannot leave the camp
+                    running = handleCampCommitteeMemberMenu(choice);
+                }                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
             }
-            else {
-                // no registration/withdrawal check since user is CCM and thus cannot leave the camp
-                running = handleCampCommitteeMemberMenu(choice);
-            }
+
 
         }
         return true;
@@ -98,9 +103,14 @@ public class CampCommitteeMemberController extends StudentController {
             ccmView.displayHeader("CAMP SUGGESTIONS");
             ccmView.displaySuggestionsMenu();
             ccmView.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            sc.nextLine();
-            running = handleCampSuggestionsSwitch(choice);
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
+                running = handleCampSuggestionsSwitch(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
+
         }
     }
 
@@ -156,13 +166,19 @@ public class CampCommitteeMemberController extends StudentController {
      */
     protected Advice acquireSuggestion() {
         ccmView.displayGetSuggestionIndex();
-        int index = sc.nextInt() - 1;
-        sc.nextLine();
+        try {
+            int index = sc.nextInt() - 1;
+            sc.nextLine();
 
-        Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
-        if (suggestion == null) {return null;}
-        // get the advice
-        return suggestion.getAdviceList().get(index);
+            Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
+            if (suggestion == null) {return null;}
+            // get the advice
+            return suggestion.getAdviceList().get(index);            
+        } catch (Exception e) {
+            System.out.println("Enter a valid suggestion index!");
+            return null;
+        }
+
     }
 
     /**
@@ -214,22 +230,27 @@ public class CampCommitteeMemberController extends StudentController {
     protected void handleReplyToEnquiry() {
         camp.printEnquiriesList();
         ccmView.displayGetEnquiryId();
-        int id = sc.nextInt();
-        sc.nextLine();
+        try {
+            int id = sc.nextInt();
+            sc.nextLine();
 
-        Question question = camp.getEnquiryFromCamp(id);
-        if (question == null) {
-            System.out.println("Please provide a valid EnquiryId!");
-            return;
+            Question question = camp.getEnquiryFromCamp(id);
+            if (question == null) {
+                System.out.println("Please provide a valid EnquiryId!");
+                return;
+            }
+            ccmView.displayGetReply();
+            String reply = sc.nextLine();
+            question.getReplies().add(new Reply(ccm.getName(), reply));
+            camp.printEnquiriesList();
+
+            // increment student points
+            ccm.addPointsByOne();
+            System.out.println("Successfully sent reply!");            
+        } catch (Exception e) {
+            view.displaySelectValidOption();
         }
-        ccmView.displayGetReply();
-        String reply = sc.nextLine();
-        question.getReplies().add(new Reply(ccm.getName(), reply));
-        camp.printEnquiriesList();
 
-        // increment student points
-        ccm.addPointsByOne();
-        System.out.println("Successfully sent reply!");
     }
 
     /**
@@ -242,9 +263,13 @@ public class CampCommitteeMemberController extends StudentController {
             ccmView.displayHeader("CAMP ENQUIRIES");
             ccmView.displayCampEnquiriesMenu();
             ccmView.displayReturnToPreviousPage();
-            int choice = sc.nextInt();
-            sc.nextLine();
-            running = handleCampEnquiriesSwitch(choice);
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
+                running = handleCampEnquiriesSwitch(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
         }
     }
 
@@ -252,7 +277,7 @@ public class CampCommitteeMemberController extends StudentController {
      * Handles generating a camp attendance report.
      */
     protected void handleCampAttendanceReport() {
-
+        
     }
 
     /**
@@ -268,7 +293,7 @@ public class CampCommitteeMemberController extends StudentController {
             case 2:
                 return handleViewRemainingTimeSlots();
             case 3:
-                ccmView.displayCampDetails(camp);
+                camp.printCampInfoAndList();
                 break;
             case 4:
                 handleCampSuggestions();
@@ -277,9 +302,10 @@ public class CampCommitteeMemberController extends StudentController {
                 handleCampEnquiries();
                 break;
             case 6:
-                handleCampAttendanceReport();
-                break;
+                return enterGenerateAttendanceReport();
 
+            case 7:
+                return enterGenerateEnquiriesReport();
             case 111:
                 return false;
         }
@@ -287,7 +313,54 @@ public class CampCommitteeMemberController extends StudentController {
     }
 
     protected void handleDisplayCampDetails() {
-        view.displayHeader("Camp Details");
-        ccmView.displayCampDetails(camp);
+        view.displayHeader("CAMP DETAILS");
+        camp.printCampInfoAndList();
+    }
+
+    private boolean enterGenerateEnquiriesReport() {
+        view.displayHeader("GENERATE STUDENT ENQUIRIES REPORT");
+        ccm.generateStudentsEnquiryReport();
+        return true;
+    }
+
+    protected boolean enterGenerateAttendanceReport() {
+        boolean running = true;
+        while(running) {        
+            view.displayHeader("GENERATE ATTENDANCE REPORT");
+            ccmView.displayReportFilter();
+            view.displaySelectActionToTake();
+            view.displayReturnToPreviousPage();
+            try {
+                int choice = sc.nextInt();
+                running = handleGenerateAttendanceReport(choice);                
+            } catch (Exception e) {
+                view.displaySelectValidOption();
+            }
+        }
+        return true;
+    }
+
+
+    protected boolean handleGenerateAttendanceReport(int choice) {
+        ReportFilter filter;
+        switch (choice) {
+            case 1:
+                filter = new AttendeeFilter();
+                break;
+            case 2:
+                filter = new CCMFilter();
+                break;
+            case 3:
+                filter = new AllFilter();
+                break;
+            case 111:
+                return false;
+            default:
+                return true;
+        }
+        // generate report
+        ccm.generateCampReport(filter);
+        return false;
+
     }
 }

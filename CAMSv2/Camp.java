@@ -452,6 +452,24 @@ public class Camp {
         this.info.printCampInfoTable();
         System.out.println("8. Visibility = " + getVisibility());
     }
+
+    public void printCampInfoAndList() {
+        this.info.printCampInfoTable();
+        System.out.println("8. Visibility = " + getVisibility());
+        System.out.println("9. Student List: ");
+        System.out.println("Student Name" + " | " + "Role");
+        for (Student student : studentList) {
+            if (student.getRole().equals(Role.CAMP_COMMITTEE_MEMBER)) {
+                CampCommitteeMember campCommitteeMember = (CampCommitteeMember) student;
+                if (campCommitteeMember.getCamp().equals(this)) {
+                    System.out.println(student.getName() + " | " + Role.CAMP_COMMITTEE_MEMBER.toString());
+                    continue;
+                }
+            }
+            System.out.println(student.getName() + " | " + Role.STUDENT.toString());
+            
+        }        
+    }
     /**
      * Prints the list of students registered for the camp.
      */

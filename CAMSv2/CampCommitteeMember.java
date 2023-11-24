@@ -42,8 +42,6 @@ public class CampCommitteeMember extends Student {
     }
 
 
-
-
     /**
      * Submits a suggestion for the associated camp.
      * @param suggestion The suggestion to be submitted.
