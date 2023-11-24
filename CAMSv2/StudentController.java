@@ -33,6 +33,10 @@ public class StudentController extends BaseController<Student, StudentView>{
      * It displays the student menu and handles the student's choices.
      */
     public void startProgram() {
+        if (user.getFirstLogin()) {
+            System.out.println("Please change to a new password!");
+            user.setFirstLogin();
+        }
         boolean running = true;
         while (running) {
             view.displayHeader("STUDENT MENU");

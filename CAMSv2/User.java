@@ -12,11 +12,12 @@ package CAMSv2;
  */
 public class User {
     //attributes
-    String emailID;
-    String password;
-    UserGroup faculty;
-    String name;
-    Role role; //either staff or student or camp committee member
+    protected boolean firstLogin = true;
+    protected String emailID;
+    protected String password;
+    protected UserGroup faculty;
+    protected String name;
+    protected Role role; //either staff or student or camp committee member
     
     /**
      * Constructor for the User class.
@@ -36,17 +37,6 @@ public class User {
         this.role = role;
     }
 
-     /**
-     * This method checks if the provided login credentials match the user's credentials.
-     *
-     * @param password The password to check.
-     * @param UserID The user ID to check.
-     * @param role The role to check.
-     * @return true if the credentials match, false otherwise.
-     */
-    public boolean login(String password, String UserID , String role){
-        return false;
-    }//create authenticator object to call check(password , userid)
     
      /**
      * This method changes the user's password.
@@ -64,6 +54,14 @@ public class User {
      */
     public String getName(){
         return this.name;
+    }
+
+    public void setFirstLogin() {
+        firstLogin = false;
+    }
+
+    public boolean getFirstLogin() {
+        return firstLogin;
     }
 
      /**

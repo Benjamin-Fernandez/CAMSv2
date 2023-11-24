@@ -9,6 +9,10 @@ public class StaffController extends BaseController<Staff, StaffView>{
 
     @Override
     public void startProgram() {
+        if (user.getFirstLogin()) {
+            System.out.println("Please change to a new password!");
+            user.setFirstLogin();
+        }
         boolean running = true;
         while (running) {
             view.displayHeader("STAFF MENU");
