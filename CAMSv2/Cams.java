@@ -14,8 +14,6 @@ public class Cams {
             int choice = sc.nextInt();
             sc.nextLine();
             running = handleMainMenuSwitch(choice);
-
-
         }
     }
 

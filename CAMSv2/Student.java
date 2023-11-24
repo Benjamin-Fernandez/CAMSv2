@@ -196,10 +196,6 @@ public class Student extends User{
      */
     // --- Registration--------------------------------------
     public boolean canRegisterCamp(Camp camp) {
-        if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
-            System.out.println("You are already a CAMP COMMITTEE MEMBER!");
-            return false;               
-        }
         if (camp.isStudentInBlackList(this)) {
             System.out.println("You have been blacklisted from this camp!");
             return false;            
@@ -224,6 +220,11 @@ public class Student extends User{
     public boolean registerCampRole(Role role, Camp camp) {
         // to be replaced with factory;
         if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
+            if (getRole().equals(role)) {
+                System.out.println("You are already a CAMP COMMITTEE MEMBER!");
+                return true;
+            }
+
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
             System.out.println("Camp: " + camp);
             // add this student first so ccm will initialize with student data
@@ -265,7 +266,7 @@ public class Student extends User{
      */
     public void withdrawFromCamp(Camp camp) {
         // if camp committee member should remove from camp
-        camp.getStudentList().remove(this);
+        camp.removeStudent(this);
         camp.addToBlackList(this);
         System.out.println("Withdrawn from camp");
         

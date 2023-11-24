@@ -15,7 +15,7 @@ public class StaffView extends View{
         displayViewOtherCampsMenu();
         System.out.println("2. Edit camp"); 
         System.out.println("3. Delete camp"); 
-        System.out.println("4. Manage Enquiries"); 
+        System.out.println("4. Manage own Enquiries"); 
         System.out.println("5. Manage Suggestions"); 
     }
 

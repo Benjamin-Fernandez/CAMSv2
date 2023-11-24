@@ -52,6 +52,7 @@ public class CampInformation {
     public CampInformation() {
         Dates.add(LocalDate.now());
     }
+
     
     /**
      * Adds a Camp Committee Member to the set of committee members associated with the camp.

@@ -45,7 +45,7 @@ public class StudentView extends View{
         System.out.println("2. View list of camps available"); 
         System.out.println("3. View registered camps");  
         System.out.println("4. View Profile"); 
-        System.out.println("5. Manage Enquiries (View, Edit and Delete)");
+        System.out.println("5. Manage own Enquiries (View, Edit and Delete)");
         System.out.println("6. Select a Camp to access more options(submit enquiry, register/withdraw, view available slots)");
     }
 

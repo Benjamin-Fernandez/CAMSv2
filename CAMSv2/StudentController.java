@@ -310,7 +310,10 @@ public class StudentController extends BaseController<Student, StudentView>{
                 System.out.println("Your input does not match any roles!");
             }
         }
-
+        if (role.equals(Role.CAMP_COMMITTEE_MEMBER) && user.getRole().equals(role)) {
+            System.out.println("You are already a CAMP COMMITTEE MEMBER!");
+            return false;               
+        }
         // if registered as CCM, return false
         boolean result = user.registerCampRole(role, this.camp);
         // System.out.println("Result: " + result);
