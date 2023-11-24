@@ -8,7 +8,7 @@ public class StaffView extends View{
         System.out.println("4. Select a camp"); 
         System.out.println("5. Generate attendance report of all my camps");
         System.out.println("6. Generate performance report of all my camps");
-        System.out.println("6. Generate enquiries report of all my camps");                
+        System.out.println("7. Generate enquiries report of all my camps");                
     }
 
     public void displayViewMyCampsMenu() {
