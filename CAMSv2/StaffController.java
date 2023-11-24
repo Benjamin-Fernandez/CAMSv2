@@ -186,9 +186,9 @@ public class StaffController extends BaseController<Staff, StaffView>{
 
     protected boolean enterDisplayListOfCamps() {
         view.displayHeader("CAMP INFORMATION");
-        camp.printCampInfoTable();
+        camp.printCampInfoAndList();
         // print the student list as well
-        
+
         return true;
     }
 
@@ -211,10 +211,6 @@ public class StaffController extends BaseController<Staff, StaffView>{
         }
     }
 
-    private boolean enterChangeCampVisibility() {
-        CampManager.getInstance().changeVisibility(camp.getCampName());
-        return true;
-    }
 
     protected boolean enterManageSuggestions() {
         boolean running = true;

@@ -444,42 +444,50 @@ public class Camp {
     }
 
 // Additional methods
-
     /**
      * Prints a table with information about the camp.
      */
     public void printCampInfoTable(){
-        this.info.printCampInfoTable();
+        System.out.println("1. Camp Name = " + this.info.getCampName());
+
+        System.out.println("2. Camp Dates = ");
+        for (LocalDate date : this.info.getDates()) {
+            System.out.println(date);
+        }
+
+        System.out.println("3. Registration Closing Date = " + this.info.getRegistrationClosingDate().toLocalDate());
+
+        System.out.println("4. User Group = " + this.info.getUserGroup());
+
+        System.out.println("5. Camp Location = " + this.info.getUserGroup());
+
+        System.out.println("6. Camp Slots = " + (this.info.getTotalSlots() - studentList.size()) + "/" + this.info.getTotalSlots());
+
+        System.out.println("7. Camp Description = " + this.info.getDescription());
         System.out.println("8. Visibility = " + getVisibility());
+
     }
 
     public void printCampInfoAndList() {
-        this.info.printCampInfoTable();
-        System.out.println("8. Visibility = " + getVisibility());
+        printCampInfoTable();
         System.out.println("9. Student List: ");
-        System.out.println("Student Name" + " | " + "Role");
-        for (Student student : studentList) {
-            if (student.getRole().equals(Role.CAMP_COMMITTEE_MEMBER)) {
-                CampCommitteeMember campCommitteeMember = (CampCommitteeMember) student;
-                if (campCommitteeMember.getCamp().equals(this)) {
-                    System.out.println(student.getName() + " | " + Role.CAMP_COMMITTEE_MEMBER.toString());
-                    continue;
-                }
-            }
-            System.out.println(student.getName() + " | " + Role.STUDENT.toString());
-            
-        }        
+        printStudentList(studentList);
     }
     /**
      * Prints the list of students registered for the camp.
      */
 
     public void printStudentList(HashSet<Student> students) {
-        System.out.println("PRINTING STUDENTLIST");
         System.out.println("Student Name" + " | " + "Role");
         for (Student student : students) {
-            System.out.println(student.getName() + " | " + student.getRole());
-        }
+            if (isCampCommitteeMember(student.getName())) {
+                System.out.println(student.getName() + " | " + Role.CAMP_COMMITTEE_MEMBER.toString());
+                continue;
+                
+            }
+            System.out.println(student.getName() + " | " + "ATTENDEE");
+            
+        } 
     }
     /**
      * Prints the list of camp committee members.
@@ -609,6 +617,15 @@ public class Camp {
 
     public void setStaff_in_charge(String staffName) {
         this.info.setStaff_in_charge(staffName);
+    }
+
+    public boolean isCampCommitteeMember(String studentName) {
+        for (CampCommitteeMember ccm : info.getCampCommitteeSlots()) {
+            if (studentName.equals(ccm.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

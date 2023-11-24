@@ -23,14 +23,11 @@ public class ReportDatabase {
 
             for (Student student : filter.getFilteredList(camp.getStudentList())) {
                 // check if role is camp committee member
-                if (student.getRole().equals(Role.CAMP_COMMITTEE_MEMBER)) {
-                    CampCommitteeMember campCommitteeMember = (CampCommitteeMember) student;
-                    if (campCommitteeMember.getCamp().equals(camp)) {
+                if (camp.isCampCommitteeMember(student.getName())) {
                         printWriter.println(student.getName() + "," + Role.CAMP_COMMITTEE_MEMBER.toString());
                         continue;
-                    } 
                 }
-                printWriter.println(student.getName() + "," + Role.STUDENT.toString());
+                printWriter.println(student.getName() + "," + "ATTENDEE");
             }
 
             printWriter.println("Camp Dates");

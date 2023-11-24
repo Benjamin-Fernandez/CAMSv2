@@ -227,8 +227,8 @@ public class CampManager {
             boolean running = true;
             while(running){
                 currentCamp.printCampInfoTable();
-                System.out.println("What would you like to edit?");
-                System.out.println("Enter 111 to exit, or enter next attribute to edit");
+                System.out.println("Select an option to edit(Eg. 1): ");
+                System.out.println("<--- Exit edit menu (type 111)");
                 choice = sc.nextInt();
                 sc.nextLine();
                 switch(choice){

@@ -22,6 +22,7 @@ public class CampCommitteeMemberView extends StudentView {
             System.out.println("4. Manage Camp Suggestions"); 
             System.out.println("5. Manage Camp Enquiries");
             System.out.println("6. Generate Camp Attendance Report");
+            System.out.println("7. Generate Student Enquiry Report");
         }
         else {
             super.displayCampSpecificOptions(isRegistered);

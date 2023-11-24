@@ -273,12 +273,6 @@ public class CampCommitteeMemberController extends StudentController {
         }
     }
 
-    /**
-     * Handles generating a camp attendance report.
-     */
-    protected void handleCampAttendanceReport() {
-        
-    }
 
     /**
      * Handles the menu options specific to CampCommitteeMember.
