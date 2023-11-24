@@ -155,7 +155,6 @@ public class CampCommitteeMemberController extends StudentController {
      * @return The acquired suggestion.
      */
     protected Advice acquireSuggestion() {
-        handleViewSuggestion();
         ccmView.displayGetSuggestionIndex();
         int index = sc.nextInt() - 1;
         sc.nextLine();

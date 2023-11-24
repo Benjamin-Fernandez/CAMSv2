@@ -250,14 +250,22 @@ public class StaffController extends BaseController<Staff, StaffView>{
     protected boolean enterReplyCampEnquiries() {
         camp.printEnquiriesList();
         view.displayGetEnquiryId();
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = 0;
+        try {
+            id = sc.nextInt();
+            sc.nextLine();
+                      
+        } catch (Exception e) {
+            System.out.println("Please provide a valid EnquiryId!");
+
+        }
 
         Question question = camp.getEnquiryFromCamp(id);
         if (question == null) {
             System.out.println("Please provide a valid EnquiryId!");
             return true;
-        }
+        }       
+
         view.displayGetReply();
         String reply = sc.nextLine();
         question.setReply(new Reply(user.getName(), reply));
