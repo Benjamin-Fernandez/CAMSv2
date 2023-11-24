@@ -306,7 +306,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
     protected boolean enterDeleteCamp() {
         CampManager.getInstance().deleteCamp(camp);
         view.displaySuccessfulMessage();
-        return true;
+        return false;
     }
 
     protected boolean enterEditCamp() {
