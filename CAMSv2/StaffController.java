@@ -183,15 +183,12 @@ public class StaffController extends BaseController<Staff, StaffView>{
             case 1:
                 return enterDisplayListOfCamps();
             case 2:
-                // edit
                 return enterEditCamp();
             case 3:
                 return enterDeleteCamp();
             case 4:
-                return enterChangeCampVisibility();
-            case 5:
                 return enterManageEnquiries();
-            case 6:
+            case 5:
                 return enterManageSuggestions();
             case 111:
                 return false;

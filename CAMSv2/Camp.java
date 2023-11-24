@@ -52,6 +52,8 @@ public class Camp {
      */
     public Camp(){ 
         //empty constructor
+        this.visibility = false;
+        this.info = new CampInformation();
     }
     /**
      * Constructs a {@code Camp} object with specified parameters.
@@ -67,7 +69,7 @@ public class Camp {
      */
    
 
-    public Camp(String CampName , LocalDate[] Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
+    public Camp(String CampName , ArrayList<LocalDate> Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
         //String Dates will need change to an Arraylist of integers instead
         this.visibility = false;
         this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
@@ -300,7 +302,7 @@ public class Camp {
      */
 
 
-    public LocalDate[] getDates(){
+    public ArrayList<LocalDate> getDates(){
         return this.info.getDates();
     }
     /**
@@ -382,7 +384,7 @@ public class Camp {
      * @param Dates The array of dates representing the camp schedule.
      */
 
-    public void setDates(LocalDate[] Dates){
+    public void setDates(ArrayList<LocalDate> Dates){
         this.info.setDates(Dates);
     }
     /**

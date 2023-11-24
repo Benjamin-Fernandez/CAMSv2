@@ -54,6 +54,7 @@ public class User {
      */
     public void changePassword(String newPassword){
         this.password = newPassword;
+        System.out.println("The new password will take effect in your next login");
     }
 
     /**

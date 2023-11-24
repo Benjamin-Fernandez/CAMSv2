@@ -7,13 +7,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
 // to become Singleton
@@ -21,6 +14,7 @@ public class CampManager {
     //attributes
     private static CampManager instance;
     private ArrayList<Camp> campList = new ArrayList<Camp>();
+    public Scanner sc = new Scanner(System.in);
 
     //method
     private CampManager() {};
@@ -30,109 +24,82 @@ public class CampManager {
         }
         return instance;
     }
+
+    private void enterCheckAndSetCampName(Camp camp) {
+
+        boolean running = true;
+        while (running) {
+            String campName;
+            System.out.println("Enter camp name: ");
+            campName = sc.nextLine();
+            //check if camp already exists
+            if(getCamp(campName) != null){
+                System.out.println("Camp with this name already exists");
+                continue;
+            }else if (campName.equals("")) {
+                System.out.println("Camp name cannot be blank");
+                continue;            
+            } else {
+                camp.setCampName(campName);   
+                break;                     
+            }
+        }
+
+    }
     
     public void createCamp(Staff staff){
-        //print and scan logic is here
-        // call constructor from camp, parameters are all the 8 inputs
-      //Camp SpecificCamp = new Camp(8 parameters);
-      //campList.add(SpecificCamp);
-        Scanner sc = new Scanner(System.in);
 
-        String errorMessage = "Camp with this name already exists";
-        String campName;
-        LocalDate[] Dates;            //NEWLY ADDED
-        LocalDateTime registrationClosingDate;
-        String userGroup;
-        UserGroup validUserGroup;
-        String location;
-        int totalSlots;
-        String description;
+        Camp camp = new Camp();
+        enterCheckAndSetCampName(camp);
+        // System.out.println("Enter camp duration(days)");
+        // int numOfDays = sc.nextInt();
+        // sc.nextLine();
+        // dates = new ArrayList<LocalDate>();
+        // String userInput;
+        // do{
+        //     System.out.print("Enter the starting date(YYYY-MM-DD): ");
+        //     userInput = sc.nextLine();
+        //     LocalDate currentDate = LocalDate.now();
+        //     LocalDate dateCounter = LocalDate.parse(userInput);
+        //     if (dateCounter.isAfter(currentDate)) {
+        //         for (int i = 0; i < numOfDays; i++) {
+        //             dates.add(dateCounter);
+        //             dateCounter = dateCounter.plusDays(1); // Move to the next day
+        //         }
+        //         System.out.println("Dates set!");
+        //         break;
+        //     } else {
+        //         System.out.println("Input date must be in the future.");
+        //     }
+        // }while(true);
+        enterSetCampDates(camp);
+        // String userInput2 = userInput;
+        // userInput2 += " 00:00";        
+        // //Ensures that the registration closing date is after the local clock and before start of camp
+        // do{
+        //     System.out.println("Enter registration closing date(YYYY-MM-DD): ");
+        //     LocalDateTime currentDateTime = LocalDateTime.now();
+        //     userInput = sc.nextLine();
+        //     userInput += " 23:59";
+        //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //     registrationClosingDate = LocalDateTime.parse(userInput, formatter);
+        //     LocalDateTime startDate = LocalDateTime.parse(userInput2, formatter);
+        //     currentDateTime = LocalDateTime.now();
+        //     if (registrationClosingDate.isAfter(currentDateTime) && registrationClosingDate.isBefore(startDate)) {
+        //         break;
+        //     } else {
+        //         System.out.println("Input date must be in the future and be before the start of camp.");
+        //     }
+        // }while(true);
+        enterSetRegistrationClosingDate(camp);
+        enterSetUserGroup(camp);
+        enterSetLocation(camp);
+        enterSetCampSlots(camp);
+        enterSetCampDescription(camp);
+        addCamp(camp);
+        staff.getCreatedCamps().add(camp);
 
-        System.out.println("Enter camp name: ");
-        campName = sc.nextLine();
-
-        //check if camp already exists
-        if(getCamp(campName) != null){
-            System.out.println(errorMessage);
-            return;
-        }
-
-        System.out.println("Enter camp duration(days)");
-        int numOfDays = sc.nextInt();
-        sc.nextLine();
-        Dates = new LocalDate[numOfDays];
-        String userInput;
-        do{
-            System.out.print("Enter the starting date (YYYY-MM-DD):");
-            userInput = sc.nextLine();
-            LocalDate currentDate = LocalDate.now();
-            LocalDate dateCounter = LocalDate.parse(userInput);
-            if (dateCounter.isAfter(currentDate)) {
-                for (int i = 0; i < numOfDays; i++) {
-                    Dates[i] = dateCounter;
-                    dateCounter = dateCounter.plusDays(1); // Move to the next day
-                }
-                System.out.println("Dates set!");
-                break;
-            } else {
-                System.out.println("Input date must be in the future.");
-            }
-        }while(true);
-
-        
-
-
-        System.out.println("Enter registration closing date");
-        String userInput2 = userInput;
-        userInput2 += " 00:00";
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        //Ensures that the registration closing date is after the local clock and before start of camp
-        do{
-            userInput = sc.nextLine();
-            userInput += " 23:59";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            registrationClosingDate = LocalDateTime.parse(userInput, formatter);
-            LocalDateTime startDate = LocalDateTime.parse(userInput2, formatter);
-            currentDateTime = LocalDateTime.now();
-            if (registrationClosingDate.isAfter(currentDateTime) && registrationClosingDate.isBefore(startDate)) {
-                System.out.println("Registration closing set as: ");
-                break;
-            } else {
-                System.out.println("Input date must be in the future and be before the start of camp.");
-            }
-        }while(true);
-
-        System.out.println("Enter user group this camp will be available to (IN CAPS)");
-        userGroup = sc.nextLine();
-        userGroup.toUpperCase();
-        //check if its a valid userGroup
-        validUserGroup = checkUserGroupExist(userGroup);
-
-        //if its not valid user group, break
-        if(validUserGroup == null){
-            System.out.println("INVALID USER GROUP, EXITING");
-            return;
-        }
-
-        System.out.println("Enter camp location");
-        location = sc.nextLine();
-
-        System.out.println("Enter total number of slots");
-        totalSlots = sc.nextInt();
-
-        System.out.println("Enter camp description");
-        sc.nextLine();
-        description = sc.nextLine();
-
-        //sc.close();
-
-
-        Camp newCamp = new Camp(campName,Dates,registrationClosingDate,validUserGroup,location,totalSlots,description,staff.getName());
-
-        addCamp(newCamp);
-        staff.getCreatedCamps().add(newCamp);
-
-        System.out.println(campName + " camp created");
+        System.out.println(camp.getCampName() + " camp created");
 
     }
 
@@ -176,90 +143,127 @@ public class CampManager {
         staffIC = camp.getStaffName();
 
         return staffIC.equals(Staffname);
+    }
+
+    public void enterSetCampName(Camp camp) {
+        System.out.println("Enter new camp name: ");
+        String newCampName = sc.nextLine();
+        camp.setCampName(newCampName);
+    }
+
+    public void enterSetCampDates(Camp camp) {
+        boolean running = true;
+        while(running) {
+            System.out.println("Enter start date (YYYY-MM-DD):");
+            String startDateString = sc.nextLine();
+        
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            try {
+                LocalDate startDate = LocalDate.parse(startDateString, formatter);
+                if (!startDate.isAfter(LocalDate.now())) {
+                    System.out.println("Input Date must be in the future");
+                    continue;
+                }
+
+                System.out.println("Enter camp duration (days):");
+                int numOfDays = sc.nextInt();
+                sc.nextLine();     
+
+                ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
+                for (int i = 0; i < numOfDays; i++) {
+                    dates.add(startDate.plusDays(i));
+                }
+            
+                // Printing the dates to verify for debugging
+                for (LocalDate date : dates) {
+                    System.out.println(date.format(formatter));
+                }
+
+                camp.setDates(dates);
+                break;
+            } catch (Exception e) {
+                System.out.println("Please follow the required format!");
+                continue;
+            }
+
         }
+
+    }
+
+    public void enterSetRegistrationClosingDate(Camp camp) {
+        //Ensures that the registration closing date is after the local clock and before start of camp
+        do{
+            System.out.println("Enter registration closing date(YYYY-MM-DD): ");
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            String userInput = sc.nextLine();
+            userInput += " 23:59";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            try {
+                LocalDateTime registrationClosingDate = LocalDateTime.parse(userInput, formatter);
+                LocalDateTime startDate = camp.getDates().get(0).atStartOfDay();
+                currentDateTime = LocalDateTime.now();
+                if (registrationClosingDate.isAfter(currentDateTime) && registrationClosingDate.isBefore(startDate)) {
+                    camp.setRegistrationClosingDate(registrationClosingDate);
+                    break;
+                } else {
+                    System.out.println("Input date must be in the future and be before the start of camp.");
+                }                
+            } catch (Exception e) {
+                System.out.println("Please follow the date format!");
+                continue;
+            }
+        }while(true);
+    }
 
 
     public void editCamp(String campName,String staffName){
         int choice;
-        Scanner sc = new Scanner(System.in);
         Camp currentCamp = getCamp(campName);
         String errorMessage = "Staff is not in charge";
         String exitMessage = "Exitting edit";
-        String updatedInfo;
-
 
         if(getStaffinCharge(campName, staffName)) {
-
-            currentCamp.printCampInfoTable();
-            System.out.println("What would you like to edit?");
-            choice = sc.nextInt();
-            while(choice>0 && choice<8){
-                //switch case that calls and takes in specific string needed for each case
-                //call the set method in camp.info.setVariable()
-                System.out.println("Enter updated information");
+            boolean running = true;
+            while(running){
+                currentCamp.printCampInfoTable();
+                System.out.println("What would you like to edit?");
+                System.out.println("Enter 111 to exit, or enter next attribute to edit");
+                choice = sc.nextInt();
                 sc.nextLine();
-                updatedInfo = sc.nextLine();
-
                 switch(choice){
 
-                        case 1: currentCamp.setCampName(updatedInfo);
+                        case 1: 
+                            enterSetCampName(currentCamp);
                             break;
 
-                        case 2:
-                            System.out.println("Enter camp duration(days)");
-                            int numOfDays = sc.nextInt();
-                            System.out.println("Enter start date (YYYY-MM-DD):");
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-                            Date[] dates = new Date[numOfDays];
-                            for (int i = 0; i < numOfDays; i++) {
-                                while (true) {
-                                    try {
-                                        System.out.print("Date " + (i + 1) + ": ");
-                                        String userInput = sc.nextLine();
-                                         dates[i] = dateFormat.parse(userInput);
-                                        break; // Break the loop if parsing is successful
-                                    } catch (ParseException e) {
-                                    System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
-                                    }
-                                }
-                            }
+                            case 2:
+                            enterSetCampDates(currentCamp);
                             break;
 
                         case 3:  
-                            updatedInfo += " 23:59";
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                            LocalDateTime registrationClosingDate = LocalDateTime.parse(updatedInfo, formatter);
-                            currentCamp.setRegistrationClosingDate(registrationClosingDate);
+                            enterSetRegistrationClosingDate(currentCamp);
                             break;
 
-                        case 4: currentCamp.setUserGroup(updatedInfo);
+                        case 4: enterSetUserGroup(currentCamp);
                             break;
 
-                        case 5:  currentCamp.setLocation(updatedInfo);
+                        case 5:  enterSetLocation(currentCamp);
                             break;
 
                         case 6:
-                            // check with studentList
-                            int length = currentCamp.getStudentList().size();
-                            int input = Integer.parseInt(updatedInfo);
-                            if (input < length) {
-                                System.out.println("Value too low");
-                                
-                            }else {
-                                currentCamp.setTotalSlots(input);                                
-                            }
+                            enterSetCampSlots(currentCamp);
                             break;
 
-                        case 7: currentCamp.setDescription(updatedInfo);
+                        case 7: 
+                            enterSetCampDescription(currentCamp);
                             break;
+                        case 8: 
+                            changeVisibility(campName);
+                            break;
+                        case 111:
+                            running = false;
                 }//end switch
-            currentCamp.printCampInfoTable();
-            System.out.println("Enter 8 to exit, or enter next attribute to edit");
-            choice = sc.nextInt();
-
             }//end while
-            //sc.close();
 
             System.out.println(exitMessage);
         }//end if
@@ -269,6 +273,75 @@ public class CampManager {
         return;
     }//end edit camp
 
+    private void enterSetCampDescription(Camp currentCamp) {
+        System.out.println("Enter new description: ");
+        String description = sc.nextLine();
+        currentCamp.setDescription(description);
+        
+    }
+    private void enterSetCampSlots(Camp currentCamp) {
+        boolean running = true;
+        while (running) {
+            System.out.println("Enter Camp Slots: ");
+            String campSlots = sc.nextLine();
+            int length = currentCamp.getStudentList().size();
+            try {
+                int input = Integer.parseInt(campSlots);
+                if (input < length) {
+                    System.out.println("Value too low");
+                    continue;
+                    
+                }else {
+                    currentCamp.setTotalSlots(input);
+                    running = false;                          
+                }           
+            } catch (Exception e) {
+                System.out.println("You did not enter an integer!");
+                continue;
+            }
+                        
+        }
+
+    }
+    
+
+    private void enterSetLocation(Camp currentCamp) {
+        boolean running = true;
+        while (running) {
+            System.out.println("Enter new location: ");
+            String location = sc.nextLine();
+            if (location.equals("")) {
+                System.out.println("Location cannot be blank");
+                continue;
+            }
+            currentCamp.setLocation(location);
+            running = false;            
+        }    
+    }
+    private void enterSetUserGroup(Camp camp) {
+        boolean running = true;
+        while(running) {
+            System.out.println("Enter user group: ");
+
+            String userGroup = sc.nextLine();
+            userGroup = userGroup.toUpperCase();
+            if (userGroup.equals("")) {
+                System.out.println("User Group cannot be blank");
+                continue;
+            }
+            //check if its a valid userGroup
+            UserGroup validUserGroup = checkUserGroupExist(userGroup);
+
+            //if its not valid user group, break
+            if(validUserGroup == null){
+                System.out.println("Invalid User Group!");
+                continue;
+            } else {
+                camp.setUserGroup(userGroup);
+                running = false;
+            }            
+        }
+    }
     public void deleteCamp(Camp camp){
         campList.remove(camp);
     }
@@ -277,7 +350,6 @@ public class CampManager {
         //ask the user whether true/false
         String settings;
         boolean choice;
-        Scanner sc = new Scanner(System.in);
         System.out.println("Set visibility to on or off?");
         settings = sc.nextLine();
         if(settings.equals("on"))

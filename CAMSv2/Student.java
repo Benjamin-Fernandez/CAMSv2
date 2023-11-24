@@ -268,17 +268,17 @@ public class Student extends User{
     }
 
     public boolean overlappingCampDates(Camp camp) {
-        LocalDate[] currentCampDates = camp.getDates();
-        LocalDate currentStart = currentCampDates[0];
-        LocalDate currentEnd = currentCampDates[currentCampDates.length - 1];
+        ArrayList<LocalDate> currentCampDates = camp.getDates();
+        LocalDate currentStart = currentCampDates.get(0);
+        LocalDate currentEnd = currentCampDates.get(currentCampDates.size() - 1);
         System.out.println("currentStart" + currentStart.toString());
         System.out.println("currentEnd" + currentEnd.toString());                
 
         for (Camp tempCamp : getRegisteredCamps()) {
-            LocalDate[] tempCampDates = tempCamp.getDates();
-            LocalDate tempStart = tempCampDates[0];
+            ArrayList<LocalDate> tempCampDates = tempCamp.getDates();
+            LocalDate tempStart = tempCampDates.get(0);
             System.out.println("tempStart" + tempStart.toString());
-            LocalDate tempEnd = tempCampDates[tempCampDates.length - 1];
+            LocalDate tempEnd = tempCampDates.get(tempCampDates.size() - 1);
             System.out.println("tempEnd" + tempEnd.toString());
             // current start date must be after end date of temp camp
             // current end date must be before start date of temp camp

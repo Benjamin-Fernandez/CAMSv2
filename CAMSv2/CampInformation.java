@@ -3,6 +3,7 @@ package CAMSv2;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
 
@@ -12,19 +13,19 @@ import java.util.HashSet;
  */
 public class CampInformation {
 
-    private String CampName;
-    private LocalDate[] Dates; 
-    private LocalDateTime Registration_closing_date;
-    private UserGroup User_group;
-    private String Location;
-    private int Total_Slots;
+    private String CampName = "";
+    private ArrayList<LocalDate> Dates = new ArrayList<LocalDate>(); 
+    private LocalDateTime Registration_closing_date = LocalDateTime.now();
+    private UserGroup User_group = UserGroup.NTU;
+    private String Location = "";
+    private int Total_Slots = 1;
 
     private HashSet<CampCommitteeMember> Camp_Committee_slots = new HashSet<CampCommitteeMember>();
-    private String Description;
-    private String Staff_in_charge;
+    private String Description = "";
+    private String Staff_in_charge = "";
 
     /**
-     * Constructor for CampInformation.
+     * Initialization Constructor for CampInformation.
      * @param campName The name of the camp.
      * @param dates The dates of the camp.
      * @param registrationClosingDate The closing date for camp registration.
@@ -34,7 +35,7 @@ public class CampInformation {
      * @param description The description of the camp.
      * @param staffInCharge The staff in charge of the camp.
      */
-    public CampInformation(String campName , LocalDate[] dates , LocalDateTime registrationClosingDate, UserGroup userGroup , String location , int totalSlots, String description, String staffInCharge){
+    public CampInformation(String campName , ArrayList<LocalDate> dates , LocalDateTime registrationClosingDate, UserGroup userGroup , String location , int totalSlots, String description, String staffInCharge){
 
         this.CampName = campName;
         this.Dates = dates;
@@ -45,6 +46,11 @@ public class CampInformation {
         this.Description = description;
         this.Staff_in_charge = staffInCharge;
 
+    }
+
+    // default constructor
+    public CampInformation() {
+        Dates.add(LocalDate.now());
     }
     
     /**
@@ -84,7 +90,7 @@ public class CampInformation {
      * Retrieves the dates of the camp.
      * @return The dates of the camp.
      */
-    public LocalDate[] getDates(){
+    public ArrayList<LocalDate> getDates(){
         return this.Dates;
     }
 
@@ -149,7 +155,7 @@ public class CampInformation {
      * Sets the dates of the camp.
      * @param Dates The new dates for the camp.
      */
-    public void setDates(LocalDate[] Dates){
+    public void setDates(ArrayList<LocalDate> Dates){
         this.Dates = Dates;
     }
 
@@ -205,7 +211,7 @@ public class CampInformation {
     public void printCampInfoTable(){
         System.out.println("1. Camp Name = " + this.CampName);
 
-        System.out.print("2. Camp Dates = ");
+        System.out.println("2. Camp Dates = ");
         for (LocalDate date : Dates) {
             System.out.println(date);
         }
@@ -220,6 +226,10 @@ public class CampInformation {
 
         System.out.println("7. Camp Description = " + this.Description);
 
+    }
+
+    public void setStaff_in_charge(String staff_in_charge) {
+        Staff_in_charge = staff_in_charge;
     }
 
     
