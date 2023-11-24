@@ -16,7 +16,7 @@ public class Suggestion {
     /**
      * The list of advice associated with the suggestion.
      */
-    private ArrayList<Advice> AdviceList;
+    private ArrayList<Advice> AdviceList = new ArrayList<Advice>();
     /**
      * Constructs a {@code Suggestion} object with an initial advice and the student's name.
      *
