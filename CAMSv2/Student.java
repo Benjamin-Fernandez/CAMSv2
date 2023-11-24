@@ -239,7 +239,6 @@ public class Student extends User{
 
             // append into database of Camp Committee Member
             CampCommitteeDataBase.getInstance().getCampCommitteeMembersList().add(campCommitteeMember);
-            CampCommitteeDataBase.getInstance().printList();
             CampCommitteeDataBase.getInstance().writeToCSV();
             System.out.println("REMINDER: Please Re-Login to access Camp Committee Member Privileges...");
 

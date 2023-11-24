@@ -57,7 +57,7 @@ public class Cams {
     }
 
     private static boolean handleLoginSwitch(int role, String emailID, String password) {
-        CampCommitteeDataBase.getInstance().printList();
+
         switch (role) {
             case 1:
                 // invoke staff authentication
