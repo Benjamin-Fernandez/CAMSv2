@@ -76,6 +76,8 @@ public class Camp {
 
     }
 
+    
+
     // Methods
 
     /**
@@ -578,8 +580,10 @@ public class Camp {
         // generate csv
         ReportDatabase.getInstance().generateStudentsEnquiryReport(this);
     }
-    
 
+    public void setStaff_in_charge(String staffName) {
+        this.info.setStaff_in_charge(staffName);
+    }
 
 
 }

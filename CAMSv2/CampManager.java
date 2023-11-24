@@ -50,6 +50,7 @@ public class CampManager {
     public void createCamp(Staff staff){
 
         Camp camp = new Camp();
+        camp.setStaff_in_charge(staff.getName());
         enterCheckAndSetCampName(camp);
         // System.out.println("Enter camp duration(days)");
         // int numOfDays = sc.nextInt();

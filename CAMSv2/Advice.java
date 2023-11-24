@@ -13,7 +13,7 @@ public class Advice {
     private String advice;
     private Boolean approved;
     private int id;
-
+    
     /**
      * Constructs an {@code Advice} object with the given advice.
      *
