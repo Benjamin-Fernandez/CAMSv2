@@ -267,6 +267,7 @@ public class Student extends User{
     public void withdrawFromCamp(Camp camp) {
         // if camp committee member should remove from camp
         camp.removeStudent(this);
+        registeredCamps.remove(camp);
         camp.addToBlackList(this);
         System.out.println("Withdrawn from camp");
         
