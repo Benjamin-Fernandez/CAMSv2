@@ -205,9 +205,7 @@ public class CampInformation {
     }
 
     /**
-     * Prints the detailed information about the camp to the console.
-     * Displays various attributes such as camp name, dates, registration closing date, user group,
-     * location, total slots available, and camp description.
+     * Sets the staff in charge of camp
      */
 
     public void setStaff_in_charge(String staff_in_charge) {

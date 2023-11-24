@@ -99,7 +99,10 @@ public class User {
     public Role getRole(){
         return this.role;
     }
-
+    /**
+     * Displays the profile information of the user.
+     * Prints the user's name, password, faculty, and role to the console.
+     */
     public void displayProfile() {
         System.out.println("Name: " + name);
         System.out.println("Password: " + password); 

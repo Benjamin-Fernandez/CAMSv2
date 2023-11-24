@@ -2,7 +2,7 @@ package CAMSv2;
 
 
 /**
- * Abstract class representing a database with methods to load data from and write data to a CSV file.
+ * The {@code  class represents a question associated with a camp in the CAMSv2 system.Abstract class representing a database with methods to load data from and write data to a CSV file.
  */
 public abstract class DataBase {
 

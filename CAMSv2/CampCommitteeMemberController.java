@@ -305,18 +305,31 @@ public class CampCommitteeMemberController extends StudentController {
         }
         return true;
     }
-
+    /**
+     * Displays the camp details using the associated view.
+     * Prints the camp information and list of attendees.
+     * Access is protected to allow subclasses to use this method.
+     */
     protected void handleDisplayCampDetails() {
         view.displayHeader("CAMP DETAILS");
         camp.printCampInfoAndList();
     }
-
+    /**
+     * Generates a student enquiries report and displays it using the associated view.
+     *
+     * @return Always returns true.
+     */
     private boolean enterGenerateEnquiriesReport() {
         view.displayHeader("GENERATE STUDENT ENQUIRIES REPORT");
         ccm.generateStudentsEnquiryReport();
         return true;
     }
-
+    /**
+     * Enters the process of generating an attendance report.
+     * Displays options to select the report filter and takes user input.
+     *
+     * @return Always returns true.
+     */
     protected boolean enterGenerateAttendanceReport() {
         boolean running = true;
         while(running) {        
@@ -333,7 +346,12 @@ public class CampCommitteeMemberController extends StudentController {
         }
         return true;
     }
-
+    /**
+     * Handles the generation of an attendance report based on the user's choice.
+     *
+     * @param choice The user's choice for the report filter.
+     * @return True if the user wants to continue generating reports, false if they want to exit.
+     */
 
     protected boolean handleGenerateAttendanceReport(int choice) {
         ReportFilter filter;

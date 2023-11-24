@@ -4,10 +4,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+
+/**
+ * The {@code ReportDatabase} A class responsible for generating various reports and saving them as CSV files.
+ */
 public class ReportDatabase {
     static ReportDatabase instance;
 
     private ReportDatabase() {}
+    /**
+     * Gets the singleton instance of the ReportDatabase.
+     *
+     * @return The ReportDatabase instance.
+     */
 
     static ReportDatabase getInstance() {
         if (instance == null) {
@@ -15,6 +24,12 @@ public class ReportDatabase {
         }
         return instance;
     }
+    /**
+     * Generates a CSV report for a specific camp based on the provided filter.
+     *
+     * @param camp   The camp for which the report is generated.
+     * @param filter The filter used to determine the report content.
+     */
     public void generateCampReportCSV(Camp camp, ReportFilter filter){
         String projectDirectory = System.getProperty("user.dir");
         String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + "_Camp_Report" + ".csv";
@@ -46,6 +61,11 @@ public class ReportDatabase {
         }
 
     }
+    /**
+     * Generates a CSV report for camp committee members of a specific camp.
+     *
+     * @param camp The camp for which the camp committee member report is generated.
+     */
 
     public void generateCCMReportCSV(Camp camp){
 
@@ -66,6 +86,11 @@ public class ReportDatabase {
         }
 
     }
+    /**
+     * Generates a CSV report for student enquiries of a specific camp.
+     *
+     * @param camp The camp for which the student enquiries report is generated.
+     */
 
       public void generateStudentsEnquiryReport(Camp camp){
 
