@@ -150,6 +150,10 @@ public class Camp {
         studentList.add(student);
     }
 
+    public void removeStudent(Student student) {
+        studentList.remove(student);
+    }
+
     /**
      * Adds a student's inquiries to the camp's inquiry list or retrieves existing inquiries.
      *

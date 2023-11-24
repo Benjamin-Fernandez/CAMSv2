@@ -226,9 +226,13 @@ public class Student extends User{
         if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
             System.out.println("Camp: " + camp);
+            // add this student first so ccm will initialize with student data
             camp.addStudent(this);
             
             CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty, password, role, camp);
+            camp.removeStudent(this);
+            camp.addStudent(campCommitteeMember);
+            // after creating ccm, delete the original student.
             System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
             camp.addCampCommitteeMember(campCommitteeMember);
 

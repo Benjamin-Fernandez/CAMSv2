@@ -127,7 +127,7 @@ public class StudentView extends View{
     }
 // --------------Withdrawal----------------------
     public void displayWithdrawalFromCamp(Camp camp) {
-        System.out.println("Withdrawm from " + camp.getCampName());
+        System.out.println("Withdrawn from " + camp.getCampName());
     }
 // -------------Password-------------------------
     public void displayEnterNewPassword() {
