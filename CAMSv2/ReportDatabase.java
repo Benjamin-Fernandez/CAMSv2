@@ -23,8 +23,14 @@ public class ReportDatabase {
 
             for (Student student : filter.getFilteredList(camp.getStudentList())) {
                 // check if role is camp committee member
-                
-                printWriter.println(student.getName() + "," + student.getRole().toString());
+                if (student.getRole().equals(Role.CAMP_COMMITTEE_MEMBER)) {
+                    CampCommitteeMember campCommitteeMember = (CampCommitteeMember) student;
+                    if (campCommitteeMember.getCamp().equals(camp)) {
+                        printWriter.println(student.getName() + "," + Role.CAMP_COMMITTEE_MEMBER.toString());
+                        continue;
+                    }
+                }
+                printWriter.println(student.getName() + "," + Role.STUDENT.toString());
             }
 
             printWriter.println("Camp Dates");
@@ -33,9 +39,9 @@ public class ReportDatabase {
             for (LocalDate date : camp.getDates()) {
                 printWriter.println(date.toString());
             }
-            
-            printWriter.println("Registration Deadline,User Group,Location of Camp,Camp Slots,Camp Description");
-            printWriter.println(camp.getRegistrationClosingDate() + "," + camp.getUserGroup() + "," + camp.getLocation() + "," + camp.getTotalSlots() + "," + camp.getDescription());
+
+            printWriter.println("Registration Deadline,User Group,Location of Camp,Total Camp Slots,Available Camp Slots,Camp Description");
+            printWriter.println(camp.getRegistrationClosingDate() + "," + camp.getUserGroup() + "," + camp.getLocation() + "," + camp.getTotalSlots() + "," + camp.getRemainingSlots() + "," + camp.getDescription());
             
             System.out.println("CSV file created successfully: " + filename);
         } catch (IOException e) {

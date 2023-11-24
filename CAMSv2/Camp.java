@@ -340,13 +340,17 @@ public class Camp {
         return this.info.getLocation();
     }
     /**
-     * Retrieves the total available slots for the camp.
+     * Retrieves the total slots for the camp.
      *
-     * @return The total available slots.
+     * @return The total slots.
      */
 
     public int getTotalSlots(){
         return this.info.getTotalSlots();
+    }
+
+    public int getRemainingSlots() {
+        return (this.info.getTotalSlots() - studentList.size());
     }
 
     /**
