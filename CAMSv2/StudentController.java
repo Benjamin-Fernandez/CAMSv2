@@ -255,7 +255,6 @@ public class StudentController extends BaseController<Student, StudentView>{
     }
 
     protected boolean handleCampSpecificOptions(int choice, boolean studentRegistered, GoToMainMenu goToLoginPage) {
-        System.out.println("Within handleCampSpecificOptions...");
         switch (choice) {
             case 1:
                 return handleSubmitEnquiryToCamp();
