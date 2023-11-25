@@ -269,7 +269,7 @@ public class Student extends User{
         camp.removeStudent(this);
         registeredCamps.remove(camp);
         camp.addToBlackList(this);
-        System.out.println("Withdrawn from camp");
+        // System.out.println("Withdrawn from camp");
         
     }
 
