@@ -1,7 +1,7 @@
 package CAMSv2;
 
 /**
- * The {@code Authenticator} is an Interface for implementing the specific types of Authentication
+ * The {@code IAuthenticator} is an Interface for implementing the specific types of Authentication
  */
 public interface IAuthenticator<T> {
     /**

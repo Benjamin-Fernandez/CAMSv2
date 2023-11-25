@@ -2,7 +2,7 @@ package CAMSv2;
 
 import java.util.*;
 /**
- * The {@code ReportFilter} An interface for filtering a list of students based on specific criteria.
+ * The {@code IReportFilter} An interface for filtering a list of students based on specific criteria.
  */
 public interface IReportFilter {
     /**
