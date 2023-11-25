@@ -114,7 +114,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
      * @return True to continue program execution.
      */
     protected boolean handleGenerateAttendanceReport(int choice) {
-        ReportFilter filter;
+        IReportFilter filter;
         switch (choice) {
             case 1:
                 filter = new AttendeeFilter();

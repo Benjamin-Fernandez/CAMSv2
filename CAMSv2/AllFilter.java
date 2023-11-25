@@ -10,7 +10,7 @@ import java.util.HashSet;
  * @since 2023-11-24
  */
 
-public class AllFilter implements ReportFilter{
+public class AllFilter implements IReportFilter{
 
     /**
      * Returns the input set of students without any filtering.

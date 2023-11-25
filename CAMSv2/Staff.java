@@ -82,7 +82,7 @@ public class Staff extends User {
      * @param filter The filter to be applied to the report.
      */
 
-    public void generateStaffReport(ReportFilter filter) {
+    public void generateStaffReport(IReportFilter filter) {
         // get staff camps
         for (Camp camp : createdCamps) {
             // call each camp to generate report

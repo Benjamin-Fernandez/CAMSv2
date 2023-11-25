@@ -10,7 +10,7 @@ import java.util.HashSet;
  * @since 2023-11-24
  */
 
-public class AttendeeFilter implements ReportFilter{
+public class AttendeeFilter implements IReportFilter{
 
     /**
      * Filters the input set of students to include only those with the role "STUDENT".

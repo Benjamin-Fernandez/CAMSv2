@@ -3,7 +3,7 @@ package CAMSv2;
 /**
  * The {@code Authenticator} is an Interface for implementing the specific types of Authentication
  */
-public interface Authenticator<T> {
+public interface IAuthenticator<T> {
     /**
      * Authenticates the user based on the provided user ID and password.
      *

@@ -4,7 +4,7 @@ import java.util.HashSet;
 /**
  * Implementation of the {@code ReportFilter} interface for filtering students who are Camp Committee Members (CCMs).
  */
-public class CCMFilter implements ReportFilter{
+public class CCMFilter implements IReportFilter{
 
     /**
      * Filters the provided set of students to include only those who are Camp Committee Members (CCMs).

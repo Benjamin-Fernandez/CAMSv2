@@ -52,7 +52,7 @@ public class CampCommitteeMember extends Student {
         System.out.println("Suggestion added");
     }
 
-    public void generateCampReport(ReportFilter filter) {
+    public void generateCampReport(IReportFilter filter) {
         camp.generateCampReport(filter);
     }
 

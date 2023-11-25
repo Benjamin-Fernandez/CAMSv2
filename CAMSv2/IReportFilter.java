@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * The {@code ReportFilter} An interface for filtering a list of students based on specific criteria.
  */
-public interface ReportFilter {
+public interface IReportFilter {
     /**
      * Filters the provided set of students based on specific criteria.
      *

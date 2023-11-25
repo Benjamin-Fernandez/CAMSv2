@@ -30,7 +30,7 @@ public class ReportDatabase {
      * @param camp   The camp for which the report is generated.
      * @param filter The filter used to determine the report content.
      */
-    public void generateCampReportCSV(Camp camp, ReportFilter filter){
+    public void generateCampReportCSV(Camp camp, IReportFilter filter){
         String projectDirectory = System.getProperty("user.dir");
         String filename = projectDirectory + "\\CAMSv2\\Data CSV\\" + camp.getCampName() + "_Camp_Report" + ".csv";
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(filename, false))) {

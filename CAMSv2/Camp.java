@@ -581,7 +581,7 @@ public class Camp {
      *
      * @param filter The filter to apply to the student list.
      */
-    public void generateCampReport(ReportFilter filter) {
+    public void generateCampReport(IReportFilter filter) {
         // list of students attending each camp
         printCampInfoTable();
         printStudentList(filter.getFilteredList(getStudentList()));

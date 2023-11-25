@@ -7,7 +7,7 @@ package CAMSv2;
  * @since 13-11-2023
  */
 
-public class StudentAuthenticator implements Authenticator<Student>{
+public class StudentAuthenticator implements IAuthenticator<Student>{
 
  /**
      * This method authenticates a student based on their user ID and password.

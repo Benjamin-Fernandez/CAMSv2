@@ -9,7 +9,7 @@ package CAMSv2;
 *@author Benjamin Fernandez
 *@since 13-11-2023
  */
-public class StaffAuthenticator implements Authenticator<Staff>{
+public class StaffAuthenticator implements IAuthenticator<Staff>{
 
     @Override
     public Staff authenticate(String emailID, String password) {

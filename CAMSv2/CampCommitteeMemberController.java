@@ -354,7 +354,7 @@ public class CampCommitteeMemberController extends StudentController {
      */
 
     protected boolean handleGenerateAttendanceReport(int choice) {
-        ReportFilter filter;
+        IReportFilter filter;
         switch (choice) {
             case 1:
                 filter = new AttendeeFilter();

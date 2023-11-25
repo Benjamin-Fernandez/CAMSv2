@@ -10,7 +10,7 @@ package CAMSv2;
  * @since 13-11-2023
  */
 
-public class CCMAuthenticator implements Authenticator<CampCommitteeMember>{
+public class CCMAuthenticator implements IAuthenticator<CampCommitteeMember>{
 
     @Override
     public CampCommitteeMember authenticate(String userId, String password) {
