@@ -60,6 +60,10 @@ public class User {
         firstLogin = false;
     }
 
+    public void setFirstLogin(boolean firstLogin) {
+        this.firstLogin = firstLogin;
+    }
+
     public boolean getFirstLogin() {
         return firstLogin;
     }

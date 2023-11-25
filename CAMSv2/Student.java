@@ -121,9 +121,9 @@ public class Student extends User{
      */
     public void createEnquiry(String description, Camp camp) {
         Question question = new Question(description, camp.getCampName(), EnquiryManager.getEnquiryCounter());
-        System.out.println("Created Question: " + question);
+        // System.out.println("Created Question: " + question);
         enquiries.addQuestion(question);
-        System.out.println("EnquiryList: " + enquiries.getQuestions());
+        // System.out.println("EnquiryList: " + enquiries.getQuestions());
         EnquiryManager.getInstance().createEnquiry(question, camp, getName());
     }
 
@@ -231,6 +231,7 @@ public class Student extends User{
             camp.addStudent(this);
             
             CampCommitteeMember campCommitteeMember = new CampCommitteeMember(name, emailID, faculty, password, role, camp);
+            campCommitteeMember.setFirstLogin(getFirstLogin());
             camp.removeStudent(this);
             camp.addStudent(campCommitteeMember);
             // after creating ccm, delete the original student.
@@ -276,15 +277,15 @@ public class Student extends User{
         ArrayList<LocalDate> currentCampDates = camp.getDates();
         LocalDate currentStart = currentCampDates.get(0);
         LocalDate currentEnd = currentCampDates.get(currentCampDates.size() - 1);
-        System.out.println("currentStart" + currentStart.toString());
-        System.out.println("currentEnd" + currentEnd.toString());                
+        // System.out.println("currentStart" + currentStart.toString());
+        // System.out.println("currentEnd" + currentEnd.toString());                
 
         for (Camp tempCamp : getRegisteredCamps()) {
             ArrayList<LocalDate> tempCampDates = tempCamp.getDates();
             LocalDate tempStart = tempCampDates.get(0);
-            System.out.println("tempStart" + tempStart.toString());
+            // System.out.println("tempStart" + tempStart.toString());
             LocalDate tempEnd = tempCampDates.get(tempCampDates.size() - 1);
-            System.out.println("tempEnd" + tempEnd.toString());
+            // System.out.println("tempEnd" + tempEnd.toString());
             // current start date must be after end date of temp camp
             // current end date must be before start date of temp camp
             if (!(currentStart.isAfter(tempEnd) || currentEnd.isBefore(tempStart))) {

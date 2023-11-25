@@ -293,7 +293,7 @@ public class CampManager {
         int choice;
         Camp currentCamp = getCamp(campName);
         String errorMessage = "Staff is not in charge";
-        String exitMessage = "Exitting edit";
+        String exitMessage = "Exiting edit";
 
         if(getStaffinCharge(campName, staffName)) {
             boolean running = true;

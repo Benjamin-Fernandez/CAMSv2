@@ -440,7 +440,7 @@ public class Camp {
 
         System.out.println("5. Camp Location = " + this.info.getUserGroup());
 
-        System.out.println("6. Camp Slots = " + (this.info.getTotalSlots() - studentList.size()) + "/" + this.info.getTotalSlots());
+        System.out.println("6. Camp Slots = " + (studentList.size()) + "/" + this.info.getTotalSlots());
 
         System.out.println("7. Camp Description = " + this.info.getDescription());
         System.out.println("8. Visibility = " + getVisibility());
