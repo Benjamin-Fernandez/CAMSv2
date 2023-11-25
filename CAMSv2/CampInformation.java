@@ -13,16 +13,16 @@ import java.util.ArrayList;
  */
 public class CampInformation {
 
-    private String CampName = "";
-    private ArrayList<LocalDate> Dates = new ArrayList<LocalDate>(); 
-    private LocalDateTime Registration_closing_date = LocalDateTime.now();
-    private UserGroup User_group = UserGroup.NTU;
-    private String Location = "";
-    private int Total_Slots = 1;
+    private String campName = "";
+    private ArrayList<LocalDate> dates = new ArrayList<LocalDate>(); 
+    private LocalDateTime registrationClosingDate = LocalDateTime.now();
+    private UserGroup userGroup = UserGroup.NTU;
+    private String location = "";
+    private int totalSlots = 1;
 
-    private HashSet<CampCommitteeMember> Camp_Committee_slots = new HashSet<CampCommitteeMember>();
-    private String Description = "";
-    private String Staff_in_charge = "";
+    private HashSet<CampCommitteeMember> campCommitteeSlots = new HashSet<CampCommitteeMember>();
+    private String description = "";
+    private String staffInCharge = "";
 
     /**
      * Initialization Constructor for CampInformation.
@@ -37,20 +37,20 @@ public class CampInformation {
      */
     public CampInformation(String campName , ArrayList<LocalDate> dates , LocalDateTime registrationClosingDate, UserGroup userGroup , String location , int totalSlots, String description, String staffInCharge){
 
-        this.CampName = campName;
-        this.Dates = dates;
-        this.Registration_closing_date = registrationClosingDate;
-        this.User_group = userGroup;
-        this.Location = location;
-        this.Total_Slots = totalSlots;
-        this.Description = description;
-        this.Staff_in_charge = staffInCharge;
+        this.campName = campName;
+        this.dates = dates;
+        this.registrationClosingDate = registrationClosingDate;
+        this.userGroup = userGroup;
+        this.location = location;
+        this.totalSlots = totalSlots;
+        this.description = description;
+        this.staffInCharge = staffInCharge;
 
     }
 
     // default constructor
     public CampInformation() {
-        Dates.add(LocalDate.now());
+        dates.add(LocalDate.now());
     }
 
     
@@ -59,7 +59,7 @@ public class CampInformation {
      * @param student The CampCommitteeMember to be added to the camp's committee.
      */
     public void addCampCommitteeMember(CampCommitteeMember student){
-        this.Camp_Committee_slots.add(student);
+        this.campCommitteeSlots.add(student);
     }
 
     // public void editCampInfo(int choice){ //do we really want this here? i put in cmapManeger
@@ -76,7 +76,7 @@ public class CampInformation {
      * @return The name of the camp.
      */
     public String getCampName(){
-            return this.CampName;
+            return this.campName;
     }
 
     /**
@@ -84,7 +84,7 @@ public class CampInformation {
      * @return The name of the staff in charge.
      */
     public String getStaffName(){
-            return this.Staff_in_charge;
+            return this.staffInCharge;
     }
 
     /**
@@ -92,7 +92,7 @@ public class CampInformation {
      * @return The dates of the camp.
      */
     public ArrayList<LocalDate> getDates(){
-        return this.Dates;
+        return this.dates;
     }
 
     /**
@@ -100,7 +100,7 @@ public class CampInformation {
      * @return The registration closing date.
      */
     public LocalDateTime getRegistrationClosingDate(){
-        return this.Registration_closing_date;
+        return this.registrationClosingDate;
     }
 
     /**
@@ -108,7 +108,7 @@ public class CampInformation {
      * @return The user group of the camp.
      */
     public UserGroup getUserGroup(){
-        return this.User_group;
+        return this.userGroup;
     }
 
     /**
@@ -116,7 +116,7 @@ public class CampInformation {
      * @return The location of the camp.
      */
     public String getLocation(){
-        return this.Location;
+        return this.location;
     }
 
     /**
@@ -124,7 +124,7 @@ public class CampInformation {
      * @return The total number of slots in the camp.
      */
     public int getTotalSlots(){
-        return this.Total_Slots;
+        return this.totalSlots;
     }
 
     /**
@@ -132,7 +132,7 @@ public class CampInformation {
      * @return The set of committee members in the camp.
      */
     public HashSet<CampCommitteeMember> getCampCommitteeSlots(){
-        return this.Camp_Committee_slots;
+        return this.campCommitteeSlots;
     }
 
     /**
@@ -140,7 +140,7 @@ public class CampInformation {
      * @return The description of the camp.
      */
     public String getDescription(){
-        return this.Description;
+        return this.description;
     }
 
     /**
@@ -149,7 +149,7 @@ public class CampInformation {
      */
     //set methods
     public void setCampName(String campName){
-        this.CampName = campName;
+        this.campName = campName;
     }
 
     /**
@@ -157,7 +157,7 @@ public class CampInformation {
      * @param Dates The new dates for the camp.
      */
     public void setDates(ArrayList<LocalDate> Dates){
-        this.Dates = Dates;
+        this.dates = Dates;
     }
 
     /**
@@ -165,7 +165,7 @@ public class CampInformation {
      * @param closingDate The new registration closing date for the camp.
      */
     public void setRegistrationClosingDate(LocalDateTime closingDate){
-        this.Registration_closing_date = closingDate;
+        this.registrationClosingDate = closingDate;
     }
 
     /**
@@ -175,7 +175,7 @@ public class CampInformation {
     public void setUserGroup(String userGroup){
         for (UserGroup usergroups : UserGroup.values()) {
             if(userGroup.equals(usergroups.toString())){
-                this.User_group = usergroups;
+                this.userGroup = usergroups;
             }
         }
     }
@@ -185,7 +185,7 @@ public class CampInformation {
      * @param location The new location for the camp.
      */
     public void setLocation(String location){
-        this.Location = location;
+        this.location = location;
     }
 
     /**
@@ -193,7 +193,7 @@ public class CampInformation {
      * @param totalSlots The new total number of slots in the camp.
      */
     public void setTotalSlots(int totalSlots){
-        this.Total_Slots = totalSlots;
+        this.totalSlots = totalSlots;
     }
 
     /**
@@ -201,7 +201,7 @@ public class CampInformation {
      * @param description The new description for the camp.
      */
     public void setDescription(String description){
-        this.Description = description;
+        this.description = description;
     }
 
     /**
@@ -210,8 +210,8 @@ public class CampInformation {
      * location, total slots available, and camp description.
      */
 
-    public void setStaff_in_charge(String staff_in_charge) {
-        Staff_in_charge = staff_in_charge;
+    public void setStaffInCharge(String staff_in_charge) {
+        staffInCharge = staff_in_charge;
     }
 
     

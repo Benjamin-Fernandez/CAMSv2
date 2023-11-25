@@ -11,9 +11,14 @@ public class Cams {
 
 
             System.out.println("Welcome to CAMS Menu:\n1. Log in\n2. Exit");
-            int choice = sc.nextInt();
-            sc.nextLine();
-            running = handleMainMenuSwitch(choice);
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
+                running = handleMainMenuSwitch(choice);                
+            } catch (Exception e) {
+                System.out.println("Enter a valid option!");
+            }
+
         }
     }
 
@@ -50,9 +55,14 @@ public class Cams {
             System.out.println("1. Staff");
             System.out.println("2. Student");
             System.out.println("3. Camp committee member");
-            int role  = sc.nextInt();
+            try {
+                int role  = sc.nextInt();
+                sc.nextLine();
+                running = handleLoginSwitch(role, emailID, password);                
+            } catch (Exception e) {
+                System.out.println("Enter a valid option!");
+            }
 
-            running = handleLoginSwitch(role, emailID, password);
         }
     }
 

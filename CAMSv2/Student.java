@@ -226,7 +226,7 @@ public class Student extends User{
             }
 
             // could potentially look at initially starting with CAMP COMMITTEE MEMBER, then Downcasting all of them later.
-            System.out.println("Camp: " + camp);
+            // System.out.println("Camp: " + camp);
             // add this student first so ccm will initialize with student data
             camp.addStudent(this);
             
@@ -234,7 +234,7 @@ public class Student extends User{
             camp.removeStudent(this);
             camp.addStudent(campCommitteeMember);
             // after creating ccm, delete the original student.
-            System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
+            // System.out.println("Camp from CCM: " + campCommitteeMember.getCamp());
             camp.addCampCommitteeMember(campCommitteeMember);
 
             // append into database of Camp Committee Member

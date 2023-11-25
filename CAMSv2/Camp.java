@@ -55,28 +55,7 @@ public class Camp {
         this.visibility = false;
         this.info = new CampInformation();
     }
-    /**
-     * Constructs a {@code Camp} object with specified parameters.
-     *
-     * @param CampName                  The name of the camp.
-     * @param Dates                     An array representing the dates of the camp.
-     * @param Registration_closing_date  The deadline for camp registration.
-     * @param User_group                 The user group associated with the camp.
-     * @param Location                 The location of the camp.
-     * @param Total_Slots              The total available slots for the camp.
-     * @param Description              A description of the camp.
-     * @param Staff_in_charge            The staff member in charge of the camp.
-     */
-   
 
-    public Camp(String CampName , ArrayList<LocalDate> Dates , LocalDateTime Registration_closing_date, UserGroup User_group , String Location , int Total_Slots, String Description, String Staff_in_charge){
-        //String Dates will need change to an Arraylist of integers instead
-        this.visibility = false;
-        this.info = new CampInformation(CampName ,  Dates ,  Registration_closing_date,  User_group , Location , Total_Slots,  Description, Staff_in_charge);
-
-    }
-
-    
 
     // Methods
 
@@ -616,7 +595,7 @@ public class Camp {
     }
 
     public void setStaff_in_charge(String staffName) {
-        this.info.setStaff_in_charge(staffName);
+        this.info.setStaffInCharge(staffName);
     }
 
     public boolean isCampCommitteeMember(String studentName) {
