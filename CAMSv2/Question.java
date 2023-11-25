@@ -55,6 +55,11 @@ public class Question {
     
     //methods
     public void setQuestion(String question) {
+        if (processed) {
+            System.out.println("Enquiry is processed, unable to edit enquiry!");
+            return;
+        }
+        System.out.println("Successfully edited enquiry");
         this.question = question;
     }
     /**

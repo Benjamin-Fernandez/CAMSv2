@@ -178,7 +178,7 @@ public class Camp {
      */
     public void editSuggestion(String studentName, String newAdvice, int AdviceIndex){
         for (Suggestion suggestion : suggestionsList) {
-            if (suggestion.getStudent() == studentName) {
+            if (suggestion.getStudent().equals(studentName)) {
                 suggestion.getAdviceList().get(AdviceIndex).setNewAdvice(newAdvice);
             }
 
@@ -494,9 +494,9 @@ public class Camp {
     public void printEnquiriesList() {
         for (Enquiries enquiries : enquiriesList) {
             System.out.println("Enquirier: " + enquiries.getEnqurier());
-            System.out.println("Enquiry Id" + " | " + "Enquiry");
+            System.out.println("Enquiry Id" + " | " + "Enquiry" + " | " + "Processed");
             for (Question question : enquiries.getQuestions()) {
-                System.out.println(question.getQuestionId() + " | " + question.getQuestion());
+                System.out.println(question.getQuestionId() + " | " + question.getQuestion() + " | " + question.getStatus());
                 for (Reply reply : question.getReplies()) {
                     System.out.println(reply.getName() + " Replied: " + reply.getReply());
                 }
@@ -507,7 +507,7 @@ public class Camp {
     public void printSuggestionList() {
     for (Suggestion suggestion : suggestionsList) {
         System.out.println("Suggester: " + suggestion.getStudent());
-        System.out.println("Advice Id" + " | " + "Advice" + " | " + "Status");
+        System.out.println("Suggestion Id" + " | " + "Suggestion" + " | " + "Approved");
         for (Advice advice : suggestion.getAdviceList()) {
             System.out.println(advice.getId() + " | " + advice.getAdvice() + " | " + advice.getApproved());
         }
@@ -557,7 +557,7 @@ public class Camp {
                 return suggestion;
             }
         }
-        System.out.println("Cannot find the suggestion created by " + name);
+        // System.out.println("Cannot find the suggestion created by " + name);
         return null;
     }
     /**

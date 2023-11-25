@@ -44,9 +44,11 @@ public class SuggestionManager {
         // create new suggestion if doesn't exist in camp
         if (suggestion == null) {
             suggestion = new Suggestion(studentName);
+            System.out.println("This is your first suggestion for this camp!");
+            camp.addSuggestion(suggestion);
+
         }
         suggestion.addAdvice(advice);
-        camp.addSuggestion(suggestion);
     }
     /**
      * Allows staff members to view suggestions for a specific camp.

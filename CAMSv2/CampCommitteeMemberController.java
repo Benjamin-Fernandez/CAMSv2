@@ -72,6 +72,7 @@ public class CampCommitteeMemberController extends StudentController {
             // System.out.println("student registered: " + studentRegistered);
             boolean isCCM = (camp.equals(ccm.getCamp()));
             // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
+            view.displayHeader("CAMP MENU");
             ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
             view.displayReturnToPreviousPage();
             try {
@@ -169,13 +170,13 @@ public class CampCommitteeMemberController extends StudentController {
     protected Advice acquireSuggestion() {
         ccmView.displayGetSuggestionIndex();
         try {
-            int index = sc.nextInt() - 1;
+            int index = sc.nextInt();
             sc.nextLine();
 
             Suggestion suggestion = camp.getSuggestionBySuggester(ccm.getName());
             if (suggestion == null) {return null;}
             // get the advice
-            return suggestion.getAdviceList().get(index);            
+            return camp.getAdviceFromCamp(index);      
         } catch (Exception e) {
             sc.nextLine();
             System.out.println("Enter a valid suggestion index!");
@@ -188,11 +189,16 @@ public class CampCommitteeMemberController extends StudentController {
      * Handles editing a suggestion given by the committee member.
      */
     protected void handleEditSuggestion() {
+        handleViewSuggestion();
         Advice advice = acquireSuggestion();
+        if (advice == null) {
+            System.out.println("Enter a valid suggestion index!");
+            return;
+        }
         ccmView.displaySubmitSuggestion();
         String newSuggestion = sc.nextLine();
         advice.setNewAdvice(newSuggestion);
-        System.out.println("Successfully set new suggestion!");
+        // System.out.println("Successfully set new suggestion!");
     }
 
     /**

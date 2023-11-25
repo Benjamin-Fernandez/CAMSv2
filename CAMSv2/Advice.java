@@ -49,6 +49,11 @@ public class Advice {
      */
 
     public void setNewAdvice(String newAdvice){
+        if (approved) {
+            System.out.println("Suggestion is approved, cannot edit suggestion!");
+            return;
+        }
+        System.out.println("Successfully set new suggestion!");
         advice = newAdvice;
     }
     /**

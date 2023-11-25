@@ -103,10 +103,11 @@ public class CampCommitteeMemberView extends StudentView {
      * @param suggestion The Suggestion object containing advices.
      */
     public void displayAllAdvices(Suggestion suggestion) {
-        int counter = 1;
+        // int counter = 1;
+        System.out.println("Suggestion Id" + " | " + "Suggestion" +  " | " + "Approved");
         for (Advice advice : suggestion.getAdviceList()) {
-            System.out.println(counter + ". " + advice.getAdvice() + " | " + "Approved: " + advice.getApproved());
-            counter++;
+            System.out.println(advice.getId() + " | " + advice.getAdvice() + " | " + advice.getApproved());
+            // counter++;
         }
     }
 

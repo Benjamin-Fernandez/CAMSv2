@@ -72,7 +72,7 @@ public class StudentView extends View{
     }
 // -----------------Enquiries------------------
     public void displayEnquiries(ArrayList<Question> questions) {
-        System.out.println("Enquiry Id" + " | " + "Enquiry" + " | " + "Camp");
+        System.out.println("Enquiry Id" + " | " + "Enquiry" + " | " + "Processed" + " | " + "Camp");
         for (Question question : questions) {
             displayEnquiry(question);
         }
@@ -81,7 +81,7 @@ public class StudentView extends View{
 
     public void displayEnquiry(Question question) {
 
-            System.out.println(question.getQuestionId() + " | " + question.getQuestion() + " | " + question.getCampName());
+            System.out.println(question.getQuestionId() + " | " + question.getQuestion() + " | " + question.getStatus() + " | " + question.getCampName());
             for (Reply reply : question.getReplies()) {
                 System.out.println(reply.getName() + " Replied: " + reply.getReply());
             }
