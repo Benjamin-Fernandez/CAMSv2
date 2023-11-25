@@ -2,12 +2,18 @@ package CAMSv2;
 import java.util.ArrayList;
 import java.util.Scanner;
 //import CAMSv2.CampManager;
-
+/**
+ * The {@code EnquiryManager} class Manages the creation and handling of inquiries related to camps.
+ */
 public class EnquiryManager {
     //attribute
     private static int enquiryCounter = 1;
     private static EnquiryManager instance;
-
+    /**
+     * Gets the instance of {@code EnquiryManager}, creating a new one if it doesn't exist.
+     *
+     * @return The instance of {@code EnquiryManager}.
+     */
     private EnquiryManager() {}
     public static EnquiryManager getInstance() {
         if (instance == null) {
@@ -15,7 +21,13 @@ public class EnquiryManager {
         }
         return instance;
     }
-
+    /**
+     * Creates a new inquiry with the given question for a specific camp and student.
+     *
+     * @param question     The question to be added to the inquiry.
+     * @param camp         The camp related to the inquiry.
+     * @param studentName  The name of the student creating the inquiry.
+     */
     //methods
     public void createEnquiry(Question question, Camp camp, String studentName){
         // check if an Enquiries already exist for the student calling this.
@@ -26,8 +38,14 @@ public class EnquiryManager {
         // add question to camp
         newEnquiries.addQuestion(question);
 
-    } 
-    
+    }
+    /**
+     * Views inquiries for a specific camp and staff member.
+     *
+     * @param campName  The name of the camp.
+     * @param staffName The name of the staff member.
+     * @return {@code true} if there are no inquiries, {@code false} otherwise.
+     */
 
     //staff fucntion
     public boolean viewEnquiryForStaff(String campName, String staffName){
@@ -66,7 +84,12 @@ public class EnquiryManager {
     }//viewEnquiry
 
 
-    
+    /**
+     * Replies to an inquiry for a specific camp and staff member.
+     *
+     * @param campName  The name of the camp.
+     * @param staffName The name of the staff member.
+     */
     public void replyEnquiryFromStaff(String campName, String staffName){
         Scanner sc = new Scanner(System.in);
         Camp curCamp = CampManager.getInstance().getCamp(campName);
@@ -101,6 +124,11 @@ public class EnquiryManager {
         }
 
     }//replyEnquiry
+    /**
+     * Views inquiries for a specific camp as a camp committee member.
+     *
+     * @param campName The name of the camp.
+     */
 
     //committee member function
     public void viewEnquiryForCampCommitteeMember(String campName){
@@ -117,6 +145,11 @@ public class EnquiryManager {
             }
         }
     }
+    /**
+     * Replies to an inquiry for a specific camp as a camp committee member.
+     *
+     * @param campName The name of the camp.
+     */
 
     public void replyEnquiryFromCampCommitteeMember(String campName){
         Scanner sc = new Scanner(System.in);
@@ -147,10 +180,20 @@ public class EnquiryManager {
         curCamp.getEnquiries().get(enqIndex).getQuestions().get(qnsIndex).setReply(new Reply(campName, newReply));
         System.out.println("Reply uploaded");
     }//replyEnquiry
+    /**
+     * Gets the current value of the inquiry counter.
+     *
+     * @return The current value of the inquiry counter.
+     */
 
     public static int getEnquiryCounter() {
         return enquiryCounter;
     }
+    /**
+     * Prints the questions in the given inquiries.
+     *
+     * @param enquiries The inquiries to print questions for.
+     */
 
     public static void printQuestions(Enquiries enquiries) {
         System.out.println(enquiries.getEnqurier());

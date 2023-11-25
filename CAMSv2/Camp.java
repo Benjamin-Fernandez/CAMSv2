@@ -560,7 +560,12 @@ public class Camp {
         System.out.println("Cannot find the suggestion created by " + name);
         return null;
     }
-
+    /**
+     * Retrieves advice from the camp based on the advice ID.
+     *
+     * @param id The ID of the advice to retrieve.
+     * @return The advice with the specified ID, or null if not found.
+     */
     public Advice getAdviceFromCamp(int id) {
         for (Suggestion suggestion : suggestionsList) {
             for (Advice advice : suggestion.getAdviceList()) {
@@ -571,7 +576,11 @@ public class Camp {
         }
         return null;
     }
-
+    /**
+     * Generates a camp report based on the provided filter.
+     *
+     * @param filter The filter to apply to the student list.
+     */
     public void generateCampReport(ReportFilter filter) {
         // list of students attending each camp
         printCampInfoTable();
@@ -579,24 +588,40 @@ public class Camp {
         // generate csv
         ReportDatabase.getInstance().generateCampReportCSV(this, filter);
     }
-
+    /**
+     * Generates a camp committee report.
+     * Displays CCM name and points.
+     */
     public void generateCampCommitteeReport() {
         // CCM name, points 
         printCCMList();
         // generate csv
         ReportDatabase.getInstance().generateCCMReportCSV(this);
     }
-
+    /**
+     * Generates a students' enquiry report.
+     * Displays Student Name and Enquiry.
+     */
     public void generateStudentsEnquiryReport() {
         // Student Name, Enquiry
         printEnquiriesList();
         // generate csv
         ReportDatabase.getInstance().generateStudentsEnquiryReport(this);
     }
-
+    /**
+     * Sets the staff in charge of the camp.
+     *
+     * @param staffName The name of the staff member to set as in charge.
+     */
     public void setStaff_in_charge(String staffName) {
         this.info.setStaffInCharge(staffName);
     }
+    /**
+     * Checks if a student is a camp committee member.
+     *
+     * @param studentName The name of the student to check.
+     * @return True if the student is a camp committee member, false otherwise.
+     */
 
     public boolean isCampCommitteeMember(String studentName) {
         for (CampCommitteeMember ccm : info.getCampCommitteeSlots()) {

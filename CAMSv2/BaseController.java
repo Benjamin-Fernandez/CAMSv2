@@ -1,7 +1,7 @@
 package CAMSv2;
 import java.util.*;
 /**
- * Abstract class representing a base controller for managing user interactions.
+ * The {@code BaseController} is an Abstract class representing a base controller for managing user interactions.
  *
  * @param <U> The type of user associated with the controller.
  * @param <V> The type of view associated with the controller.

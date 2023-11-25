@@ -7,12 +7,30 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
+/**
+ * The {@code CampManager} class is responsible for managing camps and their related operations.
+ * It follows the Singleton pattern to ensure a single instance of the class.
+ *
+ * @author Zhu Yu Hao
+ * @since 2023-11-24
+ */
 
 // to become Singleton
 public class CampManager {
+
+    // ... (existing code)
+
+    /**
+     * Private constructor to prevent external instantiation.
+     */
     //attributes
     private static CampManager instance;
+
+    /**
+     * Retrieves the singleton instance of the CampManager class.
+     *
+     * @return The singleton instance of CampManager.
+     */
     private ArrayList<Camp> campList = new ArrayList<Camp>();
     public Scanner sc = new Scanner(System.in);
 
@@ -24,7 +42,11 @@ public class CampManager {
         }
         return instance;
     }
-
+    /**
+     * Enters, checks, and sets the camp name for the specified camp.
+     *
+     * @param camp The camp for which the name is set.
+     */
     private void enterCheckAndSetCampName(Camp camp) {
 
         boolean running = true;
@@ -46,6 +68,11 @@ public class CampManager {
         }
 
     }
+    /**
+     * Creates a new camp with the provided staff as the staff in charge.
+     *
+     * @param staff The staff in charge of the new camp.
+     */
     
     public void createCamp(Staff staff){
 
@@ -103,6 +130,12 @@ public class CampManager {
         System.out.println(camp.getCampName() + " camp created");
 
     }
+    /**
+     * Checks if a user group exists based on the provided user group string.
+     *
+     * @param userGroup The user group to check for existence.
+     * @return The UserGroup enum value if it exists, otherwise null.
+     */
 
     public UserGroup checkUserGroupExist(String userGroup){
         //returns null if user group doesnt exist
@@ -114,10 +147,22 @@ public class CampManager {
         }
         return null;
     }
+    /**
+     * Adds a camp to the camp list.
+     *
+     * @param camp The camp to be added.
+     */
 
     public void addCamp(Camp camp){
         campList.add(camp);
     }
+
+    /**
+     * Retrieves a camp based on its name.
+     *
+     * @param campName The name of the camp to retrieve.
+     * @return The camp with the specified name, or null if not found.
+     */
 
     public Camp getCamp(String campName){
         //for each camp in campList
@@ -134,6 +179,13 @@ public class CampManager {
         }
         return null;//if it doesnt find a camp
     }
+    /**
+     * Checks if a staff member is in charge of a specific camp.
+     *
+     * @param campName The name of the camp.
+     * @param Staffname The name of the staff member.
+     * @return {@code true} if the staff member is in charge, {@code false} otherwise.
+     */
 
     public boolean getStaffinCharge(String campName, String Staffname){
         //for each camp in campList
@@ -145,12 +197,21 @@ public class CampManager {
 
         return staffIC.equals(Staffname);
     }
-
+    /**
+     * Enters and sets the camp name after checking for validity.
+     *
+     * @param camp The camp for which the name is set.
+     */
     public void enterSetCampName(Camp camp) {
         System.out.println("Enter new camp name: ");
         String newCampName = sc.nextLine();
         camp.setCampName(newCampName);
     }
+    /**
+     * Enters and sets the camp dates after validating the input.
+     *
+     * @param camp The camp for which dates are set.
+     */
 
     public void enterSetCampDates(Camp camp) {
         boolean running = true;
@@ -191,6 +252,12 @@ public class CampManager {
 
     }
 
+    /**
+     * Enters and sets the registration closing date after validating the input.
+     *
+     * @param camp The camp for which the registration closing date is set.
+     */
+
     public void enterSetRegistrationClosingDate(Camp camp) {
         //Ensures that the registration closing date is after the local clock and before start of camp
         do{
@@ -215,7 +282,12 @@ public class CampManager {
             }
         }while(true);
     }
-
+    /**
+     * Edits the details of a camp, such as name, dates, registration closing date, user group, location, slots, and description.
+     *
+     * @param campName The name of the camp to be edited.
+     * @param staffName The name of the staff member editing the camp.
+     */
 
     public void editCamp(String campName,String staffName){
         int choice;
@@ -274,12 +346,23 @@ public class CampManager {
         return;
     }//end edit camp
 
+    /**
+     * Enters and sets the description of the camp.
+     *
+     * @param currentCamp The camp for which the description is set.
+     */
     private void enterSetCampDescription(Camp currentCamp) {
         System.out.println("Enter new description: ");
         String description = sc.nextLine();
         currentCamp.setDescription(description);
         
     }
+
+    /**
+     * Enters and sets the total slots of the camp after validating the input.
+     *
+     * @param currentCamp The camp for which the total slots are set.
+     */
     private void enterSetCampSlots(Camp currentCamp) {
         boolean running = true;
         while (running) {
@@ -304,8 +387,12 @@ public class CampManager {
         }
 
     }
-    
 
+    /**
+     * Enters and sets the location of the camp.
+     *
+     * @param currentCamp The camp for which the location is set.
+     */
     private void enterSetLocation(Camp currentCamp) {
         boolean running = true;
         while (running) {
@@ -319,6 +406,11 @@ public class CampManager {
             running = false;            
         }    
     }
+    /**
+     * Enters and sets the user group of the camp after checking for validity.
+     *
+     * @param camp The camp for which the user group is set.
+     */
     private void enterSetUserGroup(Camp camp) {
         boolean running = true;
         while(running) {
@@ -343,9 +435,19 @@ public class CampManager {
             }            
         }
     }
+    /**
+     * Deletes a camp from the camp list.
+     *
+     * @param camp The camp to be deleted.
+     */
     public void deleteCamp(Camp camp){
         campList.remove(camp);
     }
+    /**
+     * Changes the visibility of a camp based on user input.
+     *
+     * @param campName The name of the camp to change visibility.
+     */
 
     public void changeVisibility(String campName){
         //ask the user whether true/false
@@ -362,7 +464,12 @@ public class CampManager {
         camp.setVisibility(choice);
         //sc.close();
     }
-
+    /**
+     * Generates a list of camps for a specific staff member.
+     *
+     * @param staffName The name of the staff member.
+     * @return An ArrayList of camps associated with the staff member.
+     */
     public ArrayList<Camp> StaffCampListGenerator(String staffName){
         //hello ethan
         //this function prints staff camp list as well as return the array
@@ -393,6 +500,11 @@ public class CampManager {
         return staffCampList;
 
     }
+    /**
+     * Gets the list of all camps.
+     *
+     * @return An ArrayList of all camps.
+     */
 
     public ArrayList<Camp> getCampList(){
         // Should also check for Visiblity and UserGroup
@@ -489,8 +601,14 @@ public class CampManager {
 
     //method to generate CSV format
 
-    
 
+    /**
+     * Checks if the input string represents a valid date in the format "yyyy-MM-dd".
+     *
+     * @param input The string to be checked for a valid date.
+     * @return True if the input is a valid date, false otherwise.
+     * @throws DateTimeParseException If the input string cannot be parsed as a valid date.
+     */
     public boolean isValidDate(String input) {
         // Define a custom date format that you expect
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -503,7 +621,12 @@ public class CampManager {
             return false; // Input is not a valid date
         }
     }
-
+    /**
+     * Retrieves a list of camps filtered by faculty and visibility.
+     *
+     * @param faculty The user group representing the faculty for filtering.
+     * @return An ArrayList of camps that match the specified faculty and have visibility set to true.
+     */
     public ArrayList<Camp> getCampListByFacultyAndVisibility(UserGroup faculty) {
         ArrayList<Camp> filteredCamps = new ArrayList<Camp>();
         for (Camp camp : getCampList()) {
