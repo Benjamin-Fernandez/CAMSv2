@@ -69,7 +69,7 @@ public class CampCommitteeMemberController extends StudentController {
         boolean running = true;
         while (running) {
             boolean studentRegistered = camp.isStudentRegistered(user.getName());
-            System.out.println("student registered: " + studentRegistered);
+            // System.out.println("student registered: " + studentRegistered);
             boolean isCCM = (camp.equals(ccm.getCamp()));
             // view depends on whether camp is CCM of, and then if it is no CCM camp, check for registration
             ccmView.displayCampSpecificOptions(studentRegistered, isCCM);
@@ -86,6 +86,7 @@ public class CampCommitteeMemberController extends StudentController {
                     running = handleCampCommitteeMemberMenu(choice);
                 }                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
 
@@ -108,6 +109,7 @@ public class CampCommitteeMemberController extends StudentController {
                 sc.nextLine();
                 running = handleCampSuggestionsSwitch(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
 
@@ -175,6 +177,7 @@ public class CampCommitteeMemberController extends StudentController {
             // get the advice
             return suggestion.getAdviceList().get(index);            
         } catch (Exception e) {
+            sc.nextLine();
             System.out.println("Enter a valid suggestion index!");
             return null;
         }
@@ -211,6 +214,7 @@ public class CampCommitteeMemberController extends StudentController {
     protected boolean handleCampEnquiriesSwitch(int choice) {
         switch (choice) {
             case 1:
+                view.displayHeader("DISPLAY ENQUIRIES");
                 camp.printEnquiriesList();
                 return true;
             case 2:
@@ -248,7 +252,9 @@ public class CampCommitteeMemberController extends StudentController {
             ccm.addPointsByOne();
             System.out.println("Successfully sent reply!");            
         } catch (Exception e) {
-            view.displaySelectValidOption();
+            sc.nextLine();
+            System.out.println("Please provide a valid EnquiryId!");
+            return;
         }
 
     }
@@ -268,6 +274,7 @@ public class CampCommitteeMemberController extends StudentController {
                 sc.nextLine();
                 running = handleCampEnquiriesSwitch(choice);                
             } catch (Exception e) {
+                sc.nextLine(); // Consume the invalid input
                 view.displaySelectValidOption();
             }
         }
@@ -339,8 +346,10 @@ public class CampCommitteeMemberController extends StudentController {
             view.displayReturnToPreviousPage();
             try {
                 int choice = sc.nextInt();
+                sc.nextLine();
                 running = handleGenerateAttendanceReport(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }

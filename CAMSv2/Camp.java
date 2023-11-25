@@ -438,7 +438,7 @@ public class Camp {
 
         System.out.println("4. User Group = " + this.info.getUserGroup());
 
-        System.out.println("5. Camp Location = " + this.info.getUserGroup());
+        System.out.println("5. Camp Location = " + this.info.getLocation());
 
         System.out.println("6. Camp Slots = " + (studentList.size()) + "/" + this.info.getTotalSlots());
 
@@ -449,7 +449,7 @@ public class Camp {
 
     public void printCampInfoAndList() {
         printCampInfoTable();
-        System.out.println("9. Student List: ");
+        System.out.println("9. Student List = ");
         printStudentList(studentList);
     }
     /**

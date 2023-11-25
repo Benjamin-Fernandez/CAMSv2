@@ -37,6 +37,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
                 sc.nextLine();
                 running = handleStaffMenu(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }
@@ -69,10 +70,19 @@ public class StaffController extends BaseController<Staff, StaffView>{
                 return enterGeneratePerformanceReport();
             case 7:
                 return enterGenerateEnquiriesReport();
+            case 8:
+                return enterDisplayProfile();
+            case 111:
+                return false;
             default:
-                break;
+                view.displaySelectValidOption();
+                return true;
         }
-        return false;
+    }
+    private boolean enterDisplayProfile() {
+        view.displayHeader("PROFILE");
+        user.displayProfile();
+        return true;
     }
     /**
      * Executes the action to generate the student enquiries report.
@@ -99,8 +109,10 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayReturnToPreviousPage();
             try {
                 int choice = sc.nextInt();
+                sc.nextLine();
                 running = handleGenerateAttendanceReport(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }
@@ -224,6 +236,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
                     running = handleCampSelectionOfOtherCamps(choice);                   
                 }                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }
@@ -293,11 +306,13 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayHeader("Suggestions Menu");
             view.displayCampSuggestionsMenu();
             view.displayReturnToPreviousPage();
-            view.displaySelectActionToTake();
+            // view.displaySelectActionToTake();
             try {
                 int choice = sc.nextInt();
+                sc.nextLine();
                 running = handleManageSuggestions(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }
@@ -350,6 +365,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
 
             return user.approveAdvice(camp, id);            
         } catch (Exception e) {
+            sc.nextLine();
             view.displaySelectValidOption();
             return true;
         }
@@ -379,6 +395,7 @@ public class StaffController extends BaseController<Staff, StaffView>{
             return true;
                       
         } catch (Exception e) {
+            sc.nextLine();
             System.out.println("Please provide a valid EnquiryId!");
             return true;
 
@@ -407,11 +424,13 @@ public class StaffController extends BaseController<Staff, StaffView>{
             view.displayHeader("Enquiries Menu");
             view.displayCampEnquiriesMenu();
             view.displayReturnToPreviousPage();
-            view.displaySelectActionToTake();
+            // view.displaySelectActionToTake();
             try {
                 int choice = sc.nextInt();
+                sc.nextLine();
                 running = handleManageEnquiries(choice);
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }

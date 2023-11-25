@@ -48,6 +48,7 @@ public class StudentController extends BaseController<Student, StudentView>{
                 sc.nextLine();
                 running = handleStudentMenu(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         }
@@ -118,6 +119,7 @@ public class StudentController extends BaseController<Student, StudentView>{
                 sc.nextLine();
                 running = handleEnquiriesMenu(choice, goToLoginPage);                
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
         } while (running);
@@ -160,6 +162,7 @@ public class StudentController extends BaseController<Student, StudentView>{
             Question question = user.getEnquiryById(Id);
             return question;            
         } catch (Exception e) {
+            sc.nextInt();
             System.out.println("Please provide a valid EnquiryId!");
             return null;
         }        
@@ -170,6 +173,7 @@ public class StudentController extends BaseController<Student, StudentView>{
      */
 
     protected boolean enterEditEnquiry() {
+        enterDisplayEnquiries();
         view.displayHeader("EDIT ENQUIRY");
         Question question = enterGetEnquiry();
         if (question == null) {
@@ -190,6 +194,7 @@ public class StudentController extends BaseController<Student, StudentView>{
      */
 
     protected boolean enterDeleteEnquiry() {
+        enterDisplayEnquiries();
         view.displayHeader("DELETE ENQUIRY");
         Question question = enterGetEnquiry();
         String campName = question.getCampName();
@@ -233,7 +238,7 @@ public class StudentController extends BaseController<Student, StudentView>{
         boolean running = true;
         do {
             boolean studentRegistered = camp.isStudentRegistered(user.getName());
-            System.out.println("student registered: " + studentRegistered);
+            // System.out.println("student registered: " + studentRegistered);
             view.displayHeader("CAMP MENU");
             view.displayCampSpecificOptions(studentRegistered);
             view.displayReturnToPreviousPage();
@@ -244,6 +249,7 @@ public class StudentController extends BaseController<Student, StudentView>{
                 sc.nextLine();           
                 running = handleCampSpecificOptions(choice, studentRegistered, goToMainMenu);     
             } catch (Exception e) {
+                sc.nextLine();
                 view.displaySelectValidOption();
             }
             // System.out.println("running " + running);
@@ -261,8 +267,8 @@ public class StudentController extends BaseController<Student, StudentView>{
         view.displayEnterNewEnquiryDescription();
         String description = sc.nextLine();
         user.createEnquiry(description, this.camp);
-        
-        enterDisplayEnquiries();
+        view.displayHeader("DISPLAY ENQUIRIES");
+        camp.printEnquiriesList();
         return true;
     }
 

@@ -1,7 +1,5 @@
 package CAMSv2;
 
-import java.util.Scanner;
-
 /**
  * The {@code CampCommitteeMember} class represents a Camp Committee Member, extending the Student class.
  * Manages committee-specific actions within a camp.

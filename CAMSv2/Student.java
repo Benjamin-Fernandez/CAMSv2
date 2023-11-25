@@ -49,7 +49,7 @@ public class Student extends User{
         for (Camp camp : CampManager.getInstance().getCampList()) {
             for (Student student : camp.getStudentList()) {
                 if (student.getName().equals(name)) {
-                    System.out.println("Camp is registered");
+                    // System.out.println("Camp is registered");
                     registeredCamps.add(camp);
                 }
             }

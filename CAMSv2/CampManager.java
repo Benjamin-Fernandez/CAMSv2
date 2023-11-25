@@ -79,46 +79,7 @@ public class CampManager {
         Camp camp = new Camp();
         camp.setStaff_in_charge(staff.getName());
         enterCheckAndSetCampName(camp);
-        // System.out.println("Enter camp duration(days)");
-        // int numOfDays = sc.nextInt();
-        // sc.nextLine();
-        // dates = new ArrayList<LocalDate>();
-        // String userInput;
-        // do{
-        //     System.out.print("Enter the starting date(YYYY-MM-DD): ");
-        //     userInput = sc.nextLine();
-        //     LocalDate currentDate = LocalDate.now();
-        //     LocalDate dateCounter = LocalDate.parse(userInput);
-        //     if (dateCounter.isAfter(currentDate)) {
-        //         for (int i = 0; i < numOfDays; i++) {
-        //             dates.add(dateCounter);
-        //             dateCounter = dateCounter.plusDays(1); // Move to the next day
-        //         }
-        //         System.out.println("Dates set!");
-        //         break;
-        //     } else {
-        //         System.out.println("Input date must be in the future.");
-        //     }
-        // }while(true);
         enterSetCampDates(camp);
-        // String userInput2 = userInput;
-        // userInput2 += " 00:00";        
-        // //Ensures that the registration closing date is after the local clock and before start of camp
-        // do{
-        //     System.out.println("Enter registration closing date(YYYY-MM-DD): ");
-        //     LocalDateTime currentDateTime = LocalDateTime.now();
-        //     userInput = sc.nextLine();
-        //     userInput += " 23:59";
-        //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        //     registrationClosingDate = LocalDateTime.parse(userInput, formatter);
-        //     LocalDateTime startDate = LocalDateTime.parse(userInput2, formatter);
-        //     currentDateTime = LocalDateTime.now();
-        //     if (registrationClosingDate.isAfter(currentDateTime) && registrationClosingDate.isBefore(startDate)) {
-        //         break;
-        //     } else {
-        //         System.out.println("Input date must be in the future and be before the start of camp.");
-        //     }
-        // }while(true);
         enterSetRegistrationClosingDate(camp);
         enterSetUserGroup(camp);
         enterSetLocation(camp);
@@ -188,8 +149,6 @@ public class CampManager {
      */
 
     public boolean getStaffinCharge(String campName, String Staffname){
-        //for each camp in campList
-        //if staffname == campList[i].info.staffincharge && campName == campList[i].info.name return true
         String staffIC;
         Camp camp = new Camp();
         camp = getCamp(campName);
@@ -237,9 +196,9 @@ public class CampManager {
                 }
             
                 // Printing the dates to verify for debugging
-                for (LocalDate date : dates) {
-                    System.out.println(date.format(formatter));
-                }
+                // for (LocalDate date : dates) {
+                //     System.out.println(date.format(formatter));
+                // }
 
                 camp.setDates(dates);
                 break;
@@ -290,7 +249,7 @@ public class CampManager {
      */
 
     public void editCamp(String campName,String staffName){
-        int choice;
+        int choice = 0;
         Camp currentCamp = getCamp(campName);
         String errorMessage = "Staff is not in charge";
         String exitMessage = "Exiting edit";
@@ -301,8 +260,14 @@ public class CampManager {
                 currentCamp.printCampInfoTable();
                 System.out.println("Select an option to edit(Eg. 1): ");
                 System.out.println("<--- Exit edit menu (type 111)");
-                choice = sc.nextInt();
-                sc.nextLine();
+                try {
+                    choice = sc.nextInt();
+                    sc.nextLine();                    
+                } catch (Exception e) {
+                    sc.nextLine();
+                    System.out.println("Please select a valid option!");
+                    continue;
+                }
                 switch(choice){
 
                         case 1: 
@@ -510,97 +475,6 @@ public class CampManager {
         // Should also check for Visiblity and UserGroup
         return campList;
     }
-
-
-
-    // public void generateReport(String staffName){
-    //     ArrayList<Camp> campList = getCampList();
-    //     HashSet<Student> studentList;
-    //     //CampManager campManager = new CampManager();
-    //     Scanner sc = new Scanner(System.in);
-    //     int choice;
-
-    //     String campName;
-    //     //Camp camp = new Camp();
-
-    //     //the 8 details apart from StudentName and Role
-    //     UserGroup validUserGroup;
-    //     String userGroup;
-    //     String location;
-    //     String description;
-    //     Date[] Dates;
-    //     String registrationClosingDate;
-    //     int totalSlots;
-    //     HashSet<CampCommitteeMember> campCommitteeSlots;
-    //     HashSet<Student> filteredStudentList;
-
-    //     for(int i=0;i<campList.size();i++){
-    //         campName = campList.get(i).getCampName();
-    //         //String name of camp obj
-
-    //         if(getStaffinCharge(campName, staffName)){
-    //             Camp camp = getCamp(campName); //camp obj itself
-
-    //             studentList = camp.getStudentList();
-    //             System.out.println("Filter by 1) Attendee");
-    //             System.out.println("Filter by 2) Camp Committee Member");
-    //             System.out.println("3) Display all members");
-    //             choice = sc.nextInt();
-    //             if(choice == 1 || choice == 2 ){
-    //                  filteredStudentList = CampManager.getInstance().filterStudentsByRole(camp, studentList, choice--);
-    //             }
-    //             else{
-    //                 filteredStudentList = studentList;
-    //             }
-
-    //             LocalDate[] campDates = camp.getDates();
-    //             registrationClosingDate = camp.getRegistrationClosingDate().toString();
-    //             validUserGroup = camp.getUserGroup();
-    //             userGroup = validUserGroup.toString();
-    //             location = camp.getLocation();
-    //             totalSlots = camp.getTotalSlots();
-    //             description = camp.getDescription();
-    //             campCommitteeSlots = camp.getCampCommitteeSlots();
-
-    //             CampManager.getInstance().generateCSV(filteredStudentList,campDates,registrationClosingDate,userGroup,location,totalSlots,description ,camp);
-
-    //     }//end outer for
-    // }
-
-
-
-
-    // //method to filter students based on their role
-    // private HashSet<Student> filterStudentsByRole(Camp camp, HashSet<Student>students, int choice){
-    //     // choice 1 is attendee
-    //     // choice 2 is campCommitteeMember
-    //     HashSet<Student> filteredList = new HashSet<>();
-    //     switch (choice) {
-    //         case 1:
-    //             for(Student student : students){
-    //                 if(student.role == Role.STUDENT){ //yuhao pls implement this
-    //                     filteredList.add(student);
-    //                 }
-    //             }                
-    //             break;
-
-    //         case 2:
-    //             for(Student student : students){
-    //                 if(student.role == Role.CAMP_COMMITTEE_MEMBER){ //yuhao pls implement this
-    //                     filteredList.add(student);
-    //                 }
-    //             }            
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-    //     return filteredList;
-
-    // }
-
-    //method to generate CSV format
-
 
     /**
      * Checks if the input string represents a valid date in the format "yyyy-MM-dd".
