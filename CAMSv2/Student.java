@@ -30,6 +30,11 @@ public class Student extends User{
         registeredCamps = setUpStudentRegisteredCamps();
         // System.out.println("Registered Camp: " + getRegisteredCamps());
     }
+    /**
+     * Set up student enquiries based on the camps the student has enquired about.
+     *
+     * @return Enquiries object containing the student's enquiries.
+     */
     public Enquiries setUpStudentEnquiries() {
         Enquiries studentEnquiries = new Enquiries(name);
         ArrayList<Question> studentQuestions = studentEnquiries.getQuestions();
@@ -43,7 +48,12 @@ public class Student extends User{
         }
         return studentEnquiries;
     }
-
+    /**
+     * Set up the list of camps registered by the student.
+     *
+     * @return ArrayList of Camp objects representing the camps registered by the
+     *         student.
+     */
     public ArrayList<Camp> setUpStudentRegisteredCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         for (Camp camp : CampManager.getInstance().getCampList()) {
@@ -126,7 +136,12 @@ public class Student extends User{
         // System.out.println("EnquiryList: " + enquiries.getQuestions());
         EnquiryManager.getInstance().createEnquiry(question, camp, getName());
     }
-
+    /**
+     * Retrieves an enquiry/question by its unique identifier.
+     *
+     * @param id The unique identifier of the enquiry/question to retrieve.
+     * @return The Question object if found, or null if no matching enquiry is found.
+     */
     public Question getEnquiryById(int id) {
         for (Question enquiry : enquiries.getQuestions()) {
             if (enquiry.getQuestionId() == id) {
@@ -216,7 +231,13 @@ public class Student extends User{
         return true;
         
     }
-
+    /**
+     * Registers a student for a camp with a specific role.
+     *
+     * @param role The role to be assigned (e.g., CAMP_COMMITTEE_MEMBER or STUDENT).
+     * @param camp The camp for which the student is registering.
+     * @return true if the registration is successful, false otherwise.
+     */
     public boolean registerCampRole(Role role, Camp camp) {
         // to be replaced with factory;
         if (role.equals(Role.CAMP_COMMITTEE_MEMBER)) {
@@ -272,6 +293,13 @@ public class Student extends User{
         // System.out.println("Withdrawn from camp");
         
     }
+    /**
+     * Checks if the dates of the given camp overlap with any of the camps
+     * already registered by the student.
+     *
+     * @param camp The camp to check for date overlap.
+     * @return true if there is an overlap, false otherwise.
+     */
 
     public boolean overlappingCampDates(Camp camp) {
         ArrayList<LocalDate> currentCampDates = camp.getDates();

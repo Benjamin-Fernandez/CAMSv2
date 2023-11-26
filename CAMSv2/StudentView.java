@@ -70,7 +70,14 @@ public class StudentView extends View{
     public void displayFailureMessage() {
         System.out.println("Failed!");
     }
+
+
 // -----------------Enquiries------------------
+    /**
+     * Displays details of multiple enquiries, including their IDs, descriptions, statuses, and camp names.
+     *
+     * @param questions The list of Question objects representing the enquiries to be displayed.
+     */
     public void displayEnquiries(ArrayList<Question> questions) {
         System.out.println("Enquiry Id" + " | " + "Enquiry" + " | " + "Processed" + " | " + "Camp");
         for (Question question : questions) {
@@ -78,7 +85,12 @@ public class StudentView extends View{
         }
     
     }
-
+    /**
+     * Displays details of a specific enquiry, including its ID, description, status, and camp name.
+     * Also displays replies to the enquiry if any.
+     *
+     * @param question The Question object representing the enquiry to be displayed.
+     */
     public void displayEnquiry(Question question) {
 
             System.out.println(question.getQuestionId() + " | " + question.getQuestion() + " | " + question.getStatus() + " | " + question.getCampName());
@@ -87,17 +99,24 @@ public class StudentView extends View{
             }
         
     }
-
+    /**
+     * Displays a prompt asking the user to enter the ID of the enquiry.
+     */
     public void displayGetEnquiryId() {
         System.out.println("Please enter the enquiry ID: ");
     }
-    
+
+    /**
+     * Displays the menu options for managing enquiries.
+     */
     public void displayEnquiriesMenu() {
         System.out.println("1. View all enquiries");  
         System.out.println("2. Edit an enquiry"); 
         System.out.println("3. Delete an enquiry");        
     }
-
+    /**
+     * Displays a prompt asking the user to enter a new enquiry description.
+     */
     public void displayEnterNewEnquiryDescription() {
         System.out.println("Enter new Enquiry Description: ");
     }
@@ -106,6 +125,12 @@ public class StudentView extends View{
 
 
 // ---------------------Camp Specific-----------------------
+
+    /**
+     * Displays options specific to a camp, such as submitting an enquiry, withdrawing or registering, and viewing remaining slots.
+     *
+     * @param isRegistered True if the student is already registered for the camp, false otherwise.
+     */
     public void displayCampSpecificOptions(boolean isRegistered) {
         System.out.println("1. Submit an Enquiry");
         if (isRegistered) {
@@ -120,6 +145,9 @@ public class StudentView extends View{
 
 
 // --------------Register------------------------
+    /**
+     * Displays available roles for registration.
+     */
     public void displayRoleToRegister() {
         for (Role role : Role.values()) {
             if (role.equals(Role.STAFF)) {continue;}
@@ -128,13 +156,25 @@ public class StudentView extends View{
         System.out.println("Enter the role you would like to register (Full Uppercase): ");
     }
 // --------------Withdrawal----------------------
+    /**
+     * Displays a message indicating successful withdrawal from a specific camp.
+     *
+     * @param camp The camp from which the withdrawal occurred.
+     */
     public void displayWithdrawalFromCamp(Camp camp) {
         System.out.println("Withdrawn from " + camp.getCampName());
     }
 // -------------Password-------------------------
+
+    /**
+     * Displays a prompt asking the user to enter a new password.
+     */
     public void displayEnterNewPassword() {
         System.out.println("Enter your new Password: ");       
     }
+    /**
+     * Displays a message indicating that the password has been changed successfully.
+     */
 
     public void displayPasswordChangedSuccessfully() {
         System.out.println("Password changed successfully!");         
@@ -143,6 +183,12 @@ public class StudentView extends View{
 
 
 // -------------------Camp General---------------
+    /**
+     * Displays the camps a student is registered for, along with their roles (Attendee or Camp Committee Member).
+     *
+     * @param camps    The list of camps the student is registered for.
+     * @param ccmCamp  The camp where the student is a Camp Committee Member, or null if not applicable.
+     */
 
     public void displayRegisteredCampsAndRole(ArrayList<Camp> camps, Camp ccmCamp) {
         int counter = 1;
