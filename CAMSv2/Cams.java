@@ -61,6 +61,7 @@ public class Cams {
                 sc.nextLine();
                 running = handleLoginSwitch(role, emailID, password);                
             } catch (Exception e) {
+                sc.nextLine();
                 System.out.println("Enter a valid option!");
             }
 
