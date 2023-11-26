@@ -1,9 +1,19 @@
 package CAMSv2;
 
 import java.util.Scanner;
+/**
+ * The Cams class is the main entry point for the CAMSv2 application.
+ * It provides a text-based user interface for interacting with the system.
+ * It also initializes the databases for the application.
+ */
 
 public class Cams {
     private static Scanner sc = new Scanner(System.in);
+    /**
+     * The main method for the Cams class.
+     * It sets up the databases and provides a loop for the main menu.
+     * @param args Command line arguments. Not used in this application.
+     */
     public static void main(String[] args) {
         setupDatabases();
         boolean running = true;
@@ -23,11 +33,23 @@ public class Cams {
         }
     }
 
+     /**
+     * This method sets up the databases for the application.
+     * It loads data from CSV files into the Student, Staff, and Camp Committee databases.
+     */
+
     private static void setupDatabases() {
         StudentDataBase.getInstance().loadToCSV();
         StaffDataBase.getInstance().loadToCSV();
         CampCommitteeDataBase.getInstance().loadToCSV();  
     }
+
+     /**
+     * This method handles the main menu switch.
+     * It takes the user's choice as input and performs the corresponding action.
+     * @param choice The user's menu choice.
+     * @return A boolean indicating whether the application should continue running.
+     */
 
     private static boolean handleMainMenuSwitch(int choice) {
         switch (choice) {
@@ -43,6 +65,12 @@ public class Cams {
                 return false;
         }
     }
+
+     /**
+     * This method handles the login process.
+     * It prompts the user for their email and password, and then asks them to select their role.
+     * It then calls the handleLoginSwitch method with the role, email, and password.
+     */
     private static void handleLogin() {
         boolean running = true;
         while (running) {
@@ -68,6 +96,14 @@ public class Cams {
         }
     }
 
+     /**
+     * This method handles the login switch.
+     * It takes the user's role, email, and password as input and performs the corresponding login action.
+     * @param role The user's role.
+     * @param emailID The user's email.
+     * @param password The user's password.
+     * @return A boolean indicating whether the login process should continue.
+     */
     private static boolean handleLoginSwitch(int role, String emailID, String password) {
 
         switch (role) {
