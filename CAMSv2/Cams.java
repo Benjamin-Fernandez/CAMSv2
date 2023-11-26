@@ -16,6 +16,7 @@ public class Cams {
                 sc.nextLine();
                 running = handleMainMenuSwitch(choice);                
             } catch (Exception e) {
+                sc.nextLine();
                 System.out.println("Enter a valid option!");
             }
 
