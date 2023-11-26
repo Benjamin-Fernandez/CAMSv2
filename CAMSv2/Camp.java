@@ -583,8 +583,8 @@ public class Camp {
      */
     public void generateCampReport(IReportFilter filter) {
         // list of students attending each camp
-        printCampInfoTable();
-        printStudentList(filter.getFilteredList(getStudentList()));
+        // printCampInfoTable();
+        // printStudentList(filter.getFilteredList(getStudentList()));
         // generate csv
         ReportDatabase.getInstance().generateCampReportCSV(this, filter);
     }
@@ -594,7 +594,7 @@ public class Camp {
      */
     public void generateCampCommitteeReport() {
         // CCM name, points 
-        printCCMList();
+        // printCCMList();
         // generate csv
         ReportDatabase.getInstance().generateCCMReportCSV(this);
     }
@@ -604,7 +604,7 @@ public class Camp {
      */
     public void generateStudentsEnquiryReport() {
         // Student Name, Enquiry
-        printEnquiriesList();
+        // printEnquiriesList();
         // generate csv
         ReportDatabase.getInstance().generateStudentsEnquiryReport(this);
     }

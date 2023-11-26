@@ -56,14 +56,28 @@ public class User {
         return this.name;
     }
 
+
+     /**
+     * This method sets the firstLogin boolean value to false by default
+     *  
+     */
     public void setFirstLogin() {
         firstLogin = false;
     }
-
+     /**
+     * This method sets the firstLogin boolean value
+     *
+     * @param firstLogin 
+     */
     public void setFirstLogin(boolean firstLogin) {
         this.firstLogin = firstLogin;
     }
 
+    /**
+     * This method checks if this is the first login for this account.
+     *
+     * @return firstLogin boolean
+     */
     public boolean getFirstLogin() {
         return firstLogin;
     }

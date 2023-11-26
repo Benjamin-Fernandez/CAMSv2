@@ -251,7 +251,7 @@ public class CampCommitteeMemberController extends StudentController {
             }
             ccmView.displayGetReply();
             String reply = sc.nextLine();
-            question.getReplies().add(new Reply(ccm.getName(), reply));
+            question.setReply(new Reply(ccm.getName(), reply));
             camp.printEnquiriesList();
 
             // increment student points
