@@ -6,69 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="792beefb-91a0-488e-a485-d08d442f2f05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/Advice.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Advice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/Camp.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/Camp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberView.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampCommitteeMemberView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/CampInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAMSv2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Advice.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Advice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Authenticator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Authenticator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/BaseController.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/BaseController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CCMAuthenticator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CCMAuthenticator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Camp.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Camp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeDataBase.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeDataBase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMember.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMember.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMemberController.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMemberController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMemberView.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampCommitteeMemberView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampInformation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampInformation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/CampManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Cams.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Cams.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/DataBase.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/DataBase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Enquiries.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Enquiries.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/EnquiryManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/EnquiryManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Question.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Reply.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Reply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Role.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Role.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StaffAuthenticator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StaffAuthenticator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StaffDataBase.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StaffDataBase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Student.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentAuthenticator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentAuthenticator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentDataBase.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentDataBase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentView.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/StudentView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/Suggestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/SuggestionManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/SuggestionManager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/User.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/UserGroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/UserGroup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/CAMSv2/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/allclasses-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/allpackages-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-16.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-18.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CAMSv2/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CAMSv2/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAMSv2/CampManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/CAMSv2/CampManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

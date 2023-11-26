@@ -85,6 +85,11 @@ public class CampCommitteeMemberView extends StudentView {
         }
     }
 
+    /**
+     * Displays the options for report filtering.
+     * This method prints the available filter options for generating a report,
+     * including attendee, camp committee member, and all options.
+     */
     public void displayReportFilter() {
         System.out.println("1. Attendee");
         System.out.println("2. Camp Committee Member");       

@@ -129,6 +129,11 @@ public class Camp {
         studentList.add(student);
     }
 
+    /**
+     * Removes the specified student from the student list.
+     *
+     * @param student The student to be removed.
+     */
     public void removeStudent(Student student) {
         studentList.remove(student);
     }
@@ -199,6 +204,11 @@ public class Camp {
         }
     }
 
+    /**
+     * Retrieves the visibility status of this object.
+     *
+     * @return The visibility status (true if visible, false otherwise).
+     */
     public boolean getVisibility() {
         return visibility;
     }
@@ -447,6 +457,11 @@ public class Camp {
 
     }
 
+    /**
+     * Prints camp information and the list of students.
+     * This method displays camp information in a table format
+     * and prints the student list.
+     */
     public void printCampInfoAndList() {
         printCampInfoTable();
         System.out.println("9. Student List = ");
@@ -504,6 +519,11 @@ public class Camp {
         }
     }
 
+    /**
+     * Prints the suggestion list with details.
+     * This method iterates through the suggestions list and displays
+     * suggester information along with suggestions and their approvals.
+     */
     public void printSuggestionList() {
     for (Suggestion suggestion : suggestionsList) {
         System.out.println("Suggester: " + suggestion.getStudent());

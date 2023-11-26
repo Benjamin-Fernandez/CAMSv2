@@ -28,6 +28,11 @@ public class Advice {
         this.name = name;
     }
 
+    /**
+     * Retrieves the name associated with this object.
+     *
+     * @return The name of the object.
+     */
     public String getName() {
         return name;
     }
@@ -75,6 +80,11 @@ public class Advice {
         return approved;
     }
 
+    /**
+     * Retrieves the ID associated with this object.
+     *
+     * @return The ID of the object.
+     */
     public int getId() {
         return id;
     }

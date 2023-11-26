@@ -34,6 +34,11 @@ public class CampCommitteeDataBase extends DataBase{
         return instance;
     }
 
+    /**
+     * Prints the CCM (Camp Committee Member) database.
+     * This method prints the names and email IDs of
+     * all camp committee members stored in the list.
+     */
     public void printList() {
         System.out.println("PRINTING CCM DATABASE...");
         for (CampCommitteeMember campCommitteeMember : campCommitteeMembersList) {

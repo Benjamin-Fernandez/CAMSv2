@@ -26,16 +26,18 @@ public class CampManager {
     //attributes
     private static CampManager instance;
 
-    /**
-     * Retrieves the singleton instance of the CampManager class.
-     *
-     * @return The singleton instance of CampManager.
-     */
+
     private ArrayList<Camp> campList = new ArrayList<Camp>();
     public Scanner sc = new Scanner(System.in);
 
     //method
     private CampManager() {};
+
+    /**
+     * Retrieves the singleton instance of the CampManager class.
+     *
+     * @return The singleton instance of CampManager.
+     */
     public static CampManager getInstance() {
         if (instance == null) {
             instance = new CampManager();

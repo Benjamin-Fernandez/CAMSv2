@@ -51,14 +51,27 @@ public class CampCommitteeMember extends Student {
         System.out.println("Suggestion added");
     }
 
+    /**
+     * Generates a camp report based on the provided filter.
+     *
+     * @param filter An implementation of the {@code IReportFilter} interface to filter the report data.
+     */
     public void generateCampReport(IReportFilter filter) {
         camp.generateCampReport(filter);
     }
 
+    /**
+     * Generates a report for the camp committee.
+     * This method triggers the generation of a report specifically tailored for the camp committee.
+     */
     public void generateCampCommitteeReport() {
         camp.generateCampCommitteeReport();
     }
 
+    /**
+     * Generates a report regarding student enquiries.
+     * This method triggers the generation of a report specifically focused on student enquiries.
+     */
     public void generateStudentsEnquiryReport() {
         camp.generateStudentsEnquiryReport();
     }
@@ -88,6 +101,10 @@ public class CampCommitteeMember extends Student {
         return points;
     }
 
+    /**
+     * Displays the profile information, including camp details.
+     * This method extends the display by showing the camp name (CCM) associated with the profile.
+     */
     @Override
     public void displayProfile() {
         super.displayProfile();

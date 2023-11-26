@@ -61,6 +61,13 @@ public class CampCommitteeMemberController extends StudentController {
         return true;
     }
 
+    /**
+     * Handles the options specific to a camp.
+     * This method prompts and manages the actions and functionalities available for a particular camp,
+     * including options for student registration, committee member actions, and menu navigation.
+     *
+     * @return A boolean indicating successful handling of camp-specific options.
+     */
     @Override
     public boolean enterCampSpecificOptions() {
         super.camp = super.handleCampSelection();
